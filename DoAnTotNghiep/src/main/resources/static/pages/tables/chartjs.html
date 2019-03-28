@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DOU-Network</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+    <!--My Css-->
+    <link rel="stylesheet" href="../../dist/css/mycss/customcss.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        #changeAva,
+        #changeAvaAd,
+        #changeCV {
+            cursor: pointer;
+            /* Style as you please, it will become the visible UI component. */
+        }
+        
+        #upload-photoAd {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="skin-blue sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini">DOU</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>DOU</b>Network</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image" id="adminHeader">
+                                <span class="hidden-xs">Chiến</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <label id="changeAvaAd" for="upload-photoAd" title="Click here to change profile picture">
+                                        <img id="hinhAd" width="160" height="160" src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    </label>
+                                    <input type="file" name="photoAd" accept="image/*" id="upload-photoAd">
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left" style="font-weight:bold">Trần Đình Chiến</div>
+                                    <div class="pull-right">
+                                        <a href="#" style="font-weight:bold">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" id="adminSideBar">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Chiến</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">HEADER</li>
+                        <!-- Optionally, you can add icons to the links -->
+                        <li><a href="index.html"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
+                        <li><a href="position.html"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
+                        <li class="active"><a href="chartjs.html"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
+                    </ul>
+                    <!-- /.sidebar-menu -->
+                </section>
+                <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+              Chart
+              </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Search</h3>
+                            <div class="box-tool pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <!--body-box-->
+                        <div class="box-body">
+                            <!--form search chart-->
+                            <form action="">
+                                <div class="col-md-6 radio">
+                                    <h4>Date</h4>
+                                    <div class="row form-group">
+                                        <label class="col-md-2 col-sm-2">
+                                            <input type="radio" name="radio_date" value="Range" checked>Range Date</label>
+                                        <input type="text" class="col-md-4 col-sm-6" id="reservation_chart">
+                                    </div>
+                                    <div class="row form-inline">
+                                        <label class="col-md-2 col-sm-2">
+                                            <input type="radio" name="radio_date" value="Choose">Choose Date</label>
+                                        <div class="form-inline datachoose col-sm-9" style="padding-left: 0px;">
+                                            <span>
+                                                <select class="form-control col-md-3 col-sm-3" disabled="disabled">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+                                                  </select>
+                                            </span>
+                                             <span>
+                                                <select class="form-control col-md-3 col-sm-3" disabled="disabled">
+                                                    <option>2010</option>
+                                                    <option>2011</option>
+                                                    <option>2012</option>
+                                                    <option>2013</option>
+                                                    <option>2014</option>
+                                                    <option>2015</option>
+                                                    <option>2016</option>
+                                                    <option>2017</option>
+                                                    <option>2018</option>
+                                                  </select>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="col-md-8 col-md-offset-1">OPTIONS</h5>
+                                    <div class="row col-md-8  col-md-offset-1">
+                                        <div class="form-group">
+                                            <label for="">Data</label>
+                                            <select class="form-control select2" multiple data-placeholder="Select Data Type" style="width: 100%;">
+                                                <option value="All">All</option>
+                                                <option value="New">New</option>
+                                                <option value="Not qualitied">Not qualitied</option>
+                                                <option value="Wating for interview">Wating for interview</option>
+                                                <option value="Reject">Reject</option>
+                                                <option value="Interviewing">Interviewing</option>
+                                                <option value="Interview pass">Interview pass</option>
+                                                <option value="Interview fail">Interview fail</option>
+                                                <option value="Offering">Offering</option>
+                                                <option value="Offer success">Offer success</option>
+                                                <option value="Offer fail">Offer fail</option>
+                                                <option value="Probation">Probation</option>
+                                                <option value="Probation pass">Probation pass</option>
+                                                <option value="Probation fail">Probation fail</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-8 col-md-offset-1">
+                                        <div class="row form-group">
+                                            <label class="col-md-8">Chart Type</label>
+                                            <div class="col-md-6">
+                                                <div class="custom_checkbox btn-group">
+                                                    <input type="checkbox" id="check_1" name="asd">
+                                                    <label for="check_1" class="btn active glyphicon glyphicon-ok btn-success" ></label>
+                                                    <label for="check_1" class="btn active">Area Chart</label>
+                                                </div>
+                                                <div class="custom_checkbox btn-group">
+                                                    <input type="checkbox" id="check_2">
+                                                    <label for="check_2" class="btn active glyphicon glyphicon-ok btn-success" ></label>
+                                                    <label for="check_2" class="btn active">Line Chart</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="custom_checkbox btn-group">
+                                                    <input type="checkbox" id="check_3">
+                                                    <label for="check_3" class="btn active glyphicon glyphicon-ok btn-success" ></label>
+                                                    <label for="check_3" class="btn active">Donut Chart</label>
+                                                </div>
+                                                <div class="custom_checkbox btn-group">
+                                                    <input type="checkbox" id="check_4">
+                                                    <label for="check_4" class="btn active glyphicon glyphicon-ok btn-success" ></label>
+                                                    <label for="check_4" class="btn active">Bar Chart</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="col-md-4 form-group">
+                                        <input type="button" class="btn btn-success form-control" value="Search" id="sumbit_date_chart">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="button" class="btn btn-warning form-control" value="Export" id="export_chart">
+                                    </div>
+                                </div>
+                            </form>
+                            <!--/form search chart-->
+                        </div>
+                        <!--/body-box-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- AREA CHART -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Area Chart</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="chart">
+                                    <canvas id="areaChart" style="height:250px"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                        <!-- DONUT CHART -->
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Donut Chart</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <canvas id="pieChart" style="height:250px"></canvas>
+                                <div id="lengend-dount-chart" class="chart-legend"></div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col (LEFT) -->
+                    <div class="col-md-6">
+                        <!-- LINE CHART -->
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Line Chart</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="chart">
+                                    <canvas id="lineChart" style="height:250px"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                        <!-- BAR CHART -->
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Bar Chart</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="chart">
+                                    <canvas id="barChart" style="height:230px"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col (RIGHT) -->
+                </div>
+                <!-- /.row -->
+                <div>
+                    <div>
+                        <canvas id="top10ItemsChart" style="padding-left:20px" width="320" height="320"></canvas>
+                        <div id="top10Legend" class="chart-legend"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.4.0
+            </div>
+            <strong>Copyright &copy; 2018 <a href="https://adminlte.io">DOU Network</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+</body>
+<!-- ./wrapper -->
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- ChartJS -->
+<script src="../../bower_components/chart.js/Chart.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- date-range-picker -->
+<script src="../../bower_components/moment/min/moment.min.js"></script>
+<script src="../../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Select2 -->
+<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!--My Js-->
+<script src="../../bower_components/datatables.net/js/tablefunction.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- page script -->
+<script>
+$(function() {
+  /* ChartJS
+   * -------
+   * Here we will create a few charts using ChartJS
+   */
+  //--------------
+  //- AREA CHART -
+  //--------------
+  // Get context with jQuery - using jQuery's .get() method.
+  var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+      // This will get the first returned node in the jQuery collection.
+  var areaChart = new Chart(areaChartCanvas)
+  var areaChartData = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [{
+          label: 'Electronics',
+          fillColor: 'rgba(210, 214, 222, 1)',
+          strokeColor: 'rgba(210, 214, 222, 1)',
+          pointColor: 'rgba(210, 214, 222, 1)',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data: [65, 59, 80, 81, 56, 55, 40]
+      }, {
+          label: 'Digital Goods',
+          fillColor: 'rgba(60,141,188,0.9)',
+          strokeColor: 'rgba(60,141,188,0.8)',
+          pointColor: '#3b8bba',
+          pointStrokeColor: 'rgba(60,141,188,1)',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data: [28, 48, 40, 19, 86, 27, 90]
+      }]
+  }
+  var areaChartOptions = {
+          //Boolean - If we should show the scale at all
+          showScale: true,
+          //Boolean - Whether grid lines are shown across the chart
+          scaleShowGridLines: false,
+          //String - Colour of the grid lines
+          scaleGridLineColor: 'rgba(0,0,0,.05)',
+          //Number - Width of the grid lines
+          scaleGridLineWidth: 1,
+          //Boolean - Whether to show horizontal lines (except X axis)
+          scaleShowHorizontalLines: true,
+          //Boolean - Whether to show vertical lines (except Y axis)
+          scaleShowVerticalLines: true,
+          //Boolean - Whether the line is curved between points
+          bezierCurve: true,
+          //Number - Tension of the bezier curve between points
+          bezierCurveTension: 0.3,
+          //Boolean - Whether to show a dot for each point
+          pointDot: false,
+          //Number - Radius of each point dot in pixels
+          pointDotRadius: 4,
+          //Number - Pixel width of point dot stroke
+          pointDotStrokeWidth: 1,
+          //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+          pointHitDetectionRadius: 20,
+          //Boolean - Whether to show a stroke for datasets
+          datasetStroke: true,
+          //Number - Pixel width of dataset stroke
+          datasetStrokeWidth: 2,
+          //Boolean - Whether to fill the dataset with a color
+          datasetFill: true,
+          //String - A legend template
+          legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+          //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+          maintainAspectRatio: true,
+          //Boolean - whether to make the chart responsive to window resizing
+          responsive: true
+      }
+      //Create the line chart
+  areaChart.Line(areaChartData, areaChartOptions)
+      //-------------
+      //- LINE CHART -
+      //--------------
+  var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+  var lineChart = new Chart(lineChartCanvas)
+  var lineChartOptions = areaChartOptions
+  lineChartOptions.datasetFill = false
+  lineChart.Line(areaChartData, lineChartOptions)
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+  var PieData = [{
+      value: 30,
+      color: '#00c0ef',
+      highlight: '#00acd6',
+      label: 'InterView'
+  }, {
+      value: 20,
+      color: '#204d74',
+      highlight: '#367fa9',
+      label: 'Offer'
+  }, {
+      value: 50,
+      color: '#d58512',
+      highlight: '#e08e0b',
+      label: 'Probation'
+  }, ]
+  var pieOptions = {
+          //Boolean - Whether we should show a stroke on each segment
+          segmentShowStroke: true,
+          //String - The colour of each segment stroke
+          segmentStrokeColor: '#fff',
+          //Number - The width of each segment stroke
+          segmentStrokeWidth: 5,
+          //Number - The percentage of the chart that we cut out of the middle
+          percentageInnerCutout: 50, // This is 0 for Pie charts
+          //Number - Amount of animation steps
+          animationSteps: 100,
+          //String - Animation easing effect
+          animationEasing: 'easeOutBounce',
+          //Boolean - Whether we animate the rotation of the Doughnut
+          animateRotate: true,
+          //Boolean - Whether we animate scaling the Doughnut from the centre
+          animateScale: false,
+          //Boolean - whether to make the chart responsive to window resizing
+          responsive: true,
+          // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+          maintainAspectRatio: true,
+          //String - A legend template
+          // legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+  var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+  var pieChart = new Chart(pieChartCanvas).Doughnut(PieData, pieOptions)
+  $('#lengend-dount-chart').html(pieChart.generateLegend())
+      //-------------
+      //- BAR CHART -
+      //-------------
+  var barChartCanvas = $('#barChart').get(0).getContext('2d')
+  var barChart = new Chart(barChartCanvas)
+  var barChartData = areaChartData
+  barChartData.datasets[1].fillColor = '#00a65a'
+  barChartData.datasets[1].strokeColor = '#00a65a'
+  barChartData.datasets[1].pointColor = '#00a65a'
+  var barChartOptions = {
+      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+      scaleBeginAtZero: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: true,
+      //String - Colour of the grid lines
+      scaleGridLineColor: 'rgba(0,0,0,.05)',
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - If there is a stroke on each bar
+      barShowStroke: true,
+      //Number - Pixel width of the bar stroke
+      barStrokeWidth: 2,
+      //Number - Spacing between each of the X value sets
+      barValueSpacing: 5,
+      //Number - Spacing between data sets within X values
+      barDatasetSpacing: 1,
+      //String - A legend template
+      legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+      //Boolean - whether to make the chart responsive
+      responsive: true,
+      maintainAspectRatio: true
+  }
+  barChartOptions.datasetFill = false
+  barChart.Bar(barChartData, barChartOptions)
+      // date picker
+  $('#reservation_chart').daterangepicker()
+  $('#datepicker_chart').datepicker({
+          autoclose: true
+      })
+      //Initialize Select2 Elements
+  $('.select2').select2()
+      // Select radio search
+  $(".radio label input").click(function(argument) {
+      if (this.value == "Range") {
+          $("#reservation_chart").removeAttr("disabled")
+          $(".datachoose select").attr("disabled", true)
+      } else if (this.value == "Choose") {
+          $("#reservation_chart").attr("disabled", true)
+          $(".datachoose select").removeAttr("disabled")
+      }
+  })
+})
+</script>
+
+</html>
