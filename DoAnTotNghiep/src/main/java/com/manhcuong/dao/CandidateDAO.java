@@ -51,16 +51,16 @@ public class CandidateDAO {
 	                String cmnd = map.get("cmnd").getS();
 	                String email = map.get("email").getS();
 	                String phone = map.get("phone").getS();
-	                String gender = map.get("gender").getS();
+	                boolean gender = map.get("gender").getBOOL();
 	                String dob = map.get("dob").getS();
 	                String linkCV = map.get("linkCV").getS();
-	                String id_pos = map.get("position").getS();
+	                String name_pos = map.get("position").getS();
 	                String status = map.get("status").getS();
 	                Map<String, AttributeValue> rate = (Map<String, AttributeValue>) map.get("rate").getM();
-	                Candidate newCan_S = new Candidate(id_can, name_can, cmnd, email, phone, gender, dob, linkCV, id_pos, rate, status, null, null, null);
+	                Candidate newCan_S = new Candidate(id_can, name_can, cmnd, email, phone, gender, dob, linkCV, name_pos, rate, status, null, null, null);
 	                ds.add(newCan_S);
 	                
-	                System.out.println(rs);
+	                //System.out.println(rs);
 	           
 	                //Lấy time trong Candidate
 //	                int time = Integer.parseInt(newCan_S.getRate().get("time").getN());

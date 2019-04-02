@@ -5,14 +5,14 @@
 		"name":"Nguyen Van A",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
-		"gender": "male",
+		"gender": true,
 		"dob":"24/5/1999",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 10,
 			"time" : 5000
 		},
-		"position": "pos_1",
+		"position": "Java",
 		"status":"New"
 	},
 	{
@@ -21,14 +21,14 @@
 		"name":"Nguyen Van B",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
-		"gender": "female",
+		"gender": false,
 		"dob":"24/5/1999",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 11,
 			"time" : 5000
 		},
-		"position": "pos_2",
+		"position": "C#",
 		"status":"New"
 	},
 	{
@@ -37,14 +37,14 @@
 		"name":"Nguyen Van C",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
-		"gender": "male",
+		"gender": true,
 		"dob":"24/5/1999",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 10,
 			"time" : 7000
 		},
-		"position": "pos_1",
+		"position": "Java",
 		"status":"New"
 	}	
 ]
