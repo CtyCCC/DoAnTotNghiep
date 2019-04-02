@@ -1,0 +1,32 @@
+[
+	{
+		"id_ques":"ques_1",
+		"ques_content":"What is java language?",
+		"answer":["a normal language","a html language","a computer language","a alien language"],
+		"result":"a computer language"
+	},
+	{
+		"id_ques":"ques_2",
+		"ques_content":"What is HTML?",
+		"answer":["a normal language","a html language","a computer language","a alien language"],
+		"result":"a computer language"
+	},
+	{
+		"id_ques":"ques_3",
+		"ques_content":"What is Eclipse",
+		"answer":["a Dog","a computer","a computer language","a IDE"],
+		"result":"a IDE"
+	},
+	{
+		"id_ques":"ques_4",
+		"ques_content":"Array begin from?",
+		"answer":["1","2","0","3"],
+		"result":"0"
+	},
+	{
+		"id_ques":"ques_5",
+		"ques_content":"What should I do if I code wrong?",
+		"answer":["Debug more","Check my code","Code again","Go to play game and forget it"],
+		"result":"Check my code"
+	}
+]

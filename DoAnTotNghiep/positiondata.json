@@ -1,0 +1,36 @@
+[
+	{
+		"id_pos":"pos_1",
+		"name_pos":"Java",
+		"requirment":"java core, tom-cat server,...",
+		"des":{
+			"salary":"1000$",
+			"quantity": 20,
+			"edu": "graduate",
+			"exp": 1,
+			"location":"hcm",
+			"info-job":"ngoi choi an luong",
+			"time":"full-time",
+			"benefiy":"eo co nhe",
+			"exp-date":"20/5/2019"
+		},
+		"questions":[]
+	},
+	{
+		"id_pos":"pos_2",
+		"name_pos":"C#",
+		"requirment":".NET, tom-cat server,...",
+		"des":{
+			"salary":"1000$",
+			"quantity": 20,
+			"edu": "graduate",
+			"exp": 1,
+			"location":"hcm",
+			"info-job":"ngoi choi an luong",
+			"time":"full-time",
+			"benefiy":"eo co nhe",
+			"exp-date":"20/5/2019"
+		},
+		"questions":[]
+	}
+]

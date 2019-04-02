@@ -109,6 +109,7 @@
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
+      </section>
        <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
 
@@ -118,7 +119,6 @@
             <li class="active"><a href="index.html"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
             <li><a href="position.html"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
             <li><a href="chartjs.html"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
-          </li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
@@ -273,131 +273,7 @@
                 </div>
                 <!-- /.modal-setinterviwe -->
 
-                <!-- /.modal -->
-                <div class="modal fade" id="modal-default2">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span></button>
-                          <center>
-                            <div >
-                              <label id="changeAva" for="upload-photo" title="Click here to upload profile picture">
-                                  <img id="hinh" width="200" height="200" type="file" class="img-circle" src="../../dist/img/avatar04.png" alt="">
-                              </label>
-                              <input type="file" name="photo" id="upload-photo" />
-                            </div>
-                          </center>
-                      </div>
-                      <div class="modal-body">
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                          <form role="form">
-                            <!-- text input -->
-
-                            <div class="form-row col-xs-12">
-                              <center>
-                                <div class="input-group input-group-md col-xs-6">
-                                  <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" disabled>Status
-                                      <span class="fa fa-caret-down"></span></button>
-                                  </div>
-                                  <!-- /btn-group -->
-                                  <input type="text" class="form-control text-center" disabled="true" value="New" style="font-weight: bold;">
-                                </div>
-                              </center>
-                            </div>
-
-                            <div class="form-row col-xs-7">
-                              <label>Name: </label>
-                              <input type="text" class="form-control">
-                            </div>
-
-                            <div class="form-row col-xs-5">
-                              <label>DOB:</label>
-                              <div class="input-group date">
-                                <div class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="datepicker_DOB_New">
-                              </div>
-                            </div>
-
-                            <div class="form-row col-xs-7">
-                              <label>Email: </label>
-                              <input type="email" class="form-control">
-                            </div>
-
-                            <div class="form-row col-xs-5">
-                              <label>Phone: </label>
-                              <input type="text" required class="form-control">
-                            </div>
-    
-                            <div class="form-group col-xs-7">
-                              <label>Positon Apply: </label>
-                              <select class="form-control">
-                                <option>Java Developer</option>
-                                <option>Tester</option>
-                                <option>Internship</option>
-                                <option>Partime</option>
-                                <option>PM</option>
-                                <option>Leader</option>
-                              </select>
-                            </div>
-
-                            <div class="form-group col-xs-5">
-                              <label>Gender</label>
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>
-                            </div>
-
-                            <div class="form-row col-xs-7">
-                              <label>University: </label>
-                              <input type="text" class="form-control">
-                            </div>
-
-                            <div class="form-row col-xs-5">
-                              <label>Date:</label>
-                              <div class="input-group date">
-                                <div class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="datepicker_Date_New">
-                              </div>
-                            </div>
-
-                            <!-- textarea -->
-                            <div class="form-row col-xs-12">
-                              <label>Work Experience: </label>
-                              <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            
-                            <div class="form-row col-xs-12">
-                              <label>Skill: </label>
-                              <textarea class="form-control" rows="2"></textarea>
-                            </div>
-                            
-                            <div class="form-row col-xs-12">
-                              <a><label id="changeCV_New" for="upload-cv-new">Click to upload CV </label></a>
-                              <input type="file" id="upload-cv-new">
-                            </div>
-
-                          </form>
-                        </div>
-                        <!-- /.box-body -->
-                      </div>
-                      <!-- /.box -->
-                     
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.modal -->
+                
                 
               </div>
               <!-- /.box-header -->
@@ -411,88 +287,33 @@
                     <th>Gender</th>                  
                     <th>Mobile</th>             
                     <th>Position</th>
-                    <th>University</th>
+                    <th>LinkCV</th>
                     <th>Rate</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>
-                      <center><input id="checkAllHeader" type="checkbox"></center>
+                      <div class="center"><input id="checkAllHeader" type="checkbox"></div>
                     </th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>01</td>
-                    <td>Trần Đình Chiến</td>
-                    <td>26/03/1997</td>
-                    <td>Mr</td>                  
-                    <td>0977621504</td>             
-                    <td><a href="position.html"> Java Dev</a></td>
-                    <td>CN4</td>
-                    <td>
+                  <tr th:each="dsCandidate : ${dsCandidates}">
+                    <td th:text="${dsCandidate.id_can}"></td>
+                    <td th:text="${dsCandidate.name_can}"></td>
+                    <td th:text="${dsCandidate.dob}"></td>
+                    <td th:text="${dsCandidate.gender}"></td>                  
+                    <td th:text="${dsCandidate.phone}"></td>             
+                    <td th:text="${dsCandidate.id_pos}"><a href="position.html"></a></td>
+
+                    <td th:text="${dsCandidate.linkCV}"></td>
+                    <td >
                       <span class="badge bg-red">9/20</span>
                     </td>
-                    <td><span class="label label-primary">Offering</span></td>
+                    <td><span class="label label-primary" th:text="${dsCandidate.status}"></span></td>
                     <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
+                      <div class="center"><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a></div>
                     <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr >      
-                    <td>02</td>
-                    <td>Nguyễn Đình Chiến</td>
-                    <td>26/03/1999</td>
-                    <td>Mr</td>                  
-                    <td>0977141504</td>             
-                    <td><a href="position.html">Python</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-green">19/20</span>
-                    </td>
-                    <td><span class="label label-info">Interviewing</span></td> 
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr>
-                    
-                    <td>03</td>
-                    <td>Trần Hùng Cường</td>
-                    <td>21/09/1997</td>
-                    <td>Mrs</td>                  
-                    <td>099621504</td>             
-                    <td><a href="position.html">Tester</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-warning">Probation</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    </td>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>04</td>
-                    <td>Trần Đình Chiến</td>
-                    <td>26/03/1997</td>
-                    <td>Mr</td>                  
-                    <td>0977621504</td>             
-                    <td><a href="position.html"> Java Dev</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-primary">Offering</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
+                      <div class="center"><input class="checkk" type="checkbox"></div>
                     </td>
                   </tr>
                   <tr >      
@@ -508,143 +329,13 @@
                     </td>
                     <td><span class="label label-info">Interviewing</span></td> 
                     <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
+                      <div class="center"><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a></div>
+                    </td>
                     <td>
-                      <center><input class="checkk" type="checkbox"></center>
+                      <div class="center"><input class="checkk" type="checkbox"></div>
                     </td>
                   </tr>
-                  <tr>
-                    
-                    <td>06</td>
-                    <td>Trần Hùng Cường</td>
-                    <td>21/09/1997</td>
-                    <td>Mrs</td>                  
-                    <td>099621504</td>             
-                    <td><a href="position.html">Tester</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-warning">Probation</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    </td>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>07</td>
-                    <td>Trần Đình Chiến</td>
-                    <td>26/03/1997</td>
-                    <td>Mr</td>                  
-                    <td>0977621504</td>             
-                    <td><a href="position.html"> Java Dev</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-primary">Offering</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr >      
-                    <td>08</td>
-                    <td>Nguyễn Đình Chiến</td>
-                    <td>26/03/1999</td>
-                    <td>Mr</td>                  
-                    <td>0977141504</td>             
-                    <td><a href="position.html">Python</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-info">Interviewing</span></td> 
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr>
-                    
-                    <td>09</td>
-                    <td>Trần Hùng Cường</td>
-                    <td>21/09/1997</td>
-                    <td>Mrs</td>                  
-                    <td>099621504</td>             
-                    <td><a href="position.html">Tester</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-warning">Probation</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    </td>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>10</td>
-                    <td>Trần Đình Chiến</td>
-                    <td>26/03/1997</td>
-                    <td>Mr</td>                  
-                    <td>0977621504</td>             
-                    <td><a href="position.html"> Java Dev</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-primary">Offering</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr >      
-                    <td>11</td>
-                    <td>Nguyễn Đình Chiến</td>
-                    <td>26/03/1999</td>
-                    <td>Mr</td>                  
-                    <td>0977141504</td>             
-                    <td><a href="position.html">Python</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-info">Interviewing</span></td> 
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
-                  <tr>
-                    
-                    <td>12</td>
-                    <td>Trần Hùng Cường</td>
-                    <td>21/09/1997</td>
-                    <td>Mrs</td>                  
-                    <td>099621504</td>             
-                    <td><a href="position.html">Tester</a></td>
-                    <td>CN4</td>
-                    <td>
-                      <span class="badge bg-red">9/20</span>
-                    </td>
-                    <td><span class="label label-warning">Probation</span></td>
-                    <td>
-                      <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                    </td>
-                    <td>
-                      <center><input class="checkk" type="checkbox"></center>
-                    </td>
-                  </tr>
+                  
                   </tbody>
                   <tfoot>
                   <tr>
@@ -654,12 +345,12 @@
                     <th>Gender</th>                  
                     <th>Mobile</th>             
                     <th>Position</th>
-                    <th>University</th>
+                    <th>LinkCV</th>
                     <th>Rate</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>
-                      <center><input id="checkAllFooter" type="checkbox"></center>
+                      <div class="center"><input id="checkAllFooter" type="checkbox"></div>
                     </th>
                   </tr>
                   </tfoot>
@@ -675,6 +366,7 @@
       </section>
       <!-- /.content -->
     </div>
+  </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">

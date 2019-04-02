@@ -1,0 +1,50 @@
+[
+	{
+		"id_can":"can_1",
+		"cmnd":"1111111111",
+		"name":"Nguyen Van A",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": "male",
+		"dob":"24/5/1999",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"position": "pos_1",
+		"status":"New"
+	},
+	{
+		"id_can":"can_2",
+		"cmnd":"222222222",
+		"name":"Nguyen Van B",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": "female",
+		"dob":"24/5/1999",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 11,
+			"time" : 5000
+		},
+		"position": "pos_2",
+		"status":"New"
+	},
+	{
+		"id_can":"can_3",
+		"cmnd":"333333333",
+		"name":"Nguyen Van C",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": "male",
+		"dob":"24/5/1999",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 7000
+		},
+		"position": "pos_1",
+		"status":"New"
+	}	
+]

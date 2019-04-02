@@ -24,8 +24,8 @@ public class CreateTableCandidate {
 	        DynamoDB dynamoDB = new DynamoDB(client);
 	        
 	        
-	        //String tableName = "Candidate_M";
-	        String tableName = "Candidate_S";
+	        String tableName = "Candidate_M";
+	        //String tableName = "Candidate_S";
 	        try {
 	            System.out.println("Attempting to create table; please wait...");
 	            Table table = dynamoDB.createTable(tableName,
