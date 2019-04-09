@@ -32,7 +32,7 @@
 
 //Count down
 (function($){
-	   var fulltime = 30 * 60 * 1000;
+	   var fulltime = 30 * 60 * 1000;//30 phút
 	   var timefund = fulltime;
        var minutes = 1 * 60 * 1000,
        second = 1000;
@@ -69,7 +69,7 @@
           })();
           function updatedou(pos,a,b,fulltime,timeRun) {
           		$("#title-runtime").text(a+":"+b)
-              processVal = (timeRun/fulltime)*100;
+              processVal = 100-(timeRun/fulltime)*100;
               console.log(processVal);
               $("#process").css("width",processVal+"%");
           		options.callback(this);
@@ -78,17 +78,19 @@
 	}
   //Sub fun of fun runtime()
   function ui(pos,fundtime,process) {
-    var html =  '<h3 align="center"  id="title-runtime"><h3>'
-               +'<div class="progress" id="myprogress">'
-               +'<div id="process" class="progress-bar progress-bar-striped active"'
+    var html = '<div id="timebar">'
+               +'<div class="progress progress-bar-danger " id="myprogress">'
+               +'<div id="process" class="progress-bar  progress-bar-striped  progress-bar-success active"'
                +'role="progressbar"  style="width:0%">'
                +'</div></div>'
+               +'<h3  class="" id="title-runtime"></h3>'
+               +'</div>'
      $("#"+pos).append(html);
   }
 
   function timeover(pos,a,b) {
     swal({
-          title: "Good job!",
+          title: "Time up!",
           text: "Click Finish to complete!",
           icon: "success",
           button: "Finish",

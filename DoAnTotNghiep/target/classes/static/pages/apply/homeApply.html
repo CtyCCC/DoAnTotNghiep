@@ -12,16 +12,27 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="./../../bower_components/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Custom Fonts -->
   <link href="./../../bower_components/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   <link href="./../../bower_components/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="./../../dist/css/mycss/apply/mainApply.css">
-
+  <link rel="stylesheet" href="./../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
   <!-- Custom CSS -->
   <link href="./../../dist/css/mycss/apply/stylish-portfolio.css" rel="stylesheet">
+  <style>
+  #changeCV {
+     cursor: epointer;
+    /* Style as you please, it will become the visible UI component. */
+   }
 
+  #upload-cv{
+     opacity: 0;
+     position: absolute;
+     z-index: -1;
+  }
+  </style>
 </head>
 
 <body id="page-top">
@@ -218,11 +229,11 @@
                 <div class="form-inline">
                   <div class="b-first">
                     <p>First Name</p>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" style="width: 95%">
                   </div>
                   <div class="b-last">
                      <p>Last Name</p>
-                     <input type="text" class="form-control">
+                     <input type="text" class="form-control" style="width: 100%">
                   </div>
                 </div>
               </div>
@@ -243,7 +254,7 @@
               <!-- Date of birth -->
               <div class="form-group">
                 <label>Date of Birth</label>
-                <input type="date" class="form-control" name="DOB" >
+                <input type="text" class="form-control" id="DOB" name="DOB" >
               </div>
               <!-- Positon apply -->
               <div class="form-group">
@@ -272,8 +283,8 @@
               </div>
               <!-- upCV -->
               <div class="form-group">
-                <label class="btn btn-primary" for="upcv">CV</label>
-                <input type="file" name="cv" id="upcv" hidden>
+                <a><label id="changeCV" class="btn btn-primary" for="upload-cv">CV</label></a>
+                <input type="file" id="upload-cv">
               </div>
           </form>
         </div>
@@ -518,10 +529,9 @@
   <!-- Bootstrap core JavaScript -->
   <script src="./../../bower_components/vendor/jquery/jquery.min.js"></script>
   <script src="./../../bower_components/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
   <!-- Plugin JavaScript -->
   <script src="./../../bower_components/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  <script src="./../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
   <!-- Custom scripts for this template -->
   <script src="./../../dist/js/apply/stylish-portfolio.min.js"></script>
 </body>
@@ -548,7 +558,14 @@
   $(".btn-opl").click(function() {
     $("#Ranking-list").toggleClass("close-rank");
   })
-
+$('#DOB').datepicker({
+      autoclose: true
+    })
+/*Change name file input*/
+ $('input[type="file"]').change(function(e){
+    var fileName = e.target.files[0].name;
+    $("#changeCV").text(fileName);            
+});
 </script>
 
 </html>
