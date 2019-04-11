@@ -17,7 +17,7 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
@@ -30,13 +30,18 @@
   
   <style type="text/css"> 
 
-   #title-runtime{ 
-     margin-top: 1px;
-     z-index: 2;
-     font-size: 20px;
-     line-height: 15px;
-     color: white;
-   }  
+  header{
+    position: fixed;
+    z-index: 2;
+  }
+
+ #title-runtime{ 
+   margin-top: 1px;
+   z-index: 2;
+   font-size: 20px;
+   line-height: 15px;
+   color: white;
+ }
   
   ///////////////////////////////////////////////////////////
        .funkyradio div {
@@ -48,6 +53,12 @@
         border-radius: 3px;
         border: 1px solid #D1D3D4;
         font-weight: normal;
+        background-color: white;
+      }
+
+      .funkyradio label[class=active] {
+        background-color: green;
+        color: white;
       }
       .funkyradio input[type="radio"]{
         display: none;
@@ -78,6 +89,7 @@
         display: inline;
       }
       
+
   </style>
 
   <!-- Google Font -->
@@ -86,7 +98,7 @@
 </head>
 <body class="skin-blue sidebar-mini ">
   <div class="wrapper">
-  <header class="main-header">
+  <header class="main-header" style="position: fixed;width: 100%;"> 
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -96,9 +108,9 @@
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top"></nav>
+     <div  id="timedow" class="timename"></div>
   </header>
-  <div  id="timedow" class="timename"></div>
-  <div class="container ">
+  <div class="container " style="margin-top: 100px">
  <div class="list-quest">
   <form>
   <br>
@@ -109,9 +121,9 @@
         <p>Trong bảng tính Excel, hàm Today() trả về </p>
       </div>
       <div class="funkyradio">
-          <input type="radio" name="radio">
+          <label class="active" hidden><input type="radio" name="radio" checked></label>
           <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
+            <label><input type="radio" name="radio"/>Số ngày trong tháng</label>
           </div>
           <div class="funkyradio-success">
             <label><input type="radio" name="radio"/>Số tháng trong năm</label>
@@ -131,121 +143,23 @@
         <p>Trong bảng tính Excel, hàm Today() trả về </p>
       </div>
       <div class="funkyradio">
-          <input type="radio" name="radio">
+          <label class="active" hidden><input type="radio" name="radio1" checked></label>
           <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
+            <label><input type="radio" name="radio1" />Số ngày trong tháng</label>
           </div>
           <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Số tháng trong năm</label>
+            <label><input type="radio" name="radio1"/>Số tháng trong năm</label>
           </div>
           <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Ngày hiện hành của hệ thống</label>
+            <label><input type="radio" name="radio1"/>Ngày hiện hành của hệ thống</label>
           </div>
           <div class="funkyradio-success">
-            <label> <input type="radio" name="radio" />Số giờ trong ngày</label>
-          </div>
-      </div>
-    </div> <div class="box box-info" style="padding: 2%">
-      <div class="callout callout-success" >
-        <h4>Question 1 :</h4>
-        <p>Trong bảng tính Excel, hàm Today() trả về </p>
-      </div>
-      <div class="funkyradio">
-          <input type="radio" name="radio">
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Số tháng trong năm</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Ngày hiện hành của hệ thống</label>
-          </div>
-          <div class="funkyradio-success">
-            <label> <input type="radio" name="radio" />Số giờ trong ngày</label>
+            <label> <input type="radio" name="radio1" />Số giờ trong ngày</label>
           </div>
       </div>
-    </div> <div class="box box-info" style="padding: 2%">
-      <div class="callout callout-success" >
-        <h4>Question 1 :</h4>
-        <p>Trong bảng tính Excel, hàm Today() trả về </p>
-      </div>
-      <div class="funkyradio">
-          <input type="radio" name="radio">
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Số tháng trong năm</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Ngày hiện hành của hệ thống</label>
-          </div>
-          <div class="funkyradio-success">
-            <label> <input type="radio" name="radio" />Số giờ trong ngày</label>
-          </div>
-      </div>
-    </div> <div class="box box-info" style="padding: 2%">
-      <div class="callout callout-success" >
-        <h4>Question 1 :</h4>
-        <p>Trong bảng tính Excel, hàm Today() trả về </p>
-      </div>
-      <div class="funkyradio">
-          <input type="radio" name="radio">
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Số tháng trong năm</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Ngày hiện hành của hệ thống</label>
-          </div>
-          <div class="funkyradio-success">
-            <label> <input type="radio" name="radio" />Số giờ trong ngày</label>
-          </div>
-      </div>
-    </div> <div class="box box-info" style="padding: 2%">
-      <div class="callout callout-success" >
-        <h4>Question 1 :</h4>
-        <p>Trong bảng tính Excel, hàm Today() trả về </p>
-      </div>
-      <div class="funkyradio">
-          <input type="radio" name="radio">
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Số tháng trong năm</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Ngày hiện hành của hệ thống</label>
-          </div>
-          <div class="funkyradio-success">
-            <label> <input type="radio" name="radio" />Số giờ trong ngày</label>
-          </div>
-      </div>
-    </div> <div class="box box-info" style="padding: 2%">
-      <div class="callout callout-success" >
-        <h4>Question 1 :</h4>
-        <p>Trong bảng tính Excel, hàm Today() trả về </p>
-      </div>
-      <div class="funkyradio">
-          <input type="radio" name="radio">
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio" />Số ngày trong tháng</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Số tháng trong năm</label>
-          </div>
-          <div class="funkyradio-success">
-            <label><input type="radio" name="radio"/>Ngày hiện hành của hệ thống</label>
-          </div>
-          <div class="funkyradio-success">
-            <label> <input type="radio" name="radio" />Số giờ trong ngày</label>
-          </div>
-      </div>
-    </div>
+    </div> 
+
+
     
     <input type="submit" class="btn btn-success col-md-12"  value="Finish">
   </form>
@@ -253,7 +167,7 @@
 </div>
 
   <!-- /.content-wrapper -->
-  <footer class="main-footer" style="margin-left: 0px;">
+  <footer class="main-footer" style="margin-left: 0px;margin-top: 50px">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
@@ -276,9 +190,14 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="./../../dist/js/apply/quiz.js"></script>
 <script>
-  $("input[type='radio']").is("checked"){
-    $(this).css("background-color","green");
-  }
+  $(document).ready(function () {
+    $("input[type=radio]").on("click",function () {
+      if($(this).is( ":checked")){
+        $(this).parent().prop("class","active");
+        $("input[type=radio]:not(:checked)").parent().removeClass("active");
+      }
+  })
+  })
 </script>
 </body>
 </html>
