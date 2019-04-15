@@ -132,7 +132,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   <section class="content-header row col-s">
     <h1 class="col-md-1">Postions: </h1>
     <div class="col-md-2">
-      <select class="form-control">
+      <select class="form-control" id="selectPos">
         <option>Java Developer</option>
         <option>Tester</option>
         <option>Internship</option>
@@ -603,6 +603,13 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         }
       })
     });
+    $("#selectPos").change(function(){
+    	var kq =$(this).val();
+	    $.post("demo_test_post.asp",kq,
+		  function(data, status){
+		    alert("Data: " + data + "\nStatus: " + status);
+		  });
+	});
 });
 </script>
 </body>

@@ -1,0 +1,122 @@
+﻿[
+	{
+		"idQues" : "QUES68",
+		"content" : "Kết quả sau khi biên dịch mã: Class A{int b = 1; public static void main(String[] args) {System.out.println(“b is” + b);}}",
+		"a" : "Compilation error",
+		"b" : "Runtime Error",
+		"c" : "Runtime Exception",
+		"d" : "Kết quả của b là 1",
+		"answer" : "a"
+	},
+	{
+		"idQues" : "QUES69",
+		"content" : "Kết quả sau khi biên dịch mã class A { public static void main(String [] args) {B b = new A(); }} class B extends A {}",
+		"a" : "Compilation error",
+		"b" : "Runtime Error",
+		"c" : "Runtime Exception",
+		"d" : "Compilation error",
+		"answer" : "d"
+	},
+	{
+		"idQues" : "QUES70",
+		"content" : "Integer a = new Integer(2); Integer b = new Integer(2). Chuyện gì sẽ xảy ra nếu chúng ta áp dụng cú pháp if (a==b)?",
+		"a" : "Compiler error",
+		"b" : "Runtime Exception",
+		"c" : "Đúng",
+		"d" : "Sai",
+		"answer" : "d"
+	},
+	{
+		"idQues" : "QUES71",
+		"content" : "Làm thế nào để ngăn chặn 1 biến - variable trở thành serialized - có khả năng nối tiếp",
+		"a" : "Đánh dấu là private",
+		"b" : "Đánh dấu là volatile",
+		"c" : "Đánh dấu là transient",
+		"d" : "Không thể làm được",
+		"answer" : "c"
+	},
+
+	{
+		"idQues" : "QUES72",
+		"content" : "Chồng hàm là gì?",
+		"a" : "Chồng hàm cho các hàm có tên khác nhau và đối số khác nhau",
+		"b" : "Cho các hàm có tên giống nhau nhưng đối số khác nhau",
+		"c" : "Cho các hàm có tên giống nhau và đối số giống nha",
+		"d" : "Cho tên các hàm có tên khác nhau và đối số giống nhau",
+		"answer" : "b"
+	},
+	{
+		"idQues" : "QUES73",
+		"content" : "Sự đa hình trong lập trình hướng đối tượng thể hiện như thế nào?",
+		"a" : "Sự đa hình trong lập trình hướng đối tượng thể hiện qua hàm ảo.sự đa hình chia thành hai loại là đa hình tĩnh và đa hình động",
+		"b" : "Sự đa hình trong lập trình hướng đối tượng thể hiện ở một lời gọi hàm mà có thể làm cho nhiều hàm khác  nhau được thực hiện.Sự đa hình chia làm hai loại là đa hình tĩnh và đa hình động",
+		"c" : "Sự đa hình trong lập trình hướng đối tượng thể hiện qua chồng toán tử .Sự đa hình chia làm hai loại là đa hình tĩnh và đa hình động",
+		"d" : "Sự đa hình trong lập trình hướng đối tượng thể hiện qua chồng hàm.Sự đa hình chia làm hai loại là đa hình tĩnh và đa hình động",
+		"answer" : "b"
+	},
+	{
+		"idQues" : "QUES74",
+		"content" : "Cú pháp tạo đối tượng trong C++ như thế nào là đúng?",
+		"a" : "Tenlop::tendoituong;",
+		"b" : "Tendoituong:tenlop;",
+		"c" : "Tenlop tendoituong;",
+		"d" : "Tenlop tendoituong=new tenlop();",
+		"answer" : "c"
+	},
+	{
+		"idQues" : "QUES75",
+		"content" : "Trong lập trình hướng đối tượng lớp(class) là gì?",
+		"a" : "Lớp là tập hợp các đối tượng",
+		"b" : "Lớp là tập hợp cả dữ liệu và hàm thao tác trên dữ liệu đó",
+		"c" : "Lớp là một phần chương trình giống như chương trình con",
+		"d" : "Lớp  là mô tả về một nhóm các đối tượng tương tự nhau nó xác định những dữ liệu và hàm gì sẽ có trong các đối tượng của lớp",
+		"answer" : "d"
+	},
+	{
+		"idQues" : "QUES76",
+		"content" : "Đâu là phát biểu không đúng về hàm tạo sao chép",
+		"a" : "Hàm tạo sao chép tạo ra một đối tượng mới là bản sao của đối tượng cùng lớp đã có",
+		"b" : "hàm tạo sao chép là hàm tạo chỉ thực hiện việc sao chép đối tượng không tạo ra đối tượng mới",
+		"c" : "hàm tạo sao chép được tự động thưc hiện trong 3 trường hợp sau.Khi tạo một đối tượng và khởi tạo bằng một đối tượng đã có, khi truyền đối tượng vào cho hàm theo giá trị, khi hàm trả về đối tượng",
+		"d" : "hàm tạo sao chép ko cần khai báo cũng có",
+		"answer" : "a"
+	},
+	{
+		"idQues" : "QUES77",
+		"content" : "Trong lớp đối tượng có những gì?",
+		"a" : "Có dữ liệu và các hàm thành viên thao tác trên đối tượng",
+		"b" : "Có các biến và hàm",
+		"c" : "Có lớp đối tượng",
+		"d" : "ó các khai báo biến và các hàm thành viên",
+		"answer" : "d"
+	},
+	{
+		"idQues" : "QUES78",
+		"content" : "JAVA có thể chạy trên hệ điều hành nào?",
+		"a" : "Windown",
+		"b" : "Linux",
+		"c" : "MacOS",
+		"d" : "All",
+		"answer" : "d"
+	},
+
+	{
+		"idQues" : "QUES79",
+		"content" : "HTML5 có phải ngôn ngữ lập trình ko?",
+		"a" : "Yes",
+		"b" : "No",
+		"c" : "Không biết",
+		"d" : "Cả 3 đáp án trên",
+		"answer" : "b"
+	},
+
+	{
+		"idQues" : "QUES80",
+		"content" : "Javascript được viết ở phía nào của ứng dụng web?",
+		"a" : "Font-end",
+		"b" : "Back-end",
+		"c" : "Cả 2 phía",
+		"d" : "Không ở phía nào hết",
+		"answer" : "c"
+	}
+]

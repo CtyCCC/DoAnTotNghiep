@@ -18,12 +18,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
-     folder instead of downloading all of them to reduce the load. -->
+     folder instead of downloading all of them to reduce the load. --> 
      <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
      <!-- Bootstrap time Picker -->
      <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
      <!--My CSS-->
      <link rel="stylesheet" href="../../dist/css/mycss/customcss.css">
+     
+      <script src="../../bower_components/datatables.net/js/sweetalert2.all.min.js"></script>
 
      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -130,7 +132,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   <section class="content-header row col-s">
     <h1 class="col-md-1">Postions: </h1>
     <div class="col-md-2">
-      <select class="form-control">
+      <select class="form-control" id="selectPos">
         <option>Java Developer</option>
         <option>Tester</option>
         <option>Internship</option>
@@ -157,9 +159,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <div class="box-body">
               <div class="col-md-4">
                 <label for="">Requirement: </label>
-                <textarea id="requiment" class="form-control" name="" rows="3" disabled></textarea>
+                <textarea id="requiment" class="form-control" name="" rows="4" disabled style="resize: none" placeholder="Enter requirement description..."></textarea>
                 <label for="">Benefit: </label>
-                <textarea id="benefit" class="form-control" name="" rows="6" disabled></textarea>
+                <textarea id="benefit" class="form-control" name="" rows="6" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
               </div>
               <div class="col-md-8">
                 <label for="">Description: </label>
@@ -167,23 +169,23 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <div class="box-body">
                     <div class="col-md-2">
                       <label for="">Quantity: </label>
-                      <input id="quantity" type="number" class="form-control" disabled>
+                      <input id="quantity" type="number" class="form-control" disabled placeholder="Enter a number...">
                     </div>
                     <div class="col-md-4">
-                      <label for="">Experence: </label>
-                      <input id="experence" type="text" class="form-control" disabled>
+                      <label for="">Experience: </label>
+                      <input id="experence" type="text" class="form-control" disabled placeholder="Years of experience...">
                     </div>
                     <div class="col-md-3">
                       <label for="">Salary (Upto): </label>
-                      <input id="salary" type="number" class="form-control" disabled>
+                      <input id="salary" type="number" class="form-control" disabled placeholder="2000$">
                     </div>
                     <div class="col-md-3">
                       <label for="">Education: </label>
                       <select id="education" class="form-control" disabled>
-                        <option>Đại học</option>
-                        <option>Cao đằng</option>
-                        <option>Trung cấp</option>
-                        <option>none</option>
+                        <option>Hight school</option>
+                        <option>College</option>
+                        <option>University</option>
+                        <option>Master's degree</option>
                       </select>
                     </div>
                     <div class="col-md-2">
@@ -194,112 +196,43 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <option>Female</option>
                       </select>
                     </div>
-                    <div class="col-md-5">
-                      <label for="">Area: </label>
-                      <select id="area" class="form-control" disabled>
-                        <option>Ha Noi</option>
-                        <option>HCM</option>
-                      </select>
+                    <div class="form-group col-xs-4">
+                      <label>Date range:</label>
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control
+                        ." id="reservation" disabled>
+                      </div>
+                      <!-- /.input group -->
                     </div>
-                    <div class="col-md-5">
-                      <label for="">Type: </label>
-                      <input id="type" class="form-control" type="text" name="" disabled>
+                    <div class="col-md-3">
+                      <label for="">Area: </label>
+                      <input id="area" class="form-control" disabled placeholder="TPHCM/HN,..."></input>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="">Time: </label>
+                      <input id="type" class="form-control" type="text" name="" disabled placeholder="Working time description...">
                     </div>
                     <div class="col-md-12">
                       <label for="">Detail description: </label>
-                      <textarea id="detail" class="form-control" name="" rows="3" disabled></textarea>
+                      <textarea id="detail" class="form-control" name="" rows="3" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-12" hidden>
-                <!-- /History -->
-                <div class="box box-info">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Position questions list</h3>
-                    <div class="box-tools pull-right">
-                      <button type="button" class="btn btn-box-tool"><i class="fa fa-edit"></i></button>
-                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body" style="display: none;">
-                      <table class="table table-bordered table-hover">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>Content</th>
-                            <th>Result</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>01</td>
-                            <td>Các tính chất của OOP</td>
-                            <td>C</td>
-                          </tr>
-                          <tr>
-                            <td>02</td>
-                            <td>Tại sao lá cây lại màu xanh</td>
-                            <td>D</td>
-                          </tr>
-                          <tr>
-                            <td>03</td>
-                            <td>Tại sao gió đến rồi lại bay nhanh</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>03</td>
-                            <td>Tại sao nước biển mặn</td>
-                            <td>B</td>
-                          </tr>
-                           <tr>
-                            <td>01</td>
-                            <td>Các tính chất của OOP</td>
-                            <td>C</td>
-                          </tr>
-                          <tr>
-                            <td>02</td>
-                            <td>Tại sao lá cây lại màu xanh</td>
-                            <td>D</td>
-                          </tr>
-                          <tr>
-                            <td>03</td>
-                            <td>Tại sao gió đến rồi lại bay nhanh</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>03</td>
-                            <td>Tại sao nước biển mặn</td>
-                            <td>B</td>
-                          </tr>
-                        </tbody>
-                      <tfoot>
-                        <tr>
-                          <tr>
-                            <th>ID</th>
-                            <th>Content</th>
-                            <th>Result</th>
-                          </tr>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-                  <!-- /.box-body -->
-                </div>
-                <!-- /.box history -->
-              </div>
+              
               <div class="col-md-12">
                 <div class="box box-info">
                   <div class="box-header with-border">
                     <h3 class="box-title">Questions list</h3>
                     <div class="box-tools pull-right">
-                      <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#modal-AddJD">
+                      <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#modal-AddJD" title="Add new equestion">
                         <a><i class="fa fa-plus-square"></i></a>
                       </button>
-                      <button type="button" class="btn btn-box-tool"><a><i class="fa fa-file"></i></a></button>
-                      <button type="button"  class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      <button type="button" id="btnSaveQues" class="btn btn-box-tool"><a><i class="fa fa-file" title="Save"></i></a></button>
+                      <button type="button"  class="btn btn-box-tool" data-widget="collapse" title="Open/Close"><i class="fa fa-minus"></i>
                       </button>
                     </div>
                     <div class="modal fade" id="modal-AddJD">
@@ -363,11 +296,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             <th>ID</th>
                             <th>Content</th>
                             <th>Result</th>
-                            <th>On position (5/20)</th>
+                            <th id="questCount">For this position (5 selected)</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr class="selected">
                             <td>01</td>
                             <td>Các tính chất của OOP</td>
                             <td>C</td>
@@ -383,7 +316,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                               <center><input class="checkk" type="checkbox"></center>
                             </td>
                           </tr>
-                          <tr>
+                          <tr class="selected">
                             <td>03</td>
                             <td>Tại sao gió đến rồi lại bay nhanh</td>
                             <td>A</td>
@@ -391,8 +324,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                               <center><input class="checkk" type="checkbox" checked></center>
                             </td>
                           </tr>
-                          <tr>
-                            <td>03</td>
+                          <tr class="selected">
+                            <td>04</td>
                             <td>Tại sao nước biển mặn</td>
                             <td>B</td>
                             <td>
@@ -400,15 +333,15 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             </td>
                           </tr>
                            <tr>
-                            <td>01</td>
+                            <td>05</td>
                             <td>Các tính chất của OOP</td>
                             <td>C</td>
                             <td>
                               <center><input class="checkk" type="checkbox"></center>
                             </td>
                           </tr>
-                          <tr>
-                            <td>02</td>
+                          <tr class="selected">
+                            <td>06</td>
                             <td>Tại sao lá cây lại màu xanh</td>
                             <td>D</td>
                             <td>
@@ -416,15 +349,15 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             </td>
                           </tr>
                           <tr>
-                            <td>03</td>
+                            <td>07</td>
                             <td>Tại sao gió đến rồi lại bay nhanh</td>
                             <td>A</td>
                             <td>
                               <center><input class="checkk" type="checkbox"></center>
                             </td>
                           </tr>
-                          <tr>
-                            <td>03</td>
+                          <tr class="selected">
+                            <td>088</td>
                             <td>Tại sao nước biển mặn</td>
                             <td>B</td>
                             <td>
@@ -460,7 +393,6 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 <!-- DataTables -->
 <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="../../bower_components/datatables.net/js/tablefunction.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -610,6 +542,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('#area').removeAttr('disabled');
       $('#btnSave').removeAttr('disabled');
       $('#inputPosition').removeAttr('hidden');
+      $('#reservation').removeAttr('disabled');
     });
     //edit
     $("#btnEdit").click(function(event) {
@@ -624,8 +557,60 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('#gender').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSave').removeAttr('disabled');
+      $('#reservation').removeAttr('disabled');
     });
-  });
+
+    //click row check vao checkbox va tang row count
+    $("#example1 tbody tr").click(function(event) {
+      var cb = $(this).find("td input.checkk");
+      var table = $('#example1').DataTable();
+      if (cb.is(':checked')){
+        cb.prop('checked',false);
+        $(this).removeClass('selected');
+      }
+      else{
+        cb.prop('checked',true);
+        $(this).addClass('selected');
+      }
+      var rowcount = table.rows( '.selected' ).count();
+      $("#questCount").text("For this position ("+rowcount+" selected)");
+    });
+
+    //btn save question alert
+    $("#btnSaveQues").click(function(event) {
+      Swal.fire({
+      title: 'Are you sure?',
+      text: "List question for this position will be changed!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Saved',
+            'List question have changed.',
+            'success'
+          )
+          //Array list question to save to db 
+          $('#example1 tr.selected').each(function() {
+            var listIdQuest = [];
+            var id = $(this).find("td:first").html();
+            listIdQuest.unshift(id);
+            console.log(listIdQuest);
+          });
+        }
+      })
+    });
+    $("#selectPos").change(function(){
+    	var kq =$(this).val();
+	    $.post("demo_test_post.asp",kq,
+		  function(data, status){
+		    alert("Data: " + data + "\nStatus: " + status);
+		  });
+	});
+});
 </script>
 </body>
 </html>

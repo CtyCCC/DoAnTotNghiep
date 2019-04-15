@@ -1,16 +1,16 @@
 .b-first p{
 	font-size: 12px;
-	margin-left: 10px;
 }
 .b-last p{
 	font-size: 12px;
-	margin-left: 10px;
+	
 }
 
 .b-first{
-	margin-right: 5%;
+	width: 50%
 }
 .b-last{
+	width: 50%;
 }
 textarea {
    resize: none;
@@ -114,20 +114,3 @@ textarea{
 	border-radius: 100%;
 }
 
-
-/*
-
-
-#Ranking-list[class=close-rank] #rank-header .rank-title{
-		display: none;
-}
-
-
-
-.rank-title{
-	align-items: center;
-	color: white;
-	height: 10%;
-	width: auto;
-
-}*/

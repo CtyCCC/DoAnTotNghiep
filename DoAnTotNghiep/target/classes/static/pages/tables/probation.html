@@ -46,238 +46,225 @@
          position: absolute;
          z-index: -1;
       }
+      .funkyradio div {
+        clear: both;
+        overflow: hidden;
+      }
+
+      .funkyradio label {
+        width: 100%;
+        border-radius: 3px;
+        border: 1px solid #D1D3D4;
+        font-weight: normal;
+      }
+
+      .funkyradio input[type="radio"]:empty,
+      .funkyradio input[type="checkbox"]:empty {
+        display: none;
+      }
+
+      .funkyradio input[type="radio"]:empty ~ label,
+      .funkyradio input[type="checkbox"]:empty ~ label {
+        position: relative;
+        line-height: 2.5em;
+        text-indent: 3.25em;
+        margin-top: 2em;
+        cursor: pointer;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+      }
+
+      .funkyradio input[type="radio"]:empty ~ label:before,
+      .funkyradio input[type="checkbox"]:empty ~ label:before {
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 2.5em;
+        background: #5bc0de;
+        color: #000;
+        border-radius: 3px 0 0 3px;
+      }
+
+      .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+      .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+        color: #888;
+      }
+
+      .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+      .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #C2C2C2;
+      }
+
+      .funkyradio input[type="radio"]:checked ~ label,
+      .funkyradio input[type="checkbox"]:checked ~ label {
+        color: #777;
+      }
+
+      .funkyradio input[type="radio"]:checked ~ label:before,
+      .funkyradio input[type="checkbox"]:checked ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #333;
+        background-color: #ccc;
+      }
+
+      .funkyradio input[type="radio"]:focus ~ label:before,
+      .funkyradio input[type="checkbox"]:focus ~ label:before {
+        box-shadow: 0 0 0 3px #999;
+      }
+
+      .funkyradio-default input[type="radio"]:checked ~ label:before,
+      .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+        color: #333;
+        background-color: #ccc;
+      }
+
+      .funkyradio-primary input[type="radio"]:checked ~ label:before,
+      .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #337ab7;
+      }
+
+      .funkyradio-success input[type="radio"]:checked ~ label:before,
+      .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #5cb85c;
+      }
+
+      .funkyradio-danger input[type="radio"]:checked ~ label:before,
+      .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #d9534f;
+      }
+
+      .funkyradio-warning input[type="radio"]:checked ~ label:before,
+      .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #f0ad4e;
+      }
+
+      .funkyradio-info input[type="radio"]:checked ~ label:before,
+      .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #5bc0de;
+      }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="skin-blue sidebar-mini sidebar-collapse">
-<div class="wrapper">
-
+<body>
   <header class="main-header">
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">DOU</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>DOU</b>Network</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <!-- Logo -->
+      <a href="index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">DOU</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>DOU</b>Network</span>
       </a>
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image" id="adminHeader">
-              <span class="hidden-xs">Chiến</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <label id="changeAvaAd" for="upload-photoAd" title="Click here to change profile picture">
-                  <img id="hinhAd" width="160" height="160" src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </label>
-                <input type="file" name="photoAd" accept="image/*" id="upload-photoAd">
-              </li>
-
-              <li class="user-footer">
-                <div class="pull-left" style="font-weight:bold">Trần Đình Chiến</div>
-                <div class="pull-right">
-                  <a href="#" style="font-weight:bold">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-              <div class="pull-left image">
-                  <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" id="adminHeader">
-              </div>
-              <div class="pull-left info">
-                  <p>Admin</p>
-                  <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-              </div>
-          </div>
-          <!-- sidebar: style can be found in sidebar.less -->
-          <section class="sidebar">
-
-              <!-- Sidebar Menu -->
-              <ul class="sidebar-menu" data-widget="tree">
-                  <li class="header">HEADER</li>
-                  <!-- Optionally, you can add icons to the links -->
-                  <li class="treeview">
-                      <li class="treeview menu-open">
-                          <a href="index.html">
-                              <i class="fa fa-home"></i> <span>Recruitment Master List</span>
-                              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                          </a>
-                          <ul class="treeview-menu" style="display: block;">
-                              <li><a href="index.html"><i class="fa fa-table"></i>Candidate list</a></li>
-                              <li><a href="advancedSearch.html"><i class="fa fa-search-plus"></i>Advanced Search</a></li>
-                          </ul>
-                      </li>
-                      <li><a href="interview.html"><i class="fa fa-info-circle"></i> <span>Interviewing</span></a></li>
-                      <li><a href="offer.html"><i class="fa fa-dollar"></i> <span>Offering</span></a></li>
-                      <li class="active"><a href="probation.html"><i class="fa fa-handshake-o"></i> <span>Probation</span></a></li>
-                      <li><a href="chartjs.html"><i class="fa fa-pie-chart"></i> <span>Chart</span></a></li>
-                  </li>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image" id="adminHeader">
+                <span class="hidden-xs">Chiến</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <label id="changeAvaAd" for="upload-photoAd" title="Click here to change profile picture">
+                    <img id="hinhAd" width="160" height="160" src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  </label>
+                  <input type="file" name="photoAd" accept="image/*" id="upload-photoAd">
+                </li>
+                <li class="user-footer">
+                  <div class="pull-left" style="font-weight:bold">Trần Đình Chiến</div>
+                  <div class="pull-right">
+                    <a href="#" style="font-weight:bold">Sign out</a>
+                  </div>
+                </li>
               </ul>
-              <!-- /.sidebar-menu -->
-          </section>
-          <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+<div class="container">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>
-    Probation List
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="index.html"><i class="fa fa-dashboard"></i> Recruitment Master</a></li>
-      <li class="active">Probation List</li>
-    </ol>
-  </section>
-
-<!-- Main content -->
-<section class="content">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <div class="pull-right">
-            <button id="btnDelete" type="button" class="btn disabled"><i class="fa fa-trash"> Delete</i></button>
-            <button id="btnExport" type="button" class="btn disabled"><i class="fa fa-upload"> Export</i></button>
-          </div>
-        
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <table id="example1" class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>From</th>
-              <th>To</th>
-              <th>Note</th>
-              <th>Result</th>
-              <th>Status</th>
-              <th>View</th>
-              <th>
-                <center>
-                <input id="checkAllHeader" type="checkbox">
-                </center>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>01</td>
-              <td>Trần Đình Chiến</td>
-              <td><a href="https://facebook.com"> Java Dev</a></td>
-              <td>26/03/1997</td>
-              <td>26/10/2019</td>
-              <td>Lazy</td>
-              <td>Pass</td>
-              <td><span class="label label-danger">Probation fail</span></td>
-              <td>
-                <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-              </td>
-              <td>
-                <center><input class="checkk" type="checkbox"></center>
-              </td>
-              </tr>
-              <tr>
-                <td>02</td>
-                <td>Nguyễn Đình Chiến</td>
-                <td><a href="https://facebook.com"> Java Dev</a></td>
-                <td>26/03/1999</td>
-                <td>11/11/2221</td>
-                <td>Good</td>
-                <td>Pass</td>
-                <td><span class="label label-success">Probation pass</span></td>
-                <td>
-                  <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                </td>
-                <td>
-                  <center><input class="checkk" type="checkbox"></center>
-                </td>
-                </tr>
-                <tr>
-                  <td>03</td>
-                  <td>Trần Hùng Cường</td>
-                  <td><a href="https://facebook.com"> Java Dev</a></td>
-                  <td>21/09/1997</td>
-                  <td>22/12/1999</td>
-                  <td>Khá là thú vị</td>
-                  <td></td>
-                  <td><span class="label label-warning">Probation</span></td>
-                  <td>
-                    <center><a href="profile.html"><button type="button" class="btn"><i class="fa fa-eye"></i></button></a><center>
-                  </td>
-                  <td>
-                    <center><input class="checkk" type="checkbox"></center>
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Note</th>
-                <th>Result</th>
-                <th>Status</th>
-                <th>View</th>
-                <th>
-                  <center>
-                  <input id="checkAllFooter" type="checkbox">
-                  </center>
-                </th>
-              </tr>
-              </tfoot>
-            </table>
-          </div>
-          <!-- /.box-body -->
+    <div class="col-md-12">
+      <div class="box box-info" style="padding: 2%">
+        <div class="callout callout-success" >
+          <h4>Question 1</h4>
+          <p>Cú pháp tạo đối tượng trong C++ như thế nào là đúng?</p>
         </div>
-        <!-- /.box -->
+        <div class="funkyradio">
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio2" checked/>
+                <label for="radio2">Tenlop::tendoituong;</label>
+            </div>
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio3" />
+                <label for="radio3">Tendoituong:tenlop;</label>
+            </div>
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio5" />
+                <label for="radio5">Tenlop tendoituong;</label>
+            </div>
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio6" />
+                <label for="radio6">Tenlop tendoituong = new tenlop; dkja;ksdj lakdjasldkja dkljadkljas dlkjas dklhasdj kadjasldkejeo2 4u021940218410 v21084 19028410284021984210984210842108942104812
+                41294802198421908421098421098421210984120 90214124 219840198401 98402198 2109842109 841209482108941</label>
+            </div>
+        </div>
       </div>
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
+    <div class="col-md-12">
+      <div class="box box-info" style="padding: 2%">
+        <div class="callout callout-success" >
+          <h4>Question 2</h4>
+          <p>Trong Javascript sự kiện OnUnload thực hiện khi nào?</p>
+        </div>
+        <div class="funkyradio">
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio2" checked/>
+                <label for="radio2">Khi bắt đầu chương trình chạy</label>
+            </div>
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio3" />
+                <label for="radio3">Khi click chuột</label>
+            </div>
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio5" />
+                <label for="radio5">Khi kết thúc một chương trình</label>
+            </div>
+            <div class="funkyradio-success">
+                <input type="radio" name="radio" id="radio6" />
+                <label for="radio6">Khi di chuyển chuột qua</label>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
   </section>
-  <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2018 <a href="https://adminlte.io">DOU Network</a>.</strong> All rights
-    reserved.
-  </footer> 
+</div>
 
 <!-- ./wrapper -->
 

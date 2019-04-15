@@ -32,22 +32,22 @@
 
 //Count down
 (function($){
-	   var fulltime = 30 * 60 * 1000;
-	   var timefund = fulltime;
+     var fulltime = 30 * 60 * 1000;//30 phút
+     var timefund = fulltime;
        var minutes = 1 * 60 * 1000,
        second = 1000;
        var timefinish;
        var a, b,positons,
            processVal;
-	$.fn.runtime = function () {
-		positions = $(this).attr("id");
+  $.fn.runtime = function () {
+    positions = $(this).attr("id");
     ui(positions);
-		var options = $.extend({
-			callback	: function(){},
-		});
+    var options = $.extend({
+      callback  : function(){},
+    });
           (function loop() {
-          	if (timefund >= 1) {
-          		
+            if (timefund >= 1) {
+              
                 timefinish = fulltime-timefund;
 
                 a = Math.floor(timefund / minutes);
@@ -56,7 +56,7 @@
         
                 timefund = timefund - 1000;
 
-       			    updatedou(positions,a,b,fulltime,timefinish);
+                updatedou(positions,a,b,fulltime,timefinish);
 
                 setTimeout(loop, second);
 
@@ -68,27 +68,29 @@
 
           })();
           function updatedou(pos,a,b,fulltime,timeRun) {
-          		$("#title-runtime").text(a+":"+b)
-              processVal = (timeRun/fulltime)*100;
+              $("#title-runtime").text(a+":"+b)
+              processVal = 100-(timeRun/fulltime)*100;
               console.log(processVal);
               $("#process").css("width",processVal+"%");
-          		options.callback(this);
+              options.callback(this);
           }
           return this;
-	}
+  }
   //Sub fun of fun runtime()
   function ui(pos,fundtime,process) {
-    var html =  '<h3 align="center"  id="title-runtime"><h3>'
-               +'<div class="progress" id="myprogress">'
-               +'<div id="process" class="progress-bar progress-bar-striped active"'
+    var html = '<div id="timebar">'
+               +'<div class="progress progress-bar-danger " id="myprogress">'
+               +'<div id="process" class="progress-bar  progress-bar-striped  progress-bar-success active"'
                +'role="progressbar"  style="width:0%">'
+               +'<h3  class="" id="title-runtime"></h3>'
                +'</div></div>'
+               +'</div>'
      $("#"+pos).append(html);
   }
 
   function timeover(pos,a,b) {
     swal({
-          title: "Good job!",
+          title: "Time up!",
           text: "Click Finish to complete!",
           icon: "success",
           button: "Finish",
@@ -99,8 +101,8 @@
   }
 
   //Get time  
-	$.fn.gettime = function () {
-		alert(fulltime-timefund);
+  $.fn.gettime = function () {
+    alert(fulltime-timefund);
 
-	}
+  }
 }(jQuery));
