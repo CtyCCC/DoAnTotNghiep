@@ -511,7 +511,7 @@
 		"c":"Quét và diệt virus, cài lại win", 
 		"d":"Khởi động lại",
 		"answer" :"c"
-	}
+	},
 	{
 		"idQues" : "QUES58",
 		"content" : "Window defender trên windows có để làm gì?" ,
