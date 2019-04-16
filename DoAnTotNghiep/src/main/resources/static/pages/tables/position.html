@@ -157,73 +157,36 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           <div class="box box-info">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="col-md-4">
-                <label for="">Requirement: </label>
-                <textarea id="requiment" class="form-control" name="" rows="4" disabled style="resize: none" placeholder="Enter requirement description..."></textarea>
-                <label for="">Benefit: </label>
-                <textarea id="benefit" class="form-control" name="" rows="6" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
+              <div class="col-md-2">
+                <label for="">Area: </label>
+                <input id="area" class="form-control" disabled placeholder="HCM/HN"></input>
               </div>
-              <div class="col-md-8">
-                <label for="">Description: </label>
-                <div class="box box-info">
-                  <div class="box-body">
-                    <div class="col-md-2">
-                      <label for="">Quantity: </label>
-                      <input id="quantity" type="number" class="form-control" disabled placeholder="Enter a number...">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="">Experience: </label>
-                      <input id="experence" type="text" class="form-control" disabled placeholder="Years of experience...">
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Salary (Upto): </label>
-                      <input id="salary" type="number" class="form-control" disabled placeholder="2000$">
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Education: </label>
-                      <select id="education" class="form-control" disabled>
-                        <option>Hight school</option>
-                        <option>College</option>
-                        <option>University</option>
-                        <option>Master's degree</option>
-                      </select>
-                    </div>
-                    <div class="col-md-2">
-                      <label for="">Gender: </label>
-                      <select id="gender" class="form-control" disabled>
-                        <option>Every</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-xs-4">
-                      <label>Date range:</label>
-                      <div class="input-group">
-                        <div class="input-group-addon">
-                          <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="text" class="form-control
-                        ." id="reservation" disabled>
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Area: </label>
-                      <input id="area" class="form-control" disabled placeholder="TPHCM/HN,..."></input>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Time: </label>
-                      <input id="type" class="form-control" type="text" name="" disabled placeholder="Working time description...">
-                    </div>
-                    <div class="col-md-12">
-                      <label for="">Detail description: </label>
-                      <textarea id="detail" class="form-control" name="" rows="3" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
-                    </div>
+              <div class="col-md-2">
+                <label>Exp-date:</label>
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
                   </div>
+                  <input disabled type="text" class="form-control pull-right" id="datepicker_expdate">
+                </div>
+              </div>
+             
+              <div class="col-md-12" style="padding: 0">
+                <div class="col-md-4">
+                  <label for="">Requirement: </label>
+                  <textarea id="requiment" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter requirement description..."></textarea> 
+                </div>
+                <div class="col-md-4">
+                  <label for="">Benefit: </label>
+                  <textarea id="benefit" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
+                </div>
+                <div class="col-md-4">
+                  <label for="">Detail description: </label>
+                  <textarea id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."> dsad asd asd  dsa asd sad a \n \n sadas</textarea>
                 </div>
               </div>
               
-              <div class="col-md-12">
+              <div class="col-md-12" style="padding-top: 2%">
                 <div class="box box-info">
                   <div class="box-header with-border">
                     <h3 class="box-title">Questions list</h3>
@@ -464,19 +427,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     }
     )
     //Date picker
-    $('#datepicker_DOB').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_Date').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_DOB_New').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_Date_New').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_Interview').datepicker({
+    $('#datepicker_expdate').datepicker({
       autoclose: true
     })
     //iCheck for checkbox and radio inputs
@@ -525,38 +476,29 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     $("#newPosition").click(function(event) {
       $('#requiment').val("");
       $('#benefit').val("");
-      $('#quantity').val("");
-      $('#experence').val("");
-      $('#salary').val("");
+      $('#area').val("");
       $('#detail').val("");
-      $('#type').val("");
       $('#requiment').removeAttr('disabled');
       $('#benefit').removeAttr('disabled');
-      $('#quantity').removeAttr('disabled');
-      $('#experence').removeAttr('disabled');
-      $('#salary').removeAttr('disabled');
       $('#detail').removeAttr('disabled');
-      $('#type').removeAttr('disabled');
-      $('#education').removeAttr('disabled');
-      $('#gender').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSave').removeAttr('disabled');
+      $('#datepicker_expdate').removeAttr('disabled');
       $('#inputPosition').removeAttr('hidden');
       $('#reservation').removeAttr('disabled');
     });
     //edit
     $("#btnEdit").click(function(event) {
+      $('#requiment').val("");
+      $('#benefit').val("");
+      $('#area').val("");
+      $('#detail').val("");
       $('#requiment').removeAttr('disabled');
       $('#benefit').removeAttr('disabled');
-      $('#quantity').removeAttr('disabled');
-      $('#experence').removeAttr('disabled');
-      $('#salary').removeAttr('disabled');
       $('#detail').removeAttr('disabled');
-      $('#type').removeAttr('disabled');
-      $('#education').removeAttr('disabled');
-      $('#gender').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSave').removeAttr('disabled');
+      $('#datepicker_expdate').removeAttr('disabled');
       $('#reservation').removeAttr('disabled');
     });
 
