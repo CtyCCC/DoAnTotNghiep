@@ -1,5 +1,608 @@
 ﻿[
 	{
+		"idQues" : "QUES1",
+		"content" : "Thiết bị nào sau đây dùng để kết nối mạng?" ,
+		"a":"Ram",
+		"b":"Rom",
+		"c":"Router", 
+		"d":"CPU",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES2",
+		"content" : "Hệ thống nhớ của máy tính bao gồm?" ,
+		"a":"Bộ nhớ trong, Bộ nhớ ngoài",
+		"b":"Cache, Bộ nhớ ngoài",
+		"c":"Bộ nhớ ngoài, ROM", 
+		"d":"Đĩa quang, Bộ nhớ trong",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES3",
+		"content" : "Trong mạng máy tính, thuật ngữ Share có ý nghĩa gì?" ,
+		"a":"Chia sẻ tài nguyên",
+		"b":"Nhãn hiệu của một thiết bị kết nối mạng",
+		"c":"Thực hiện lệnh in trong mạng cục bộ", 
+		"d":"Một phần mềm hỗ trợ sử dụng mạng cục bộ",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES4",
+		"content" : "Bộ nhớ RAM và ROM là bộ nhớ gì?" ,
+		"a":"Primary memory",
+		"b":"Receive memory",
+		"c":"Secondary memory", 
+		"d":"Random access memory",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES5",
+		"content" : "Các thiết bị nào thông dụng nhất hiện nay dùng để cung cấp dữ liệu cho máy xử lý?" ,
+		"a":"Bàn phím (Keyboard), Chuột (Mouse), Máy in (Printer)",
+		"b":"Máy quét ảnh (Scaner)",
+		"c":"Bàn phím (Keyboard), Chuột (Mouse) và Máy quét ảnh (Scaner)", 
+		"d":"Máy quét ảnh (Scaner), Chuột (Mouse)",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES6",
+		"content" : "Khái niệm hệ điều hành là gì ?" ,
+		"a":"Cung cấp và xử lý các phần cứng và phần mềm",
+		"b":"Nghiên cứu phương pháp, kỹ thuật xử lý thông tin bằng máy tính điện tử",
+		"c":"Nghiên cứu về công nghệ phần cứng và phần mềm", 
+		"d":"Là một phần mềm chạy trên máy tính, dùng để điều hành, quản lý các thiết bị phần cứng và các tài nguyên phần mềm trên máy tính",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES7",
+		"content" : "Cho biết cách xóa một tập tin hay thư mục mà không di chuyển vào Recycle Bin:?" ,
+		"a":"Chọn thư mục hay tâp tin cần xóa -> Delet",
+		"b":"Chọn thư mục hay tâp tin cần xóa -> Ctrl + Delete",
+		"c":"Chọn thư mục hay tâp tin cần xóa -> Alt + Delete", 
+		"d":"Chọn thư mục hay tâp tin cần xóa -> Shift + Delete",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES8",
+		"content" : "Danh sách các mục chọn trong thực đơn gọi là?" ,
+		"a":"Menu pad",
+		"b":"Menu options",
+		"c":"Menu bar", 
+		"d":"Tất cả đều sai",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES9",
+		"content" : "Công dụng của phím Print Screen là gì?" ,
+		"a":"In màn hình hiện hành ra máy in",
+		"b":"Không có công dụng gì khi sử dụng 1 mình nó",
+		"c":"In văn bản hiện hành ra máy in", 
+		"d":"Chụp màn hình hiện hành",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES10",
+		"content" : "Nếu bạn muốn làm cho cửa sổ nhỏ hơn (không kín màn hình), bạn nên sử dụng nút nào?" ,
+		"a":"Maximum",
+		"b":"Minimum",
+		"c":"Restore down", 
+		"d":"Close",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES11",
+		"content" : "Trong soạn thảo Word, công dụng của tổ hợp phím Ctrl – S là?" ,
+		"a":"Tạo một văn bản mới",
+		"b":"Chức năng thay thế nội dung trong soạn thảo",
+		"c":"Định dạng chữ hoa", 
+		"d":"Lưu nội dung tập tin văn bản vào đĩa",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES12",
+		"content" : "Trong soạn thảo Word, để chèn các kí tự đặc biệt vào văn bản, ta thực hiện?" ,
+		"a":"View – Symbol",
+		"b":"Format – Symbol",
+		"c":"Tools – Symbol", 
+		"d":"Insert – Symbol",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES13",
+		"content" : "Trong soạn thảo Word, để kết thúc 1 đoạn (Paragraph) và muốn sang 1 đoạn mới?" ,
+		"a":"Bấm tổ hợp phím Ctrl – Enter",
+		"b":"Bấm phím Enter",
+		"c":"Bấm tổ hợp phím Shift – Enter", 
+		"d":"Word tự động, không cần bấm phím",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES14",
+		"content" : "Trong soạn thảo Word, tổ hợp phím nào cho phép đưa con trỏ về cuối văn bản?" ,
+		"a":"Shift + End",
+		"b":"Alt + End",
+		"c":"Ctrl + End", 
+		"d":"Ctrl + Alt + End",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES15",
+		"content" : "Khi một dòng chủ đề trong thư ta nhận được bắt đầu bằng chữ RE:; thì thông thường thư là?" ,
+		"a":"Thư rác, thư quảng cáo",
+		"b":"Thư mới",
+		"c":"Thư của nhà cung cấp dịch vụ E-mail mà ta đang sử dụng", 
+		"d":"Thư trả lời cho thư mà ta đã gởi trước đó",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES16",
+		"content" : "Website Yahoo.com hoặc gmail.com cho phép người sử dụng thực hiện?" ,
+		"a":"Nhận thư",
+		"b":"Gởi thư",
+		"c":"Tạo hộp thư", 
+		"d":"3 lựa chọn trên đúng",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES17",
+		"content" : "Chức năng Bookmark của trình duyệt web dùng để?" ,
+		"a":"Lưu trang web về máy tính",
+		"b":"Đánh dấu trang web trên trình duyệt",
+		"c":"Đặt làm trang chủ", 
+		"d":"Insert – Symbol",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES18",
+		"content" : "Nếu không kết nối được mạng, bạn vẫn có thể thực hiện được hoạt động nào sau đây?" ,
+		"a":"Gửi email",
+		"b":"Viết thư",
+		"c":"Xem 1 trang web", 
+		"d":"In trên may in sử dụng chung cài đặt ở máy khác",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES19",
+		"content" : "Khi muốn tìm kiếm thông tin trên mạng Internet, chúng ta cần?" ,
+		"a":"Tìm kiếm trên các Websites tìm kiếm chuyên dụng",
+		"b":"Tùy vào nội dung tìm kiếm mà kết nối đến các Websites cụ thể",
+		"c":"Tìm kiếm ở bất kỳ một Websites nào", 
+		"d":"Tìm trong các sách danh bạ internet",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES20",
+		"content" : "Bộ nhớ truy nhập trực tiếp RAM được viết tắt từ, bạn sử dụng lựa chọn nào?" ,
+		"a":"Read Access Memory",
+		"b":"Random Access Memory",
+		"c":"Rewrite Access Memory", 
+		"d":"Cả 3 câu đều đúng",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES21",
+		"content" : "Cho 8 hòn đá(trong đó có 1 hòn giả nhẹ hơn) và một cái cân thăng bằng. Hỏi cần bao nhiêu lần cân để tìm được hòn đá giả?",
+		"a":"2",
+		"b":"3",
+		"c":"4", 
+		"d":"5",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES22",
+		"content" : "Trong Javascript sự kiện OnUnload thực hiện khi nào?",
+		"a":"Khi bắt đầu chương trình chạy",
+		"b":"Khi click chuột",
+		"c":"Khi kết thúc một chương trình", 
+		"d":"Khi di chuyển chuột qua",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES23",
+		"content" : "Trong Javascript sự kiện Onblur thực hiện khi nào?",
+		"a":"Khi một đối tượng trong form mất focus",
+		"b":"Khi một đối tượng trong form có focus",
+		"c":"Khi di chuyển con chuột qua form", 
+		"d":"Khi click chuột vào nút lệnh",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES24",
+		"content" : "Trong Javascript sự kiện OnMouseOver thực hiện khi nào?",
+		"a":"Khi một đối tượng trong form mất focus",
+		"b":"Khi một đối tượng trong form có focus",
+		"c":"Khi di chuyển con chuột qua một đối tượng trong form", 
+		"d":"Khi click chuột vào nút lệnh",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES25",
+		"content" : "Trong Javascript sự kiện Onclick thực hiện khi nào?",
+		"a":"Khi một đối tượng trong form mất focus",
+		"b":"Khi một đối tượng trong form có focus",
+		"c":"Khi click chuột vào một đối tượng trong form", 
+		"d":"Khi click chuột vào nút lệnh",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES26",
+		"content" : "Trong Javascript sự kiện Onchange thực hiện khi nào?",
+		"a":"Khi một đối tượng trong form mất focus",
+		"b":"Khi một đối tượng trong form có focus",
+		"c":"Xảy ra khi giá trị của một trường trong form được người dùng thay đổi", 
+		"d":"Khi click chuột vào nút lệnh",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES27",
+		"content" : "Thẻ <input type='text'> dùng để làm gì?",
+		"a":"Tạo một ô text để nhập dữ liệu 1 dòng",
+		"b":"Tạo một ô password",
+		"c":"Tạo một  textbox cho phép nhập liệu nhiều dòng", 
+		"d":"Tất cả các ý trên",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES28",
+		"content" : "Thẻ <input type='Password'> dùng để làm gì?",
+		"a":"Tạo một ô text để nhập dữ liệu 1 dòng",
+		"b":"Tạo một ô password",
+		"c":"Tạo một  textbox cho phép nhập liệu nhiều dòng", 
+		"d":"Tất cả các ý trên",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES29",
+		"content" : "Thẻ <textarea ></texterea> dùng để làm gì?",
+		"a":"Tạo một ô text để nhập dữ liệu 1 dòng",
+		"b":"Tạo một ô password",
+		"c":"Tạo một  textbox cho phép nhập liệu nhiều dòng", 
+		"d":"Tất cả các ý trên",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES30",
+		"content" : "Thẻ <input type='text'> dùng để làm gì?",
+		"a":"Tạo một ô text để nhập dữ liệu 1 dòng",
+		"b":"Tạo một nút lệnh dùng để gửi tin trong form đi",
+		"c":"Tạo một nút lệnh dùng để xóa thông tin trong form", 
+		"d":"Tất cả các ý trên",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES31",
+		"content" : "Thẻ <input type=”Radio” …> dùng để làm gì?",
+		"a":"Tạo một ô text để nhập dữ liệu",
+		"b":"Tạo một nhóm đối tượng chọn nhưng  chọn duy nhất ",
+		"c":"Tạo một nhóm cùng có nhiều cột nhiều dòng", 
+		"d":"Tất cả các ý trên",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES32",
+		"content" : "Thẻ <input type=”checkbox” …> dùng để làm gì?",
+		"a":"Tạo một ô text để nhập dữ liệu",
+		"b":"Tạo một ô password",
+		"c":"Tạo một nhóm đối tượng chọn được nhiều đối tượng", 
+		"d":"Tất cả các ý trên",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES33",
+		"content" : "Thẻ <input type=”button” …> dùng để làm gì?",
+		"a":"Tạo một nút lệnh lên trên form",
+		"b":"Tạo một ô password",
+		"c":"Tạo một  textbox cho phép nhập liệu nhiều dòng", 
+		"d":"Tất cả các ý trên",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES34",
+		"content" : "Lệnh lặp for có dạng như thế nào?",
+		"a":"for ( biến = Giá trị đầu; Điều kiện; Giá trị tăng)",
+		"b":"for ( biến = Giá trị đầu; Giá trị tăng; điều kiện)",
+		"c":"for ( biến = Điều kiện; Giá trị tăng; Giá trị cuối)", 
+		"d":"Tất cả các ý trên",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES35",
+		"content" : "Vòng lặp While là dạng vòng lặp?",
+		"a":"Không xác định và xét điều kiện rồi mới lặp",
+		"b":"Không xác định và  lặp rồi mới xét điều kiện",
+		"c":"Cả hai dạng trên", 
+		"d":"Không tồn tại dạng nào ở trên",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES36",
+		"content" : "Vòng lặp (Do.. while) là dạng vòng lặp?",
+		"a":"Không xác định và xét điều kiện rồi mới lặp",
+		"b":"Không xác định và lặp rồi mới xét điều kiện ",
+		"c":"Cả hai dạng trên", 
+		"d":"Không có dạng nào",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES37",
+		"content" : "Lệnh break kết hợp với vòng for dùng để?",
+		"a":"Ngưng vòng for nếu gặp lệnh này",
+		"b":"Không có ý nghĩa trong vòng lặp",
+		"c":"Nhảy đến một tập lệnh khác", 
+		"d":"Không thể kết hợp được",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES38",
+		"content" : "Hàm alert() dùng để làm gì?",
+		"a":"Dùng để hiện một thông điệp",
+		"b":"Dùng để hiện một thông báo nhập",
+		"c":"Dùng để chuyển đổi số sang chữ", 
+		"d":"Không tồn tại dạng nào ở trên",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES39",
+		"content" : "Thẻ <Frameset cols> </frameset>",
+		"a":"Dùng để chia trang web ra nhiều phần theo dòng",
+		"b":"Dùng để chia trang web ra nhiều phần theo cột",
+		"c":"Không có ý nào ở trên", 
+		"d":"Tất cả dạng trên",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES40",
+		"content" : "Thẻ <Frameset rows > </frameset>",
+		"a":"Dùng để chia trang web ra nhiều phần theo cột",
+		"b":"Dùng để chia trang web ra nhiều phần theo dòng",
+		"c":"Tất cả dạng trên", 
+		"d":"Không có ý nào ở trên",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES41",
+		"content" : "Khả năng xử lý của máy tính phụ thuộc vào … ban sử dụng lựa chọn nào?" ,
+		"a":"Tốc độ CPU, dung lượng bộ nhớ RAM, dung lượng và tốc độ ổ cứng",
+		"b":"Yếu tố đa nhiệm",
+		"c":"Hiện tượng phân mảnh ổ đĩa", 
+		"d":"Cả 3 phần trên đều đúng",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES42",
+		"content" : "Máy tính là gi?" ,
+		"a":"Là công cụ chỉ dùng để tính toán các phép tính thông thường",
+		"b":"Là công cụ cho phép xử lý thông tin một cách tự động",
+		"c":"Là công cụ cho phép xử lý thông tin một cách thủ công", 
+		"d":"Là công cụ không dùng để tính toán",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES43",
+		"content" : "Trình tự xử lý thông tin của máy tính điện tử?" ,
+		"a":"Màn hình -> CPU -> Đĩa cứng",
+		"b":"Đĩa cứng -> Màn hình -> CPU",
+		"c":"Nhập thông tin -> Xử lý thông tin -> Xuất thông tin", 
+		"d":"Màn hình -> Máy in -> CPU",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES44",
+		"content" : "Để đảm bảo an toàn dữ liệu ta chọn cách nào?" ,
+		"a":"Đặt thuộc tính hidden",
+		"b":"Copy nhiều nơi trên ổ đĩa máy tính",
+		"c":"Đặt thuộc tính Read only", 
+		"d":"Sao lưu dự phòng",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES45",
+		"content" : "Trong hệ điều hành windows chức năng Disk Defragment gọi là?" ,
+		"a":"Chống phân mảnh ổ cứng",
+		"b":"Làm giảm dung lượng ổ cứng",
+		"c":"Sao lưu dữ liệu ổ cứng", 
+		"d":"Lau chùi tập tin rác ổ cứng",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES46",
+		"content" : "Biểu thức sau = AND(5>4,6<9,2<1,10>7,OR(2<1,3>2))" ,
+		"a":"True",
+		"b":"False",
+		"c":"#Name?", 
+		"d":"#Value",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES47",
+		"content" : " Địa chỉ B$3 là địa chỉ" ,
+		"a":"Tương đối",
+		"b":"Tuyệt đối",
+		"c":"Hỗn hợp", 
+		"d":"Sai",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES48",
+		"content" : "Hai người chat với nhau qua mạng Yahoo Messenger trong cùng một phòng nét?" ,
+		"a":"Dữ liệu truyền từ máy đang chat lên máy chủ phòng nét và quay về máy chat bên kia",
+		"b":"Dữ liệu đi trực tiếp giữa hai máy đang trong phòng chat",
+		"c":"Dữ liệu truyền về máy chủ Yahoo và quay về máy bên kia", 
+		"d":"Dữ liệu truyền về máy chủ internet Việt Nam và quay về máy đang chat",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES49",
+		"content" : "Tên miền trong địa chỉ website có .edu cho biết Website đó thuộc về?" ,
+		"a":"Lĩnh vực chính phủ",
+		"b":"Lĩnh vực giáo dục",
+		"c":"Lĩnh vực cung cấp thông tin", 
+		"d":"Thuộc về các tổ chức khác",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES50",
+		"content" : " Website là gì?" ,
+		"a":"Là một ngôn ngữ siêu văn bản",
+		"b":"Là hình thức trao đổi thông tin dưới dạng thư thông qua hệ thống mạng máy tính",
+		"c":"Là các file được tạo ra bởi Word, Excel, PowerPoint … rồi chuyển sang html", 
+		"d":"Tất cả đều sai",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES51",
+		"content" : "Dịch vụ lưu trữ đám mây của Microsoft là gì?" ,
+		"a":"Google Driver",
+		"b":"Mediafire",
+		"c":"OneDrive", 
+		"d":"Cả 3 câu hỏi trên đều đúng",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES52",
+		"content" : "Phần mềm nào sau đây không phải trình duyệt WEB?" ,
+		"a":"Microsoft Internet Explorer",
+		"b":"Mozilla Firefox",
+		"c":"Netcape", 
+		"d":"Unikey",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES53",
+		"content" : "Trong ứng dụng windows Explorer, để chọn nhiều tập tin hay thư mục không liên tục ta thực hiện thao tác kết hợp phím … với click chuột?" ,
+		"a":"Ctrl",
+		"b":"Shift",
+		"c":"Alt", 
+		"d":"Enter",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES54",
+		"content" : "Để hủy bỏ thao tác vừa thực hiện ta nhấn tổ hợp phím" ,
+		"a":"Ctrl + Z",
+		"b":"Ctrl + A",
+		"c":"Ctrl + Y", 
+		"d":"Ctrl + F",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES55",
+		"content" : "Trong bảng tính Excel, ô A1 chứa nội dung “TTTH ĐHKHTN”. Khi thực hiện công thức = LEN(A1) thì giá trị trả về kết quả" ,
+		"a":"6",
+		"b":"11",
+		"c":"5", 
+		"d":"0",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES56",
+		"content" : "Phím tắt mở nhanh File Explorer trên win 10" ,
+		"a":"Atl + F4",
+		"b":"Window + E",
+		"c":"Window + S", 
+		"d":"Ctrl + E",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES57",
+		"content" : "Làm gì khi máy tính bị virus?" ,
+		"a":"Thay ram",
+		"b":"Thay màn hình",
+		"c":"Quét và diệt virus, cài lại win", 
+		"d":"Khởi động lại",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES58",
+		"content" : "Window defender trên windows có để làm gì?" ,
+		"a":"Trình soạn thảo text nhanh",
+		"b":"Công cụ chỉnh sửa ảnh",
+		"c":"Ghi chú", 
+		"d":"Trình diệt virus",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES59",
+		"content" : "Cách mở nhanh Task manager" ,
+		"a":"Ctrl + Shift + Esc",
+		"b":"Ctrl + Shift + N",
+		"c":"Ctrl + Alt + F12", 
+		"d":"Ctrl + Alt + F1",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES60",
+		"content" : "Delete với Backspace khác nhau như thế nào?" ,
+		"a":"Delete xóa kí tự bên phải, Backspace xóa kí tự bên trái",
+		"b":"Ko khác",
+		"c":"Delete xóa kí tự bên trái, Backspace xóa kí tự bên phải", 
+		"d":"Delete để xóa còn Backspace để Back",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES61",
+		"content" : "Kích thước của 1 Char là bao nhiêu?",
+		"a":"4 bit",
+		"b":"7 bit",
+		"c":"8 bit", 
+		"d":"16 bit",
+		"answer" :"d"
+	},
+	{
+		"idQues" : "QUES62",
+		"content" : "1 class không thể được khai báo ở chế độ",
+		"a":"Static",
+		"b":"Private",
+		"c":"Cả 2 dạng trên", 
+		"d":"Default",
+		"answer" :"b"
+	},
+	{
+		"idQues" : "QUES63",
+		"content" : "Kết quả sau khi biên dịch mã int a = 3.5?",
+		"a":"Compilation error",
+		"b":"Runtime error",
+		"c":"3.5", 
+		"d":"3",
+		"answer" :"a"
+	},
+	{
+		"idQues" : "QUES64",
+		"content" : "Kết quả khi biên dịch mã int a1 = 5; double a2 = (float)a1",
+		"a":"Compilation error",
+		"b":"Runtime error",
+		"c":"No error", 
+		"d":"Null error",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES65",
+		"content" : "Kết quả sau khi biên dịch mã int a = 9/0",
+		"a":"Compilatinon error: Phép tính chia phải nằm trong cú pháp try",
+		"b":"Compilation error: DivideByZeroException",
+		"c":"Runtime Exception", 
+		"d":"No Error: kết quả là NaN",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES66",
+		"content" : "Kết quả sau khi biên dịch mã: float a = 9/0",
+		"a":"Compilation error: Phép tính chia phải nằm trong cú pháp try",
+		"b":"Compilation error: DivideByZeroException",
+		"c":"Runtime Exception", 
+		"d":"No Error: Kết quả là NaN",
+		"answer" :"c"
+	},
+	{
+		"idQues" : "QUES67",
+		"content" : "1 Class có thể hoạt động ở chế độ tạm thời - transient",
+		"a":"Đúng",
+		"b":"Sai",
+		"c":"Không biết", 
+		"d":"Tùy trường hợp",
+		"answer" :"b"
+	},
+	{
 		"idQues" : "QUES68",
 		"content" : "Kết quả sau khi biên dịch mã: Class A{int b = 1; public static void main(String[] args) {System.out.println(“b is” + b);}}",
 		"a" : "Compilation error",
