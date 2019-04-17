@@ -158,7 +158,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <div class="box-body">
               <div class="col-md-2">
                 <label for="">Area: </label>
-                <input id="area" class="form-control" disabled placeholder="HCM/HN"></input>
+                <input th:value=${oneposition.area} id="area" class="form-control" disabled placeholder="HCM/HN"></input>
               </div>
               <div class="col-md-2">
                 <label>Exp-date:</label>
@@ -166,26 +166,26 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input disabled type="text" class="form-control pull-right" id="datepicker_expdate">
+                  <input th:value="${oneposition.expDate}" disabled type="text" class="form-control pull-right" id="datepicker_expdate">
                 </div>
               </div>
              
               <div class="col-md-12" style="padding: 0">
                 <div class="col-md-4">
                   <label for="">Requirement: </label>
-                  <textarea id="requiment" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter requirement description..."></textarea> 
+                  <textarea th:text="${oneposition.requirement}"  id="requiment" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter requirement description..."></textarea> 
                 </div>
                 <div class="col-md-4">
                   <label for="">Benefit: </label>
-                  <textarea id="benefit" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
+                  <textarea th:text="${oneposition.benefit}" id="benefit" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
                 </div>
                 <div class="col-md-4">
                   <label for="">Detail description: </label>
-                  <textarea id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
+                  <textarea th:text="${oneposition.description}" id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
                 </div>
               </div>
               
-              <div class="col-md-12">
+              <div class="col-md-12" style="padding-top: 2%">
                 <div class="box box-info">
                   <div class="box-header with-border">
                     <h3 class="box-title">Questions list</h3>
@@ -251,7 +251,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <!-- modal jd -->
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body" style="display: none;">
+                  <div class="box-body">
                       <table id="example1" class="table table-bordered table-hover">
                         <thead>
                           <tr>

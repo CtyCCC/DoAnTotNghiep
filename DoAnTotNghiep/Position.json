@@ -1,64 +1,27 @@
 [
 	{
-		"idPos" : "",
-		"name" : "",
-		"expDate" : "",
-		"area" : "",
-		"requirement" : "",
-		"benefit" : "",
-		"description" : ""
-	},
-	{
 		"idPos" : "POS1",
 		"name" : "IT Tester",
 		"expDate" : "01/30/2019",
 		"area" : "HCM",
 		"requirement" : 
-		"- Tuổi: 23-30 
-		- Tốt nghiệp Đại học/ Cao đẳng, ưu ngành CNTT/ Khoa học máy tính
-		- Trình độ tiếng Nhật tương đương N5, N4 trở lên.
-		- Cẩn thận, tỉ mỉ, yêu thích nghề test.
-		- Hiểu biết cơ bản về các giai đoạn test (Unit Test, Integration Test, Fuctional Test,…).
-		- Có khả năng nghiên cứu và sử dụng các công cụ hỗ trợ kiểm tra sản phẩm phần mềm.
-		- Có khả năng giao tiếp bằng tiếng Anh.
-		- Ưu tiên ứng viên có kinh nghiệm làm việc tại các công ty Nhật",
+		"- Tuá»•i:- Tá»‘t nghiá»‡p Ä�áº¡i há»�c/ Cao Ä‘áº³ng, Æ°u ngÃ nh CNTT/ Khoa há»�c mÃ¡y tÃ­nh- TrÃ¬nh Ä‘á»™ tiáº¿ng Nháº­t tÆ°Æ¡ng Ä‘Æ°Æ¡ng N5, N4 trá»Ÿ lÃªn.- Cáº©n tháº­n, tá»‰ má»‰, yÃªu thÃ­ch nghá»� test.- Hiá»ƒu biáº¿t cÆ¡ báº£n vá»� cÃ¡c giai Ä‘oáº¡n test (Unit Test, Integration Test, Fuctional Test,â€¦).- CÃ³ kháº£ nÄƒng nghiÃªn cá»©u vÃ  sá»­ dá»¥ng cÃ¡c cÃ´ng cá»¥ há»— trá»£ kiá»ƒm tra sáº£n pháº©m pháº§n má»�m.- CÃ³ kháº£ nÄƒng giao tiáº¿p báº±ng tiáº¿ng Anh.- Æ¯u tiÃªn á»©ng viÃªn cÃ³ kinh nghiá»‡m lÃ m viá»‡c táº¡i cÃ¡c cÃ´ng ty Nháº­t",
 		"benefit" : 
-		"- <400 - 700> USD (Tùy theo năng lực và kinh nghiệm)
-		- Môi trường làm việc thân thiện và năng động
-		- Chế độ nghỉ phép và bảo hiểm theo quy định của pháp luật lao động Việt Nam
-		- Thưởng theo chính sách của công ty
-		- Hoạt động Team Building (tiệc sinh nhật cho nhân viên, du lịch công ty, v.v...)
-		- Cơ hội được làm việc với các chuyên gia nước ngoài và tiếp nhận công nghệ tiên tiến nhất
-		- Cơ hội được đi đào tạo ở nước ngoài
-		- Có câu lạc bộ bóng đá, cầu lông, học ngoại ngữ, v.v...",
+		"- <400 - 700> USD (TÃ¹y theo nÄƒng lá»±c vÃ  kinh nghiá»‡m)- MÃ´i trÆ°á»�ng lÃ m viá»‡c thÃ¢n thiá»‡n vÃ  nÄƒng Ä‘á»™ng- Cháº¿ Ä‘á»™ nghá»‰ phÃ©p vÃ  báº£o hiá»ƒm theo quy Ä‘á»‹nh cá»§a phÃ¡p luáº­t lao Ä‘á»™ng Viá»‡t Nam- ThÆ°á»Ÿng theo chÃ­nh sÃ¡ch cá»§a cÃ´ng ty- Hoáº¡t Ä‘á»™ng Team Building (tiá»‡c sinh nháº­t cho nhÃ¢n viÃªn, du lá»‹ch cÃ´ng ty, v.v...)- CÆ¡ há»™i Ä‘Æ°á»£c lÃ m viá»‡c vá»›i cÃ¡c chuyÃªn gia nÆ°á»›c ngoÃ i vÃ  tiáº¿p nháº­n cÃ´ng nghá»‡ tiÃªn tiáº¿n nháº¥t- CÆ¡ há»™i Ä‘Æ°á»£c Ä‘i Ä‘Ã o táº¡o á»Ÿ nÆ°á»›c ngoÃ i- CÃ³ cÃ¢u láº¡c bá»™ bÃ³ng Ä‘Ã¡, cáº§u lÃ´ng, há»�c ngoáº¡i ngá»¯, v.v...",
 		"description" : 
-		"- Chi tiết công việc sẽ được trao đổi thêm vào buổi phỏng vấn
-		- Nơi làm việc: Tầng 4, tòa nhà E.town 1, 364 Cộng Hòa, P. 13, Q. Tân Bình, Tp. HCM
-		- Thời gian làm việc: Từ 8h đến 17h, từ thứ Hai đến thứ Sáu"
+		"- Chi tiáº¿t cÃ´ng viá»‡c sáº½ Ä‘Æ°á»£c trao Ä‘á»•i thÃªm vÃ o buá»•i phá»�ng váº¥n- NÆ¡i lÃ m viá»‡c: Táº§ng 4, tÃ²a nhÃ  E.town 1, 364 Cá»™ng HÃ²a, P. 13, Q. TÃ¢n BÃ¬nh, Tp. HCM- Thá»�i gian lÃ m viá»‡c: Tá»« 8h Ä‘áº¿n 17h, tá»« thá»© Hai Ä‘áº¿n thá»© SÃ¡u"
 	},
 	{
 		"idPos" : "POS2",
 		"name" : "Junior Java Developer",
 		"expDate" : "03/03/2018",
 		"area" : "HCM",
-		"requirement" : 
-		"- Good at basic programming knowledge: OOP
-		- Experience in Java core, HTML, CSS, Javascript
-		- Ability to work with database such as: Oracle, My SQL, SQL Server
-		- Understanding about Web API, Collection, Interface, Abstract Class, Bootstrap, jQuery, Design Pattern, LINQ...
-		- Nice to know Angular JS.",
+		"requirement" :
+		"- Good at basic programming knowledge: OOP- Experience in Java core, HTML, CSS, Javascript- Ability to work with database such as: Oracle, My SQL, SQL Server- Understanding about Web API, Collection, Interface, Abstract Class, Bootstrap, jQuery, Design Pattern, LINQ...- Nice to know Angular JS.",
 		"benefit" : 
-		"- Negotiation salary depends on candidate’s ability
-		- Total income from 13 to 14 months of salary
-		- Rewards on each project
-		- Participate in community & extracurricular activities",
+		"- Negotiation salary depends on candidateâ€™s ability- Total income from 13 to 14 months of salary- Rewards on each project- Participate in community & extracurricular activities",
 		"description" : 
-		"- As a programmer which trends should you choose to get more value for your future?
-		- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.
-		- Description:
-		+ In charge of programming, error checking & reporting for line manager
-		+ Participate in big projects belongs to Banking, Finance & Insurance
-		+ Participate in developing projects on Java & other technologies"
+		"- As a programmer which trends should you choose to get more value for your future?- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.- Description:+ In charge of programming, error checking & reporting for line manager+ Participate in big projects belongs to Banking, Finance & Insurance+ Participate in developing projects on Java & other technologies"
 	},
 	{
 		"idPos" : "POS3",
@@ -66,23 +29,11 @@
 		"expDate" : "03/03/2018",
 		"area" : "HCM",
 		"requirement" : 
-		"- At least 3 years of experience in Java development on Linux/Windows platform. Proven experience as a Senior Software Engineer.
-		- Experience in Java frameworks: Spring (Spring MVC, Spring Boot, Spring Security), Hibernate
-		- Experience in Web Service (RESTful, SOAP) and knowledge in queue processing (Active MQ, IBM MQ).
-		- Experience in Java Application Servers, Database Servers.
-		- Good knowledge or experience in network programming",
+		"- At least 3 years of experience in Java development on Linux/Windows platform. Proven experience as a Senior Software Engineer.- Experience in Java frameworks: Spring (Spring MVC, Spring Boot, Spring Security), Hibernate- Experience in Web Service (RESTful, SOAP) and knowledge in queue processing (Active MQ, IBM MQ).- Experience in Java Application Servers, Database Servers.- Good knowledge or experience in network programming",
 		"benefit" : 
-		"- Negotiation salary depends on candidate’s ability
-		- Total income from 13 to 14 months of salary
-		- Rewards on each project
-		- Participate in community & extracurricular activities",
+		"- Negotiation salary depends on candidateâ€™s abilit- Total income from 13 to 14 months of salary- Rewards on each project- Participate in community & extracurricular activities",
 		"description" : 
-		"- As a programmer which trends should you choose to get more value for your future?
-		- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.
-		- Description:
-		+ In charge of programming, error checking & reporting for line manager
-		+ Participate in big projects belongs to Banking, Finance & Insurance
-		+ Participate in developing projects on Java & other technologies"
+		"- As a programmer which trends should you choose to get more value for your future?- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.- Description:+ In charge of programming, error checking & reporting for line manager+ Participate in big projects belongs to Banking, Finance & Insurance+ Participate in developing projects on Java & other technologies"
 	},
 	{
 		"idPos" : "POS4",
@@ -90,35 +41,11 @@
 		"expDate" : "05/04/2019",
 		"area" : "HCM",
 		"requirement" : 
-		"- Proven experience managing complex global initiatives end to end, from strategy through to operational delivery and initiative scaling.
-		- Demonstrated analytical skills and ability to develop strategy, business plans, customers and market insights
-		- An excellent understanding of how technical teams work and an ability to provide leadership to technical teams so the products can be launched with maximum effectiveness
-		- Background likely to be consumer-facing online and digital media, preferably with an e-commerce component
-		- Ability to apply the best organizational, analytical and problem solving skills to product development and strategy.
-		- Measure and evaluate how the product is used to ensure that the product solves the right problem, users understand it and, if applicable, that they are willing to pay.
-		- Excellent analytical and problem solving aptitude combined with brilliant communication skills
-		- Outstanding product instincts and creativity combined with a passion for digital transformation
-		- Ability to inspire and guide teams without direct authority and provide hands-on leadership
-		- Understand and be able to communicate with all types of internal and external stakeholders
-		- Proven track record to take full ownership of products from conceptual ideas to actual launch
-		- Proficiency in English ",
+		"- Proven experience managing complex global initiatives end to end, from strategy through to operational delivery and initiative scaling.- Demonstrated analytical skills and ability to develop strategy, business plans, customers and market insights- An excellent understanding of how technical teams work and an ability to provide leadership to technical teams so the products can be launched with maximum effectiveness- Background likely to be consumer-facing online and digital media, preferably with an e-commerce component- Ability to apply the best organizational, analytical and problem solving skills to product development and strategy.- Measure and evaluate how the product is used to ensure that the product solves the right problem, users understand it and, if applicable, that they are willing to pay.- Excellent analytical and problem solving aptitude combined with brilliant communication skills- Outstanding product instincts and creativity combined with a passion for digital transformation- Ability to inspire and guide teams without direct authority and provide hands-on leadership- Understand and be able to communicate with all types of internal and external stakeholders- Proven track record to take full ownership of products from conceptual ideas to actual launch- Proficiency in English ",
 		"benefit" : 
-		"- Attractive salary -up to $4000
-		- Company Trip every year
-		- Gift for birthday
-		- 13th month bonus
-		- Company trip for employee & partner
-		- International working enviroment
-		- Opportunity to onsite in Japan, Indonesia, Philipines, Singapore, Malaysia
-		- Support Laptop and Computer
-		- Full salary insurance",
+		"- Attractive salary -up to $4000- Company Trip every year- Gift for birthday- 13th month bonus- Company trip for employee & partner- International working envirome- Opportunity to onsite in Japan, Indonesia, Philipines, Singapore, Malaysia- Support Laptop and Computer- Full salary insurance",
 		"description" : 
-		"- Set product vision, strategy and manage on-time delivery of roadmap. Own product backlog and prioritization
-		- Manage end to end delivery and ongoing prioritization and stakeholder communication
-		- Develop go-to-market plans, positioning, messaging and all elements related to the business case.
-		- Communicate internally and externally to evangelize vision and inspire all stakeholders to get them on the same page.
-		- Working with UX to understand the users and their needs and then working with UX design to concept and design product solutions.
-		- Work with technology lead to initiate and prioritize projects"
-	},
+		"- Set product vision, strategy and manage on-time delivery of roadmap. Own product backlog and prioritization- Manage end to end delivery and ongoing prioritization and stakeholder communication- Develop go-to-market plans, positioning, messaging and all elements related to the business case.- Communicate internally and externally to evangelize vision and inspire all stakeholders to get them on the same page.- Working with UX to understand the users and their needs and then working with UX design to concept and design product solutions.- Work with technology lead to initiate and prioritize projects"
+	}
 
 ]

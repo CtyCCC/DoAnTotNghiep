@@ -1,4 +1,4 @@
-package com.manhcuong.DynamoDb;
+package com.position.dynamodb;
 
 import java.io.File;
 import java.util.Iterator;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class LoadDataPosition {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
 		AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
 	            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", "us-west-2"))
@@ -27,7 +27,7 @@ public class LoadDataPosition {
 
 	        Table table = dynamoDB.getTable("Position");
 
-	        JsonParser parser = new JsonFactory().createParser(new File("positiondata.json"));
+	        JsonParser parser = new JsonFactory().createParser(new File("Position.json"));
 
 	        JsonNode rootNode = new ObjectMapper().readTree(parser);
 	        Iterator<JsonNode> iter = rootNode.iterator();
@@ -37,14 +37,20 @@ public class LoadDataPosition {
 	        while (iter.hasNext()) {
 	            currentNode = (ObjectNode) iter.next();
 
-	            String id_pos = currentNode.path("id_pos").asText();
-	            String name_pos = currentNode.path("name_pos").asText();
-
+	            String idPos = currentNode.path("idPos").asText();
+	            String name = currentNode.path("name").asText();
+	            String area = currentNode.path("area").asText();
+	            String expDate = currentNode.path("expDate").asText();
+	            String requirement = currentNode.path("requirement").asText();
+	            String benefit = currentNode.path("benefit").asText();
+	            String description = currentNode.path("description").asText();
 	            try {
-	                table.putItem(new Item().withPrimaryKey("id_pos", id_pos, "name_pos", name_pos)
-	                		.withJSON("requirment",currentNode.path("requirment").toString())
-	                		.withJSON("des",currentNode.path("des").toString())
-	                		.withJSON("questions",currentNode.path("questions").toString())
+	                table.putItem(new Item().withPrimaryKey("idPos", idPos, "name", name)
+	                		.withString("area",area)
+	                		.withString("expDate",expDate)
+	                		.withString("requirement",requirement)
+	                		.withString("benefit",benefit)
+	                		.withString("description",description)
 	                		);
 	                System.out.println("PutItem succeeded!");
 
@@ -57,5 +63,4 @@ public class LoadDataPosition {
 	        }
 	        parser.close();
 	}
-
 }

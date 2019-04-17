@@ -1,4 +1,4 @@
-package com.manhcuong.DynamoDb;
+package com.position.dynamodb;
 
 import java.util.Arrays;
 
@@ -22,16 +22,15 @@ public class CreateTablePosition {
 	            .build();
 
 	        DynamoDB dynamoDB = new DynamoDB(client);
-	        
-	        
+	       
 	        String tableName = "Position";
 	        try {
 	            System.out.println("Attempting to create table; please wait...");
 	            Table table = dynamoDB.createTable(tableName,
-	                Arrays.asList(new KeySchemaElement("id_pos", KeyType.HASH), // Partition key
-	                    new KeySchemaElement("name_pos", KeyType.RANGE)), // Sort key
-	                Arrays.asList(new AttributeDefinition("id_pos", ScalarAttributeType.S),
-	                    new AttributeDefinition("name_pos", ScalarAttributeType.S)),
+	                Arrays.asList(new KeySchemaElement("idPos", KeyType.HASH), // Partition key
+	                    new KeySchemaElement("name", KeyType.RANGE)), // Sort key
+	                Arrays.asList(new AttributeDefinition("idPos", ScalarAttributeType.S),
+	                    new AttributeDefinition("name", ScalarAttributeType.S)),
 	                new ProvisionedThroughput(10L, 10L));
 	            table.waitForActive();
 	            System.out.println("Success.  Table status: " + table.getDescription().getTableStatus());
@@ -42,5 +41,4 @@ public class CreateTablePosition {
 	            System.err.println(e.getMessage());
 	        }    
 	}
-
 }

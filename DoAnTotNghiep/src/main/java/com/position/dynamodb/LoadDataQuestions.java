@@ -27,7 +27,7 @@ public class LoadDataQuestions {
 
 	        Table table = dynamoDB.getTable("Questions");
 
-	        JsonParser parser = new JsonFactory().createParser(new File("QuestionsNew_12cau.json"));
+	        JsonParser parser = new JsonFactory().createParser(new File("Questions.json"));
 
 	        JsonNode rootNode = new ObjectMapper().readTree(parser);
 	        Iterator<JsonNode> iter = rootNode.iterator();
@@ -42,11 +42,11 @@ public class LoadDataQuestions {
 
 	            try {
 	                table.putItem(new Item().withPrimaryKey("idQues", idQues, "content", content)
-	                		.withString("a",currentNode.path("a").toString())
-	                		.withString("b",currentNode.path("b").toString())
-	                		.withString("c",currentNode.path("c").toString())
-	                		.withString("d",currentNode.path("d").toString())
-	                		.withString("answer",currentNode.path("answer").toString())
+	                		.withString("a",currentNode.path("a").asText())
+	                		.withString("b",currentNode.path("b").asText())
+	                		.withString("c",currentNode.path("c").asText())
+	                		.withString("d",currentNode.path("d").asText())
+	                		.withString("answer",currentNode.path("answer").asText())
 	                		);
 	                System.out.println("PutItem succeeded!");
 

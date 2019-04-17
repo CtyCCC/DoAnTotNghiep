@@ -22,8 +22,7 @@
      <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
      <!--My CSS-->
      <link rel="stylesheet" href="../../dist/css/mycss/customcss.css">
-     
-      <script src="../../bower_components/datatables.net/js/sweetalert2.all.min.js"></script>
+    <script src="../../bower_components/datatables.net/js/sweetalert2.all.min.js"></script>
 
      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -157,73 +156,36 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           <div class="box box-info">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="col-md-4">
-                <label for="">Requirement: </label>
-                <textarea id="requiment" class="form-control" name="" rows="4" disabled style="resize: none" placeholder="Enter requirement description..."></textarea>
-                <label for="">Benefit: </label>
-                <textarea id="benefit" class="form-control" name="" rows="6" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
+              <div class="col-md-2">
+                <label for="">Area: </label>
+                <input th:value=${oneposition.area} id="area" class="form-control" disabled placeholder="HCM/HN"></input>
               </div>
-              <div class="col-md-8">
-                <label for="">Description: </label>
-                <div class="box box-info">
-                  <div class="box-body">
-                    <div class="col-md-2">
-                      <label for="">Quantity: </label>
-                      <input id="quantity" type="number" class="form-control" disabled placeholder="Enter a number...">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="">Experience: </label>
-                      <input id="experence" type="text" class="form-control" disabled placeholder="Years of experience...">
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Salary (Upto): </label>
-                      <input id="salary" type="number" class="form-control" disabled placeholder="2000$">
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Education: </label>
-                      <select id="education" class="form-control" disabled>
-                        <option>Hight school</option>
-                        <option>College</option>
-                        <option>University</option>
-                        <option>Master's degree</option>
-                      </select>
-                    </div>
-                    <div class="col-md-2">
-                      <label for="">Gender: </label>
-                      <select id="gender" class="form-control" disabled>
-                        <option>Every</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-xs-4">
-                      <label>Date range:</label>
-                      <div class="input-group">
-                        <div class="input-group-addon">
-                          <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="text" class="form-control
-                        ." id="reservation" disabled>
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Area: </label>
-                      <input id="area" class="form-control" disabled placeholder="TPHCM/HN,..."></input>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Time: </label>
-                      <input id="type" class="form-control" type="text" name="" disabled placeholder="Working time description...">
-                    </div>
-                    <div class="col-md-12">
-                      <label for="">Detail description: </label>
-                      <textarea id="detail" class="form-control" name="" rows="3" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
-                    </div>
+              <div class="col-md-2">
+                <label>Exp-date:</label>
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
                   </div>
+                  <input th:value="${oneposition.expDate}" disabled type="text" class="form-control pull-right" id="datepicker_expdate">
+                </div>
+              </div>
+             
+              <div class="col-md-12" style="padding: 0">
+                <div class="col-md-4">
+                  <label for="">Requirement: </label>
+                  <textarea th:text="${oneposition.requirement}"  id="requiment" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter requirement description..."></textarea> 
+                </div>
+                <div class="col-md-4">
+                  <label for="">Benefit: </label>
+                  <textarea th:text="${oneposition.benefit}" id="benefit" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
+                </div>
+                <div class="col-md-4">
+                  <label for="">Detail description: </label>
+                  <textarea th:text="${oneposition.description}" id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
                 </div>
               </div>
               
-              <div class="col-md-12">
+              <div class="col-md-12" style="padding-top: 2%">
                 <div class="box box-info">
                   <div class="box-header with-border">
                     <h3 class="box-title">Questions list</h3>
@@ -289,7 +251,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <!-- modal jd -->
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body" style="display: none;">
+                  <div class="box-body">
                       <table id="example1" class="table table-bordered table-hover">
                         <thead>
                           <tr>
