@@ -70,6 +70,7 @@
           function updatedou(pos,a,b,fulltime,timeRun) {
               $("#title-runtime").text(a+":"+b)
               processVal = 100-(timeRun/fulltime)*100;
+              console.log(processVal);
               $("#process").css("width",processVal+"%");
               options.callback(this);
           }
