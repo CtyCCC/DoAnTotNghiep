@@ -55,12 +55,42 @@ public class PositionDAO {
     		return ds;
     	}
         
+        //lấy position theo name, ko tốn công query trong db lại vì sài thằng arr của thằng getAll
         public Position getOnePositionByName (String name, ArrayList<Position> arr) {
         	for (Position position : arr) {
         		if (position.getName().equals(name))
         			return position;
 			}
         	return null;
+        }
+        
+        //Get name của array position đổ vào select box
+        
+        // đưa vào mảng Position, định dạng lại 3 thằng Requirement, benefit, description
+        // của toàn bộ Position trong mảng
+        // thành kiểu như hàm dưới, in cho đẹp
+        public void formatAllResult(ArrayList<Position> arr) {
+        	for (Position position : arr) {
+				String re = position.getRequirement();
+				position.setRequirement(formatContent(re));
+				String be = position.getBenefit();
+				position.setBenefit(formatContent(be));
+				String des = position.getDescription();
+				position.setDescription(formatContent(des));
+			}
+        }
+        
+        //xử "Chien-Pro-Haha" thành 
+        //"- Chien
+        // - Pro
+        // - Haha "
+        public String formatContent(String content) {
+        	String[] ar = content.split("-");
+        	String result = "";
+        	for (int i = 0; i<ar.length;i++) {
+        		result = result + "-" + ar[i] + "\n";
+        	}
+        	return result;
         }
 
 }

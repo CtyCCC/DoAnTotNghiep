@@ -47,7 +47,7 @@
 <link rel="stylesheet"
 href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="skin-blue sidebar-mini sidebar-collapse">
+<body class="skin-blue sidebar-mini sidebar-collapse" id="haha">
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
@@ -132,12 +132,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     <h1 class="col-md-1">Postions: </h1>
     <div class="col-md-2">
       <select class="form-control" id="selectPos">
-        <option>Java Developer</option>
-        <option>Tester</option>
-        <option>Internship</option>
-        <option>Partime</option>
-        <option>PM</option>
-        <option>Leader</option>
+        <option th:each="pos : ${listPosition}" th:value="${pos.name}" th:utext="${pos.name}"></option>
       </select>
     </div>
     <div id="inputPosition" class="col-md-2" hidden="true">
@@ -153,12 +148,12 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   <section class="content">
     <div class="row">
         <div class="col-md-12">
-          <div class="box box-info">
+          <div class="box box-info" id="placeload">
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" id="reloadThis">
               <div class="col-md-2">
-                <label for="">Area: </label>
-                <input th:value=${oneposition.area} id="area" class="form-control" disabled placeholder="HCM/HN"></input>
+                <label for="" id = >Area: </label>
+                <input th:value=${selectedposition.area} id="area" class="form-control" disabled placeholder="HCM/HN"></input>
               </div>
               <div class="col-md-2">
                 <label>Exp-date:</label>
@@ -166,22 +161,22 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input th:value="${oneposition.expDate}" disabled type="text" class="form-control pull-right" id="datepicker_expdate">
+                  <input th:value="${selectedposition.expDate}" disabled type="text" class="form-control pull-right" id="datepicker_expdate">
                 </div>
               </div>
              
               <div class="col-md-12" style="padding: 0">
-                <div class="col-md-4">
+                <div class="col-md-4" id="loadhere2">
                   <label for="">Requirement: </label>
-                  <textarea th:text="${oneposition.requirement}"  id="requiment" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter requirement description..."></textarea> 
+                  <textarea th:text="${selectedposition.requirement}"  id="requirement" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter requirement description..."></textarea> 
                 </div>
                 <div class="col-md-4">
                   <label for="">Benefit: </label>
-                  <textarea th:text="${oneposition.benefit}" id="benefit" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
+                  <textarea th:text="${selectedposition.benefit}" id="benefit" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter benefits..."></textarea>
                 </div>
                 <div class="col-md-4">
                   <label for="">Detail description: </label>
-                  <textarea th:text="${oneposition.description}" id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
+                  <textarea th:text="${selectedposition.description}" id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
                 </div>
               </div>
               
@@ -190,14 +185,14 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <div class="box-header with-border">
                     <h3 class="box-title">Questions list</h3>
                     <div class="box-tools pull-right">
-                      <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#modal-AddJD" title="Add new equestion">
+                      <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#modalAddQues" title="Add new equestion">
                         <i class="fa fa-plus-square"></i>
                       </button>
                       <button type="button" id="btnSaveQues" class="btn btn-box-tool"><i class="fa fa-file" title="Save"></i></button>
                       <button type="button"  class="btn btn-box-tool" data-widget="collapse" title="Open/Close"><i class="fa fa-minus"></i>
                       </button>
                     </div>
-                    <div class="modal fade" id="modal-AddJD">
+                    <div class="modal fade" id="modalAddQues">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -208,32 +203,32 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           <div class="modal-body">
                             <div class="row">
                               <div class="col-md-12">
-                                <label for="">Question content:</label>
-                                <textarea class="form-control" rows="3" name=""></textarea>
+                                <label for="">Question content (*):</label>
+                                <textarea class="form-control" rows="3" name="" id="contentNewQues" required></textarea>
                               </div>
                               <div class="col-md-12">
-                                <label for="">Sentence A:</label>
-                                <input type="text" class="form-control" name="">
+                                <label for="">Sentence A (*):</label>
+                                <input type="text" class="form-control" name="" id="sentenceA" required>
                               </div>
                               <div class="col-md-12">
-                                <label for="">Sentence B:</label>
-                                <input type="text" class="form-control" name="">
+                                <label for="">Sentence B (*):</label>
+                                <input type="text" class="form-control" name="" id="sentenceB" required>
                               </div>
                               <div class="col-md-12">
-                                <label for="">Sentence C:</label>
-                                <input type="text" class="form-control" name="">
+                                <label for="">Sentence C (*):</label>
+                                <input type="text" class="form-control" name="" id="sentenceC" required>
                               </div>
                               <div class="col-md-12">
-                                <label for="">Sentence D:</label>
-                                <input type="text" class="form-control" name="">
+                                <label for="">Sentence D (*):</label>
+                                <input type="text" class="form-control" name="" id="sentenceD" required>
                               </div>
                               <div class="col-md-2">
-                                <label for="">Result:</label>
-                                <select class="form-control">
-                                  <option>A</option>
-                                  <option>B</option>
-                                  <option>C</option>
-                                  <option>D</option>
+                                <label for="">Result (*):</label>
+                                <select class="form-control" id="answer">
+                                  <option value="a">A</option>
+                                  <option value="b">B</option>
+                                  <option value="c">C</option>
+                                  <option value="d">D</option>
                                 </select>
                               </div>
 
@@ -241,7 +236,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-sm btn-primary">Save</button>
+                            <button type="submit" class="btn btn-sm btn-primary" id="saveNewQues">Save</button>
                           </div>
                         </div>
                         <!-- /.modal-content -->
@@ -251,7 +246,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <!-- modal jd -->
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body">
+                  <div class="box-body" style="display: none" id="reloadThisTable">
                       <table id="example1" class="table table-bordered table-hover">
                         <thead>
                           <tr>
@@ -370,19 +365,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     }
     )
     //Date picker
-    $('#datepicker_DOB').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_Date').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_DOB_New').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_Date_New').datepicker({
-      autoclose: true
-    })
-    $('#datepicker_Interview').datepicker({
+    $('#datepicker_expdate').datepicker({
       autoclose: true
     })
     //iCheck for checkbox and radio inputs
@@ -409,60 +392,29 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       showInputs: false
     })
 
-    //Add/Edit Round
-    $("#btn_addRound").click(function(event) {
-      $("#tab_interview").attr('href', '#interview_edit');
-      $("#interview").attr('class', 'tab-pane');
-      $("#interview_edit").attr('class', 'active tab-pane');
-    });
-    $("#btn_editRound1").click(function(event) {
-      $("#tab_interview").attr('href', '#interview_edit');
-      $("#interview").attr('class', 'tab-pane');
-      $("#interview_edit").attr('class', 'active tab-pane');
-    });
-
-    //Back interview
-    $("#btn_addBack").click(function(event) {
-      $("#tab_interview").attr('href', '#interview');
-      $("#interview").attr('class', 'active tab-pane');
-      $("#interview_edit").attr('class', 'tab-pane');
-    });
     //new position
     $("#newPosition").click(function(event) {
-      $('#requiment').val("");
+      $('#requirement').val("");
       $('#benefit').val("");
-      $('#quantity').val("");
-      $('#experence').val("");
-      $('#salary').val("");
+      $('#area').val("");
       $('#detail').val("");
-      $('#type').val("");
-      $('#requiment').removeAttr('disabled');
+      $('#requirement').removeAttr('disabled');
       $('#benefit').removeAttr('disabled');
-      $('#quantity').removeAttr('disabled');
-      $('#experence').removeAttr('disabled');
-      $('#salary').removeAttr('disabled');
       $('#detail').removeAttr('disabled');
-      $('#type').removeAttr('disabled');
-      $('#education').removeAttr('disabled');
-      $('#gender').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSave').removeAttr('disabled');
+      $('#datepicker_expdate').removeAttr('disabled');
       $('#inputPosition').removeAttr('hidden');
       $('#reservation').removeAttr('disabled');
     });
     //edit
     $("#btnEdit").click(function(event) {
-      $('#requiment').removeAttr('disabled');
+      $('#requirement').removeAttr('disabled');
       $('#benefit').removeAttr('disabled');
-      $('#quantity').removeAttr('disabled');
-      $('#experence').removeAttr('disabled');
-      $('#salary').removeAttr('disabled');
       $('#detail').removeAttr('disabled');
-      $('#type').removeAttr('disabled');
-      $('#education').removeAttr('disabled');
-      $('#gender').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSave').removeAttr('disabled');
+      $('#datepicker_expdate').removeAttr('disabled');
       $('#reservation').removeAttr('disabled');
     });
 
@@ -509,20 +461,47 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         }
       })
     });
+    
+    $("#saveNewQues").click(function(event) {
+    	var content = $("#contentNewQues").val();	
+    	var a = $("#sentenceA").val();	
+    	var b = $("#sentenceB").val();	
+    	var c = $("#sentenceC").val();	
+    	var d = $("#sentenceD").val();	
+    	var answer = $("#answer").val();
+    	if ( content == "" || a == "" || b == "" || c == "" || d == "" || answer == "")
+    		alert("Tất cả các thông tin là bắt buộc !!");
+    	else{
+    		$.ajax({
+    	        type: "post",
+    	        url: "/newQuestion",  
+    	        data:{ content: content, sentenceA : a, sentenceB : b, sentenceC : c, sentenceD : d, answer : answer },
+    	        success: function(){
+    	        	console.log("send success to server");
+    	        	location.reload();
+    	        	alert("Add question success !!")
+    	        },
+    	        error: function(){      
+    	         alert('Error while request..');
+    	        }
+    		});
+    	} 	
+    });
+    
     $("#selectPos").change(function(){
     	var kq =$(this).val();
     	$.ajax({
-    		  url: "/reservation2", //added '/' in the beginning
-    		  type: 'POST',
-    		  data: kq,
-    		  dataType: "text",
-    		  contentType: "text/plain", //change
-    		  //mimeType: false,   //remove
-    		  success: function(response) {
-    		    console.log(data);
-    		    return false;
-    		  }
-    		});
+    	        type: "post",
+    	        url: "/loadposition",  
+    	        data:{ name: kq, chien: "chien" },
+    	        success: function(){
+    	        	console.log("send success to server" +kq);
+    	        	$("#placeload").load("position.html #reloadThis");
+    	        },
+    	        error: function(){      
+    	         alert('Error while request..');
+    	        }
+   		});
 	});
 });
 </script>
