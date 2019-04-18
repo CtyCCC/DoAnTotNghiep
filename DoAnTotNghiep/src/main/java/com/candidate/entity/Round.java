@@ -1,4 +1,4 @@
-package com.manhcuong.entity;
+package com.candidate.entity;
 
 
 public class Round {

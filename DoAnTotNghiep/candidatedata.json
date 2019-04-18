@@ -1,50 +1,206 @@
 [
 	{
-		"id_can":"can_1",
-		"cmnd":"1111111111",
-		"name":"Nguyen Van A",
+		"idCan":"can_1",
+		"cmnd":"111111111",
+		"nameCan":"Nguyen Van A",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
 		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 10,
 			"time" : 5000
 		},
-		"position": "Java",
+		"namePos": "Java",
 		"status":"New"
 	},
 	{
-		"id_can":"can_2",
+		"idCan":"can_2",
 		"cmnd":"222222222",
-		"name":"Nguyen Van B",
+		"nameCan":"Nguyen Van B",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
 		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
-			"score" : 11,
+			"score" : 10,
 			"time" : 5000
 		},
-		"position": "C#",
+		"namePos": "Java",
 		"status":"New"
 	},
 	{
-		"id_can":"can_3",
+		"idCan":"can_3",
 		"cmnd":"333333333",
-		"name":"Nguyen Van C",
+		"nameCan":"Nguyen Van C",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
 		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 10,
-			"time" : 7000
+			"time" : 5000
 		},
-		"position": "Java",
+		"namePos": "Java",
 		"status":"New"
-	}	
+	},
+	{
+		"idCan":"can_4",
+		"cmnd":"444444444",
+		"nameCan":"Nguyen Van D",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": false,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_5",
+		"cmnd":"555555555",
+		"nameCan":"Nguyen Van E",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_6",
+		"cmnd":"666666666",
+		"nameCan":"Nguyen Van F",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": false,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_7",
+		"cmnd":"777777777",
+		"nameCan":"Nguyen Van G",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": false,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_8",
+		"cmnd":"888888888",
+		"nameCan":"Nguyen Van U",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": false,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_9",
+		"cmnd":"999999999",
+		"nameCan":"Nguyen Van L",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_10",
+		"cmnd":"121122112",
+		"nameCan":"Nguyen Van H",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_11",
+		"cmnd":"232322322",
+		"nameCan":"Nguyen Van M",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	},
+	{
+		"idCan":"can_12",
+		"cmnd":"323435467",
+		"nameCan":"Nguyen Van K",
+		"email":"cuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"24/5/1999",
+		"dateImport":"3/25/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 10,
+			"time" : 5000
+		},
+		"namePos": "Java",
+		"status":"New"
+	}
 ]
