@@ -1,27 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 
   <title>Dou NetWorks</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="./../../bower_components/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="../../bower_components/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Custom Fonts -->
-  <link href="./../../bower_components/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../../bower_components/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-  <link href="./../../bower_components/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="./../../dist/css/mycss/apply/mainApply.css">
-
+  <link href="../../bower_components/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/css/mycss/apply/mainApply.css">
+  <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
   <!-- Custom CSS -->
-  <link href="./../../dist/css/mycss/apply/stylish-portfolio.css" rel="stylesheet">
-
+  <link href="../../dist/css/mycss/apply/stylish-portfolio.css" rel="stylesheet">
+  <style>
+  #changeCV {
+     cursor: epointer;
+    /* Style as you please, it will become the visible UI component. */
+   }
+  #upload-cv{
+     opacity: 0;
+     position: absolute;
+     z-index: -1;
+  }
+  </style>
 </head>
 
 <body id="page-top">
@@ -68,119 +77,28 @@
   </div>
   <div id="rank-body">
     <table class="table">
-      <colgroup>
-          <col width="20">
-          <col width="*">
-          <col width="50">
-          <col width="100">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Name</th>
-              <th>Point</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-             <tr>
-              <td>1</td>
-              <td>Trần Hùng Cường</td>
-              <td>85</td>
-              <td>8:30</td>
-            </tr>
-
-          </tbody>
-      </colgroup>
+    <colgroup>
+      <col width="20">
+      <col width="*">
+      <col width="50">
+      <col width="100">
+     </colgroup>   
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Point</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Trần Hùng Cường</td>
+          <td>85</td>
+          <td>8:30</td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div id="rank-footer">
@@ -190,7 +108,7 @@
     </div>
     <div class="form-inline ml-3 mt-2">
       <label> Identity card</label>
-      <input type="text" class="form-control" name="">
+      <input type="text" class="form-control" name="idcard">
       <button class="btn btn-success"><i class="fas fa-search"></i></button>
     </div>
   </div>
@@ -201,8 +119,8 @@
       <div class="modal-content">
         <!-- Title Modal -->
         <div class="modal-header">
-          <h3>APPLYCATION</h4>
-          <button type="button" class="close btn-danger" data-dismiss="modal" >&times</button>
+          <h3>APPLYCATION</h3>
+          <button type="button" class="close btn-danger" data-dismiss="modal" > &times; </button>
         </div>
         <!-- Modal body content -->
         <div class="modal-body">
@@ -218,11 +136,11 @@
                 <div class="form-inline">
                   <div class="b-first">
                     <p>First Name</p>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" style="width: 95%">
                   </div>
                   <div class="b-last">
                      <p>Last Name</p>
-                     <input type="text" class="form-control">
+                     <input type="text" class="form-control" style="width: 100%">
                   </div>
                 </div>
               </div>
@@ -243,16 +161,14 @@
               <!-- Date of birth -->
               <div class="form-group">
                 <label>Date of Birth</label>
-                <input type="date" class="form-control" name="DOB" >
+                <input type="text" class="form-control" id="DOB" name="DOB" >
               </div>
               <!-- Positon apply -->
               <div class="form-group">
                 <label>Possiton</label>
                 <select name="position" id="position" class="form-control">
                   <option value=""></option>
-                  <option value="Java">Java</option>
-                  <option value="C#">C#</option>
-                  <option value="Server Desk">Server Desk</option>
+                  <option  th:each="item : ${titleList}" th:value="${item.idPos}" th:text="${item.name}"></option>
                 </select>
               </div>
               <!-- Email -->
@@ -263,7 +179,7 @@
               <!-- Phone -->
               <div class="form-group">
                 <label>Phone <span class="text-danger">&lowast;</span></label>
-                <input type="text " name="phone" class="form-control" required>
+                <input type="text" name="phone" class="form-control" required>
               </div>
               <!-- Skill -->
               <div class="form-group">
@@ -272,8 +188,8 @@
               </div>
               <!-- upCV -->
               <div class="form-group">
-                <label class="btn btn-primary" for="upcv">CV</label>
-                <input type="file" name="cv" id="upcv" hidden>
+                <a><label id="changeCV" class="btn btn-primary" for="upload-cv">CV</label></a>
+                <input type="file" id="upload-cv">
               </div>
           </form>
         </div>
@@ -290,9 +206,9 @@
   <!-- Header -->
   <header class="masthead d-flex">
     <div class="container text-center my-auto col-lg-8">
-      <div><h1 class="mb-1 d-inline-block text-white">DOU</h1><h2 class="mb-1 d-inline-block  text-primary"> Networks</h2></div>
+      <div><h1 class="mb-1 d-inline-block text-white" style="font-size: 9rem;">DOU</h1><h2 class="mb-1 d-inline-block  text-white" style="font-size: 5rem;"> Networks</h2></div>
       <br>
-         <a class="btn btn-primary btn-xl js-scroll-trigger" data-toggle="modal" data-target="#myModal" data-target="#myModal" data-backdrop="static" data-keyboard="false">Apply Now</a>
+         <a class="btn btn-primary btn-xl js-scroll-trigger" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">Apply Now</a>
     </div>
     
   </header>
@@ -304,82 +220,29 @@
         <div class="modal-content">
           <div class="modal-header">
             <span></span>
-            <h3 style="text-align: center;">Senior/Lead Salesforce JAVA Dev</h3>
-            <span id="i_position" hidden >C#</span>
+            <h3 style="text-align: center;" id="titleP"></h3>
+            <span id="i_position" hidden="" ></span>
             <span></span>
           </div>
           <div class="modal-body">
             <div>
               <h4>Detail description</h4>
-              <textarea id="area1" disabled>      You will be joining a high growth & innovative B2B Tech start-up with the head office in Sydney, Australia to build a fast-growing SaaS DevOps platform for Salesforce. Our products serve thousands of users from more than 30 countries, performing 40k+ deployments and counting.
-      You will have a chance to develop the expertise in Salesforce, the world #1 CRM platform and one of the most demanding tech skills globally.You will also learn about startup culture and a best-in-class product mindset along the way and to make a great impact to the world.
-              </textarea>
+              <textarea id="area1" disabled></textarea>
               <h4>Requirement</h4>
-              <textarea id="area2" disabled>- 4+ years of software engineering experience at innovative and fast-paced organizations.
-- Fluency in Java and the related ecosystem.     
-- Salesforce experience is a plus.                
-- Experience with modern Javascript framework (ie. Angular, React) is a plus.
-- Experience with building scalable web-based Saas products is a plus.
-- Open source contribution is a plus
-              </textarea>
+              <textarea id="area2" disabled></textarea>
               <h4>Benefit</h4>
-               <textarea id="area3" disabled>- Không có OT
-- Lương tháng 13
-- Cơ hội onsite
+               <textarea id="area3" disabled>
               </textarea>
             </div>
-            <div>
-              <table>
-                <colgroup>
-                  <col width="200">
-                  <col width="*">
-                </colgroup>
-                <tbody>
-                  <!-- row1 -->
-                  <tr>
-                    <th>Quanlity: </th>
-                    <td><span>05</span></td>
-                  </tr>
-                  <!-- row2 -->
-                  <tr>
-                    <th>Experence: </th>
-                    <td><span>3 year</span></td>
-                  </tr>
-                  <!-- row3 -->
-                  <tr>
-                    <th>Salary(Up to): </th>
-                    <td><span>$2000</span></td>
-                  </tr>
-                  <!-- row4 -->
-                  <tr>
-                    <th>Education: </th>
-                    <td><span>Đại học</span></td>
-                  </tr>
-                  <!-- row5 -->
-                  <tr>
-                    <th>Gender: </th>
-                    <td><span>Nam</span></td>
-                  </tr>
-                  <!-- row6 -->
-                  <tr>
-                    <th>Area: </th>
-                    <td><span>HCM</span></td>
-                  </tr>
-                  <!-- row7 -->
-                  <tr>
-                    <th>Working time: </th>
-                    <td><span>8hours/day-5day/week</span></td>
-                  </tr>
-                </tbody>
-              </table>
+         
             </div>
             <div align="center" class="mt-5" >
                 <button class="btn btn-success" data-toggle="modal" data-target="#myModal" data-dismiss="modal"  data-backdrop="static" data-keyboard="false" onclick="fillform();" >APPLY NOW</button>
             </div>
+            <br/>
           </div>
         </div>
       </div>
-  </div>
   <section class="content-section bg-primary text-white text-center" id="job">
     <!-- View Positon -->
     <div class="container">
@@ -388,41 +251,30 @@
         <h2 class="mb-5">WE NEED YOU</h2>
       </div>
       <div class="row">
-        
+		
+		<!-- Item   -->
 
-        <!-- Item   -->
-        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mt-5 myjob" >
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mt-5 myjob"  data-toggle="modal" data-target="#myModal2"  th:each="item : ${titleList}">
           <a class="myitem">
             <span class="service-icon rounded-circle mx-auto mb-3">
               <i class="icon-screen-smartphone"></i>
             </span>
             <h4>
-              <strong>PHP</strong>
-            </h4>
-            <p class="text-faded mb-0">Nhấp đểm xem chi tiết</p>
-          </a>
-        </div>
-         <!-- /Item  -->
-
-        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mt-5 myjob"  data-toggle="modal" data-target="#myModal2" data-target="#myModal"  onclick="OpDetail()">
-          <a class="myitem" >
-            <span class="service-icon rounded-circle mx-auto mb-3">
-              <i class="icon-screen-smartphone"></i>
-            </span>
-            <h4>
-              <strong>Senior/Lead Salesforce JAVA Dev </strong>
+              <strong th:text="${item.name}"></strong>
+              <input type="text" th:value="${item.idPos}" hidden="">
             </h4>
             <div class="mycontent">
-              <p class="text-faded mb-0 ">-Vị trí Lập trình viên Java</p>
-              <p class="text-faded mb-0">-Kinh Nghiệm 3 năm</p>
-              <p class="text-faded mb-0">-Lương từ 10-15 triệu</p>
-              <p class="text-faded mb-0">-Không OT</p>
-             </div>
+            	<span th:text="${item.area}"></span><br/>
+            	<span th:text="${item.expDate}"></span>
+            </div>
            </a>
         </div>
       </div>
     </div>
   </section>
+
+
+<!-- /Item  -->
 
   <!-- Portfolio -->
   <section class="content-section" id="portfolio">
@@ -516,39 +368,73 @@
  
 
   <!-- Bootstrap core JavaScript -->
-  <script src="./../../bower_components/vendor/jquery/jquery.min.js"></script>
-  <script src="./../../bower_components/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="../../bower_components/vendor/jquery/jquery.min.js"></script>
+  <script src="../../bower_components/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Plugin JavaScript -->
-  <script src="./../../bower_components/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  <script src="../../bower_components/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
   <!-- Custom scripts for this template -->
-  <script src="./../../dist/js/apply/stylish-portfolio.min.js"></script>
+  <script src="../../dist/js/apply/stylish-portfolio.min.js"></script>
 </body>
 
 <script>
-  function OpDetail() {
-      setTimeout(function(args) {
-        var des = $("#area1").prop("scrollHeight");
-        var req = $("#area2").prop("scrollHeight");
-        var ben = $("#area3").prop("scrollHeight");
-
-        $("#area1").css("height",des+"px");
-        $("#area2").css("height",req+"px");
-        $("#area3").css("height",ben+"px");
-
-      }, 10)
+/* Auto scale textarea */
+  function expandDetail() {
+     var des = $("#area1").prop("scrollHeight");
+     var req = $("#area2").prop("scrollHeight");
+     var ben = $("#area3").prop("scrollHeight");
+        
+     $("#area1").css("height",des+"px");
+     $("#area2").css("height",req+"px");
+     $("#area3").css("height",ben+"px");
   }
-
-  function fillform() {
-     $("#position").val($("#i_position").text());
-  }
-
-
+  /* auto fillform apply from RECRUITMENT  */
+  function fillform(){
+	  console.log($("#i_position").text());
+	  $("#position").val($("#i_position").text());
+	  console.log($("#position").val());
+	  
+	};
+  /* Button open rank list */
   $(".btn-opl").click(function() {
     $("#Ranking-list").toggleClass("close-rank");
   })
+  
+	$('#DOB').datepicker({
+	     autoclose: true
+    })
+/*Change name file input*/
+ $('input[type="file"]').change(function(e){
+    var fileName = e.target.files[0].name;
+    $("#changeCV").text(fileName);            
+});
+ 
+  
 
+  /*get Content Position*/
+  $(".myitem").click(function(){
+	  var data ={};
+	  data["idPos"]= $(this).find("input").val();
+	  data["name"]=$(this).find("strong").text();
+	  $.ajax({
+		type: "POST",
+		contentType: "application/json",
+		data:JSON.stringify(data),
+        url: "/getcontent",
+        success: function(data){
+            $("textarea").css("height","50px");
+            $("#titleP").text(data.name);	
+        	$("#area1").text(data.description);
+        	$("#area2").text(data.requirement);
+        	$("#area3").text(data.benefit);
+        	$("#i_position").text(data.idPos);
+        	expandDetail();
+        },
+        error:function(e){
+            console.log(e)
+        }
+	}) 
+});
 </script>
 
 </html>
