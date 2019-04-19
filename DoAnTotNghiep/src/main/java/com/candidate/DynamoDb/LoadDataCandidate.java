@@ -1,4 +1,4 @@
-package com.manhcuong.DynamoDb;
+package com.candidate.DynamoDb;
 
 import java.io.File;
 import java.util.Iterator;
@@ -25,8 +25,8 @@ public class LoadDataCandidate {
 
 	        DynamoDB dynamoDB = new DynamoDB(client);
 
-	        //Table table = dynamoDB.getTable("Candidate_M");
-	        Table table = dynamoDB.getTable("Candidate_S");
+	        Table table = dynamoDB.getTable("Candidate_M");
+	        //Table table = dynamoDB.getTable("Candidate_S");
 
 	        JsonParser parser = new JsonFactory().createParser(new File("candidatedata.json"));
 
@@ -38,19 +38,20 @@ public class LoadDataCandidate {
 	        while (iter.hasNext()) {
 	            currentNode = (ObjectNode) iter.next();
 
-	            String id_can = currentNode.path("id_can").asText();
+	            String id_can = currentNode.path("idCan").asText();
 	            String cmnd = currentNode.path("cmnd").asText();
 
 	            try {
-	                table.putItem(new Item().withPrimaryKey("id_can", id_can, "cmnd", cmnd)
-	                		.withJSON("name",currentNode.path("name").toString())
+	                table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+	                		.withJSON("nameCan",currentNode.path("nameCan").toString())
 	                		.withJSON("email",currentNode.path("email").toString())
 	                		.withJSON("phone",currentNode.path("phone").toString())
 	                		.withJSON("gender",currentNode.path("gender").toString())
 	                		.withJSON("dob",currentNode.path("dob").toString())
+	                		.withJSON("dateImport",currentNode.path("dateImport").toString())
 	                		.withJSON("linkCV",currentNode.path("linkCV").toString())
 	                		.withJSON("rate",currentNode.path("rate").toString())
-	                		.withJSON("position",currentNode.path("position").toString())
+	                		.withJSON("namePos",currentNode.path("namePos").toString())
 	                		.withJSON("status",currentNode.path("status").toString())
 	                		);
 	                System.out.println("PutItem succeeded!");
