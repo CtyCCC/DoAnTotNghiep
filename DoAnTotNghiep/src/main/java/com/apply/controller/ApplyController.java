@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.apply.dao.ApplyDao;
 import com.apply.form.TitlePosition;
-import com.position.entity.Position;
+import com.entity.Position;
 
 @Controller
 
 public class ApplyController {
 	ApplyDao applydao = new ApplyDao();
-	@GetMapping("/home.clt")
+	@GetMapping("/homeApply")
 	public String showApplytition(Model model) {
 		
 		ArrayList<TitlePosition> titleList = new ArrayList<TitlePosition>();

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.position.dao.PositionDAO;
 import com.position.dao.QuestionsDAO;
-import com.position.entity.Position;
-import com.position.entity.Questions;
+import com.entity.Position;
+import com.entity.Questions;
 
 @Controller
 public class PositionController {
@@ -27,9 +27,10 @@ public class PositionController {
 	PositionDAO posDAO = new PositionDAO();
 	String nameAjax;
 	
-	@GetMapping("/position.html")
-	public String index(Model model) {
-
+	@GetMapping("/position")
+	public String index(Model model,HttpServletRequest request) {
+		String namePos = request.getParameter("namePos");
+		
 		//question
 		ArrayList<Questions> arrQues = new ArrayList<>();
 		arrQues = quesDAO.getAllQuestions();
@@ -48,7 +49,11 @@ public class PositionController {
 		if (nameAjax != null) {
 			Position p = posDAO.getOnePositionByName(nameAjax, arrPos);
 			model.addAttribute("selectedposition",p);
-		}else {
+		}else if(namePos != null) {
+			Position p = posDAO.getOnePositionByName(namePos, arrPos);
+			model.addAttribute("selectedposition",p);
+		}
+		else {
 			Position p = posDAO.getOnePositionByName("Product Manager", arrPos);
 			model.addAttribute("selectedposition",p);
 		}

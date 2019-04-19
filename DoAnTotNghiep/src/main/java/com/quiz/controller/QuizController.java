@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.position.entity.Questions;
+import com.entity.Questions;
 
 
 import com.quiz.dao.QuizDao;
 import com.quiz.form.Result;
 
 @Controller
-@RequestMapping(value="quiz")
 public class QuizController {
 	
 	QuizDao quizdao = new QuizDao();
 	
-	@GetMapping("/quiz.clt")
+	@GetMapping("/quiz")
 	public String index(Model model) {
 		ArrayList<Questions> list = new ArrayList<Questions>();
 		list = quizdao.getAllQuestionsQuiz();
@@ -33,7 +32,7 @@ public class QuizController {
 		return "quiz";
 	}
 	
-	@PostMapping("/quiz.clt")
+	@PostMapping("/quiz")
 	public ResponseEntity<?> FinishQuiz(@RequestBody ArrayList<Result> data) {
 		for (Result result : data) {
 			if(!result.getAnswer().equals("on"))

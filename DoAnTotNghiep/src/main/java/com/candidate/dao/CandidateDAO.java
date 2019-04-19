@@ -30,7 +30,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
-import com.candidate.entity.Candidate;
+import com.entity.Candidate;
 
 @Repository
 public class CandidateDAO {

@@ -306,7 +306,7 @@
                       <span th:unless="${dsCandidate.gender}">Female</span>
                     </td>                  
                     <td th:text="${dsCandidate.phone}"></td>             
-                    <td><a th:text="${dsCandidate.namePos}"th:href="@{/position(id=${dsCandidate.idCan})}"></a></td>
+                    <td><a th:text="${dsCandidate.namePos}"th:href="@{/position(namePos=${dsCandidate.namePos})}"></a></td>
 
                     <td th:text="${dsCandidate.linkCV}"></td>
                     <td >

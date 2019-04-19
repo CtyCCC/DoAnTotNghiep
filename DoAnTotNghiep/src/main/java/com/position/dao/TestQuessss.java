@@ -2,8 +2,8 @@ package com.position.dao;
 
 import java.util.ArrayList;
 
-import com.position.entity.Position;
-import com.position.entity.Questions;
+import com.entity.Position;
+import com.entity.Questions;
 
 public class TestQuessss {
 

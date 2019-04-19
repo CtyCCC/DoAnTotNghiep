@@ -13,7 +13,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Product Manager",
 		"status":"New"
 	},
 	{
@@ -30,7 +30,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Product Manager",
 		"status":"New"
 	},
 	{
@@ -47,7 +47,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Product Manager",
 		"status":"New"
 	},
 	{
@@ -64,7 +64,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Senior Tester",
 		"status":"New"
 	},
 	{
@@ -81,7 +81,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Senior Tester",
 		"status":"New"
 	},
 	{
@@ -98,7 +98,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Junior Java Developer",
 		"status":"New"
 	},
 	{
@@ -115,7 +115,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Junior Java Developer",
 		"status":"New"
 	},
 	{
@@ -132,7 +132,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Software Tester",
 		"status":"New"
 	},
 	{
@@ -149,7 +149,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Software Tester",
 		"status":"New"
 	},
 	{
@@ -166,7 +166,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Software Tester",
 		"status":"New"
 	},
 	{
@@ -183,7 +183,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Junior Java Developer",
 		"status":"New"
 	},
 	{
@@ -200,7 +200,7 @@
 			"score" : 10,
 			"time" : 5000
 		},
-		"namePos": "Java",
+		"namePos": "Senior Tester",
 		"status":"New"
 	}
 ]

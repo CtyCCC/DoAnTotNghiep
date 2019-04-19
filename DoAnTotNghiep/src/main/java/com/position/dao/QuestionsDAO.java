@@ -17,7 +17,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
-import com.position.entity.Questions;
+import com.entity.Questions;
 
 @Repository
 public class QuestionsDAO {

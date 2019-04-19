@@ -3,7 +3,7 @@ package com.candidate.dao;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.candidate.entity.Candidate;
+import com.entity.Candidate;
 
 public class Test {
 

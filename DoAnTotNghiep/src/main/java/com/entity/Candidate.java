@@ -2,34 +2,34 @@ package com.entity;
 
 import java.util.Map;
 
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 public class Candidate {
-	private String id_can;
-	private String name_can;
+	private String idCan;
+	private String nameCan;
 	private String cmnd;
 	private String email;
 	private String phone;
 	private boolean gender; // T: male, F: female
 	private String dob;
 	private String linkCV;
-	private String name_pos;
-	private Map<String, AttributeValue> rate;
+	private String namePos;
+	private String dateImport;
+	private Map<String,Integer> rate;
 	private String status;
-	private Map<String, AttributeValue> interview;
-	private	Map<String, AttributeValue> offer;
-	private Map<String, AttributeValue> probation;
-	public String getId_can() {
-		return id_can;
+	private Map<String,String> interview;
+	private	Map<String,String> offer;
+	private Map<String,String> probation;
+	public String getIdCan() {
+		return idCan;
 	}
-	public void setId_can(String id_can) {
-		this.id_can = id_can;
+	public void setIdCan(String idCan) {
+		this.idCan = idCan;
 	}
-	public String getName_can() {
-		return name_can;
+	public String getNameCan() {
+		return nameCan;
 	}
-	public void setName_can(String name_can) {
-		this.name_can = name_can;
+	public void setNameCan(String nameCan) {
+		this.nameCan = nameCan;
 	}
 	public String getCmnd() {
 		return cmnd;
@@ -67,16 +67,22 @@ public class Candidate {
 	public void setLinkCV(String linkCV) {
 		this.linkCV = linkCV;
 	}
-	public String getName_pos() {
-		return name_pos;
+	public String getNamePos() {
+		return namePos;
 	}
-	public void setName_pos(String name_pos) {
-		this.name_pos = name_pos;
+	public void setNamePos(String namePos) {
+		this.namePos = namePos;
 	}
-	public Map<String, AttributeValue> getRate() {
+	public String getDateImport() {
+		return dateImport;
+	}
+	public void setDateImport(String dateImport) {
+		this.dateImport = dateImport;
+	}
+	public Map<String, Integer> getRate() {
 		return rate;
 	}
-	public void setRate(Map<String, AttributeValue> rate) {
+	public void setRate(Map<String, Integer> rate) {
 		this.rate = rate;
 	}
 	public String getStatus() {
@@ -85,67 +91,45 @@ public class Candidate {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Map<String, AttributeValue> getInterview() {
+	public Map<String, String> getInterview() {
 		return interview;
 	}
-	public void setInterview(Map<String, AttributeValue> interview) {
+	public void setInterview(Map<String, String> interview) {
 		this.interview = interview;
 	}
-	public Map<String, AttributeValue> getOffer() {
+	public Map<String, String> getOffer() {
 		return offer;
 	}
-	public void setOffer(Map<String, AttributeValue> offer) {
+	public void setOffer(Map<String, String> offer) {
 		this.offer = offer;
 	}
-	public Map<String, AttributeValue> getProbation() {
+	public Map<String, String> getProbation() {
 		return probation;
 	}
-	public void setProbation(Map<String, AttributeValue> probation) {
+	public void setProbation(Map<String, String> probation) {
 		this.probation = probation;
 	}
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cmnd == null) ? 0 : cmnd.hashCode());
-		result = prime * result + ((id_can == null) ? 0 : id_can.hashCode());
-		return result;
+	public String toString() {
+		return "Candidate [idCan=" + idCan + ", nameCan=" + nameCan + ", cmnd=" + cmnd + ", email=" + email + ", phone="
+				+ phone + ", gender=" + gender + ", dob=" + dob + ", linkCV=" + linkCV + ", namePos=" + namePos
+				+ ", dateImport=" + dateImport + ", rate=" + rate + ", status=" + status + ", interview=" + interview
+				+ ", offer=" + offer + ", probation=" + probation + "]";
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Candidate other = (Candidate) obj;
-		if (cmnd == null) {
-			if (other.cmnd != null)
-				return false;
-		} else if (!cmnd.equals(other.cmnd))
-			return false;
-		if (id_can == null) {
-			if (other.id_can != null)
-				return false;
-		} else if (!id_can.equals(other.id_can))
-			return false;
-		return true;
-	}
-	public Candidate(String id_can, String name_can, String cmnd, String email, String phone, boolean gender,
-			String dob, String linkCV, String name_pos, Map<String, AttributeValue> rate, String status,
-			Map<String, AttributeValue> interview, Map<String, AttributeValue> offer,
-			Map<String, AttributeValue> probation) {
+	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
+			String linkCV, String namePos, String dateImport, Map<String, Integer> rate, String status,
+			Map<String, String> interview, Map<String, String> offer, Map<String, String> probation) {
 		super();
-		this.id_can = id_can;
-		this.name_can = name_can;
+		this.idCan = idCan;
+		this.nameCan = nameCan;
 		this.cmnd = cmnd;
 		this.email = email;
 		this.phone = phone;
 		this.gender = gender;
 		this.dob = dob;
 		this.linkCV = linkCV;
-		this.name_pos = name_pos;
+		this.namePos = namePos;
+		this.dateImport = dateImport;
 		this.rate = rate;
 		this.status = status;
 		this.interview = interview;
@@ -156,14 +140,6 @@ public class Candidate {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "Candidate [id_can=" + id_can + ", name_can=" + name_can + ", cmnd=" + cmnd + ", email=" + email
-				+ ", phone=" + phone + ", gender=" + gender + ", dob=" + dob + ", linkCV=" + linkCV + ", name_pos="
-				+ name_pos + ", rate=" + rate + ", status=" + status + ", interview=" + interview + ", offer=" + offer
-				+ ", probation=" + probation + "]";
-	}
-	
 	
 	
 }

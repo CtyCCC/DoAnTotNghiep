@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.candidate.dao.CandidateDAO;
-import com.candidate.entity.Candidate;
+import com.entity.Candidate;
 
 @Controller
 public class TestController {
@@ -20,7 +20,7 @@ public class TestController {
 	private CandidateDAO candidateDAO =  new CandidateDAO();
 	Candidate can = new Candidate();
 	
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index(Model model) {
 		ArrayList<Candidate> ds_Can = new ArrayList<>();
 		ds_Can = candidateDAO.getAllCandidate_M();
@@ -42,13 +42,6 @@ public class TestController {
 			return "profile";
 		}
 		return null;
-	}
-	
-	@GetMapping("/position")
-	public String position(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		System.out.println(id);
-		return "position";
 	}
 	
 }
