@@ -41,7 +41,6 @@ header {
 	position: fixed;
 	z-index: 2;
 }
-
 #title-runtime {
 	margin-top: 1px;
 	z-index: 2;
@@ -49,13 +48,11 @@ header {
 	line-height: 15px;
 	color: white;
 }
-
 ///////////////////////////////////////////////////////////
 .funkyradio div {
 	clear: both;
 	overflow: hidden;
 }
-
 .funkyradio label {
 	width: 100%;
 	border-radius: 3px;
@@ -63,16 +60,13 @@ header {
 	font-weight: normal;
 	background-color: white;
 }
-
 .funkyradio label[class=active] {
 	background-color: green;
 	color: white;
 }
-
 .funkyradio input[type="radio"] {
 	display: none;
 }
-
 .funkyradio label, .funkyradio label {
 	position: relative;
 	line-height: 2.5em;
@@ -84,18 +78,15 @@ header {
 	-ms-user-select: none;
 	user-select: none;
 }
-
 .cus-checkbox {
 	display: inline-block;
 }
-
 .cus-checkbox span {
 	border: solid 1px #D1D3D4;
 	border-radius: 3px;
 	line-height: 2.4em;
 	width: 25px;
 }
-
 .funkyradio-success {
 	display: inline;
 }
@@ -119,7 +110,7 @@ header {
 		</header>
 		<div class="container " style="margin-top: 100px">
 			<div class="list-quest">
-				<form>
+				<form name="frm1" id="frm1" action="/quiz.clt">
 					<br>
 					
 					<div class="box box-info" style="padding: 2%" th:each="quest,start : ${listQuestions}">
@@ -144,7 +135,7 @@ header {
 							</div>
 						</div>
 					</div>
-					<input type="submit" class="btn btn-success col-md-12"
+					<input type="button" id="sendresult" class="btn btn-success col-md-12"
 						value="Finish">
 				</form>
 			</div>
@@ -161,7 +152,7 @@ header {
 		</footer>
 	</div>
 	<!-- ./wrapper -->
-
+	
 	<!-- jQuery 3 -->
 	<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
@@ -171,8 +162,7 @@ header {
 	<script src="../../dist/js/adminlte.min.js"></script>
 
 
-	<script type="text/javascript"
-		src="./../../dist/js/apply/countup/countdownjs.js"></script>
+	<script type="text/javascript" th:src="@{/dist/js/apply/countup/countdownjs.js}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript" src="./../../dist/js/apply/quiz.js"></script>
 	<script>
@@ -181,8 +171,34 @@ header {
       if($(this).is( ":checked")){
         $(this).parent().prop("class","active");
         $("input[type=radio]:not(:checked)").parent().removeClass("active");
-      }
-  })
+      }  
+  	});
+  	$("#sendresult").click(function(){
+    	  var formData = new FormData(document.getElementById('frm1'))
+    	  var data = [];
+    	  
+    	  var i=0;
+    	  for(var pair of formData.entries()) {
+    		  const item={};
+    		  item["idQues"]=pair[0]=="radio" ? "position1" : pair[0] ;
+    		  item["answer"]=pair[1];
+			  data.push(item);
+    		}
+  			console.log(JSON.stringify(data));
+    	   $.ajax({
+    			type: "POST",
+    			dataType: "json",
+    			contentType: "application/json",
+    			data: JSON.stringify(data),
+    	        url: "/quiz/quiz.clt",
+    	        success: function(data){
+    	           console.log(data);
+    	        },
+    	        error:function(e){
+    	            console.log(e)
+    	        }
+    		})  
+  	});
   })
 </script>
 </body>
