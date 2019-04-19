@@ -14,11 +14,12 @@ public class Candidate {
 	private String linkCV;
 	private String namePos;
 	private String dateImport;
-	private Map<String,Integer> rate;
+	private Map<String,Object> rate;
 	private String status;
-	private Map<String,String> interview;
-	private	Map<String,String> offer;
-	private Map<String,String> probation;
+	private Map<String,Object> interview;
+	private	Map<String,Object> offer;
+	private Map<String,Object> probation;
+	
 	public String getIdCan() {
 		return idCan;
 	}
@@ -79,10 +80,10 @@ public class Candidate {
 	public void setDateImport(String dateImport) {
 		this.dateImport = dateImport;
 	}
-	public Map<String, Integer> getRate() {
+	public Map<String, Object> getRate() {
 		return rate;
 	}
-	public void setRate(Map<String, Integer> rate) {
+	public void setRate(Map<String, Object> rate) {
 		this.rate = rate;
 	}
 	public String getStatus() {
@@ -91,22 +92,22 @@ public class Candidate {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Map<String, String> getInterview() {
+	public Map<String, Object> getInterview() {
 		return interview;
 	}
-	public void setInterview(Map<String, String> interview) {
+	public void setInterview(Map<String, Object> interview) {
 		this.interview = interview;
 	}
-	public Map<String, String> getOffer() {
+	public Map<String, Object> getOffer() {
 		return offer;
 	}
-	public void setOffer(Map<String, String> offer) {
+	public void setOffer(Map<String, Object> offer) {
 		this.offer = offer;
 	}
-	public Map<String, String> getProbation() {
+	public Map<String, Object> getProbation() {
 		return probation;
 	}
-	public void setProbation(Map<String, String> probation) {
+	public void setProbation(Map<String, Object> probation) {
 		this.probation = probation;
 	}
 	@Override
@@ -117,8 +118,8 @@ public class Candidate {
 				+ ", offer=" + offer + ", probation=" + probation + "]";
 	}
 	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
-			String linkCV, String namePos, String dateImport, Map<String, Integer> rate, String status,
-			Map<String, String> interview, Map<String, String> offer, Map<String, String> probation) {
+			String linkCV, String namePos, String dateImport, Map<String, Object> rate, String status,
+			Map<String, Object> interview, Map<String, Object> offer, Map<String, Object> probation) {
 		super();
 		this.idCan = idCan;
 		this.nameCan = nameCan;
@@ -140,6 +141,7 @@ public class Candidate {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 }

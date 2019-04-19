@@ -1,6 +1,8 @@
 package com.candidate.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,6 +28,38 @@ public class TestController {
 		ds_Can = candidateDAO.getAllCandidate_M();
 		model.addAttribute("dsCandidates", ds_Can);
 		return "index";
+	}
+	
+	@PostMapping("/index/setInterview")
+	public @ResponseBody String itv(HttpServletRequest request) {
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String interviewer = request.getParameter("interviewer");
+		String venue = request.getParameter("venue");
+		String note = request.getParameter("note");
+		String idCan = request.getParameter("idCan");
+		
+		
+//		Candidate can = new Candidate();
+//		can = candidateDAO.getCandidateById(idCan);
+		ArrayList<Object> rounds = new ArrayList<>();
+//		can.getInterview().get("rounds");
+		
+		Map<String, Object> rnd = new HashMap<String, Object>();
+		rnd.put("idRound","1");
+		rnd.put("interviewer",interviewer);
+		rnd.put("date", date);
+		rnd.put("time", time);
+		rnd.put("venue", venue);
+		rnd.put("note", note);
+		rnd.put("result", "Unknown");
+		
+		rounds.add(rnd);
+		
+		candidateDAO.addInterview("can_2", "222222222", rounds);
+		
+		//System.out.println(date+time+interviewer+venue);
+		return "Set Interview Success";
 	}
 	
 	@PostMapping("/candidate")

@@ -1,6 +1,9 @@
 package com.candidate.dao;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import com.entity.Candidate;
@@ -17,7 +20,12 @@ public class Test {
 		//System.out.println(dao.getAllCandidate_M());
 		//System.out.println(dao.getCandidateById("can_1"));
 //		dao.addCandidate(can, "Candidate_M");
-		dao.updateStatusCandidateById("can_2", "222222222", "Probation");
+		dao.updateStatusCandidateById("can_2", "222222222", "Interview");
+		ArrayList<Object> rounds = new ArrayList<>();
+		Map<String, Object> r = new HashMap<String, Object>();
+		r = dao.getCandidateById("can_2").getInterview();
+		rounds = (ArrayList<Object>) r.get("rounds");
+		System.out.println(rounds);
 	}
 
 }

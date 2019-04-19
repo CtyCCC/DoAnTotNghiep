@@ -243,28 +243,21 @@
                           <div class="input-group-addon">
                             <i class="fa fa-clock-o"></i>
                           </div>
-                          <input type="text" class="form-control timepicker">
+                          <input type="text" class="form-control timepicker" id="txt_time_interview">
                         </div>
 
                         <label>Interviewer: </label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="txt_interviewer">
                         
                         <label>Venue: </label>
-                        <input type="text" class="form-control">
-
-                        <label>Result: </label>
-                        <select class="form-control" disabled>
-                          <option></option>
-                          <option>Pass</option>
-                          <option>Fail</option>
-                        </select>
+                        <input type="text" class="form-control" id="txt_venue">
 
                         <label for="">Note: </label>
-                        <textarea class="form-control" rows="3" disabled></textarea>
+                        <textarea class="form-control" rows="3" id="txt_note_interview"></textarea>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" id="btn_save_interview">Save</button>
                       </div>
                     </div>
                     <!-- /.modal-content -->
@@ -272,8 +265,132 @@
                   <!-- /.modal-dialog -->
                 </div>
                 <!-- /.modal-setinterviwe -->
-
                 
+                <!-- Modal AddNew -->
+                <div class="modal fade" id="modal-default2">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span></button>
+                          <center>
+                            <div >
+                              <label id="changeAva" for="upload-photo" title="Click here to upload profile picture">
+                                  <img id="hinh" width="200" height="200" type="file" class="img-circle" src="../../dist/img/avatar04.png" alt="">
+                              </label>
+                              <input type="file" name="photo" id="upload-photo" />
+                            </div>
+                          </center>
+                      </div>
+                      <div class="modal-body">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                          <form role="form">
+                            <!-- text input -->
+
+                            <div class="form-row col-xs-12">
+                              <center>
+                                <div class="input-group input-group-md col-xs-6">
+                                  <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" disabled >Status
+                                      <span class="fa fa-caret-down"></span></button>
+                                  </div>
+                                  <!-- /btn-group -->
+                                  <input type="text" class="form-control text-center" disabled value="New" style="font-weight: bold;">
+                                </div>
+                              </center>
+                            </div>
+
+                            <div class="form-row col-xs-7">
+                              <label>Name: </label>
+                              <input type="text" class="form-control" id="txt_name">
+                            </div>
+
+                            <div class="form-row col-xs-5">
+                              <label>DOB:</label>
+                              <div class="input-group date">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker_DOB_New">
+                              </div>
+                            </div>
+
+                            <div class="form-row col-xs-7">
+                              <label>CMND: </label>
+                              <input type="email" class="form-control" id="txt_cmnd">
+                            </div>
+
+                            <div class="form-row col-xs-5">
+                              <label>Phone: </label>
+                              <input type="text" required class="form-control" id="txt_phone">
+                            </div>
+    
+                            <div class="form-group col-xs-7">
+                              <label>Positon Apply: </label>
+                              <select class="form-control" id="select_pos">
+                                <option>Java Developer</option>
+                                <option>Tester</option>
+                                <option>Internship</option>
+                                <option>Partime</option>
+                                <option>PM</option>
+                                <option>Leader</option>
+                              </select>
+                            </div>
+
+                            <div class="form-group col-xs-5">
+                              <label>Gender</label>
+                              <select class="form-control" id="select_gender">
+                                <option>Male</option>
+                                <option>Female</option>
+                              </select>
+                            </div>
+
+                            <div class="form-row col-xs-7">
+                              <label>Email: </label>
+                              <input type="text" class="form-control" id="txt_email">
+                            </div>
+
+                            <div class="form-row col-xs-5">
+                              <label>Date:</label>
+                              <div class="input-group date">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker_Date_New">
+                              </div>
+                            </div>
+
+                            <!-- textarea -->
+                            <div class="form-row col-xs-12">
+                              <label>Work Experience: </label>
+                              <textarea class="form-control" rows="3" id="txt_work_exp"></textarea>
+                            </div>
+                            
+                            <div class="form-row col-xs-12">
+                              <label>Skill: </label>
+                              <textarea class="form-control" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="form-row col-xs-12">
+                              <a><label id="changeCV_New" for="upload-cv-new">Click to upload CV </label></a>
+                              <input type="file" id="upload-cv-new">
+                            </div>
+
+                          </form>
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+                     
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btn_saveAddNew">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.modal Addnew -->
                 
               </div>
               <!-- /.box-header -->
@@ -400,7 +517,39 @@
   <!-- page script -->
   <script>
     $(function () {
-      $('#example1').DataTable()
+      var table = $('#example1').DataTable()
+
+      $('#example1 tbody').on( 'click', 'tr', function () {
+            $(this).toggleClass('selected');
+          } );
+
+      $('#btn_save_interview').click(function(event) {
+        /* Act on the event */
+        //var id = table.rows('.selected').data();
+        var date = $("#datepicker_Interview").val();
+        var time = $("#txt_time_interview").val();
+        var interviewer = $("#txt_interviewer").val();
+        var venue = $("#txt_venue").val();
+        var note = $("#txt_note_interview").val();
+        //alert(id);
+        event.preventDefault();
+        $.ajax({
+                url: '/index/setInterview',
+                type: 'post',
+                dataType: 'html',
+                data: {
+                    date:date,
+                    time:time,
+                    interviewer:interviewer,
+                    venue:venue,
+                    note:note,
+                    //id:id
+
+                }
+        }).done(function(data) {
+            alert(data);      
+        });
+      });
     });
 
 
@@ -536,6 +685,7 @@
       //           window.location.href = "/profile";
       //       });        
       //   });
+
 
     });
 

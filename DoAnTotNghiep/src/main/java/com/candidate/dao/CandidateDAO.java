@@ -150,7 +150,8 @@ public class CandidateDAO {
 						item.getString("dateImport"),
 						item.getMap("rate"), 
 						item.getString("status"), 
-						null,null,null);
+						item.getMap("interview")
+						,null,null);
 			}
 			return can;
 		}
@@ -194,39 +195,11 @@ public class CandidateDAO {
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
 		//Status = Interview
 		if(stus.equals("Interview")) {
-			//Thông tin các round
-//			Map<String, Object> rnd1 = new HashMap<String, Object>();
-//			rnd1.put("idRound","R1");
-//			rnd1.put("idInterview","Interview1");
-//			rnd1.put("date", "23/4/2019");
-//			rnd1.put("time", "9:00 PM");
-//			rnd1.put("note", "OK");
-//			rnd1.put("result", "Pass");
-//			
-//			Map<String, Object> rnd2 = new HashMap<String, Object>();
-//			rnd2.put("idRound","R2");
-//			rnd2.put("idInterview","Interview2");
-//			rnd2.put("date", "11/4/2019");
-//			rnd2.put("time", "9:00 AM");
-//			rnd2.put("note", "OK");
-//			rnd2.put("result", "False");
-			
-			//Danh sách round
-			ArrayList<Object> rounds = new ArrayList<>();
-//			rounds.add(rnd1);
-//			rounds.add(rnd2);
-			
-			//Thông tin interview
-			Map<String, Object> inter = new HashMap<String, Object>(); 
-			inter.put("finalResult","unknown");
-			inter.put("rounds", rounds);
-			
 			updateItemSpec = new UpdateItemSpec()
 					.withPrimaryKey("idCan", id, "cmnd", cmnd)
-					.withUpdateExpression("set #ss = :s, interview = :i")
+					.withUpdateExpression("set #ss = :s")
 					.withNameMap(new NameMap().with("#ss", "status"))
-					.withValueMap(new ValueMap().withString(":s", stus)
-							.withMap(":i", inter))
+					.withValueMap(new ValueMap().withString(":s", stus))
 					.withReturnValues(ReturnValue.UPDATED_NEW);
 			
 			
@@ -292,5 +265,45 @@ public class CandidateDAO {
 		}
 		
 		
+	}
+	
+	public void addInterview(String id, String cmnd, ArrayList<Object> rounds) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
+		//Thông tin round
+//		Map<String, Object> rnd = new HashMap<String, Object>();
+//		rnd.put("idRound",round.get("idRound"));
+//		rnd.put("interviewer",round.get("interviewer"));
+//		rnd.put("date", round.get("date"));
+//		rnd.put("time", round.get("time"));
+//		rnd.put("venue", round.get("venue"));
+//		rnd.put("note", round.get("note"));
+//		rnd.put("result", "Unknown");
+		
+		//Danh sách round
+//		ArrayList<Object> rounds = new ArrayList<>();
+//		rounds.add(rnd);
+		
+		//Thông tin interview
+		Map<String, Object> inter = new HashMap<String, Object>(); 
+		inter.put("finalResult","Unknown");
+		inter.put("rounds", rounds);
+		
+		updateItemSpec = new UpdateItemSpec()
+				.withPrimaryKey("idCan", id, "cmnd", cmnd)
+				.withUpdateExpression("set #ss = :s, interview = :i")
+				.withNameMap(new NameMap().with("#ss", "status"))
+				.withValueMap(new ValueMap().withString(":s", "Wait for interview")
+						.withMap(":i", inter))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 }
