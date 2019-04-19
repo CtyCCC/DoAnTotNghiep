@@ -1,4 +1,4 @@
-package com.candidate.DynamoDb;
+package com.manhcuong.DynamoDb;
 
 import java.util.Arrays;
 

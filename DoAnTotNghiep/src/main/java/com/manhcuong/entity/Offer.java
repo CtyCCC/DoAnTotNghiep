@@ -1,4 +1,4 @@
-package com.candidate.entity;
+package com.manhcuong.entity;
 
 public class Offer {
 	private String id_offer; // == id_can;

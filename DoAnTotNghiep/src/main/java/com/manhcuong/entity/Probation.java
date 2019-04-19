@@ -1,4 +1,4 @@
-package com.candidate.entity;
+package com.manhcuong.entity;
 
 public class Probation {
 	private String id_pro; // == id_can

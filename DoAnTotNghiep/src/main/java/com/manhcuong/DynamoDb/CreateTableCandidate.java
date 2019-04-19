@@ -1,4 +1,4 @@
-package com.candidate.DynamoDb;
+package com.manhcuong.DynamoDb;
 
 import java.util.Arrays;
 
@@ -24,14 +24,14 @@ public class CreateTableCandidate {
 	        DynamoDB dynamoDB = new DynamoDB(client);
 	        
 	        
-	        String tableName = "Candidate_M";
-	        //String tableName = "Candidate_S";
+	        //String tableName = "Candidate_M";
+	        String tableName = "Candidate_S";
 	        try {
 	            System.out.println("Attempting to create table; please wait...");
 	            Table table = dynamoDB.createTable(tableName,
-	                Arrays.asList(new KeySchemaElement("idCan", KeyType.HASH), // Partition key
+	                Arrays.asList(new KeySchemaElement("id_can", KeyType.HASH), // Partition key
 	                    new KeySchemaElement("cmnd", KeyType.RANGE)), // Sort key
-	                Arrays.asList(new AttributeDefinition("idCan", ScalarAttributeType.S),
+	                Arrays.asList(new AttributeDefinition("id_can", ScalarAttributeType.S),
 	                    new AttributeDefinition("cmnd", ScalarAttributeType.S)),
 	                new ProvisionedThroughput(10L, 10L));
 	            table.waitForActive();
