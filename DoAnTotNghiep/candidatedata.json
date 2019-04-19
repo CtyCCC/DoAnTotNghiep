@@ -1,206 +1,326 @@
 [
 	{
-		"idCan":"can_1",
+		"idCan":"CAN1",
 		"cmnd":"111111111",
-		"nameCan":"Nguyen Van A",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
+		"nameCan":"Trần Hùng Cường",
+		"email":"hungcuong@gmail.com",
+		"phone": "0904422377",
 		"gender": true,
-		"dob":"24/5/1999",
+		"dob":"5/24/1997",
 		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
+		"linkCV": "",
 		"rate":{
-			"score" : 10,
-			"time" : 5000
+			"score" : 18,
+			"time" : 3000,
+			"total": 20
 		},
 		"namePos": "Product Manager",
 		"status":"New"
 	},
 	{
-		"idCan":"can_2",
+		"idCan":"CAN2",
 		"cmnd":"222222222",
-		"nameCan":"Nguyen Van B",
-		"email":"cuong@gmail.com",
+		"nameCan":"Trần Đình Chiến",
+		"email":"dinhchien@gmail.com",
 		"phone": "0909323232",
-		"gender": false,
-		"dob":"24/5/1999",
+		"gender": true,
+		"dob":"5/24/1997",
 		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
+		"linkCV": "",
 		"rate":{
-			"score" : 10,
-			"time" : 5000
+			"score" : 18,
+			"time" : 3000,
+			"total": 20
 		},
 		"namePos": "Product Manager",
 		"status":"New"
 	},
 	{
-		"idCan":"can_3",
+		"idCan":"CAN3",
 		"cmnd":"333333333",
-		"nameCan":"Nguyen Van C",
+		"nameCan":"Nguyễn Văn Mạnh Cường",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
+		"dob":"5/24/1999",
+		"dateImport":"25/3/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
-			"score" : 10,
-			"time" : 5000
+			"score" : 18,
+			"time" : 5000,
+			"total": 20
 		},
 		"namePos": "Product Manager",
 		"status":"New"
 	},
 	{
-		"idCan":"can_4",
-		"cmnd":"444444444",
-		"nameCan":"Nguyen Van D",
-		"email":"cuong@gmail.com",
+		"idCan":"CAN4",
+		"cmnd":"333333334",
+		"nameCan":"Nguyễn Thị Thu",
+		"email":"thu@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
+		"dob":"5/24/1989",
+		"dateImport":"25/3/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
-			"score" : 10,
-			"time" : 5000
+			"score" : 20,
+			"time" : 5000,
+			"total": 20
 		},
 		"namePos": "Senior Tester",
 		"status":"New"
 	},
 	{
-		"idCan":"can_5",
-		"cmnd":"555555555",
-		"nameCan":"Nguyen Van E",
-		"email":"cuong@gmail.com",
+		"idCan":"CAN5",
+		"cmnd":"333333335",
+		"nameCan":"Nguyễn Thị Tuyết Hường",
+		"email":"thu@gmail.com",
 		"phone": "0909323232",
-		"gender": true,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
+		"gender": false,
+		"dob":"5/24/1989",
+		"dateImport":"25/3/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
-			"score" : 10,
-			"time" : 5000
+			"score" : 18,
+			"time" : 6000,
+			"total": 20
 		},
 		"namePos": "Senior Tester",
 		"status":"New"
 	},
 	{
-		"idCan":"can_6",
-		"cmnd":"666666666",
-		"nameCan":"Nguyen Van F",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
-		"gender": false,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
-		"rate":{
-			"score" : 10,
-			"time" : 5000
-		},
-		"namePos": "Junior Java Developer",
-		"status":"New"
-	},
-	{
-		"idCan":"can_7",
-		"cmnd":"777777777",
-		"nameCan":"Nguyen Van G",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
-		"gender": false,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
-		"rate":{
-			"score" : 10,
-			"time" : 5000
-		},
-		"namePos": "Junior Java Developer",
-		"status":"New"
-	},
-	{
-		"idCan":"can_8",
-		"cmnd":"888888888",
-		"nameCan":"Nguyen Van U",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
-		"gender": false,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
-		"rate":{
-			"score" : 10,
-			"time" : 5000
-		},
-		"namePos": "Software Tester",
-		"status":"New"
-	},
-	{
-		"idCan":"can_9",
-		"cmnd":"999999999",
-		"nameCan":"Nguyen Van L",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
+		"idCan":"CAN6",
+		"cmnd":"3333333324",
+		"nameCan":"Lê Văn Luyện",
+		"email":"vanluyen@gmail.com",
+		"phone": "0909320967",
 		"gender": true,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
+		"dob":"5/24/1990",
+		"dateImport":"25/3/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
-			"score" : 10,
-			"time" : 5000
-		},
-		"namePos": "Software Tester",
-		"status":"New"
-	},
-	{
-		"idCan":"can_10",
-		"cmnd":"121122112",
-		"nameCan":"Nguyen Van H",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
-		"gender": true,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
-		"rate":{
-			"score" : 10,
-			"time" : 5000
-		},
-		"namePos": "Software Tester",
-		"status":"New"
-	},
-	{
-		"idCan":"can_11",
-		"cmnd":"232322322",
-		"nameCan":"Nguyen Van M",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
-		"gender": true,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
-		"rate":{
-			"score" : 10,
-			"time" : 5000
-		},
-		"namePos": "Junior Java Developer",
-		"status":"New"
-	},
-	{
-		"idCan":"can_12",
-		"cmnd":"323435467",
-		"nameCan":"Nguyen Van K",
-		"email":"cuong@gmail.com",
-		"phone": "0909323232",
-		"gender": true,
-		"dob":"24/5/1999",
-		"dateImport":"3/25/2019",
-		"linkCV": "ggggg.com",
-		"rate":{
-			"score" : 10,
-			"time" : 5000
+			"score" : 19,
+			"time" : 4000,
+			"total": 20
 		},
 		"namePos": "Senior Tester",
 		"status":"New"
-	}
+	},
+	{
+		"idCan":"CAN7",
+		"cmnd":"313333356",
+		"nameCan":"Nguyễn Thị Phụng",
+		"email":"Phung@gmail.com",
+		"phone": "0909323232",
+		"gender": false,
+		"dob":"5/24/1989",
+		"dateImport":"25/3/2015",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 15,
+			"time" : 4000,
+			"total": 20
+		},
+		"namePos": "Senior Tester",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN7",
+		"cmnd":"333233356",
+		"nameCan":"Nguyễn Văn Phúc",
+		"email":"Phung@gmail.com",
+		"phone": "0909323232",
+		"gender": false,
+		"dob":"5/24/1985",
+		"dateImport":"21/6/2015",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 16,
+			"time" : 4000,
+			"total": 20
+		},
+		"namePos": "Junior Java Developer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN8",
+		"cmnd":"333333156",
+		"nameCan":"Trần Văn Cường",
+		"email":"vancuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"5/24/1997",
+		"dateImport":"21/2/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 17,
+			"time" : 4000,
+			"total": 20
+		},
+		"namePos": "Junior Java Developer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN9",
+		"cmnd":"333123356",
+		"nameCan":"Trần Văn Cường",
+		"email":"vancuong@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"5/24/1997",
+		"dateImport":"21/2/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 17,
+			"time" : 4000,
+			"total": 20
+		},
+		"namePos": "Junior Java Developer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN10",
+		"cmnd":"335783356",
+		"nameCan":"Trần Văn Luông",
+		"email":"vanluongg@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"8/26/1997",
+		"dateImport":"31/1/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 17,
+			"time" : 5000,
+			"total": 20
+		},
+		"namePos": "Big Data Developer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN11",
+		"cmnd":"335789956",
+		"nameCan":"Nguyễn Văn Thành",
+		"email":"vanthanh@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"8/26/1997",
+		"dateImport":"31/4/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 20,
+			"time" : 5000,
+			"total": 20
+		},
+		"namePos": "Big Data Developer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN12",
+		"cmnd":"135799956",
+		"nameCan":"Trần Nhật Tín",
+		"email":"nhattin@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"8/26/1997",
+		"dateImport":"31/4/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 20,
+			"time" : 7000,
+			"total": 20
+		},
+		"namePos": "Data Engineer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN13",
+		"cmnd":"135799959",
+		"nameCan":"Nguyễn Thành Tín",
+		"email":"nhattin@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"11/26/1997",
+		"dateImport":"31/4/2018",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 20,
+			"time" : 8000,
+			"total": 20
+		},
+		"namePos": "Data Engineer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN14",
+		"cmnd":"135798956",
+		"nameCan":"Đỗ Thành Phát",
+		"email":"phat@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"1/26/1997",
+		"dateImport":"31/5/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 18,
+			"time" : 7000,
+			"total": 20
+		},
+		"namePos": "Machine Learning Engineer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN15",
+		"cmnd":"135798856",
+		"nameCan":"Đỗ Thành Đạt",
+		"email":"phat@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"1/26/1997",
+		"dateImport":"31/5/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 18,
+			"time" : 7000,
+			"total": 20
+		},
+		"namePos": "Machine Learning Engineer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN16",
+		"cmnd":"235798856",
+		"nameCan":"Đỗ Thành Đạt",
+		"email":"phat@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"1/26/1997",
+		"dateImport":"31/5/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 18,
+			"time" : 7000,
+			"total": 20
+		},
+		"namePos": "Python Developer",
+		"status":"New"
+	},
+	{
+		"idCan":"CAN17",
+		"cmnd":"335798856",
+		"nameCan":"Nguyễn Thế Vinh",
+		"email":"vinh@gmail.com",
+		"phone": "0909323232",
+		"gender": true,
+		"dob":"1/26/1997",
+		"dateImport":"31/5/2019",
+		"linkCV": "ggggg.com",
+		"rate":{
+			"score" : 18,
+			"time" : 7000,
+			"total": 20
+		},
+		"namePos": "Python Developer",
+		"status":"New"
+	},
 ]
