@@ -4,6 +4,7 @@
 		"name" : "Software Tester",
 		"expDate" : "01/30/2019",
 		"area" : "HN",
+		"listQues" : ["QUES12","QUES65"],
 		"requirement" : " Bachelor's Degree in Computer Science, Engineering or a related field- Experience with testing embedded system- Experience writing clear and concise bug reports, test plans, test cases;- Excellent verbal and written communication skills;- Experience with Jira/Confluence ticket management system- Experience with both Windows and Mac;",
 		"benefit" : " 13th Month Salary- Flexible working time- Health Insurance- Attractive Salary- Company activities (team building, company trip on working days)- Passionate colleagues- Creative & young working space- 2 leaving days for training- Energetic, open and transparent working environment- Snacks, tea and coffee all the time",
 		"description" : " You will be responsible for ensuring quality of the software application through multi-browser, multi-device testing.- Work closely with the team of QA Engineers, Product Management, and Development to test new features as they're being developed;- Reproduce bugs and other issues and uncover problems and/or defects before releases. Proactively write tests to cover problems found after release;- Write test documentation: test plans, test cases;- Test user interactions and usability of the application to identify bugs and usability issues;- Cross-browser and cross-device testing including mobile devices;- Written communication of software defects in a clear and concise manner and verify issues are resolved;- Collaborate with cross functional teams to deliver a high quality products & services;- Work with developers and product managers to help clarify requirements and identify functional and UX problems;"
@@ -13,45 +14,93 @@
 		"name" : "Junior Java Developer",
 		"expDate" : "03/03/2018",
 		"area" : "HCM",
-		"requirement" :
-		" Good at basic programming knowledge: OOP- Experience in Java core, HTML, CSS, Javascript- Ability to work with database such as: Oracle, My SQL, SQL Server- Understanding about Web API, Collection, Interface, Abstract Class, Bootstrap, jQuery, Design Pattern, LINQ...- Nice to know Angular JS.",
-		"benefit" : 
-		" Negotiation salary depends on candidateâ€™s ability- Total income from 13 to 14 months of salary- Rewards on each project- Participate in community & extracurricular activities",
-		"description" : 
-		" As a programmer which trends should you choose to get more value for your future?- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.- Description:+ In charge of programming, error checking & reporting for line manager+ Participate in big projects belongs to Banking, Finance & Insurance+ Participate in developing projects on Java & other technologies"
+		"listQues" : ["QUES46","QUES50"],
+		"requirement" :" Good at basic programming knowledge: OOP- Experience in Java core, HTML, CSS, Javascript- Ability to work with database such as: Oracle, My SQL, SQL Server- Understanding about Web API, Collection, Interface, Abstract Class, Bootstrap, jQuery, Design Pattern, LINQ...- Nice to know Angular JS.",
+		"benefit" : " Negotiation salary depends on candidateâ€™s ability- Total income from 13 to 14 months of salary- Rewards on each project- Participate in community & extracurricular activities",
+		"description" : " As a programmer which trends should you choose to get more value for your future?- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.- Description:+ In charge of programming, error checking & reporting for line manager+ Participate in big projects belongs to Banking, Finance & Insurance+ Participate in developing projects on Java & other technologies"
 	},
 	{
 		"idPos" : "POS3",
 		"name" : "Senior Java Developer",
 		"expDate" : "03/03/2018",
 		"area" : "HCM",
-		"requirement" : 
-		" At least 3 years of experience in Java development on Linux/Windows platform. Proven experience as a Senior Software Engineer.- Experience in Java frameworks: Spring (Spring MVC, Spring Boot, Spring Security), Hibernate- Experience in Web Service (RESTful, SOAP) and knowledge in queue processing (Active MQ, IBM MQ).- Experience in Java Application Servers, Database Servers.- Good knowledge or experience in network programming",
-		"benefit" : 
-		" Negotiation salary depends on candidateâ€™s abilit- Total income from 13 to 14 months of salary- Rewards on each project- Participate in community & extracurricular activities",
-		"description" : 
-		" As a programmer which trends should you choose to get more value for your future?- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.- Description: In charge of programming, error checking & reporting for line manager, Participate in big projects belongs to Banking, Finance & Insurance, Participate in developing projects on Java & other technologies"
+		"listQues" : ["QUES4","QUES23"],
+		"requirement" : " At least 3 years of experience in Java development on Linux/Windows platform. Proven experience as a Senior Software Engineer.- Experience in Java frameworks: Spring (Spring MVC, Spring Boot, Spring Security), Hibernate- Experience in Web Service (RESTful, SOAP) and knowledge in queue processing (Active MQ, IBM MQ).- Experience in Java Application Servers, Database Servers.- Good knowledge or experience in network programming",
+		"benefit" : " Negotiation salary depends on candidateâ€™s abilit- Total income from 13 to 14 months of salary- Rewards on each project- Participate in community & extracurricular activities",
+		"description" : " As a programmer which trends should you choose to get more value for your future?- UNIT is an impressive choice if you want to have many opportunities to work on HOT industry.- Description: In charge of programming, error checking & reporting for line manager, Participate in big projects belongs to Banking, Finance & Insurance, Participate in developing projects on Java & other technologies"
 	},
 	{
 		"idPos" : "POS4",
 		"name" : "Product Manager",
 		"expDate" : "05/04/2019",
 		"area" : "HCM",
-		"requirement" : 
-		" Proven experience managing complex global initiatives end to end, from strategy through to operational delivery and initiative scaling.- Demonstrated analytical skills and ability to develop strategy, business plans, customers and market insights- An excellent understanding of how technical teams work and an ability to provide leadership to technical teams so the products can be launched with maximum effectiveness- Background likely to be consumer-facing online and digital media, preferably with an e-commerce component- Ability to apply the best organizational, analytical and problem solving skills to product development and strategy.- Measure and evaluate how the product is used to ensure that the product solves the right problem, users understand it and, if applicable, that they are willing to pay.- Excellent analytical and problem solving aptitude combined with brilliant communication skills- Outstanding product instincts and creativity combined with a passion for digital transformation- Ability to inspire and guide teams without direct authority and provide hands-on leadership- Understand and be able to communicate with all types of internal and external stakeholders- Proven track record to take full ownership of products from conceptual ideas to actual launch- Proficiency in English ",
-		"benefit" : 
-		" Attractive salary -up to $4000- Company Trip every year- Gift for birthday- 13th month bonus- Company trip for employee & partner- International working envirome- Opportunity to onsite in Japan, Indonesia, Philipines, Singapore, Malaysia- Support Laptop and Computer- Full salary insurance",
-		"description" : 
-		" Set product vision, strategy and manage on-time delivery of roadmap. Own product backlog and prioritization- Manage end to end delivery and ongoing prioritization and stakeholder communication- Develop go-to-market plans, positioning, messaging and all elements related to the business case.- Communicate internally and externally to evangelize vision and inspire all stakeholders to get them on the same page.- Working with UX to understand the users and their needs and then working with UX design to concept and design product solutions.- Work with technology lead to initiate and prioritize projects"
+		"listQues" : ["QUES12","QUES55"],
+		"requirement" : " Proven experience managing complex global initiatives end to end, from strategy through to operational delivery and initiative scaling.- Demonstrated analytical skills and ability to develop strategy, business plans, customers and market insights- An excellent understanding of how technical teams work and an ability to provide leadership to technical teams so the products can be launched with maximum effectiveness- Background likely to be consumer-facing online and digital media, preferably with an e-commerce component- Ability to apply the best organizational, analytical and problem solving skills to product development and strategy.- Measure and evaluate how the product is used to ensure that the product solves the right problem, users understand it and, if applicable, that they are willing to pay.- Excellent analytical and problem solving aptitude combined with brilliant communication skills- Outstanding product instincts and creativity combined with a passion for digital transformation- Ability to inspire and guide teams without direct authority and provide hands-on leadership- Understand and be able to communicate with all types of internal and external stakeholders- Proven track record to take full ownership of products from conceptual ideas to actual launch- Proficiency in English ",
+		"benefit" : " Attractive salary -up to $4000- Company Trip every year- Gift for birthday- 13th month bonus- Company trip for employee & partner- International working envirome- Opportunity to onsite in Japan, Indonesia, Philipines, Singapore, Malaysia- Support Laptop and Computer- Full salary insurance",
+		"description" : " Set product vision, strategy and manage on-time delivery of roadmap. Own product backlog and prioritization- Manage end to end delivery and ongoing prioritization and stakeholder communication- Develop go-to-market plans, positioning, messaging and all elements related to the business case.- Communicate internally and externally to evangelize vision and inspire all stakeholders to get them on the same page.- Working with UX to understand the users and their needs and then working with UX design to concept and design product solutions.- Work with technology lead to initiate and prioritize projects"
 	},
 	{
 		"idPos" : "POS5",
 		"name" : "Senior Tester",
 		"expDate" : "05/05/2017",
 		"area" : "HN",
+		"listQues" : ["QUES60","QUES43"],
 		"requirement" : "At least 5 years of experience as a Software Tester;- Excellent technical skills, with experience in Web testing preferred;- Understanding of all phases of a test cycle, including but not limited to functional, regression, integration, performance, acceptance, load, black box, white box, and automation testing;- Experience with APIs and Web Services in a testing context;- Excellent communication and documentation skills;- Solid understanding of the software development lifecycle and Agile methodology;- Good English language skills (both spoken and written).",
 		"benefit" : " If you think you have what it takes to make a difference and want to work for a company that can offer you unlimited potential then apply for this position now and tell us more about what you can bring to our business. You can also check out our other jobs.",
 		"description" : " The Senior Software Tester will work within a highly collaborative environment where developers, testers and the business work together as a team to deliver the best possible software using Agile methodology. This candidate must ensure delivery of systems meet performance, operational readiness and other non-functional requirements"
+	},
+	{
+		"idPos" : "POS6",
+		"name" : "Python Developer",
+		"expDate" : "04/04/2019",
+		"area" : "HN",
+		"listQues" : ["QUES55","QUES52"],
+		"requirement" : " Bachelor’s degree in Computer Science or related fields- Have worked with one of relational database systems like: MySQL, PostreSQL, Oracle, MS SQL etc...Understand and able to write complex database queries: SELECT statements with joining multiple tables, using aggregate functions, sub/nested - 1 to 3 year experience with web development or web application support- Able to write Perl is a plus- Work well with Python: basic I/O, networking, numpy, pandas v.v...- Some knowledge in web-based frameworks such as MVC architecture, javascript, ajax, HTML, REST.- Prior experience with supporting Atlassian product, such as Jira and Confluence will be a plus.- English:Read/Write, Understand English well",
+		"benefit" : " Attractive salary and benefits (13th salary, distinguised employee of the quater and year, seniority award...- Performance appraisal twice a year- Healthcare and accident insurance- Various training on best practices and soft skills- Teambuilding activities in every summer, company trip, big annual year-end party every year, etc.- Fitness & sports activities: football, tennis, table-tennis, badminton...- Commitment to community development: charity every quarter, blood donation, public seminars, career orientation talks…- Free in-house entertainment facilities (foodball, table tennis, boxing, coffee...)- Support for personal loans such as: home loan, vehicle loan, tuition fee...",
+		"description" : " Responsible for building and maintaining the data systems.- Gather requirements, architect, and design extremely large-scale distributed data systems.- Develop software systems and (micro) services in Java and Python.- Assemble platforms and frameworks to automate business processes.- Work with internal technology, research and portfolio management teams" 
+	},
+	{
+		"idPos" : "POS7",
+		"name" : "Machine Learning Engineer",
+		"expDate" : "04/30/2017",
+		"area" : "HN",
+		"listQues" : ["QUES4","QUES48"],
+		"requirement" : " Có kinh nghiệm làm việc với Python, hệ điều hành linux- Có kỹ năng giải quyết vấn đề tốt- Có kinh nghiệm xử lý ảnh (nhận dạng vật thể), hiểu về các thuật toán trong machine learning. Đã từng sử dụng 1 trong các thư viện: Scikt-learn, TensorFlow, Cafee, MXNet, Kears, OpenCV- Ưu tiên ứng viên đã có kinh nghiệm với CNN, YOLO, VGG Face, Faster-RCNN, SSD, train a mode.",
+		"benefit" : " Mức lương thỏa thuận theo năng lực. - Các khoản thương: lương tháng 13, thưởng tết, thưởng nghỉ mát, thưởng sinh nhật công ty...- Được cung cấp các thiết bị để làm việc như: máy tính, điện thoại...- Đầy đủ các chế độ theo luật lao động hiện hành- Chính sách phúc lợi theo quy định của Công ty đa dạng: Chăm sóc sức khỏe định kì hàng năm; Gói bảo hiểm sức khỏe chuyên biệt (FPT Care – Khám chữa bệnh miễn phí tại tất cả các bệnh viện); Các hoạt động tri ân, chăm lo đời sống tinh thần CBNV và Thân nhân...- Hưởng các gói ưu đãi cước khi sử dụng dịch vụ của FPT Telecom.Văn hóa công ty đa dạng. Môi trường làm việc thân thiện, năng động.",
+		"description" : " Tích hợp hệ thống, nhận dạng và xử lý ảnh với Machine Learning- Công việc cụ thể sẽ trao đổi trực tiếp khi phỏng vấn" 
+	},
+	{
+		"idPos" : "POS8",
+		"name" : "Data Engineer",
+		"expDate" : "05/20/2017",
+		"area" : "HN",
+		"listQues" : ["QUES3","QUES33","QUES31","QUES37","QUES39"],
+		"requirement" : "Degree of university in Software Engineer, Information System, Computer Science.- At least 2~3 years of experience.- Experience building data models, ETL pipeline, data warehouse- Strong knowledge and passion in processing, cleansing and harmonizing data.- Good understand a programming language (Python is plus)- Experience processing data in DBMS (Mongo, SQL Server, Big Query, etc.)- Experience in ETL (Nifi, Kafka, etc.)- Experience in Data Warehouse or BI Tools.- Ability to learn technologies in short time and work in high pressure is mandatory.- Positive thinking, enthusiasm, and responsibility are mandatory",
+		"benefit" : " 13th month salary yearly- Extra bonus based on performance and company profit yearly- Extra Insurance – FPT Care- Has chance to become the shareholder of the company- Company Trip annually- Team building trip annually- Gift on special days like birthday, Tet and Holidays- Opportunities to work in Agile Environment- Office is located in District 7- Team building activities such as Fruit Days- Sport activities like Football club- Training to develop our employees- Performance Review every year to adjust Salary and title/position",
+		"description" : " Collaborate and understand the requirements from Data Analyst/ Business Users and turn into technical insight.- Investigate source of data and realize ETL method to collect data automatically- Assess, organize data warehouse how to stable, correct and easy to access and manage- Research new technologies/ methodologies which can be applied to improve business performance and optimize costs" 
+	},
+	{
+		"idPos" : "POS9",
+		"name" : "Big Data Developer",
+		"expDate" : "05/25/2017",
+		"area" : "HN",
+		"listQues" : ["QUES2","QUES22","QUES23","QUES25","QUES22"],
+		"requirement" : "Thành thạo ngôn ngữ lập trình java, scala, hoặc python;- Có kinh nghiệm làm việc với các bài toán xử lý dữ liệu lớn, tính toán dữ liệu phân tán;- Ưu tiên ứng viên : Có kinh nghiệm làm việc với các hệ thống phân tích thống kê, bigdata hadoop, nosql, sparkCó kinh nghiệm xây dựng các mô hình học máy trên dữ liệu lớn",
+		"benefit" : " Lương cứng từ $700 - 1500- Lương T13 + Thưởng KPI hàng tháng- Quyền lợi khác theo qui định công ty (Nghỉ mát, nghỉ phép, BHYT, BHXH)- Môi trường làm việc năng động, nhiều cơ hội phát triển",
+		"description" : " Tham gia xây dựng và phát triển các dự án của Công ty;- Phân tích, xử lý dữ liệu trên nền tảng bigdata;- Công việc sẽ được trao đổi cụ thể hơn trong quá trình phỏng vấn." 
+	},
+	{
+		"idPos" : "POS10",
+		"name" : "Data Engineer",
+		"expDate" : "05/26/2017",
+		"area" : "HN",
+		"listQues" : ["QUES1","QUES12","QUES13","QUES15","QUES20"],
+		"requirement" : "Experience on writing efficient SQL, data modeling, data schema design. - Experience in data warehouse planning, design and optimization. - It would be a big plus if having experience in working with large datasets and cloud platform such as AWS Cloud technology, Google Cloud technology, Microsoft Azura - You are curious, detail-oriented with analytical mindset and love playing with data, great problem solving skill, self-driven and love dynamic fast-paced engineering environment.",
+		"benefit" : "Fair team  - Annual health check-ups.- Sports club: Running, football, badminton- Open communication with Senior Engineer & Technical Leader- Challenging working environment with attractive domain as Logistics- Specific pantry with nice decoration & Coffee/Milk Coffee/Chocolate & Tea- Comfortable Private working Area for TECH team- Annual Team-building + Outing trip- Join Training Courses and Tech Sharing- Mid-Autumn Party, Christmas party, Year-end Party- With the delivery network cover more than 98% geographical area of Vietnam, you will be welcome anywhere in Vietnam for traveling- Competitive salary and 13th-month pay.",
+		"description" : " Design architect & build data warehouse. - Design and implement data model in data warehouse. - Support end users on ad hoc data usage and be a subject matter expert on functional side of the business. - Design, architect and develop data solutions to help product and business teams to make data driven decisions." 
 	}
 	
 ]
+
+
+
