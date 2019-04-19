@@ -77,18 +77,14 @@ public class ApplyDao {
         	
         	return position;
         }
-        public Position formatAllResult(Position position) {
-        	
-        		
+        public Position formatContentPosition(Position position) {
 				String re = position.getRequirement();
 				position.setRequirement(formatContent(re));
 				String be = position.getBenefit();
 				position.setBenefit(formatContent(be));
 				String des = position.getDescription();
 				position.setDescription(formatContent(des));
-				
 				return position;
-			
         }
         public String formatContent(String content) {
         	String[] ar = content.split("-");

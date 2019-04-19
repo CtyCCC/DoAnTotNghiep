@@ -31,7 +31,7 @@ public class ApplyController {
 	@PostMapping("/getcontent")
 	public ResponseEntity<?> getConten(@RequestBody TitlePosition data) {
 		Position position = applydao.getOnePositionContent(data.getIdPos(),data.getName());
-		Position pos2 = applydao.formatAllResult(position);
+		Position pos2 = applydao.formatContentPosition(position);
 		return ResponseEntity.ok(pos2);
 	}
 	
