@@ -61,7 +61,6 @@ public class ApplyDao {
         	Position position=null;
         	Table table =dynamoDB.getTable("Position");
         	GetItemSpec spec = new GetItemSpec().withPrimaryKey("idPos",idP,"name",nameP);
-        	
         	try {
         		Item outcome = table.getItem(spec);
         		position= new Position(outcome.get("idPos").toString()

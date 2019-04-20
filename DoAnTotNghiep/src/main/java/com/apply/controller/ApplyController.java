@@ -1,6 +1,10 @@
 package com.apply.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,11 +24,25 @@ public class ApplyController {
 	ApplyDao applydao = new ApplyDao();
 	@GetMapping("/homeApply")
 	public String showApplytition(Model model) {
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date datecurrent = new Date();
+		ArrayList<TitlePosition> filterTitle = new ArrayList<TitlePosition>();
+		ArrayList<TitlePosition> rawList = new ArrayList<TitlePosition>();
+		rawList = applydao.getAllName();
 		
-		ArrayList<TitlePosition> titleList = new ArrayList<TitlePosition>();
-		titleList = applydao.getAllName();
 		
-		model.addAttribute("titleList", titleList);
+		for (TitlePosition titlePosition : rawList) {
+			try {
+				if(datecurrent.before(dateFormat.parse(titlePosition.getExpDate()))) {
+					filterTitle.add(titlePosition);
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println();
+		model.addAttribute("titleList", filterTitle);
 		return "homeApply";
 	}
 	

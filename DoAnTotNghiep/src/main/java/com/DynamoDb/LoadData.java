@@ -26,9 +26,9 @@ public class LoadData {
 	public static void main(String[] args) throws JsonParseException, IOException {
 		// TODO Auto-generated method stub
 		
-		loadCandidate();
+		//loadCandidate();
 		loadPosition();
-		loadQuestion();
+		//loadQuestion();
 	        
 	}
 	
@@ -92,6 +92,7 @@ public class LoadData {
             String area = currentNode.path("area").asText();
             String expDate = currentNode.path("expDate").asText();
             String requirement = currentNode.path("requirement").asText();
+            String listQues = currentNode.path("listQues").toString();
             String benefit = currentNode.path("benefit").asText();
             String description = currentNode.path("description").asText();
             try {
@@ -99,6 +100,7 @@ public class LoadData {
                 		.withString("area",area)
                 		.withString("expDate",expDate)
                 		.withString("requirement",requirement)
+                		.with("listQues",listQues)
                 		.withString("benefit",benefit)
                 		.withString("description",description)
                 		);

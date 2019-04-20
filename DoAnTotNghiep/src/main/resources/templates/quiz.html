@@ -176,14 +176,18 @@ header {
   	$("#sendresult").click(function(){
     	  var formData = new FormData(document.getElementById('frm1'))
     	  var data = [];
-    	  
+    	  var info={}
     	  var i=0;
+    	  info["idQues"]="idCan";
+          info["answer"]="CAN3";
     	  for(var pair of formData.entries()) {
     		  const item={};
-    		  item["idQues"]=pair[0]=="radio" ? "position1" : pair[0] ;
-    		  item["answer"]=pair[1];
+    		  item["idQues"]=pair[0]=="radio" ? "idPos" : pair[0] ;
+    		  item["answer"]=pair[1] =="on" ? "POS1" : pair[1];
 			  data.push(item);
     		}
+  			data.push(info);
+  	  		
   			console.log(JSON.stringify(data));
     	   $.ajax({
     			type: "POST",

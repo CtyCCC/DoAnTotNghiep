@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.List;
+
 public class Position {
 
 	private String idPos;
@@ -7,12 +9,13 @@ public class Position {
 	private String area;
 	private String expDate;
 	private String requirement;
+	private List<String>[] listQues;
 	private String benefit;
 	private String description;
-	public String getidPos() {
+	public String getIdPos() {
 		return idPos;
 	}
-	public void setidPos(String idPos) {
+	public void setIdPos(String idPos) {
 		this.idPos = idPos;
 	}
 	public String getName() {
@@ -39,6 +42,12 @@ public class Position {
 	public void setRequirement(String requirement) {
 		this.requirement = requirement;
 	}
+	public List<String>[] getListQues() {
+		return listQues;
+	}
+	public void setListQues(List<String>[] listQues) {
+		this.listQues = listQues;
+	}
 	public String getBenefit() {
 		return benefit;
 	}
@@ -51,12 +60,20 @@ public class Position {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Position() {
+	public Position(String idPos, String name, String area, String expDate, String requirement, List<String>[] listQues,
+			String benefit, String description) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.idPos = idPos;
+		this.name = name;
+		this.area = area;
+		this.expDate = expDate;
+		this.requirement = requirement;
+		this.listQues = listQues;
+		this.benefit = benefit;
+		this.description = description;
 	}
-	public Position(String idPos, String name, String area, String expDate, String requirement, String benefit,
-			String description) {
+	public Position(String idPos, String name, String area, String expDate, String requirement,
+			String benefit, String description) {
 		super();
 		this.idPos = idPos;
 		this.name = name;
@@ -66,29 +83,11 @@ public class Position {
 		this.benefit = benefit;
 		this.description = description;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idPos == null) ? 0 : idPos.hashCode());
-		return result;
+	public Position() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Position other = (Position) obj;
-		if (idPos == null) {
-			if (other.idPos != null)
-				return false;
-		} else if (!idPos.equals(other.idPos))
-			return false;
-		return true;
-	}
+	
 	
 
 }

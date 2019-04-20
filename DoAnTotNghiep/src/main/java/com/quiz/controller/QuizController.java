@@ -1,7 +1,9 @@
 package com.quiz.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Date;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,9 @@ public class QuizController {
 	@GetMapping("/quiz")
 	public String index(Model model) {
 		ArrayList<Questions> list = new ArrayList<Questions>();
-		list = quizdao.getAllQuestionsQuiz();
+		ArrayList<Questions> listtest = new ArrayList<Questions>();
+		list = quizdao.getQuestionsQuiz("POS10");
+		System.out.println(listtest);
 		Result result =new Result();
 		model.addAttribute("result",result);
 		model.addAttribute("listQuestions", list);
@@ -35,10 +39,13 @@ public class QuizController {
 	@PostMapping("/quiz")
 	public ResponseEntity<?> FinishQuiz(@RequestBody ArrayList<Result> data) {
 		for (Result result : data) {
-			if(!result.getAnswer().equals("on"))
+			if(!result.getIdQues().equals("idPos") || !result.getIdQues().equals("idCan"))
 				System.out.println(result.getIdQues()+"-"+result.getAnswer());
 			else
-				System.out.println("position la"+ result.getIdQues());
+				if(result.getIdQues().equals("idPos"))
+					System.out.println("position la: "+ result.getAnswer());
+				else
+					System.out.println("Candidate la: "+ result.getAnswer());
 		}
 		return ResponseEntity.ok("ok");
 	}
