@@ -2,13 +2,13 @@
 	{
 		"idCan":"CAN1",
 		"cmnd":"111111111",
-		"nameCan":"Trần Hùng Cường",
+		"nameCan":"Nguyễn Văn Mạnh Cường",
 		"email":"hungcuong@gmail.com",
 		"phone": "0904422377",
 		"gender": true,
 		"dob":"5/24/1997",
 		"dateImport":"3/25/2019",
-		"linkCV": "",
+		"linkCV": "dmm",
 		"rate":{
 			"score" : 18,
 			"time" : 3000,
@@ -20,13 +20,13 @@
 	{
 		"idCan":"CAN2",
 		"cmnd":"222222222",
-		"nameCan":"Trần Đình Chiến",
+		"nameCan":"Tráº§n Ä�Ã¬nh Chiáº¿n",
 		"email":"dinhchien@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
 		"dob":"5/24/1997",
 		"dateImport":"3/25/2019",
-		"linkCV": "",
+		"linkCV": "dmm",
 		"rate":{
 			"score" : 18,
 			"time" : 3000,
@@ -38,7 +38,7 @@
 	{
 		"idCan":"CAN3",
 		"cmnd":"333333333",
-		"nameCan":"Nguyễn Văn Mạnh Cường",
+		"nameCan":"Nguyá»…n VÄƒn Máº¡nh CÆ°á»�ng",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -56,7 +56,7 @@
 	{
 		"idCan":"CAN4",
 		"cmnd":"333333334",
-		"nameCan":"Nguyễn Thị Thu",
+		"nameCan":"Nguyá»…n Thá»‹ Thu",
 		"email":"thu@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
@@ -74,7 +74,7 @@
 	{
 		"idCan":"CAN5",
 		"cmnd":"333333335",
-		"nameCan":"Nguyễn Thị Tuyết Hường",
+		"nameCan":"Nguyá»…n Thá»‹ Tuyáº¿t HÆ°á»�ng",
 		"email":"thu@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
@@ -92,7 +92,7 @@
 	{
 		"idCan":"CAN6",
 		"cmnd":"3333333324",
-		"nameCan":"Lê Văn Luyện",
+		"nameCan":"LÃª VÄƒn Luyá»‡n",
 		"email":"vanluyen@gmail.com",
 		"phone": "0909320967",
 		"gender": true,
@@ -110,7 +110,7 @@
 	{
 		"idCan":"CAN7",
 		"cmnd":"313333356",
-		"nameCan":"Nguyễn Thị Phụng",
+		"nameCan":"Nguyá»…n Thá»‹ Phá»¥ng",
 		"email":"Phung@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
@@ -128,7 +128,7 @@
 	{
 		"idCan":"CAN7",
 		"cmnd":"333233356",
-		"nameCan":"Nguyễn Văn Phúc",
+		"nameCan":"Nguyá»…n VÄƒn PhÃºc",
 		"email":"Phung@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
@@ -146,7 +146,7 @@
 	{
 		"idCan":"CAN8",
 		"cmnd":"333333156",
-		"nameCan":"Trần Văn Cường",
+		"nameCan":"Tráº§n VÄƒn CÆ°á»�ng",
 		"email":"vancuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -164,7 +164,7 @@
 	{
 		"idCan":"CAN9",
 		"cmnd":"333123356",
-		"nameCan":"Trần Văn Cường",
+		"nameCan":"Tráº§n VÄƒn CÆ°á»�ng",
 		"email":"vancuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -182,7 +182,7 @@
 	{
 		"idCan":"CAN10",
 		"cmnd":"335783356",
-		"nameCan":"Trần Văn Luông",
+		"nameCan":"Tráº§n VÄƒn LuÃ´ng",
 		"email":"vanluongg@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -200,7 +200,7 @@
 	{
 		"idCan":"CAN11",
 		"cmnd":"335789956",
-		"nameCan":"Nguyễn Văn Thành",
+		"nameCan":"Nguyá»…n VÄƒn ThÃ nh",
 		"email":"vanthanh@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -218,7 +218,7 @@
 	{
 		"idCan":"CAN12",
 		"cmnd":"135799956",
-		"nameCan":"Trần Nhật Tín",
+		"nameCan":"Tráº§n Nháº­t TÃ­n",
 		"email":"nhattin@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -236,7 +236,7 @@
 	{
 		"idCan":"CAN13",
 		"cmnd":"135799959",
-		"nameCan":"Nguyễn Thành Tín",
+		"nameCan":"Nguyá»…n ThÃ nh TÃ­n",
 		"email":"nhattin@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -254,7 +254,7 @@
 	{
 		"idCan":"CAN14",
 		"cmnd":"135798956",
-		"nameCan":"Đỗ Thành Phát",
+		"nameCan":"Ä�á»— ThÃ nh PhÃ¡t",
 		"email":"phat@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -272,7 +272,7 @@
 	{
 		"idCan":"CAN15",
 		"cmnd":"135798856",
-		"nameCan":"Đỗ Thành Đạt",
+		"nameCan":"Ä�á»— ThÃ nh Ä�áº¡t",
 		"email":"phat@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -290,7 +290,7 @@
 	{
 		"idCan":"CAN16",
 		"cmnd":"235798856",
-		"nameCan":"Đỗ Thành Đạt",
+		"nameCan":"Ä�á»— ThÃ nh Ä�áº¡t",
 		"email":"phat@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -308,7 +308,7 @@
 	{
 		"idCan":"CAN17",
 		"cmnd":"335798856",
-		"nameCan":"Nguyễn Thế Vinh",
+		"nameCan":"Nguyá»…n Tháº¿ Vinh",
 		"email":"vinh@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
@@ -322,5 +322,5 @@
 		},
 		"namePos": "Python Developer",
 		"status":"New"
-	},
+	}
 ]

@@ -20,12 +20,8 @@ public class Test {
 		//System.out.println(dao.getAllCandidate_M());
 		//System.out.println(dao.getCandidateById("can_1"));
 //		dao.addCandidate(can, "Candidate_M");
-		dao.updateStatusCandidateById("can_2", "222222222", "Interview");
-		ArrayList<Object> rounds = new ArrayList<>();
-		Map<String, Object> r = new HashMap<String, Object>();
-		r = dao.getCandidateById("can_2").getInterview();
-		rounds = (ArrayList<Object>) r.get("rounds");
-		System.out.println(rounds);
+//		dao.updateStatusCandidateById("can_2", "222222222", "Interview");
+		dao.deleteCandidate("CAN3", "333333333");
 	}
 
 }

@@ -1,11 +1,15 @@
 package com.candidate.controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,35 +35,66 @@ public class TestController {
 	}
 	
 	@PostMapping("/index/setInterview")
-	public @ResponseBody String itv(HttpServletRequest request) {
+	public @ResponseBody String itv(HttpServletRequest request) throws JSONException {
+		//Lấy dữ liệu từ ajax gửi về
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
 		String interviewer = request.getParameter("interviewer");
 		String venue = request.getParameter("venue");
 		String note = request.getParameter("note");
-		String idCan = request.getParameter("idCan");
+		JSONArray arr = new JSONArray(request.getParameter("id_cmnd"));
 		
-		
-//		Candidate can = new Candidate();
-//		can = candidateDAO.getCandidateById(idCan);
-		ArrayList<Object> rounds = new ArrayList<>();
-//		can.getInterview().get("rounds");
-		
-		Map<String, Object> rnd = new HashMap<String, Object>();
-		rnd.put("idRound","1");
-		rnd.put("interviewer",interviewer);
-		rnd.put("date", date);
-		rnd.put("time", time);
-		rnd.put("venue", venue);
-		rnd.put("note", note);
-		rnd.put("result", "Unknown");
-		
-		rounds.add(rnd);
-		
-		candidateDAO.addInterview("can_2", "222222222", rounds);
-		
-		//System.out.println(date+time+interviewer+venue);
+		//Thêm interview
+		for (int i = 0; i < arr.length(); i++) {
+            String idCan = arr.getJSONObject(i).getString("idCan");
+            //System.out.println(idCan);
+            String cmnd = arr.getJSONObject(i).getString("cmnd");
+            //System.out.println(cmnd);
+            
+			Candidate can = new Candidate();
+			can = candidateDAO.getCandidateById(idCan);
+			if(can.getInterview()==null) {
+				ArrayList<Object> rounds = new ArrayList<>();
+				Map<String, Object> rnd = new HashMap<String, Object>();
+	    		rnd.put("idRound",rounds.size()+1+"");
+	    		rnd.put("interviewer",interviewer);
+	    		rnd.put("date", date);
+	    		rnd.put("time", time);
+	    		rnd.put("venue", venue);
+	    		rnd.put("note", note);
+	    		rnd.put("result", "Unknown");	
+	    		rounds.add(rnd);
+	    		
+	    		candidateDAO.addInterview(idCan, cmnd, rounds);
+			}else {
+				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
+	            Map<String, Object> rnd = new HashMap<String, Object>();
+	    		rnd.put("idRound",rounds.size()+1+"");
+	    		rnd.put("interviewer",interviewer);
+	    		rnd.put("date", date);
+	    		rnd.put("time", time);
+	    		rnd.put("venue", venue);
+	    		rnd.put("note", note);
+	    		rnd.put("result", "Unknown");	
+	    		rounds.add(rnd);
+	    		
+	    		candidateDAO.addInterview(idCan, cmnd, rounds);
+			}			
+        }
+			
 		return "Set Interview Success";
+	}
+	
+	@PostMapping("/index/deleteCandidate")
+	public @ResponseBody String deleteCan(HttpServletRequest request) throws JSONException{
+		JSONArray arr = new JSONArray(request.getParameter("id_cmnd"));
+		for (int i = 0; i < arr.length(); i++) {
+			String idCan = arr.getJSONObject(i).getString("idCan");
+            String cmnd = arr.getJSONObject(i).getString("cmnd");
+            
+            candidateDAO.deleteCandidate(idCan, cmnd);
+		}
+		return "Delete Candidates Success";		
 	}
 	
 	@PostMapping("/candidate")

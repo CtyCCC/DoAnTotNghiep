@@ -398,24 +398,25 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>ID</th>
+                    <th hidden="true">ID</th>
+                    <th hidden="true">CMND</th>
                     <th>Name</th>
                     <th>DOB</th>
                     <th>Gender</th>                  
                     <th>Mobile</th>             
                     <th>Position</th>
-                    <th>LinkCV</th>
                     <th>Rate</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>
-                      <div class="center"><input id="checkAllHeader" type="checkbox"></div>
+                      <center><input id="checkAllHeader" type="checkbox"></center>
                     </th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr class="onRow" th:each="dsCandidate : ${dsCandidates}">
-                    <td th:text="${dsCandidate.idCan}"></td>
+                  <tr id="onRow" th:each="dsCandidate : ${dsCandidates}">
+                    <td th:text="${dsCandidate.idCan}" hidden="true"></td>
+                    <td th:text="${dsCandidate.cmnd}" hidden="true"></td>
                     <td th:text="${dsCandidate.nameCan}"></td>
                     <td th:text="${dsCandidate.dob}"></td>
                     <td>
@@ -424,34 +425,45 @@
                     </td>                  
                     <td th:text="${dsCandidate.phone}"></td>             
                     <td><a th:text="${dsCandidate.namePos}"th:href="@{/position(namePos=${dsCandidate.namePos})}"></a></td>
-
-                    <td th:text="${dsCandidate.linkCV}"></td>
                     <td >
                       <span class="badge bg-red" th:text="${dsCandidate.rate.score}"></span>
                     </td>
-                    <td><span class="label label-primary" th:text="${dsCandidate.status}"></span></td>
+                    <td th:switch="${dsCandidate.status}">
+                      <span th:case="'New'" class="label" style="background-color: grey" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Wait for interview'" class="label" style="background-color: sandyBrown" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Reject'" class="label" style="background-color: red" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Interviewing'" class="label" style="background-color: steelBlue" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Interview Fail'" class="label" style="background-color: red" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Interview Pass'" class="label" style="background-color: green" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Offering'" class="label" style="background-color: blue" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Offer Fail'" class="label" style="background-color: red" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Offer Pass'" class="label" style="background-color: green" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Probationing'" class="label" style="background-color: orange" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Probation Fail'" class="label" style="background-color: red" th:text="${dsCandidate.status}"></span>
+                      <span th:case="'Probation Pass'" class="label" style="background-color: green" th:text="${dsCandidate.status}"></span>
+                    </td>
                     <td>
-                      <div class="center"><button type="button" class="btn" id="btn_profile"><i class="fa fa-eye"></i></button></div>
+                      <center><button type="button" class="btn" id="btn_profile"><i class="fa fa-eye"></i></button></center>
                     <td>
-                      <div class="center"><input class="checkk" type="checkbox"></div>
+                      <center><input class="checkk" type="checkbox"></center>
                     </td>
                   </tr>
                   
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>ID</th>
+                    <th hidden="true">ID</th>
+                    <th hidden="true">CMND</th>
                     <th>Name</th>
                     <th>DOB</th>
                     <th>Gender</th>                  
                     <th>Mobile</th>             
                     <th>Position</th>
-                    <th>LinkCV</th>
                     <th>Rate</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>
-                      <div class="center"><input id="checkAllFooter" type="checkbox"></div>
+                      <center><input id="checkAllFooter" type="checkbox"></center>
                     </th>
                   </tr>
                   </tfoot>
@@ -519,36 +531,74 @@
     $(function () {
       var table = $('#example1').DataTable()
 
-      $('#example1 tbody').on( 'click', 'tr', function () {
-            $(this).toggleClass('selected');
-          } );
-
       $('#btn_save_interview').click(function(event) {
         /* Act on the event */
-        //var id = table.rows('.selected').data();
+        var dt = table.rows('.selected').data();
+        var id_cmnd = [];
+        for(var i=0; i < dt.length ;i++){
+          var ob = { idCan : dt[i][0], cmnd : dt[i][1] };
+          id_cmnd.push(ob);
+        }
         var date = $("#datepicker_Interview").val();
         var time = $("#txt_time_interview").val();
         var interviewer = $("#txt_interviewer").val();
         var venue = $("#txt_venue").val();
         var note = $("#txt_note_interview").val();
-        //alert(id);
-        event.preventDefault();
+        //event.preventDefault();
         $.ajax({
                 url: '/index/setInterview',
                 type: 'post',
                 dataType: 'html',
+                //contentType: "application/json; charset=utf-8",
                 data: {
                     date:date,
                     time:time,
                     interviewer:interviewer,
                     venue:venue,
                     note:note,
-                    //id:id
+                    id_cmnd:JSON.stringify(id_cmnd)
 
                 }
         }).done(function(data) {
-            alert(data);      
+            alert(data);
+            location.reload();     
         });
+      });
+
+      $("#btnDelete").click(function(event) {
+        Swal.fire({
+          title: 'Do you want delete the items ?',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'YES'
+        }).then((result) => {
+          if (result.value) {
+            var dt = table.rows('.selected').data();
+            var id_cmnd = [];
+            for(var i=0; i < dt.length ;i++){
+              var ob = { idCan : dt[i][0], cmnd : dt[i][1] };
+              id_cmnd.push(ob);
+            };
+            $.ajax({
+                url: '/index/deleteCandidate',
+                type: 'post',
+                dataType: 'html',
+                data: {
+                    id_cmnd:JSON.stringify(id_cmnd)
+
+                }
+            });
+            Swal.fire(
+              'Items has deleted!',
+              '',
+              'success'
+            ).then((result) =>{
+              location.reload();
+            });
+          }
+        })
       });
     });
 
@@ -629,32 +679,13 @@
         showInputs: false
       })
 
-      $("#btnDelete").click(function(event) {
-        Swal.fire({
-          title: 'Do you want delete the items ?',
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'YES'
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire(
-              'Item has deleted!',
-              '',
-              'success'
-            )
-          }
-        })
-      });
-
       //Set onClick cho 1 lúc nhiều button
       var bt = document.querySelectorAll("#btn_profile");
       for (var i=0; i<bt.length; i++) {
         bt[i].addEventListener('click', goProfile)
       }
       function goProfile(e){
-        var id = $(this).closest('.onRow').find('td:nth-child(1)').text();
+        var id = $(this).closest('#onRow').find('td:nth-child(1)').text();
             e.preventDefault();
             $.ajax({
                 url: '/candidate',
@@ -667,25 +698,6 @@
                 window.location.href = "/profile";
             });        
       };
-
-
-      //Chỉ chạy button đầu tiên
-      // $('#btn_profile').click(function(e) {
-      //   var id = $(this).closest('.onRow').find('td:nth-child(1)').text();
-      //   alert(id);
-      //       //e.preventDefault();
-      //       $.ajax({
-      //           url: '/candidate',
-      //           type: 'post',
-      //           dataType: 'html',
-      //           data: {
-      //               id: id,
-      //           }
-      //       }).done(function() {
-      //           window.location.href = "/profile";
-      //       });        
-      //   });
-
 
     });
 

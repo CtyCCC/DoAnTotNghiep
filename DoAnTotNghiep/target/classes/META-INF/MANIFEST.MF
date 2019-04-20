@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: DoAnTotNghiep
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: cuong.nguyenvanmanh
+Built-By: ManhCuong
 Implementation-Vendor-Id: com.manhcuong.spring
-Build-Jdk: 1.8.0_191
+Build-Jdk: 1.8.0_171
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/DoAnTotNghiep
 Created-By: Maven Integration for Eclipse

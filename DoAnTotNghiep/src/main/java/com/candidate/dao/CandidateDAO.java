@@ -16,11 +16,13 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
+import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.document.spec.ScanSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
@@ -188,71 +190,35 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
+	
+	//Delete Candidate
+	public void deleteCandidate(String id, String cmnd) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		DeleteItemSpec deleteItemSpec = new DeleteItemSpec()
+	            .withPrimaryKey(new PrimaryKey("idCan", id, "cmnd", cmnd));
+
+	        // Conditional delete (we expect this to fail)
+
+	        try {
+	            System.out.println("Attempting a conditional delete...");
+	            table.deleteItem(deleteItemSpec);
+	            System.out.println("DeleteItem succeeded");
+	        }
+	        catch (Exception e) {
+	            System.err.println(e.getMessage());
+	        }
+	}
 
 	//Update Status
 	public void updateStatusCandidateById(String id,String cmnd, String stus) {
 		Table table = dynamoDB.getTable("Candidate_M");
-		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
-		//Status = Interview
-		if(stus.equals("Interview")) {
-			updateItemSpec = new UpdateItemSpec()
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
 					.withPrimaryKey("idCan", id, "cmnd", cmnd)
 					.withUpdateExpression("set #ss = :s")
 					.withNameMap(new NameMap().with("#ss", "status"))
 					.withValueMap(new ValueMap().withString(":s", stus))
 					.withReturnValues(ReturnValue.UPDATED_NEW);
 			
-			
-			//Chưa tìm ra cách thêm Attribute(type=Map<>)
-//			Map<String, String> expressionAttributeNames = new HashMap<String, String>();
-//			expressionAttributeNames.put("#stus", "status");
-//			expressionAttributeNames.put("#I", "interview");
-//			
-//			Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
-//			expressionAttributeValues.put(":val1", new HashSet<String>(Arrays.asList("Author YY","Author ZZ")));
-//			expressionAttributeValues.put(":val2", stus);
-//			
-//			UpdateItemOutcome outcome =  table.updateItem(
-//				    "idCan",id,          // idCan
-//				    "cmnd",cmnd,           // cmnd
-//				    "add #I :val1 "
-//				    + "set #stus = :val2", // UpdateExpression
-//				    expressionAttributeNames,
-//				    expressionAttributeValues);
-		
-		
-		}else if(stus.equals("Offer")) {
-			//Thông tin Offer
-			Map<String, Object> ofr = new HashMap<String, Object>(); 
-			ofr.put("curSal","500$");
-			ofr.put("expectSal","800$");
-			ofr.put("ofrSal","650$");
-			ofr.put("result","Pass");
-			
-			updateItemSpec = new UpdateItemSpec()
-					.withPrimaryKey("idCan", id, "cmnd", cmnd)
-					.withUpdateExpression("set #ss = :s, offer = :o") 
-					.withNameMap(new NameMap().with("#ss", "status"))
-					.withValueMap(new ValueMap().withString(":s", stus)
-							.withMap(":o", ofr))
-					.withReturnValues(ReturnValue.UPDATED_NEW);
-		
-		}else if(stus.equals("Probation")) {
-			//Thông tin probation
-			Map<String, Object> pro = new HashMap<String, Object>(); 
-			pro.put("from","20/2/2019");
-			pro.put("to","25/5/2019");
-			pro.put("note","Good");
-			pro.put("result","Pass");
-			
-			updateItemSpec = new UpdateItemSpec()
-					.withPrimaryKey("idCan", id, "cmnd", cmnd)
-					.withUpdateExpression("set #ss = :s, probation = :p") 
-					.withNameMap(new NameMap().with("#ss", "status"))
-					.withValueMap(new ValueMap().withString(":s", stus)
-							.withMap(":p", pro))
-					.withReturnValues(ReturnValue.UPDATED_NEW);
-		}
 		
 		try {
 			System.out.println("Updating the item...");
@@ -270,19 +236,6 @@ public class CandidateDAO {
 	public void addInterview(String id, String cmnd, ArrayList<Object> rounds) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
-		//Thông tin round
-//		Map<String, Object> rnd = new HashMap<String, Object>();
-//		rnd.put("idRound",round.get("idRound"));
-//		rnd.put("interviewer",round.get("interviewer"));
-//		rnd.put("date", round.get("date"));
-//		rnd.put("time", round.get("time"));
-//		rnd.put("venue", round.get("venue"));
-//		rnd.put("note", round.get("note"));
-//		rnd.put("result", "Unknown");
-		
-		//Danh sách round
-//		ArrayList<Object> rounds = new ArrayList<>();
-//		rounds.add(rnd);
 		
 		//Thông tin interview
 		Map<String, Object> inter = new HashMap<String, Object>(); 

@@ -72,97 +72,75 @@ $(document).ready(function () {
     		$('#btnExport').removeAttr('disabled');
  			$('#btnDelete').removeAttr('disabled');
  			$('#btnSetInterview').removeAttr('disabled');
- 			$('td').attr("style", "background-color: #E8E8E8");
+ 			$('#example1 tbody').find('tr').addClass('selected');
+    		$('#example1 tbody').find('td').attr("style", "background-color: #E8E8E8");
     	}
     	else{
+    		$('#example1 tbody').find('tr').removeClass('selected');
+    		$('#example1 tbody').find('td').removeAttr('style');
     		$('#btnExport').attr('disabled','true');
  			$('#btnDelete').attr('disabled','true');
  			$('#btnSetInterview').attr('disabled','true');
- 			$('td').removeAttr('style');
     	}
 	});
 	ckbox2.change(function () {
     	$("input:checkbox.checkk").prop('checked',this.checked);
     	ckbox.prop('checked',this.checked);
-    	
     	if (ckbox.is(':checked') || ckbox2.is(':checked')){
     		$('#btnExport').removeAttr('disabled');
  			$('#btnDelete').removeAttr('disabled');
  			$('#btnSetInterview').removeAttr('disabled');
- 			$('td').attr("style", "background-color: #E8E8E8");
+ 			$('#example1 tbody').find('tr').addClass('selected');
+    		$('#example1 tbody').find('td').attr("style", "background-color: #E8E8E8");
     	}
     	else{
+    		$('#example1 tbody').find('tr').removeClass('selected');
+    		$('#example1 tbody').find('td').removeAttr('style');
     		$('#btnExport').attr('disabled','true');
  			$('#btnDelete').attr('disabled','true');
  			$('#btnSetInterview').attr('disabled','true');
- 			$('td').removeAttr('style');
+
     	}
 	});
     //checkbox all
 	
 	//bấm vào row checkbox là nó check, vì cái checkbox quá nhỏ, khó bấm
 	var ckColum = $("input:checkbox.checkk")
-	$("#example1 tbody tr").click(function(event) {
-		if(event.target.tagName == "TD"){
-			var last = $(this).find('td:last-child');
-			var ck = last.find('input:checkbox.checkk');
-			if(ck.is(':checked')){
-				ck.prop('checked',false);
+	$('#example1 tbody').on( 'click', 'tr', function () {
+		var last = $(this).find('td:last-child');
+		var ck = last.find('input:checkbox.checkk');
+		if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $(this).find('td').removeAttr('style');
+            ck.prop('checked',false);
+            
+        }
+        else {
+            $(this).addClass('selected');
+            $(this).find('td').attr("style", "background-color: #E8E8E8");
+        	ck.prop('checked',true);
+
+        }
+        if(ckColum.is(':checked')){
+			$('#btnExport').removeAttr('disabled');
+ 			$('#btnDelete').removeAttr('disabled');
+ 			$('#btnSetInterview').removeAttr('disabled');
 			}
-			else {
-				ck.prop('checked',true);
-				$(this).addClass('selected');
-			}
-			if(ckColum.is(':checked')){
-				$('#btnExport').removeAttr('disabled');
- 				$('#btnDelete').removeAttr('disabled');
- 				$('#btnSetInterview').removeAttr('disabled');
- 				$(this).attr("style", "background-color: #E8E8E8");
-			}
-			else {
-				$('#btnExport').attr('disabled','true');
-	 			$('#btnDelete').attr('disabled','true');
-	 			$('#btnSetInterview').attr('disabled','true');
-	 			$(this).removeAttr('style');
-			}
-		}
-		if (event.target.tagName == "INPUT") {
-			
-			ckColum.change(function() {
-				if(ckColum.is(':checked')){
-					$('#btnExport').removeAttr('disabled');
- 					$('#btnDelete').removeAttr('disabled');
- 					$('#btnSetInterview').removeAttr('disabled');
- 					$(this).attr("style", "background-color: #E8E8E8");
-				}
-				else {
-					$('#btnExport').attr('disabled','true');
-		 			$('#btnDelete').attr('disabled','true');
-		 			$('#btnSetInterview').attr('disabled','true');
-		 			$(this).removeAttr('style');
-				}
-			});
+		else {
+			$('#btnExport').attr('disabled','true');
+	 		$('#btnDelete').attr('disabled','true');
+	 		$('#btnSetInterview').attr('disabled','true');
 		}
 	});
 
-	//Select row
-	$("#example1 tbody tr").click(function () {
-		var last = $(this).find('td:last-child');
-		var ck = last.find('input:checkbox.checkk');
-		if (ck.is(':checked'))
-			$(this).find('td').attr("style", "background-color: #E8E8E8");
-		else
-			$(this).find('td').removeAttr('style');
-    });
+     $("#jobDecrt tbody tr").click(function () {
+		 $('.selected').removeClass('selected');
+	     $(this).addClass("selected");
 
-    $("#jobDecrt tbody tr").click(function () {
-		$('.selected').removeClass('selected');
-	    $(this).addClass("selected");
-
-	    //hiện toggle khi click vào row modal JD
-	    $(this).attr('data-toggle','collapse');
-	    $(this).attr('data-target','#formAdd');
-    });
+	     //hiện toggle khi click vào row modal JD
+	     $(this).attr('data-toggle','collapse');
+	     $(this).attr('data-target','#formAdd');
+     });
 
     //select row
 	

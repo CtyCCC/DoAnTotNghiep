@@ -19,11 +19,13 @@
     <link rel="stylesheet" href="./dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
-     <link rel="stylesheet" href="./dist/css/skins/_all-skins.min.css">
-     <!-- Bootstrap time Picker -->
-     <link rel="stylesheet" href="./plugins/timepicker/bootstrap-timepicker.min.css">
-     <!--My CSS-->
-     <link rel="stylesheet" href="./dist/css/mycss/customcss.css">
+    <link rel="stylesheet" href="./dist/css/skins/_all-skins.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="./plugins/timepicker/bootstrap-timepicker.min.css">
+    <!--My CSS-->
+    <link rel="stylesheet" href="./dist/css/mycss/customcss.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="./bower_components/select2/dist/css/select2.css">
 
      <script src="./bower_components/datatables.net/js/sweetalert2.all.min.js"></script> 
      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -246,364 +248,364 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     </div>
                     <div class="form-row col-xs-12">
                       <label>Skill: </label>
-                      <textarea id="skill" readonly class="form-control" rows="2"></textarea>
-                    </div>
-                    <div class="form-row col-xs-12">
-                      <a><label id="changeCV" for="upload-cv">Upload a new CV </label></a> |
-                      <a href="#">View CV Online</a>
-                      <input type="file" id="upload-cv">
-                    </div>
-                  </form>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                  <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
-                  <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
-                </div>
-                <!-- /.box-footer -->
-              </div>
-              <!-- /.box -->
-              <!-- /History -->
-              <div class="box box-warning">
-                <div class="box-header with-border">
-                  <h3 class="box-title">History Edit Logs </h3>
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool"><i class="fa fa-refresh"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
+                        <textarea class="form-control" rows="2"></textarea>
                   </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body" style="display: none;">
-                  <ul class="timeline timeline-inverse">
-                    <!-- timeline time label -->
-                    <li class="time-label">
-                      <span class="bg-green">
-                        10 Feb. 2014
-                      </span>
-                    </li>
-                    <!-- /.timeline-label -->
-                    <!-- timeline item -->
-                    <li>
-                      <i class="fa fa-edit bg-yellow"></i>
-                      <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                        <h3 class="timeline-header"><a href="#">Trần Đình Chiến</a> edit Candidate profile</h3>
-                        <div class="timeline-body">
-                          Name: Mạnh Cường => Đình Chiến <br>
-                          Email: cuongfbi1314@gmail.com => lonelyheart0903@gmail.com
-                        </div>
-
-                      </div>
-                    </li>
-                    <!-- END timeline item -->
-                    <!-- timeline time label -->
-                    <li class="time-label">
-                      <span class="bg-green">
-                        3 Jan. 2014
-                      </span>
-                    </li>
-                    <!-- /.timeline-label -->
-                    <!-- timeline item -->
-                    <li>
-                      <i class="fa fa-edit bg-yellow"></i>
-                      <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                        <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                        </h3>
-                      </div>
-                    </li>
-                    <!-- END timeline item -->
-                    <li>
-                      <i class="fa fa-clock-o bg-gray"></i>
-                    </li>
-                  </ul>
-                </div>
-                <!-- /.box-body -->
+                  <div class="form-row col-xs-12">
+                    <a><label id="changeCV" for="upload-cv">Upload a new CV </label></a> |
+                    <a href="#">View CV Online</a>
+                    <input type="file" id="upload-cv">
+                  </div>
+                </form>
               </div>
-              <!-- /.box history -->
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
+                <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
+              </div>
+              <!-- /.box-footer -->
             </div>
-            <!-- /.col -->
-            <div class="col-md-6">
-              <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
-                  <li><a id="tab_offer" href="#offer" data-toggle="tab">Offer</a></li>
-                  <li><a id="tab_probation" href="#probation" data-toggle="tab">Probation</a></li>
-                </ul>
-                <div class="tab-content">
-                  <!-- Interview -->
-                  <div class="active tab-pane" id="interview">
-                    <div class="box-body">
-                      <div class="col-xs-12">
-                        <div class="box box-info">
-                          <div class="box-body">
-                            <div class="col-xs-12">
-                              <label for="" class="col-xs-5 text-right">Total round: </label>
-                              <span class="col-xs-1 text-left label label-info" id="interTotal">3</span>
-                              <span class="col-xs-1"></span>
-                            </div>
-                            <div class="col-xs-12">
-                              <label for="" class="col-xs-5 text-right">Pass: </label>
-                              <span class="col-xs-1 text-left label label-success" id="interPass">2</span>
-                            </div>
-                            <div class="col-xs-12">
-                              <label for="" class="col-xs-5 text-right">Fail: </label>
-                              <span class="col-xs-1 text-left label label-danger">1</span>
-                            </div>
+            <!-- /.box -->
+            <!-- /History -->
+            <div class="box box-warning">
+              <div class="box-header with-border">
+                <h3 class="box-title">History Edit Logs </h3>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool"><i class="fa fa-refresh"></i></button>
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body" style="display: none;">
+                <ul class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                    <span class="bg-green">
+                      10 Feb. 2014
+                    </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-edit bg-yellow"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                      <h3 class="timeline-header"><a href="#">Trần Đình Chiến</a> edit Candidate profile</h3>
+                      <div class="timeline-body">
+                        Name: Mạnh Cường => Đình Chiến <br>
+                        Email: cuongfbi1314@gmail.com => lonelyheart0903@gmail.com
+                      </div>
 
-                            <div class="col-xs-12">
-                              <label for="" class="col-xs-5 text-right">Final result:</label>
-                              <select name="" id="finalResult">
-                                <option>Unknow</option>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                    <span class="bg-green">
+                      3 Jan. 2014
+                    </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-edit bg-yellow"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box history -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-6">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
+                <li><a id="tab_offer" href="#offer" data-toggle="tab">Offer</a></li>
+                <li><a id="tab_probation" href="#probation" data-toggle="tab">Probation</a></li>
+              </ul>
+              <div class="tab-content">
+                <!-- Interview -->
+                <div class="active tab-pane" id="interview">
+                  <div class="box-body">
+                    <div class="col-xs-12">
+                      <div class="box box-info">
+                        <div class="box-body">
+                          <div class="col-xs-12">
+                            <label for="" class="col-xs-5 text-right">Total round: </label>
+                            <span class="col-xs-1 text-left label label-info" id="interTotal">3</span>
+                            <span class="col-xs-1"></span>
+                          </div>
+                          <div class="col-xs-12">
+                            <label for="" class="col-xs-5 text-right">Pass: </label>
+                            <span class="col-xs-1 text-left label label-success" id="interPass">2</span>
+                          </div>
+                          <div class="col-xs-12">
+                            <label for="" class="col-xs-5 text-right">Fail: </label>
+                            <span class="col-xs-1 text-left label label-danger">1</span>
+                          </div>
+
+                          <div class="col-xs-12">
+                            <label for="" class="col-xs-5 text-right">Final result:</label>
+                            <select name="" id="finalResult">
+                              <option>Unknow</option>
+                              <option>Pass</option>
+                              <option>Fail</option>
+                            </select>
+                          </div>
+                          <div class="col-xs-12">
+                            <div class="progress-group">
+                              <span class="progress-text">Pass/Fail: </span>
+                              <span class="progress-number">xxx%</span>
+                              <div class="progress sm progress-bar-red">
+                                <div class="progress-bar progress-bar-green" style="width: 10%" id="percentPass"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12">
+                        <div class="col-xs-3">
+                          <select class="form-control" id="finalResult">
+                            <option>Round 1</option>
+                            <option>Round 2</option>
+                            <option>Round 3</option>
+                          </select>
+                        </div>
+                        <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square"></i></button>
+                        <button type="button" class="btn btn-default pull-left" id="btneditRound" ><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-default pull-left" id="btnSave" ><i class="fa fa-file"></i></button>
+                        <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 
+                      </div>
+                      <div class="box box-info col-xs-12" style="margin-top: 2%">
+                        <div class="box-body">
+                          <div class="form-group">
+                            <div class="form-row col-xs-7">
+                              <label>Date:</label>
+                              <div class="input-group date">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled>
+                              </div>
+                            </div>
+                            <div class="form-row col-xs-5">
+                              <label>Time:</label>
+                              <div class="input-group">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-clock-o"></i>
+                                </div>
+                                <input type="text" class="form-control timepicker" disabled id="txttime">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="form-row col-xs-5">
+                              <label>Interviewer: </label>
+                              <input type="text" class="form-control" disabled id="txtInterviewer">
+                            </div>
+                            <div class="form-row col-xs-4">
+                              <label>Venue: </label>
+                              <input type="text" class="form-control" disabled id="txtVenue">
+                            </div>
+                            <div class="form-group col-xs-3">
+                              <label>Result: </label>
+                              <select class="form-control" disabled id="selectRs">
+                                <option></option>
                                 <option>Pass</option>
                                 <option>Fail</option>
                               </select>
                             </div>
-                            <div class="col-xs-12">
-                              <div class="progress-group">
-                                <span class="progress-text">Pass/Fail: </span>
-                                <span class="progress-number">xxx%</span>
-                                <div class="progress sm progress-bar-red">
-                                  <div class="progress-bar progress-bar-green" style="width: 10%" id="percentPass"></div>
-                                </div>
-                              </div>
+                            <div class="col-xs-12" style="padding-bottom: 1%">
+                              <label for="">Note: </label>
+                              <textarea class="form-control" rows="3" disabled id="txtNote"></textarea>
                             </div>
                           </div>
                         </div>
-                        <div class="col-xs-12">
-                          <div class="col-xs-3">
-                            <select class="form-control" id="finalResult">
-                              <option>Round 1</option>
-                              <option>Round 2</option>
-                              <option>Round 3</option>
-                            </select>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-12" style="display: none;">
+                      <!-- Round 1 -->
+                      <div class="col-xs-6">
+                        <div class="box box-info">
+                          <div class="box-header with-border center">
+                            <strong>ROUND 1</strong>
                           </div>
-                          <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square"></i></button>
-                          <button type="button" class="btn btn-default pull-left" id="btneditRound" ><i class="fa fa-edit"></i></button>
-                          <button type="button" class="btn btn-default pull-left" id="btnSave" ><i class="fa fa-file"></i></button>
-                          <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 
-                        </div>
-                        <div class="box box-info col-xs-12" style="margin-top: 2%">
                           <div class="box-body">
-                            <div class="form-group">
-                              <div class="form-row col-xs-7">
-                                <label>Date:</label>
-                                <div class="input-group date">
-                                  <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                  </div>
-                                  <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled>
-                                </div>
-                              </div>
-                              <div class="form-row col-xs-5">
-                                <label>Time:</label>
-                                <div class="input-group">
-                                  <div class="input-group-addon">
-                                    <i class="fa fa-clock-o"></i>
-                                  </div>
-                                  <input type="text" class="form-control timepicker" disabled id="txttime">
-                                </div>
+                            <div class="col-xs-12" style="padding: 0">
+                              <label for="" class="col-xs-5 text-right">Date: </label>
+                              <span class="col-xs-7 text-left">12/12/2012</span>
+                            </div>
+                            <div class="col-xs-12" style="padding: 0">
+                              <label for="" class="col-xs-5 text-right">Time: </label>
+                              <span class="col-xs-7 text-left">8:00 PM</span>
+                            </div>
+                            <div class="col-xs-12" style="padding: 0">
+                              <label for="" class="col-xs-5 text-right">Interviewer: </label>
+                              <span class="col-xs-7 text-left">Mr ccccA</span>
+                            </div>
+                            <div class="col-xs-12" style="padding: 0">
+                              <label for="" class="col-xs-5 text-right">Venue: </label>
+                              <span class="col-xs-7 text-left">2nd floor</span>
+                            </div>
+                            <div class="col-xs-12" style="padding: 0">
+                              <label for="" class="col-xs-5 text-right">Result: </label>
+                              <span class="col-xs-7 text-left text-red">Fail</span>
+                            </div>
+                            <div class="col-xs-12" style="padding-left: 0;padding-right: 0;">
+                              <div style="background: #ebf6e0; border-radius: 2px; border: 1px solid #b3dc82; box-sizing: border-box; float: none; margin: 0px auto; outline: 0px; vertical-align: baseline; color: #5f9025; font-family: arial, sans-serif; font-size: 15px;padding: 2%;"><strong>Note: </strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
                               </div>
                             </div>
-                            <div class="form-group">
-                              <div class="form-row col-xs-5">
-                                <label>Interviewer: </label>
-                                <input type="text" class="form-control" disabled id="txtInterviewer">
-                              </div>
-                              <div class="form-row col-xs-4">
-                                <label>Venue: </label>
-                                <input type="text" class="form-control" disabled id="txtVenue">
-                              </div>
-                              <div class="form-group col-xs-3">
-                                <label>Result: </label>
-                                <select class="form-control" disabled id="selectRs">
-                                  <option></option>
-                                  <option>Pass</option>
-                                  <option>Fail</option>
-                                </select>
-                              </div>
-                              <div class="col-xs-12" style="padding-bottom: 1%">
-                                <label for="">Note: </label>
-                                <textarea class="form-control" rows="3" disabled id="txtNote"></textarea>
-                              </div>
+                            <div class="col-xs-12" style="padding: 0">
+                              <button type="button" class="btn btn-info btn-xs pull-right editRound" >Edit</button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <!-- /.Round 1 -->
 
-                      <div class="col-xs-12" style="display: none;">
-                        <!-- Round 1 -->
-                        <div class="col-xs-6">
-                          <div class="box box-info">
-                            <div class="box-header with-border center">
-                              <strong>ROUND 1</strong>
-                            </div>
-                            <div class="box-body">
-                              <div class="col-xs-12" style="padding: 0">
-                                <label for="" class="col-xs-5 text-right">Date: </label>
-                                <span class="col-xs-7 text-left">12/12/2012</span>
-                              </div>
-                              <div class="col-xs-12" style="padding: 0">
-                                <label for="" class="col-xs-5 text-right">Time: </label>
-                                <span class="col-xs-7 text-left">8:00 PM</span>
-                              </div>
-                              <div class="col-xs-12" style="padding: 0">
-                                <label for="" class="col-xs-5 text-right">Interviewer: </label>
-                                <span class="col-xs-7 text-left">Mr ccccA</span>
-                              </div>
-                              <div class="col-xs-12" style="padding: 0">
-                                <label for="" class="col-xs-5 text-right">Venue: </label>
-                                <span class="col-xs-7 text-left">2nd floor</span>
-                              </div>
-                              <div class="col-xs-12" style="padding: 0">
-                                <label for="" class="col-xs-5 text-right">Result: </label>
-                                <span class="col-xs-7 text-left text-red">Fail</span>
-                              </div>
-                              <div class="col-xs-12" style="padding-left: 0;padding-right: 0;">
-                                <div style="background: #ebf6e0; border-radius: 2px; border: 1px solid #b3dc82; box-sizing: border-box; float: none; margin: 0px auto; outline: 0px; vertical-align: baseline; color: #5f9025; font-family: arial, sans-serif; font-size: 15px;padding: 2%;"><strong>Note: </strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
-                                </div>
-                              </div>
-                              <div class="col-xs-12" style="padding: 0">
-                                <button type="button" class="btn btn-info btn-xs pull-right editRound" >Edit</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- /.Round 1 -->
-
-                      </div>
-                      <div class="col-xs-12">
-
-
-                      </div>   
                     </div>
-                    <!-- /.box-body -->
+                    <div class="col-xs-12">
+
+
+                    </div>   
                   </div>
-                  <!-- /.tab-pane -->
-                  <!-- Offer -->
-                  <div class="tab-pane" id="offer">
-                    <div class="box-body">
-                      <div class="form-group">
-                        <div class="form-row col-xs-6">
-                          <label>Current salary: </label>
-                          <input type="text" class="form-control">
-                        </div>
-                        <div class="form-row col-xs-6">
-                          <label>Expected salary: </label>
-                          <input type="text" class="form-control">
-                        </div>
-                        <div class="form-row col-xs-6">
-                          <label>Offer salary: </label>
-                          <input type="number" class="form-control">
-                        </div>
-                        <div class="form-group col-xs-6">
-                          <label>Result: </label>
-                          <select class="form-control">
-                            <option>Accept</option>
-                            <option>Decline</option>
-                          </select>
-                        </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Offer -->
+                <div class="tab-pane" id="offer">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <div class="form-row col-xs-6">
+                        <label>Current salary: </label>
+                        <input type="text" class="form-control">
                       </div>
-                      <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
-                      <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
-                    </div>
-                  </div>
-                  <!-- /.tab-pane -->
-                  <!-- Probation -->
-                  <div class="tab-pane" id="probation">
-                    <div class="box-body">
-                      <div class="form-group col-xs-12">
-                        <label>Date range:</label>
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control pull-right" id="reservation">
-                        </div>
-                        <!-- /.input group -->
+                      <div class="form-row col-xs-6">
+                        <label>Expected salary: </label>
+                        <input type="text" class="form-control">
                       </div>
-                      <div class="form-group col-xs-12">
+                      <div class="form-row col-xs-6">
+                        <label>Offer salary: </label>
+                        <input type="number" class="form-control">
+                      </div>
+                      <div class="form-group col-xs-6">
                         <label>Result: </label>
                         <select class="form-control">
-                          <option>Pass</option>
-                          <option>Fail</option>
+                          <option>Accept</option>
+                          <option>Decline</option>
                         </select>
                       </div>
-                      <div class="col-xs-12" style="padding-bottom: 1%">
-                        <label for="">Note: </label>
-                        <textarea class="form-control" rows="3"></textarea>
-                      </div>
-                      <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
-                      <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
                     </div>
+                    <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
+                    <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
                   </div>
                 </div>
                 <!-- /.tab-pane -->
+                <!-- Probation -->
+                <div class="tab-pane" id="probation">
+                  <div class="box-body">
+                    <div class="form-group col-xs-12">
+                      <label>Date range:</label>
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" id="reservation">
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    <div class="form-group col-xs-12">
+                      <label>Result: </label>
+                      <select class="form-control">
+                        <option>Pass</option>
+                        <option>Fail</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12" style="padding-bottom: 1%">
+                      <label for="">Note: </label>
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
+                    <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
+                  </div>
+                </div>
               </div>
-              <!-- /.tab-content -->
-            </div>  
-            <!-- /.nav-tabs-custom -->
-          </div>
-          <!-- /.col -->
-        </section>
-      </div>
-      <!-- /.row -->
-      <!-- /.content-wrapper -->
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 2.4.0
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>  
+          <!-- /.nav-tabs-custom -->
         </div>
-        <strong>Copyright &copy; 2018 <a href="https://adminlte.io">DOU Network</a>.</strong> All rights
-        reserved.
-      </footer>
+        <!-- /.col -->
+      </section>
     </div>
-    <!-- ./wrapper -->
-    <!-- jQuery 3 -->
-    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
-    <script src="./bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="./bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="./bower_components/datatables.net/js/tablefunction.js"></script>
-    <!-- SlimScroll -->
-    <script src="./bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="./bower_components/fastclick/lib/fastclick.js"></script>
-    <!-- AdminLTE App -->
-    <script src="./dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="./dist/js/demo.js"></script>
-    <!-- Select2 -->
-    <script src="./bower_components/select2/dist/js/select2.full.min.js"></script>
-    <!-- InputMask -->
-    <script src="./plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="./plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="./plugins/input-mask/jquery.inputmask.extensions.js"></script>
-    <!-- date-range-picker -->
-    <script src="./bower_components/moment/min/moment.min.js"></script>
-    <script src="./bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap datepicker -->
-    <script src="./bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <!-- bootstrap color picker -->
-    <script src="./bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-    <!-- bootstrap time picker -->
-    <script src="./plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <!-- iCheck 1.0.1 -->
-    <script src="./plugins/iCheck/icheck.min.js"></script>
-    <!-- page script -->
-    <script>
-      $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-          'paging'      : true,
-          'lengthChange': false,
-          'searching'   : false,
-          'ordering'    : true,
-          'info'        : true,
-          'autoWidth'   : false
-        })
+    <!-- /.row -->
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 2.4.0
+      </div>
+      <strong>Copyright &copy; 2018 <a href="https://adminlte.io">DOU Network</a>.</strong> All rights
+      reserved.
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+  <!-- jQuery 3 -->
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- DataTables -->
+  <script src="./bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="./bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="./bower_components/datatables.net/js/tablefunction.js"></script>
+  <!-- SlimScroll -->
+  <script src="./bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="./bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- Select2 -->
+  <script src="./bower_components/select2/dist/js/select2.full.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="./dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="./dist/js/demo.js"></script>
+  <!-- InputMask -->
+  <script src="./plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="./plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="./plugins/input-mask/jquery.inputmask.extensions.js"></script>
+  <!-- date-range-picker -->
+  <script src="./bower_components/moment/min/moment.min.js"></script>
+  <script src="./bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="./bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <!-- bootstrap color picker -->
+  <script src="./bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+  <!-- bootstrap time picker -->
+  <script src="./plugins/timepicker/bootstrap-timepicker.min.js"></script>
+  <!-- iCheck 1.0.1 -->
+  <script src="./plugins/iCheck/icheck.min.js"></script>
+  <!-- page script -->
+  <script>
+    $(function () {
+      $('#example1').DataTable()
+      $('#example2').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : false,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+      })
 
       //Percennt pass / fail process
       var pass=$('#interPass').text();
@@ -612,9 +614,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
       $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
       //Percennt pass / fail process
-      });
+    });
 
-      $(function () {
+    $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
     //Datemask dd/mm/yyyy
