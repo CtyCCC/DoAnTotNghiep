@@ -1,6 +1,7 @@
 package com.apply.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +10,23 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.ItemCollection;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.spec.GetItemSpec;
+import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
+import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
+import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.QueryRequest;
+import com.amazonaws.services.dynamodbv2.model.QueryResult;
+import com.amazonaws.services.dynamodbv2.model.ReturnValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.apply.form.TitlePosition;
+import com.entity.Candidate;
 import com.entity.Position;
 
 public class ApplyDao {
@@ -25,6 +37,7 @@ public class ApplyDao {
 
         DynamoDB dynamoDB = new DynamoDB(client);
   
+        //Lấy tên,id,.. của position 
         public ArrayList<TitlePosition> getAllName () {
     		ArrayList<TitlePosition> titleList = new ArrayList<TitlePosition>();
     		ScanResult rs = null;
@@ -55,7 +68,7 @@ public class ApplyDao {
     		return titleList;
     	}
         
-        
+        // Lấy toàn bộ thông tin của 1 position
         public Position getOnePositionContent(String idP,String nameP){
         	
         	Position position=null;
@@ -76,6 +89,8 @@ public class ApplyDao {
         	
         	return position;
         }
+        
+        //Hàm format string theo định dạng
         public Position formatContentPosition(Position position) {
 				String re = position.getRequirement();
 				position.setRequirement(formatContent(re));
@@ -92,5 +107,48 @@ public class ApplyDao {
         		result = result + "-" + ar[i] + "\n";
         	}
         	return result;
+        }
+        
+        //Thêm 1 candidate mới vào Candidate_S
+        public void addCandidate_S(Candidate can) {
+    		Table table = dynamoDB.getTable("Candidate_S");
+    		System.out.println(can);
+    		try {
+    			System.out.println("Adding a new item...");
+    			PutItemOutcome outcome = table
+    					.putItem(new Item()
+    							.withPrimaryKey("idCan", can.getIdCan(), "cmnd", can.getCmnd())
+    							.withString("nameCan", can.getNameCan())
+    							.withString("email", can.getEmail())
+    							.withString("phone", can.getPhone())
+    							.withBoolean("gender", can.isGender())
+    							.withString("dob", can.getDob())
+    							.withString("dateImport", "not")
+    							.withString("linkCV", can.getLinkCV())
+    							.withString("namePos", can.getNamePos())
+    							.withString("status", can.getStatus()));
+
+    			System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
+
+    		}
+    		catch (Exception e) {
+    			System.err.println(e.getMessage());
+    		}
+    	}
+        
+        public void updateRateofCadidate(Candidate candidate) {
+        	Table table = dynamoDB.getTable("Candidate_S");
+        	Map<String, Object> infoMap = new HashMap<String, Object>();
+        	infoMap.put("score","123");
+        	infoMap.put("time","10000");
+        	infoMap.put("total","1234");
+        	UpdateItemSpec updateitem = new UpdateItemSpec()
+        								.withPrimaryKey("idCan",candidate.getIdCan(),"cmnd",candidate.getCmnd())
+        								.withUpdateExpression("set rate = :val")
+        								.withValueMap(new ValueMap()
+        										.withMap(":val",infoMap))
+        								.withReturnValues(ReturnValue.UPDATED_NEW);
+        	UpdateItemOutcome outcome = table.updateItem(updateitem);
+            System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
         }
 }

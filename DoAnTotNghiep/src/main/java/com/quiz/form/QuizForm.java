@@ -1,6 +1,6 @@
 package com.quiz.form;
 
-public class Result {
+public class QuizForm {
 	
 	private String idQues;
 	private String answer;
@@ -16,12 +16,12 @@ public class Result {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public Result(String idQues, String answer) {
+	public QuizForm(String idQues, String answer) {
 		super();
 		this.idQues = idQues;
 		this.answer = answer;
 	}
-	public Result() {
+	public QuizForm() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
