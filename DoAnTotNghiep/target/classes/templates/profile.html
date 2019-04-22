@@ -248,7 +248,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     </div>
                     <div class="form-row col-xs-12">
                       <label>Skill: </label>
-                        <textarea class="form-control" rows="2"></textarea>
+                        <textarea id="skill" class="form-control" rows="2" readonly></textarea>
                   </div>
                   <div class="form-row col-xs-12">
                     <a><label id="changeCV" for="upload-cv">Upload a new CV </label></a> |
@@ -342,24 +342,22 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div class="box-body">
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Total round: </label>
-                            <span class="col-xs-1 text-left label label-info" id="interTotal">3</span>
+                            <span class="col-xs-1 text-left label label-info" id="interTotal" th:text="${TotalRound}"></span>
                             <span class="col-xs-1"></span>
                           </div>
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Pass: </label>
-                            <span class="col-xs-1 text-left label label-success" id="interPass">2</span>
+                            <span class="col-xs-1 text-left label label-success" id="interPass" th:text="${Pass}"></span>
                           </div>
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Fail: </label>
-                            <span class="col-xs-1 text-left label label-danger">1</span>
+                            <span class="col-xs-1 text-left label label-danger" th:text="${Fail}"></span>
                           </div>
 
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Final result:</label>
                             <select name="" id="finalResult">
-                              <option>Unknow</option>
-                              <option>Pass</option>
-                              <option>Fail</option>
+                              <option th:each="fr : ${fr}" th:value="${fr}" th:text="${fr}" th:selected="${candidate.interview.finalResult}"></option>
                             </select>
                           </div>
                           <div class="col-xs-12">
@@ -376,9 +374,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <div class="col-xs-12">
                         <div class="col-xs-3">
                           <select class="form-control" id="finalResult">
-                            <option>Round 1</option>
-                            <option>Round 2</option>
-                            <option>Round 3</option>
+                            <option th:each="dsr : ${dsR}" th:value="${dsr}" th:text="${dsr}"></option>
                           </select>
                         </div>
                         <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square"></i></button>

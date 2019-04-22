@@ -97,6 +97,8 @@ header {
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="skin-blue sidebar-mini ">
+<span th:text=${idcan} id="c_can" hidden=""></span>
+<span th:text=${idPos} id="c_pos" hidden=""></span>
 	<div class="wrapper">
 		<header class="main-header" style="position: fixed; width: 100%;">
 			<!-- Logo -->
@@ -179,11 +181,11 @@ header {
     	  var info={}
     	  var i=0;
     	  info["idQues"]="idCan";
-          info["answer"]="CAN3";
+          info["answer"]=$("#c_can").text();
     	  for(var pair of formData.entries()) {
     		  const item={};
     		  item["idQues"]=pair[0]=="radio" ? "idPos" : pair[0] ;
-    		  item["answer"]=pair[1] =="on" ? "POS1" : pair[1];
+    		  item["answer"]=pair[1] =="on" ? $("#c_pos").text() : pair[1];
 			  data.push(item);
     		}
   			data.push(info);

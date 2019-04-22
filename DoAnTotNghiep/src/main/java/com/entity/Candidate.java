@@ -141,6 +141,37 @@ public class Candidate {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
+			String linkCV, String namePos, String dateImport, String status) {
+		super();
+		this.idCan = idCan;
+		this.nameCan = nameCan;
+		this.cmnd = cmnd;
+		this.email = email;
+		this.phone = phone;
+		this.gender = gender;
+		this.dob = dob;
+		this.linkCV = linkCV;
+		this.namePos = namePos;
+		this.dateImport = dateImport;
+		this.status = status;
+	}
+	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
+			String linkCV, String namePos, String dateImport, Map<String, Object> rate, String status) {
+		super();
+		this.idCan = idCan;
+		this.nameCan = nameCan;
+		this.cmnd = cmnd;
+		this.email = email;
+		this.phone = phone;
+		this.gender = gender;
+		this.dob = dob;
+		this.linkCV = linkCV;
+		this.namePos = namePos;
+		this.dateImport = dateImport;
+		this.rate = rate;
+		this.status = status;
+	}
 	
 	
 	
