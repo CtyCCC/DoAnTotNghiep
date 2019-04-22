@@ -134,24 +134,29 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         <option th:each="pos : ${listPosition}" th:value="${pos.name}" th:utext="${pos.name}"></option>
       </select>
     </div>
-    <div id="inputPosition" class="col-md-2" hidden="true">
-      <input class="form-control" type="text" placeholder="Enter new position...">
+    <div class="col-md-2" hidden="true" id="divPos">
+      <input id="inputPosition" class="form-control" type="text" placeholder="Enter new position...">
     </div>
     <div class="pull-right" style="padding-right: 1%">
       <button id="newPosition" class="btn btn-defaul"><i class="fa fa-plus-square"> Add New</i></button>
       <button id="btnEdit" class="btn btn-defaul"><i class="fa fa-edit"> Edit</i></button>
-      <button id="btnSave" class="btn btn-primary" disabled><i class="fa fa-file"> Save</i></button>
+      <button id="btnSaveAddNew" class="btn btn-primary" style="display: none"><i class="fa fa-file"> Save</i></button>
+      <button id="btnSaveEdit" class="btn btn-primary" style="display: none"><i class="fa fa-file"> Save</i></button>
     </div>
   </section>
   <!-- Main content -->
   <section class="content">
     <div class="row">
         <div class="col-md-12">
-          <div class="box box-info" id="placeload">
+          <div class="box box-info" id="">
             <!-- /.box-header -->
-            <div class="box-body" id="reloadThis">
+            <div class="box-body" >
+              <div id="placeload">
+              <div id="reloadThis">
               <div class="col-md-2">
                 <label for="" id = >Area: </label>
+                <span id= "nameselected" th:text="${selectedposition.name}" hidden="">cc</span>
+                <span id= "idPosition" th:text="${selectedposition.idPos}" hidden="">cc</span>
                 <input th:value=${selectedposition.area} id="area" class="form-control" disabled placeholder="HCM/HN"></input>
               </div>
               <div class="col-md-2">
@@ -175,8 +180,10 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 </div>
                 <div class="col-md-4">
                   <label for="">Detail description: </label>
-                  <textarea th:text="${selectedposition.description}" id="detail" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
+                  <textarea th:text="${selectedposition.description}" id="description" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
                 </div>
+              </div>
+              </div>
               </div>
               
               <div class="col-md-12" style="padding-top: 2%">
@@ -245,23 +252,24 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <!-- modal jd -->
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body" style="display: none" id="reloadThisTable">
-                      <table id="example1" class="table table-bordered table-hover">
+                  
+                  <div class="box-body">
+                      <table id="table1" class="table table-bordered table-hover">
                         <thead>
                           <tr>
                             <th>ID</th>
                             <th>Content</th>
                             <th>Result</th>
-                            <th id="questCount">5 selected</th>
+                            <th id="questCount">selected</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="selected" th:each="ques : ${listQuestions}">
+                          <tr th:each="ques : ${listQuestions}">
                             <td th:text="${ques.idQues}">1</td>
                             <td th:text="${ques.content}">2</td>
                             <td th:text="${ques.answer}">3</td>
                             <td>
-                              <div class="text-center"><input class="checkk" type="checkbox" checked></div>
+                              <div class="text-center"><input class="checkk" type="checkbox"></div>
                             </td>
                           </tr>
                         </tbody>
@@ -279,6 +287,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
+  <input type="hidden" id="modelAttr" name="modelAttr" th:value="${listQuesPos}"/><!-- thằng này để lấy dữ liệu thôi -->
   <div class="pull-right hidden-xs">
     <b>Version</b> 2.4.0
   </div>
@@ -321,17 +330,6 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 <!-- page script -->
 <script>
   $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  });
-  $(function () {
   //Initialize Select2 Elements
     $('.select2').select2()
     //Datemask dd/mm/yyyy
@@ -364,7 +362,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     )
     //Date picker
     $('#datepicker_expdate').datepicker({
-      autoclose: true
+      autoclose: true,
+      format : 'dd/mm/yyyy'
     })
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
@@ -394,30 +393,38 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('#requirement').val("");
       $('#benefit').val("");
       $('#area').val("");
-      $('#detail').val("");
+      $('#description').val("");
       $('#requirement').removeAttr('disabled');
       $('#benefit').removeAttr('disabled');
-      $('#detail').removeAttr('disabled');
+      $('#description').removeAttr('disabled');
       $('#area').removeAttr('disabled');
-      $('#btnSave').removeAttr('disabled');
+      $('#btnSaveAddNew').css('display','inline-table');
+      $('#btnSaveEdit').css('display','none');
       $('#datepicker_expdate').removeAttr('disabled');
-      $('#inputPosition').removeAttr('hidden');
+      $('#divPos').removeAttr('hidden');
       $('#reservation').removeAttr('disabled');
+      $("#btnEdit").css('display','none');
+      $("#newPosition").css('display','none');
+      $("td input.checkk").prop('checked',false);
+      $("tbody tr.selected").removeClass('selected');
+      var rowcount = $('#table1 .selected').length;
+      $("#questCount").text(rowcount+" selected");
     });
     //edit
     $("#btnEdit").click(function(event) {
       $('#requirement').removeAttr('disabled');
       $('#benefit').removeAttr('disabled');
-      $('#detail').removeAttr('disabled');
+      $('#description').removeAttr('disabled');
       $('#area').removeAttr('disabled');
-      $('#btnSave').removeAttr('disabled');
+      $('#btnSaveEdit').css('display','inline-table');
+      $('#btnSaveAddNew').css('display','none');
       $('#datepicker_expdate').removeAttr('disabled');
       $('#reservation').removeAttr('disabled');
+      $("#btnEdit").css('display','none');
     });
     //click row check vao checkbox va tang row count
     $("tbody tr").click(function(event) {
       var cb = $(this).find("td input.checkk");
-      var table = $('#example1').DataTable();
       if (cb.is(':checked')){
         cb.prop('checked',false);
         $(this).removeClass('selected');
@@ -426,9 +433,61 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         cb.prop('checked',true);
         $(this).addClass('selected');
       }
-      var rowcount = table.rows( '.selected' ).count();
-      $("#questCount").text(rowcount+" selected)");
+      var rowcount = $('#table1 .selected').length;
+      $("#questCount").text(rowcount+" selected");
     });
+    
+  	//edit
+	$("#btnSaveEdit").click(function(event) {
+    	 var name= $("#selectPos").val();
+    	 var area= $("#area").val();
+    	 var expDate= $("#datepicker_expdate").val();
+    	 var requirement= $("#requirement").val();
+    	 var benefit= $("#benefit").val();
+    	 var description= $("#description").val();
+    	 if ( name == "" || area == "" || expDate == "" || requirement == "" || benefit == "" || description == "")
+      		alert("Tất cả các thông tin là bắt buộc !!");
+      	 else{
+      		$.ajax({
+      	        type: "post",
+      	        url: "/editPosition",  
+      	        data:{ name: name, area : area, expDate : expDate, requirement : requirement, benefit : benefit, description : description },
+      	        success: function(){
+      	        	console.log("send success to server");
+      	        	location.reload();
+      	        },
+      	        error: function(){      
+      	         alert('Error while request..');
+      	        }
+      		});
+      	} 	
+     });
+  	
+    //adđ new pos
+     $("#btnSaveAddNew").click(function(event) {
+    	 var name= $("#inputPosition").val();
+    	 var area= $("#area").val();
+    	 var expDate= $("#datepicker_expdate").val();
+    	 var requirement= $("#requirement").val();
+    	 var benefit= $("#benefit").val();
+    	 var description= $("#description").val();
+    	 if ( name == "" || area == "" || expDate == "" || requirement == "" || benefit == "" || description == "")
+     		alert("Tất cả các thông tin là bắt buộc !!");
+     	 else{
+     		$.ajax({
+     	        type: "post",
+     	        url: "/newPostion",  
+     	        data:{ name: name, area : area, expDate : expDate, requirement : requirement, benefit : benefit, description : description },
+     	        success: function(){
+     	        	console.log("send success to server");
+     	        	location.reload();
+     	        },
+     	        error: function(){      
+     	         alert('Error while request..');
+     	        }
+     		});
+     	} 	
+     });
     //btn save question alert
     $("#btnSaveQues").click(function(event) {
       Swal.fire({
@@ -446,13 +505,27 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             'List question have changed.',
             'success'
           )
+          var listIdQuest="";
+          var name = $("#nameselected").text();
+          var idPos = $("#idPosition").text();
           //Array list question to save to db 
-          $('#example1 tr.selected').each(function() {
-            var listIdQuest = [];
+          $('#table1 tr.selected').each(function() {
             var id = $(this).find("td:first").html();
-            listIdQuest.unshift(id);
-            console.log(listIdQuest);
+            listIdQuest=listIdQuest + id +",";
           });
+          $.ajax({
+  	        type: "post",
+  	        url: "/updateListQues",  
+  	        data:{ idPos : idPos, name: name,listQues : listIdQuest, chien: "chien" },
+  	        success: function(){
+  	        	console.log("send success to server" +listIdQuest);
+  	        	//$("#placeload").load("position #reloadThis");
+  	        	location.reload();
+  	        },
+  	        	error: function(){      
+  	         	alert('Error while request..');
+  	        	}
+ 			});  
         }
       })
     });
@@ -474,7 +547,6 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     	        success: function(){
     	        	console.log("send success to server");
     	        	location.reload();
-    	        	alert("Add question success !!")
     	        },
     	        error: function(){      
     	         alert('Error while request..');
@@ -482,6 +554,29 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     		});
     	} 	
     });
+    
+    //select position trong select box cho đúng
+    $("#selectPos").val($("#nameselected").text());
+    
+    //select câu hỏi của pos trong tổng số câu hỏi
+    var modelAttr = $("#modelAttr").val();//chuỗi id câu hỏi của pos
+    if (modelAttr != null){
+    	var arr = modelAttr.split(",");//cắt thành mảng
+        jQuery.each( arr, function( i, val ) {//lặp mảng
+        	$('#table1 tbody tr').each( function(){//lặp table lấy colum idQues
+           		var id = $(this).find("td:first").html();
+           		if (id == val){
+           			var cb = $(this).find("td input.checkk");
+                    cb.prop('checked',true);
+                    $(this).addClass('selected');
+           		}
+        	});
+       	});
+    }
+    //select câu hỏi xoq thì đếm coi bao nhiêu rồi hiện trên tiêu đề table
+    var rowcount = $('#table1 .selected').length;
+    $("#questCount").text(rowcount+" selected");
+    
     
     $("#selectPos").change(function(){
     	var kq =$(this).val();
@@ -491,7 +586,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     	        data:{ name: kq, chien: "chien" },
     	        success: function(){
     	        	console.log("send success to server" +kq);
-    	        	$("#placeload").load("position #reloadThis");
+    	        	//$("#placeload").load("position #reloadThis");
+    	        	location.reload();
     	        },
     	        error: function(){      
     	         alert('Error while request..');

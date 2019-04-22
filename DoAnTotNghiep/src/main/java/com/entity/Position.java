@@ -1,6 +1,6 @@
 package com.entity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Position {
 
@@ -9,7 +9,7 @@ public class Position {
 	private String area;
 	private String expDate;
 	private String requirement;
-	private List<String>[] listQues;
+	private ArrayList<String> listQues;
 	private String benefit;
 	private String description;
 	public String getIdPos() {
@@ -42,10 +42,10 @@ public class Position {
 	public void setRequirement(String requirement) {
 		this.requirement = requirement;
 	}
-	public List<String>[] getListQues() {
+	public ArrayList<String> getListQues() {
 		return listQues;
 	}
-	public void setListQues(List<String>[] listQues) {
+	public void setListQues(ArrayList<String> listQues) {
 		this.listQues = listQues;
 	}
 	public String getBenefit() {
@@ -60,7 +60,7 @@ public class Position {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Position(String idPos, String name, String area, String expDate, String requirement, List<String>[] listQues,
+	public Position(String idPos, String name, String area, String expDate, String requirement, ArrayList<String> listQues,
 			String benefit, String description) {
 		super();
 		this.idPos = idPos;

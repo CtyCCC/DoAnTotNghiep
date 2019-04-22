@@ -2,7 +2,7 @@
 	{
 		"idPos" : "POS1",
 		"name" : "Software Tester",
-		"expDate" : "01/30/2019",
+		"expDate" : "30/01/2019",
 		"area" : "HN",
 		"listQues" : ["QUES12","QUES65"],
 		"requirement" : " Bachelor's Degree in Computer Science, Engineering or a related field- Experience with testing embedded system- Experience writing clear and concise bug reports, test plans, test cases;- Excellent verbal and written communication skills;- Experience with Jira/Confluence ticket management system- Experience with both Windows and Mac;",
@@ -22,7 +22,7 @@
 	{
 		"idPos" : "POS3",
 		"name" : "Senior Java Developer",
-		"expDate" : "03/03/2018",
+		"expDate" : "13/03/2018",
 		"area" : "HCM",
 		"listQues" : ["QUES4","QUES23"],
 		"requirement" : " At least 3 years of experience in Java development on Linux/Windows platform. Proven experience as a Senior Software Engineer.- Experience in Java frameworks: Spring (Spring MVC, Spring Boot, Spring Security), Hibernate- Experience in Web Service (RESTful, SOAP) and knowledge in queue processing (Active MQ, IBM MQ).- Experience in Java Application Servers, Database Servers.- Good knowledge or experience in network programming",
@@ -52,7 +52,7 @@
 	{
 		"idPos" : "POS6",
 		"name" : "Python Developer",
-		"expDate" : "04/04/2019",
+		"expDate" : "30/04/2019",
 		"area" : "HN",
 		"listQues" : ["QUES55","QUES52"],
 		"requirement" : " Bachelor’s degree in Computer Science or related fields- Have worked with one of relational database systems like: MySQL, PostreSQL, Oracle, MS SQL etc...Understand and able to write complex database queries: SELECT statements with joining multiple tables, using aggregate functions, sub/nested - 1 to 3 year experience with web development or web application support- Able to write Perl is a plus- Work well with Python: basic I/O, networking, numpy, pandas v.v...- Some knowledge in web-based frameworks such as MVC architecture, javascript, ajax, HTML, REST.- Prior experience with supporting Atlassian product, such as Jira and Confluence will be a plus.- English:Read/Write, Understand English well",
@@ -62,7 +62,7 @@
 	{
 		"idPos" : "POS7",
 		"name" : "Machine Learning Engineer",
-		"expDate" : "04/30/2017",
+		"expDate" : "09/12/2017",
 		"area" : "HN",
 		"listQues" : ["QUES4","QUES48"],
 		"requirement" : " Có kinh nghiệm làm việc với Python, hệ điều hành linux- Có kỹ năng giải quyết vấn đề tốt- Có kinh nghiệm xử lý ảnh (nhận dạng vật thể), hiểu về các thuật toán trong machine learning. Đã từng sử dụng 1 trong các thư viện: Scikt-learn, TensorFlow, Cafee, MXNet, Kears, OpenCV- Ưu tiên ứng viên đã có kinh nghiệm với CNN, YOLO, VGG Face, Faster-RCNN, SSD, train a mode.",
@@ -71,8 +71,8 @@
 	},
 	{
 		"idPos" : "POS8",
-		"name" : "Data Engineer",
-		"expDate" : "05/20/2017",
+		"name" : "Data Analyst",
+		"expDate" : "25/09/2019",
 		"area" : "HN",
 		"listQues" : ["QUES3","QUES33","QUES31","QUES37","QUES39"],
 		"requirement" : "Degree of university in Software Engineer, Information System, Computer Science.- At least 2~3 years of experience.- Experience building data models, ETL pipeline, data warehouse- Strong knowledge and passion in processing, cleansing and harmonizing data.- Good understand a programming language (Python is plus)- Experience processing data in DBMS (Mongo, SQL Server, Big Query, etc.)- Experience in ETL (Nifi, Kafka, etc.)- Experience in Data Warehouse or BI Tools.- Ability to learn technologies in short time and work in high pressure is mandatory.- Positive thinking, enthusiasm, and responsibility are mandatory",
@@ -82,7 +82,7 @@
 	{
 		"idPos" : "POS9",
 		"name" : "Big Data Developer",
-		"expDate" : "05/25/2017",
+		"expDate" : "05/02/2017",
 		"area" : "HN",
 		"listQues" : ["QUES2","QUES22","QUES23","QUES25","QUES22"],
 		"requirement" : "Thành thạo ngôn ngữ lập trình java, scala, hoặc python;- Có kinh nghiệm làm việc với các bài toán xử lý dữ liệu lớn, tính toán dữ liệu phân tán;- Ưu tiên ứng viên : Có kinh nghiệm làm việc với các hệ thống phân tích thống kê, bigdata hadoop, nosql, sparkCó kinh nghiệm xây dựng các mô hình học máy trên dữ liệu lớn",
@@ -92,7 +92,7 @@
 	{
 		"idPos" : "POS10",
 		"name" : "Data Engineer",
-		"expDate" : "05/26/2017",
+		"expDate" : "15/09/2019",
 		"area" : "HN",
 		"listQues" : ["QUES1","QUES12","QUES13","QUES15","QUES20"],
 		"requirement" : "Experience on writing efficient SQL, data modeling, data schema design. - Experience in data warehouse planning, design and optimization. - It would be a big plus if having experience in working with large datasets and cloud platform such as AWS Cloud technology, Google Cloud technology, Microsoft Azura - You are curious, detail-oriented with analytical mindset and love playing with data, great problem solving skill, self-driven and love dynamic fast-paced engineering environment.",
