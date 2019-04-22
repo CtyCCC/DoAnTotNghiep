@@ -26,9 +26,9 @@ public class LoadData {
 	public static void main(String[] args) throws JsonParseException, IOException {
 		// TODO Auto-generated method stub
 		
-		//loadCandidate();
+		loadCandidate();
 		loadPosition();
-		//loadQuestion();
+		loadQuestion();
 	        
 	}
 	
@@ -48,20 +48,75 @@ public class LoadData {
 
             String id_can = currentNode.path("idCan").asText();
             String cmnd = currentNode.path("cmnd").asText();
-
+            
+            String interview = currentNode.path("interview").toString();
+            String offer = currentNode.path("offer").asText().toString();
+            String probation = currentNode.path("probation").toString();
             try {
-                table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
-                		.withJSON("nameCan",currentNode.path("nameCan").toString())
-                		.withJSON("email",currentNode.path("email").toString())
-                		.withJSON("phone",currentNode.path("phone").toString())
-                		.withJSON("gender",currentNode.path("gender").toString())
-                		.withJSON("dob",currentNode.path("dob").toString())
-                		.withJSON("dateImport",currentNode.path("dateImport").toString())
-                		.withJSON("linkCV",currentNode.path("linkCV").toString())
-                		.withJSON("rate",currentNode.path("rate").toString())
-                		.withJSON("namePos",currentNode.path("namePos").toString())
-                		.withJSON("status",currentNode.path("status").toString())
-                		);
+            	if(interview.isEmpty()) {
+            		table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+                    		.withJSON("nameCan",currentNode.path("nameCan").toString())
+                    		.withJSON("email",currentNode.path("email").toString())
+                    		.withJSON("phone",currentNode.path("phone").toString())
+                    		.withJSON("gender",currentNode.path("gender").toString())
+                    		.withJSON("dob",currentNode.path("dob").toString())
+                    		.withJSON("dateImport",currentNode.path("dateImport").toString())
+                    		.withJSON("linkCV",currentNode.path("linkCV").toString())
+                    		.withJSON("rate",currentNode.path("rate").toString())
+                    		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("status",currentNode.path("status").toString())
+                    		);
+            		System.out.println("Ko co interview");
+            	}else if(offer.isEmpty()) {
+            		table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+                    		.withJSON("nameCan",currentNode.path("nameCan").toString())
+                    		.withJSON("email",currentNode.path("email").toString())
+                    		.withJSON("phone",currentNode.path("phone").toString())
+                    		.withJSON("gender",currentNode.path("gender").toString())
+                    		.withJSON("dob",currentNode.path("dob").toString())
+                    		.withJSON("dateImport",currentNode.path("dateImport").toString())
+                    		.withJSON("linkCV",currentNode.path("linkCV").toString())
+                    		.withJSON("rate",currentNode.path("rate").toString())
+                    		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("status",currentNode.path("status").toString())
+                    		.withJSON("interview",currentNode.path("interview").toString())
+                    		);
+            		System.out.println("Ko co offer");
+            	}else if(probation.isEmpty()) {
+            		table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+                    		.withJSON("nameCan",currentNode.path("nameCan").toString())
+                    		.withJSON("email",currentNode.path("email").toString())
+                    		.withJSON("phone",currentNode.path("phone").toString())
+                    		.withJSON("gender",currentNode.path("gender").toString())
+                    		.withJSON("dob",currentNode.path("dob").toString())
+                    		.withJSON("dateImport",currentNode.path("dateImport").toString())
+                    		.withJSON("linkCV",currentNode.path("linkCV").toString())
+                    		.withJSON("rate",currentNode.path("rate").toString())
+                    		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("status",currentNode.path("status").toString())
+                    		.withJSON("interview",currentNode.path("interview").toString())
+                    		.withJSON("offer",currentNode.path("offer").toString())
+                    		);
+            		System.out.println("Ko co probation");
+            	}else {
+            		table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+                    		.withJSON("nameCan",currentNode.path("nameCan").toString())
+                    		.withJSON("email",currentNode.path("email").toString())
+                    		.withJSON("phone",currentNode.path("phone").toString())
+                    		.withJSON("gender",currentNode.path("gender").toString())
+                    		.withJSON("dob",currentNode.path("dob").toString())
+                    		.withJSON("dateImport",currentNode.path("dateImport").toString())
+                    		.withJSON("linkCV",currentNode.path("linkCV").toString())
+                    		.withJSON("rate",currentNode.path("rate").toString())
+                    		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("status",currentNode.path("status").toString())
+                    		.withJSON("interview",currentNode.path("interview").toString())
+                    		.withJSON("offer",currentNode.path("offer").toString())
+                    		.withJSON("probation",currentNode.path("probation").toString())
+                    		);
+            		System.out.println("Ko co all");
+            	}
+                
                 System.out.println("PutItem succeeded!");
 
             }

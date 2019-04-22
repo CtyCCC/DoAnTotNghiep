@@ -108,6 +108,31 @@ public class TestController {
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
 			model.addAttribute("candidate",can);
+			if(can.getInterview()!=null) {
+				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
+				int totalRound = rounds.size();
+				int pass = 0;
+				int fail = 0;
+				String[] fr = {"Unknown", "Pass","Fail"};
+				ArrayList<String> dsR = new ArrayList<>();
+				for(int i = 0; i<rounds.size(); i++) {
+					Map<String, Object> rnd = new HashMap<String, Object>();
+					rnd = (Map<String, Object>) rounds.get(i);
+					if(rnd.get("result").equals("Pass")) {
+						pass++;
+					}
+					if(rnd.get("result").equals("Fail")) {
+						fail++;
+					}
+					dsR.add("Round "+(i+1));
+				}
+				model.addAttribute("TotalRound", totalRound);
+				model.addAttribute("Pass", pass);
+				model.addAttribute("Fail", fail);
+				model.addAttribute("fr", fr);
+				model.addAttribute("dsR", dsR);
+			}
+			
 			return "profile";
 		}
 		return null;

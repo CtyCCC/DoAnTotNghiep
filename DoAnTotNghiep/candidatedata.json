@@ -2,12 +2,12 @@
 	{
 		"idCan":"CAN1",
 		"cmnd":"111111111",
-		"nameCan":"Nguyễn Văn Mạnh Cường",
+		"nameCan":"Trần Hùng Cường",
 		"email":"hungcuong@gmail.com",
 		"phone": "0904422377",
 		"gender": true,
-		"dob":"5/24/1997",
-		"dateImport":"3/25/2019",
+		"dob":"24/05/1997",
+		"dateImport":"25/03/2019",
 		"linkCV": "dmm",
 		"rate":{
 			"score" : 18,
@@ -15,17 +15,24 @@
 			"total": 20
 		},
 		"namePos": "Product Manager",
-		"status":"New"
+		"status":"Interviewing",
+		"interview":{
+			"finalResult":"Fail",
+			"rounds":[
+			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Fail"}
+			]
+		}
 	},
 	{
 		"idCan":"CAN2",
 		"cmnd":"222222222",
-		"nameCan":"Tráº§n Ä�Ã¬nh Chiáº¿n",
+		"nameCan":"Trần Đình Chiến",
 		"email":"dinhchien@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"5/24/1997",
-		"dateImport":"3/25/2019",
+		"dob":"24/05/1997",
+		"dateImport":"25/04/2019",
 		"linkCV": "dmm",
 		"rate":{
 			"score" : 18,
@@ -33,17 +40,24 @@
 			"total": 20
 		},
 		"namePos": "Product Manager",
-		"status":"New"
+		"status":"Interviewing",
+		"interview":{
+			"finalResult":"Unknown",
+			"rounds":[
+			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Unknown"}
+			]
+		}
 	},
 	{
 		"idCan":"CAN3",
 		"cmnd":"333333333",
-		"nameCan":"Nguyá»…n VÄƒn Máº¡nh CÆ°á»�ng",
+		"nameCan":"Nguyễn Văn Mạnh Cường",
 		"email":"cuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"5/24/1999",
-		"dateImport":"25/3/2019",
+		"dob":"24/05/1999",
+		"dateImport":"25/03/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 18,
@@ -51,17 +65,24 @@
 			"total": 20
 		},
 		"namePos": "Product Manager",
-		"status":"New"
+		"status":"Interviewing",
+		"interview":{
+			"finalResult":"Unknown",
+			"rounds":[
+			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Unknown"}
+			]
+		}
 	},
 	{
 		"idCan":"CAN4",
 		"cmnd":"333333334",
-		"nameCan":"Nguyá»…n Thá»‹ Thu",
+		"nameCan":"Võ Anh Thư",
 		"email":"thu@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
-		"dob":"5/24/1989",
-		"dateImport":"25/3/2015",
+		"dob":"11/10/1989",
+		"dateImport":"25/03/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 20,
@@ -74,12 +95,12 @@
 	{
 		"idCan":"CAN5",
 		"cmnd":"333333335",
-		"nameCan":"Nguyá»…n Thá»‹ Tuyáº¿t HÆ°á»�ng",
+		"nameCan":"Nguyễn Văn Hùng",
 		"email":"thu@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
-		"dob":"5/24/1989",
-		"dateImport":"25/3/2015",
+		"dob":"05/05/1989",
+		"dateImport":"25/03/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 18,
@@ -92,12 +113,12 @@
 	{
 		"idCan":"CAN6",
 		"cmnd":"3333333324",
-		"nameCan":"LÃª VÄƒn Luyá»‡n",
+		"nameCan":"Lê Văn Luyện",
 		"email":"vanluyen@gmail.com",
 		"phone": "0909320967",
 		"gender": true,
-		"dob":"5/24/1990",
-		"dateImport":"25/3/2015",
+		"dob":"15/02/1990",
+		"dateImport":"25/03/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 19,
@@ -110,12 +131,12 @@
 	{
 		"idCan":"CAN7",
 		"cmnd":"313333356",
-		"nameCan":"Nguyá»…n Thá»‹ Phá»¥ng",
+		"nameCan":"Trần Bảo Phụng",
 		"email":"Phung@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
-		"dob":"5/24/1989",
-		"dateImport":"25/3/2015",
+		"dob":"05/04/1989",
+		"dateImport":"25/03/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 15,
@@ -128,12 +149,12 @@
 	{
 		"idCan":"CAN7",
 		"cmnd":"333233356",
-		"nameCan":"Nguyá»…n VÄƒn PhÃºc",
+		"nameCan":"Nguyễn Văn Phụng",
 		"email":"Phung@gmail.com",
 		"phone": "0909323232",
 		"gender": false,
-		"dob":"5/24/1985",
-		"dateImport":"21/6/2015",
+		"dob":"11/08/1985",
+		"dateImport":"21/06/2015",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 16,
@@ -146,12 +167,12 @@
 	{
 		"idCan":"CAN8",
 		"cmnd":"333333156",
-		"nameCan":"Tráº§n VÄƒn CÆ°á»�ng",
+		"nameCan":"Trần Văn Cương",
 		"email":"vancuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"5/24/1997",
-		"dateImport":"21/2/2019",
+		"dob":"22/11/1997",
+		"dateImport":"21/02/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 17,
@@ -164,12 +185,12 @@
 	{
 		"idCan":"CAN9",
 		"cmnd":"333123356",
-		"nameCan":"Tráº§n VÄƒn CÆ°á»�ng",
+		"nameCan":"Trần Bảo Cường",
 		"email":"vancuong@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"5/24/1997",
-		"dateImport":"21/2/2019",
+		"dob":"11/12/1997",
+		"dateImport":"21/01/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 17,
@@ -182,12 +203,12 @@
 	{
 		"idCan":"CAN10",
 		"cmnd":"335783356",
-		"nameCan":"Tráº§n VÄƒn LuÃ´ng",
+		"nameCan":"Lê Văn Lương",
 		"email":"vanluongg@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"8/26/1997",
-		"dateImport":"31/1/2019",
+		"dob":"26/08/1997",
+		"dateImport":"30/01/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 17,
@@ -200,12 +221,12 @@
 	{
 		"idCan":"CAN11",
 		"cmnd":"335789956",
-		"nameCan":"Nguyá»…n VÄƒn ThÃ nh",
+		"nameCan":"Nguyễn Văn Thanh",
 		"email":"vanthanh@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"8/26/1997",
-		"dateImport":"31/4/2019",
+		"dob":"18/06/1997",
+		"dateImport":"22/4/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 20,
@@ -218,12 +239,12 @@
 	{
 		"idCan":"CAN12",
 		"cmnd":"135799956",
-		"nameCan":"Tráº§n Nháº­t TÃ­n",
+		"nameCan":"Lê Nhật Tín",
 		"email":"nhattin@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"8/26/1997",
-		"dateImport":"31/4/2019",
+		"dob":"15/06/1997",
+		"dateImport":"11/04/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 20,
@@ -236,12 +257,12 @@
 	{
 		"idCan":"CAN13",
 		"cmnd":"135799959",
-		"nameCan":"Nguyá»…n ThÃ nh TÃ­n",
+		"nameCan":"Trần Nhật Tin",
 		"email":"nhattin@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"11/26/1997",
-		"dateImport":"31/4/2018",
+		"dob":"11/02/1997",
+		"dateImport":"30/04/2018",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 20,
@@ -254,12 +275,12 @@
 	{
 		"idCan":"CAN14",
 		"cmnd":"135798956",
-		"nameCan":"Ä�á»— ThÃ nh PhÃ¡t",
+		"nameCan":"Nguyễn Thành Phát",
 		"email":"phat@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"1/26/1997",
-		"dateImport":"31/5/2019",
+		"dob":"11/07/1997",
+		"dateImport":"31/05/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 18,
@@ -272,12 +293,12 @@
 	{
 		"idCan":"CAN15",
 		"cmnd":"135798856",
-		"nameCan":"Ä�á»— ThÃ nh Ä�áº¡t",
+		"nameCan":"Vũ Minh Phát",
 		"email":"phat@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"1/26/1997",
-		"dateImport":"31/5/2019",
+		"dob":"11/07/1997",
+		"dateImport":"31/05/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 18,
@@ -290,12 +311,12 @@
 	{
 		"idCan":"CAN16",
 		"cmnd":"235798856",
-		"nameCan":"Ä�á»— ThÃ nh Ä�áº¡t",
+		"nameCan":"Nguyễn Văn Phúc",
 		"email":"phat@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"1/26/1997",
-		"dateImport":"31/5/2019",
+		"dob":"11/07/1997",
+		"dateImport":"31/05/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 18,
@@ -308,12 +329,12 @@
 	{
 		"idCan":"CAN17",
 		"cmnd":"335798856",
-		"nameCan":"Nguyá»…n Tháº¿ Vinh",
+		"nameCan":"Nguyễn Thái Vũ",
 		"email":"vinh@gmail.com",
 		"phone": "0909323232",
 		"gender": true,
-		"dob":"1/26/1997",
-		"dateImport":"31/5/2019",
+		"dob":"28/01/1997",
+		"dateImport":"31/05/2019",
 		"linkCV": "ggggg.com",
 		"rate":{
 			"score" : 18,

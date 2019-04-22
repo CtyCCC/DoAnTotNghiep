@@ -426,7 +426,7 @@
                     <td th:text="${dsCandidate.phone}"></td>             
                     <td><a th:text="${dsCandidate.namePos}"th:href="@{/position(namePos=${dsCandidate.namePos})}"></a></td>
                     <td >
-                      <span class="badge bg-red" th:text="${dsCandidate.rate.score}"></span>
+                      <span class="badge bg-red" th:text="${dsCandidate.rate.score}+'/'+${dsCandidate.rate.total}"></span>
                     </td>
                     <td th:switch="${dsCandidate.status}">
                       <span th:case="'New'" class="label" style="background-color: grey" th:text="${dsCandidate.status}"></span>
@@ -529,7 +529,9 @@
   <!-- page script -->
   <script>
     $(function () {
-      var table = $('#example1').DataTable()
+      var table = $('#example1').DataTable({
+
+      })
 
       $('#btn_save_interview').click(function(event) {
         /* Act on the event */
@@ -617,7 +619,7 @@
       //Date range picker
       $('#reservation').daterangepicker()
       //Date range picker with time picker
-      $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+      $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'DD/MM/YYYY h:mm A' })
       //Date range as a button
       $('#daterange-btn').daterangepicker(
         {
@@ -639,19 +641,24 @@
 
       //Date picker
       $('#datepicker_DOB').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })
       $('#datepicker_Date').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })
       $('#datepicker_DOB_New').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })
       $('#datepicker_Date_New').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })
       $('#datepicker_Interview').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })  
       //iCheck for checkbox and radio inputs
       $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
