@@ -22,14 +22,15 @@ public class CreateTable {
         static DynamoDB dynamoDB = new DynamoDB(client);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		createCandidate();
+		createCandidate("Candidate_M");
+		createCandidate("Candidate_S");
 		createPosition();
 		createQuestion();   
 	}
 
-	public static void createCandidate() {
+	public static void createCandidate(String tableName) {
 		//Create table Canidate
-        String tableName = "Candidate_M";
+        //String tableName = "Candidate_M";
         //String tableName = "Candidate_S";
         try {
             System.out.println("Attempting to create table; please wait...");

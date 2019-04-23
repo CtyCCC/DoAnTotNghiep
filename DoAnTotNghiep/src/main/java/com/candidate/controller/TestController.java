@@ -108,12 +108,20 @@ public class TestController {
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
 			model.addAttribute("candidate",can);
+			int pass = 0;
+			int fail = 0;
+			int totalRound = 0;
+			String isIn = "Not";
+			String[] fr = {"Unknown", "Pass","Fail"};
+			String [] n = {"New","Reject"};
+			String[] in = {"Interviewing","Interview Pass","Interview Fail"};
+			String [] o = {"Offering","Offer Pass","Offer Fail"};
+			String [] p = {"Probationing","Probation Fail","probation Pass"};
 			if(can.getInterview()!=null) {
+				isIn = (String) can.getInterview().get("finalResult");
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
-				int totalRound = rounds.size();
-				int pass = 0;
-				int fail = 0;
-				String[] fr = {"Unknown", "Pass","Fail"};
+				totalRound = rounds.size();
+				
 				ArrayList<String> dsR = new ArrayList<>();
 				for(int i = 0; i<rounds.size(); i++) {
 					Map<String, Object> rnd = new HashMap<String, Object>();
@@ -126,13 +134,23 @@ public class TestController {
 					}
 					dsR.add("Round "+(i+1));
 				}
-				model.addAttribute("TotalRound", totalRound);
-				model.addAttribute("Pass", pass);
-				model.addAttribute("Fail", fail);
-				model.addAttribute("fr", fr);
 				model.addAttribute("dsR", dsR);
 			}
-			
+			model.addAttribute("TotalRound", totalRound);
+			model.addAttribute("Pass", pass);
+			model.addAttribute("Fail", fail);
+			model.addAttribute("fr", fr);
+			model.addAttribute("isIn",isIn);
+			System.out.println(isIn);
+			if(can.getInterview()==null) {
+				model.addAttribute("stt",n);
+			}else if(can.getOffer()==null) {
+				model.addAttribute("stt",in);
+			}else if(can.getProbation()==null) {
+				model.addAttribute("stt",o);
+			}else {
+				model.addAttribute("stt",p);
+			}
 			return "profile";
 		}
 		return null;

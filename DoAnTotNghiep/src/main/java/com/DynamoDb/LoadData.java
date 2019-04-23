@@ -2,6 +2,7 @@ package com.DynamoDb;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.amazonaws.client.builder.AwsClientBuilder;
@@ -64,7 +65,10 @@ public class LoadData {
                     		.withJSON("linkCV",currentNode.path("linkCV").toString())
                     		.withJSON("rate",currentNode.path("rate").toString())
                     		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("workExp",currentNode.path("workExp").toString())
+                    		.withJSON("avatar",currentNode.path("avatar").toString())
                     		.withJSON("status",currentNode.path("status").toString())
+                    		
                     		);
             		System.out.println("Ko co interview");
             	}else if(offer.isEmpty()) {
@@ -78,6 +82,8 @@ public class LoadData {
                     		.withJSON("linkCV",currentNode.path("linkCV").toString())
                     		.withJSON("rate",currentNode.path("rate").toString())
                     		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("workExp",currentNode.path("workExp").toString())
+                    		.withJSON("avatar",currentNode.path("avatar").toString())
                     		.withJSON("status",currentNode.path("status").toString())
                     		.withJSON("interview",currentNode.path("interview").toString())
                     		);
@@ -93,6 +99,8 @@ public class LoadData {
                     		.withJSON("linkCV",currentNode.path("linkCV").toString())
                     		.withJSON("rate",currentNode.path("rate").toString())
                     		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("workExp",currentNode.path("workExp").toString())
+                    		.withJSON("avatar",currentNode.path("avatar").toString())
                     		.withJSON("status",currentNode.path("status").toString())
                     		.withJSON("interview",currentNode.path("interview").toString())
                     		.withJSON("offer",currentNode.path("offer").toString())
@@ -109,6 +117,8 @@ public class LoadData {
                     		.withJSON("linkCV",currentNode.path("linkCV").toString())
                     		.withJSON("rate",currentNode.path("rate").toString())
                     		.withJSON("namePos",currentNode.path("namePos").toString())
+                    		.withJSON("workExp",currentNode.path("workExp").toString())
+                    		.withJSON("avatar",currentNode.path("avatar").toString())
                     		.withJSON("status",currentNode.path("status").toString())
                     		.withJSON("interview",currentNode.path("interview").toString())
                     		.withJSON("offer",currentNode.path("offer").toString())
@@ -147,7 +157,6 @@ public class LoadData {
             String area = currentNode.path("area").asText();
             String expDate = currentNode.path("expDate").asText();
             String requirement = currentNode.path("requirement").asText();
-            String listQues = currentNode.path("listQues").toString();
             String benefit = currentNode.path("benefit").asText();
             String description = currentNode.path("description").asText();
             try {
@@ -155,7 +164,7 @@ public class LoadData {
                 		.withString("area",area)
                 		.withString("expDate",expDate)
                 		.withString("requirement",requirement)
-                		.withString("listQues",listQues)
+                		.withJSON("listQues",currentNode.path("listQues").toString())
                 		.withString("benefit",benefit)
                 		.withString("description",description)
                 		);

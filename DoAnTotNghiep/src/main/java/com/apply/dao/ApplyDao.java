@@ -126,7 +126,8 @@ public class ApplyDao {
     							.withString("dateImport", "not")
     							.withString("linkCV", can.getLinkCV())
     							.withString("namePos", can.getNamePos())
-    							.withString("status", can.getStatus()));
+    							.withString("status", can.getStatus())
+    							.withString("workExp", can.getWorkExp()));
 
     			System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
 

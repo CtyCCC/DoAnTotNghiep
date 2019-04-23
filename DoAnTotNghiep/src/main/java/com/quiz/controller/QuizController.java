@@ -36,7 +36,7 @@ public class QuizController {
 		model.addAttribute("idcan",idcan);
 		model.addAttribute("idPos",idpos);
 		model.addAttribute("listQuestions", list);
-		return "/quiz";
+		return "quiz";
 	}
 	
 	@PostMapping("/quiz")

@@ -112,6 +112,8 @@ public class CandidateDAO {
 						item.getString("linkCV"), 
 						item.getString("namePos"),
 						item.getString("dateImport"),
+						item.getString("workExp"),
+						item.getString("avatar"),
 						item.getMap("rate"), 
 						item.getString("status"), 
 						null,null,null);
@@ -150,6 +152,8 @@ public class CandidateDAO {
 						item.getString("linkCV"), 
 						item.getString("namePos"),
 						item.getString("dateImport"),
+						item.getString("workExp"),
+						item.getString("avatar"),
 						item.getMap("rate"), 
 						item.getString("status"), 
 						item.getMap("interview")

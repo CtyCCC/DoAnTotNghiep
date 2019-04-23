@@ -14,6 +14,8 @@ public class Candidate {
 	private String linkCV;
 	private String namePos;
 	private String dateImport;
+	private String workExp;
+	private String avatar;
 	private Map<String,Object> rate;
 	private String status;
 	private Map<String,Object> interview;
@@ -110,16 +112,24 @@ public class Candidate {
 	public void setProbation(Map<String, Object> probation) {
 		this.probation = probation;
 	}
-	@Override
-	public String toString() {
-		return "Candidate [idCan=" + idCan + ", nameCan=" + nameCan + ", cmnd=" + cmnd + ", email=" + email + ", phone="
-				+ phone + ", gender=" + gender + ", dob=" + dob + ", linkCV=" + linkCV + ", namePos=" + namePos
-				+ ", dateImport=" + dateImport + ", rate=" + rate + ", status=" + status + ", interview=" + interview
-				+ ", offer=" + offer + ", probation=" + probation + "]";
+	
+	public String getWorkExp() {
+		return workExp;
 	}
+	public void setWorkExp(String workExp) {
+		this.workExp = workExp;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
 	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
-			String linkCV, String namePos, String dateImport, Map<String, Object> rate, String status,
-			Map<String, Object> interview, Map<String, Object> offer, Map<String, Object> probation) {
+			String linkCV, String namePos, String dateImport, String workExp, String avatar,
+			Map<String, Object> rate, String status, Map<String, Object> interview, Map<String, Object> offer,
+			Map<String, Object> probation) {
 		super();
 		this.idCan = idCan;
 		this.nameCan = nameCan;
@@ -131,48 +141,27 @@ public class Candidate {
 		this.linkCV = linkCV;
 		this.namePos = namePos;
 		this.dateImport = dateImport;
+		this.workExp = workExp;
+		this.avatar = avatar;
 		this.rate = rate;
 		this.status = status;
 		this.interview = interview;
 		this.offer = offer;
 		this.probation = probation;
 	}
+	@Override
+	public String toString() {
+		return "Candidate [idCan=" + idCan + ", nameCan=" + nameCan + ", cmnd=" + cmnd + ", email=" + email + ", phone="
+				+ phone + ", gender=" + gender + ", dob=" + dob + ", linkCV=" + linkCV + ", namePos=" + namePos
+				+ ", dateImport=" + dateImport + ", workExp=" + workExp + ", avatar=" + avatar
+				+ ", rate=" + rate + ", status=" + status + ", interview=" + interview + ", offer=" + offer
+				+ ", probation=" + probation + "]";
+	}
 	public Candidate() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
-			String linkCV, String namePos, String dateImport, String status) {
-		super();
-		this.idCan = idCan;
-		this.nameCan = nameCan;
-		this.cmnd = cmnd;
-		this.email = email;
-		this.phone = phone;
-		this.gender = gender;
-		this.dob = dob;
-		this.linkCV = linkCV;
-		this.namePos = namePos;
-		this.dateImport = dateImport;
-		this.status = status;
-	}
-	public Candidate(String idCan, String nameCan, String cmnd, String email, String phone, boolean gender, String dob,
-			String linkCV, String namePos, String dateImport, Map<String, Object> rate, String status) {
-		super();
-		this.idCan = idCan;
-		this.nameCan = nameCan;
-		this.cmnd = cmnd;
-		this.email = email;
-		this.phone = phone;
-		this.gender = gender;
-		this.dob = dob;
-		this.linkCV = linkCV;
-		this.namePos = namePos;
-		this.dateImport = dateImport;
-		this.rate = rate;
-		this.status = status;
-	}
-	
+
 	
 	
 }

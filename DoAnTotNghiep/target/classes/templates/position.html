@@ -504,29 +504,30 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             'Saved',
             'List question have changed.',
             'success'
-          )
-          var listIdQuest="";
-          var name = $("#nameselected").text();
-          var idPos = $("#idPosition").text();
-          //Array list question to save to db 
-          $('#table1 tr.selected').each(function() {
-            var id = $(this).find("td:first").html();
-            listIdQuest=listIdQuest + id +",";
+          ).then((result) =>{
+            var listIdQuest="";
+            var name = $("#nameselected").text();
+            var idPos = $("#idPosition").text();
+            //Array list question to save to db 
+            $('#table1 tr.selected').each(function() {
+              var id = $(this).find("td:first").html();
+              listIdQuest=listIdQuest + id +",";
+            });
+            $.ajax({
+              type: "post",
+              url: "/updateListQues",  
+              data:{ idPos : idPos, name: name,listQues : listIdQuest, chien: "chien" },
+              success: function(){
+                console.log("send success to server" +listIdQuest);
+                //$("#placeload").load("position #reloadThis");
+                location.reload();
+              },
+                error: function(){      
+                alert('Error while request..');
+                }
+            });  
           });
-          $.ajax({
-  	        type: "post",
-  	        url: "/updateListQues",  
-  	        data:{ idPos : idPos, name: name,listQues : listIdQuest, chien: "chien" },
-  	        success: function(){
-  	        	console.log("send success to server" +listIdQuest);
-  	        	//$("#placeload").load("position #reloadThis");
-  	        	location.reload();
-  	        },
-  	        	error: function(){      
-  	         	alert('Error while request..');
-  	        	}
- 			});  
-        }
+         }
       })
     });
     

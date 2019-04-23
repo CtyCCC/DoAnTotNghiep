@@ -22,7 +22,9 @@
 			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
 			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Fail"}
 			]
-		}
+		},
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN2",
@@ -47,7 +49,9 @@
 			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
 			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Unknown"}
 			]
-		}
+		},
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN3",
@@ -72,7 +76,9 @@
 			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
 			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Unknown"}
 			]
-		}
+		},
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN4",
@@ -90,7 +96,9 @@
 			"total": 20
 		},
 		"namePos": "Senior Tester",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN5",
@@ -108,7 +116,9 @@
 			"total": 20
 		},
 		"namePos": "Senior Tester",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN6",
@@ -126,7 +136,9 @@
 			"total": 20
 		},
 		"namePos": "Senior Tester",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN7",
@@ -144,7 +156,9 @@
 			"total": 20
 		},
 		"namePos": "Senior Tester",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN7",
@@ -162,7 +176,9 @@
 			"total": 20
 		},
 		"namePos": "Junior Java Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN8",
@@ -180,7 +196,9 @@
 			"total": 20
 		},
 		"namePos": "Junior Java Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN9",
@@ -198,7 +216,9 @@
 			"total": 20
 		},
 		"namePos": "Junior Java Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN10",
@@ -216,7 +236,9 @@
 			"total": 20
 		},
 		"namePos": "Big Data Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN11",
@@ -234,7 +256,9 @@
 			"total": 20
 		},
 		"namePos": "Big Data Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN12",
@@ -252,7 +276,9 @@
 			"total": 20
 		},
 		"namePos": "Data Engineer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN13",
@@ -270,7 +296,9 @@
 			"total": 20
 		},
 		"namePos": "Data Engineer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN14",
@@ -288,7 +316,9 @@
 			"total": 20
 		},
 		"namePos": "Machine Learning Engineer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN15",
@@ -306,7 +336,9 @@
 			"total": 20
 		},
 		"namePos": "Machine Learning Engineer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN16",
@@ -324,7 +356,9 @@
 			"total": 20
 		},
 		"namePos": "Python Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	},
 	{
 		"idCan":"CAN17",
@@ -342,6 +376,8 @@
 			"total": 20
 		},
 		"namePos": "Python Developer",
-		"status":"New"
+		"status":"New",
+		"workExp":"3 years",
+		"avatar":"zzz"
 	}
 ]

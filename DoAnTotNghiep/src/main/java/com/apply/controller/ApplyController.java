@@ -101,12 +101,11 @@ public class ApplyController {
 		String linkCV = path.toString();
 		String namePos = form.getF_position();
 		String dateImport = "";
+		String workExp = form.getF_workExp();
+		
 		Map<String,Object> rate =null;
 		String status ="New";
-		Map<String,Object> interview =null;
-		Map<String,Object> probation = null;
-		Map<String,Object> offer = null;
-		Candidate candidate = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, linkCV, namePos, dateImport, rate, status, interview, offer, probation);
+		Candidate candidate = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, linkCV, namePos, dateImport,workExp,"", rate, status, null,null,null);
 		applydao.addCandidate_S(candidate);
 		
 		attr.addAttribute("IDPOS",candidate.getNamePos());

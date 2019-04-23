@@ -12,6 +12,7 @@ public class FormApply {
 	private String f_email;
 	private String f_phone;
 	private String f_skill;
+	private String f_workExp;
 	private MultipartFile f_filedata;
 	public String getF_idcard() {
 		return f_idcard;
@@ -73,8 +74,15 @@ public class FormApply {
 	public void setF_filedata(MultipartFile f_filedata) {
 		this.f_filedata = f_filedata;
 	}
+	
+	public String getF_workExp() {
+		return f_workExp;
+	}
+	public void setF_workExp(String f_workExp) {
+		this.f_workExp = f_workExp;
+	}
 	public FormApply(String f_idcard, String f_firstname, String f_lastname, String f_gender, String f_DOB,
-			String f_position, String f_email, String f_phone, String f_skill, MultipartFile f_filedata) {
+			String f_position, String f_email, String f_phone, String f_skill, MultipartFile f_filedata, String f_workExp) {
 		super();
 		this.f_idcard = f_idcard;
 		this.f_firstname = f_firstname;
@@ -86,6 +94,7 @@ public class FormApply {
 		this.f_phone = f_phone;
 		this.f_skill = f_skill;
 		this.f_filedata = f_filedata;
+		this.f_workExp = f_workExp;
 	}
 	public FormApply() {
 		super();

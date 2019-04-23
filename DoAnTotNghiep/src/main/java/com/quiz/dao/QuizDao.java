@@ -14,8 +14,11 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
+import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
+import com.amazonaws.services.dynamodbv2.document.spec.ScanSpec;
+import com.amazonaws.services.dynamodbv2.document.utils.NameMap;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.entity.Questions;
 import com.quiz.form.QuesPos;
@@ -35,7 +38,7 @@ public class QuizDao {
     		QuesPos quespos = getQuestionsofPosition(idPos);
     		
     		for (int i = 0; i < quespos.getListQues().size(); i++) {
-				Questions quest = getQuestionsContent(quespos.getListQues().get(i));
+				Questions quest = getQuestionsContent(quespos.getListQues().get(i).toString());
 				ds.add(quest);
 			}
     		return ds;
@@ -46,25 +49,22 @@ public class QuizDao {
     		ArrayList<Questions> ds = new ArrayList<Questions>();
     		QuesPos quespos = null;
     		Table table = dynamoDB.getTable("Position");
+    		List<Object> listques= new ArrayList<>();
     		
     		QuerySpec spec = new QuerySpec()
     						.withKeyConditionExpression("idPos =:v_id")
     						.withValueMap(new ValueMap()
     								.withString(":v_id",idPos));
-    		
     		ItemCollection<QueryOutcome> items = table.query(spec);
+    		
     		Iterator<Item> iterator =items.iterator();
-    		Item item =null;
-    		ArrayList<String> listques= new ArrayList<>();
+    		Item item = null;
     		while (iterator.hasNext()) {
+    			
     			item = iterator.next();
-    			String[] rawlistquest = item.get("listQues").toString().split("\"");
-    			for (String string : rawlistquest) {
-    				if(!string.equals("[") && !string.equals("]") && !string.equals(",")) {
-    					listques.add(string);
-				}
-    			quespos =new QuesPos(item.get("idPos").toString(),listques);
-    			}
+    			listques = (List<Object>) item.getList("listQues");
+        		quespos =new QuesPos(item.get("idPos").toString(),listques);
+        		
     		}
     		return quespos;
         }

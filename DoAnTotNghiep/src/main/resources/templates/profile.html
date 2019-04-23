@@ -152,35 +152,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <form role="form">
                   <div class="form-row col-xs-12">
                     <center>
-                      <div class="input-group input-group-md col-xs-6">
-                        <div class="input-group-btn">
-                          <button id="btnSelectSTT" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled>Status
-                            <span class="fa fa-caret-down"></span></button>
-                            <ul class="dropdown-menu" id="color_me">
-                              <li class="dropdown-header" style="font-weight: bold">OTHERS</li>
-                              <li value="New"><a href="#" style="color: black">New</a></li>
-                              <li value="Not qualitied"><a href="#" style="color: red">Not qualitied</a></li>
-                              <li value="Wating for interview"><a href="#" style="color: sandyBrown">Wating for interview</a></li>
-                              <li value="Reject"><a href="#" style="color: black">Reject</a></li>
-                              <li class="divider"></li>
-                              <li class="dropdown-header" style="font-weight: bold">INTERVIEW</li>
-                              <li value="Interviewing"><a href="#" style="color: steelBlue">Interviewing</a></li>
-                              <li value="Interview pass"><a href="#" style="color: green">Interview pass</a></li>
-                              <li value="Interview fail"><a href="#" style="color: red">Interview fail</a></li>
-                              <li class="divider"></li>
-                              <li class="dropdown-header" style="font-weight: bold">OFFER</li>
-                              <li value="Offering"><a href="#" style="color: blue">Offering</a></li>
-                              <li value="Offer success"><a href="#" style="color: green">Offer success</a></li>
-                              <li value="Offer fail"><a href="#" style="color: red">Offer fail</a></li>
-                              <li class="divider"></li>
-                              <li class="dropdown-header" style="font-weight: bold">PROBATION</li>
-                              <li value="Probation"><a href="#" style="color: orange">Probation</a></li>
-                              <li value="Probation pass"><a href="#" style="color: green">Probation pass</a></li>
-                              <li value="Probation fail"><a href="#" style="color: red">Probation fail</a></li>
-                            </ul>
-                          </div>
-                          <!-- /btn-group -->
-                          <input id="status"  type="text" class="form-control text-center" disabled value="New" style="font-weight: bold;">
+                      <div class="input-group input-group-md col-xs-4">
+                          <input id="status"  type="text" class="form-control text-center" disabled th:value="${candidate.status}">
                         </div>
                       </center>
                     </div>
@@ -228,10 +201,18 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       </select>
                       <input type="text" id="input_gender" th:value="${candidate.gender}" hidden>
                     </div>
-                    <div class="form-row col-xs-7">
-                      <label>Source: </label>
-                      <input id="university" readonly type="text" class="form-control">
+                    <div class="form-group col-xs-2">
+                      <label>Score: </label>
+                      <input id="score" readonly type="text" class="form-control" th:value="${candidate.rate.score}">
                     </div>
+                    <div class="form-group col-xs-2">
+                      <label>Total: </label>
+                      <input id="total" readonly type="text" class="form-control" th:value="${candidate.rate.total}">
+                    </div>
+                    <div class="form-group col-xs-3">
+                      <label>Time: </label>
+                      <input id="time" readonly type="text" class="form-control" th:value="${candidate.rate.time}">
+                    </div>                   
                     <div class="form-row col-xs-5">
                       <label>Date Import:</label>
                       <div class="input-group date">
@@ -244,12 +225,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <!-- textarea -->
                     <div class="form-row col-xs-12">
                       <label>Work Experience: </label>
-                      <textarea id="work_exp" readonly class="form-control" rows="3"></textarea>
+                      <textarea id="work_exp" readonly class="form-control" rows="3" th:text="${candidate.workExp}"></textarea>
                     </div>
-                    <div class="form-row col-xs-12">
-                      <label>Skill: </label>
-                        <textarea id="skill" class="form-control" rows="2" readonly></textarea>
-                  </div>
                   <div class="form-row col-xs-12">
                     <a><label id="changeCV" for="upload-cv">Upload a new CV </label></a> |
                     <a href="#">View CV Online</a>
@@ -357,7 +334,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Final result:</label>
                             <select name="" id="finalResult">
-                              <option th:each="fr : ${fr}" th:value="${fr}" th:text="${fr}" th:selected="${candidate.interview.finalResult}"></option>
+                              <option th:if ="${isIn == 'Not'}" th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}"></option>
+                              <option th:unless ="${isIn == 'Not'}" th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}" th:selected="${frs==isIn}"></option>
                             </select>
                           </div>
                           <div class="col-xs-12">
@@ -372,8 +350,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         </div>
                       </div>
                       <div class="col-xs-12">
-                        <div class="col-xs-3">
-                          <select class="form-control" id="finalResult">
+                        <div th:if="${isIn!='Not'}" class="col-xs-3">
+                          <select class="form-control" id="round">
                             <option th:each="dsr : ${dsR}" th:value="${dsr}" th:text="${dsr}"></option>
                           </select>
                         </div>
@@ -383,7 +361,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 
                       </div>
                       <div class="box box-info col-xs-12" style="margin-top: 2%">
-                        <div class="box-body">
+                        <div th:if="${isIn!='Not'}" class="box-body">
                           <div class="form-group">
                             <div class="form-row col-xs-7">
                               <label>Date:</label>
@@ -391,7 +369,49 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                                 <div class="input-group-addon">
                                   <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled>
+                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled th:value="${candidate.interview.rounds[0].date}">
+                              </div>
+                            </div>
+                            <div class="form-row col-xs-5">
+                              <label>Time:</label>
+                              <div class="input-group">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-clock-o"></i>
+                                </div>
+                                <input type="text" class="form-control timepicker" disabled id="txttime" th:value="${candidate.interview.rounds[0].time}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="form-row col-xs-5">
+                              <label>Interviewer: </label>
+                              <input type="text" class="form-control" disabled id="txtInterviewer" th:value="${candidate.interview.rounds[0].interviewer}">
+                            </div>
+                            <div class="form-row col-xs-4">
+                              <label>Venue: </label>
+                              <input type="text" class="form-control" disabled id="txtVenue" th:value="${candidate.interview.rounds[0].venue}">
+                            </div>
+                            <div class="form-group col-xs-3">
+                              <label>Result: </label>
+                              <select class="form-control" disabled id="selectRs" >
+                                <option th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}" th:selected="${frs==candidate.interview.rounds[0].result}"></option>
+                              </select>
+                            </div>
+                            <div class="col-xs-12" style="padding-bottom: 1%">
+                              <label for="">Note: </label>
+                              <textarea class="form-control" rows="3" disabled id="txtNote" th:text="${candidate.interview.rounds[0].note}"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div th:unless="${isIn!='Not'}" class="box-body">
+                          <div class="form-group">
+                            <div class="form-row col-xs-7">
+                              <label>Date:</label>
+                              <div class="input-group date">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled >
                               </div>
                             </div>
                             <div class="form-row col-xs-5">
@@ -415,10 +435,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             </div>
                             <div class="form-group col-xs-3">
                               <label>Result: </label>
-                              <select class="form-control" disabled id="selectRs">
-                                <option></option>
-                                <option>Pass</option>
-                                <option>Fail</option>
+                              <select class="form-control" disabled id="selectRs" >
+                                <option th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}"></option>
                               </select>
                             </div>
                             <div class="col-xs-12" style="padding-bottom: 1%">
@@ -610,6 +628,45 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
       $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
       //Percennt pass / fail process
+      var stt = $("#status").val();
+      switch(stt){
+        case "New":
+          $("#status").attr("style", "font-weight:bold; color: black");
+          break;
+        case "Wait for interview":
+          $("#status").attr("style", "font-weight:bold; color: sandyBrown");
+          break;
+        case "Reject":
+          $("#status").attr("style", "font-weight:bold; color: grey");
+          break;
+        case "Interviewing":
+          $("#status").attr("style", "font-weight:bold; color: steelBlue");
+          break;
+        case "Interview Fail":
+          $("#status").attr("style", "font-weight:bold; color: red");
+          break;
+        case "Interview Pass":
+          $("#status").attr("style", "font-weight:bold; color: green");
+          break;
+        case "Offering":
+          $("#status").attr("style", "font-weight:bold; color: blue");
+          break;
+        case "Offering Fail":
+          $("#status").attr("style", "font-weight:bold; color: red");
+          break;
+        case "Offering Pass":
+          $("#status").attr("style", "font-weight:bold; color: green");
+          break;
+        case "Probationing":
+          $("#status").attr("style", "font-weight:bold; color: orange");
+          break;
+        case "Probation Fail":
+          $("#status").attr("style", "font-weight:bold; color: red");
+          break;
+        case "Probation Pass":
+          $("#status").attr("style", "font-weight:bold; color: green");
+          break;  
+      }
     });
 
     $(function () {

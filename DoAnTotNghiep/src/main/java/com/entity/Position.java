@@ -9,7 +9,7 @@ public class Position {
 	private String area;
 	private String expDate;
 	private String requirement;
-	private String listQues
+	private String listQues;
 	private String benefit;
 	private String description;
 	public String getIdPos() {
