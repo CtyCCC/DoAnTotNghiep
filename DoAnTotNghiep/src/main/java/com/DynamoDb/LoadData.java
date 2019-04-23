@@ -155,7 +155,7 @@ public class LoadData {
                 		.withString("area",area)
                 		.withString("expDate",expDate)
                 		.withString("requirement",requirement)
-                		.with("listQues",listQues)
+                		.withString("listQues",listQues)
                 		.withString("benefit",benefit)
                 		.withString("description",description)
                 		);

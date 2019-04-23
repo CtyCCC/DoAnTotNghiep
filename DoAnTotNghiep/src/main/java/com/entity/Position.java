@@ -9,7 +9,7 @@ public class Position {
 	private String area;
 	private String expDate;
 	private String requirement;
-	private ArrayList<String> listQues;
+	private String listQues
 	private String benefit;
 	private String description;
 	public String getIdPos() {
@@ -42,10 +42,10 @@ public class Position {
 	public void setRequirement(String requirement) {
 		this.requirement = requirement;
 	}
-	public ArrayList<String> getListQues() {
+	public String getListQues() {
 		return listQues;
 	}
-	public void setListQues(ArrayList<String> listQues) {
+	public void setListQues(String listQues) {
 		this.listQues = listQues;
 	}
 	public String getBenefit() {
@@ -60,7 +60,7 @@ public class Position {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Position(String idPos, String name, String area, String expDate, String requirement, ArrayList<String> listQues,
+	public Position(String idPos, String name, String area, String expDate, String requirement, String listQues,
 			String benefit, String description) {
 		super();
 		this.idPos = idPos;
