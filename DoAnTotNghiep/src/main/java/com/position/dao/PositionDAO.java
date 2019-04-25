@@ -121,7 +121,7 @@ public class PositionDAO {
 	public void addNewPos(Position p) {
 
 		Table table = dynamoDB.getTable("Position");
-
+		String arr = p.getListQues().toString();
 		try {
 			System.out.println("Adding a new item...");
 			table.putItem(new Item().withPrimaryKey("idPos", p.getIdPos(), "name", p.getName())
@@ -129,8 +129,9 @@ public class PositionDAO {
 					.withString("expDate",p.getExpDate())
 					.withString("requirement",p.getRequirement())
 					.withString("benefit",p.getBenefit())
+					.withString("listQues", arr)
 					.withString("description",p.getDescription()));
-
+					
 			System.out.println("PutItem succeeded:" + p);
 
 		}
@@ -168,33 +169,27 @@ public class PositionDAO {
 	}
 	
 	//lấy list idQues theo id Pos
-	public ArrayList<String> getIdQuesFromPosition(String idPos){
-		ArrayList<String> arr = new ArrayList<>();
-
+	public List<Object> getQuestionsOfPosition (String idPos) {
+		
 		Table table = dynamoDB.getTable("Position");
-
+		List<Object> listques= new ArrayList<>();
+		
 		QuerySpec spec = new QuerySpec()
-				.withKeyConditionExpression("idPos = :a")
-				.withValueMap(new ValueMap()
-						.withString(":a", idPos));
-
+						.withKeyConditionExpression("idPos =:v_id")
+						.withValueMap(new ValueMap()
+								.withString(":v_id",idPos));
 		ItemCollection<QueryOutcome> items = table.query(spec);
+		
 		Iterator<Item> iterator =items.iterator();
-		Item item =null;
-
+		Item item = null;
 		while (iterator.hasNext()) {
+			
 			item = iterator.next();
-			System.out.println("item listpos: " +item.get("listQues").toString());
-			String[] rawlistquest = item.get("listQues").toString().split("\"");
-			for (String string : rawlistquest) {
-				//System.out.println("String nè: " +string);
-				if(!string.equals("[") && !string.equals("]") && !string.equals(",")) {
-					arr.add(string);
-				}
-			}
+			listques = (List<Object>) item.getList("listQues");
+    			
 		}
-		return arr;
-	}
+		return listques;
+    }
 	
 	public void updateQuesPos(String id, String name, String arr) {
 
@@ -202,7 +197,7 @@ public class PositionDAO {
 
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("idPos",id, "name", name)
 				.withUpdateExpression("set listQues = :a")
-				.withValueMap(new ValueMap().withString(":a", arr))
+				.withValueMap(new ValueMap().withString(":a", arr.toString()))
 				.withReturnValues(ReturnValue.UPDATED_NEW);
 
 		try {

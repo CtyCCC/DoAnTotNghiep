@@ -41,8 +41,6 @@ public class PositionController {
 		//get all Positionn
 		ArrayList<Position> arrPos = new ArrayList<>();	
 		arrPos = posDAO.getAllPosition();
-		//format arr pos
-		posDAO.formatAllResult(arrPos);
 
 		//đổ name vô select box
 		model.addAttribute("listPosition", arrPos);
@@ -54,10 +52,10 @@ public class PositionController {
 			model.addAttribute("selectedposition",p);
 			
 			//lấy mảng id câu hỏi theo idPos
-			ArrayList<String> arrIdQues = posDAO.getIdQuesFromPosition(p.getIdPos());
+			ArrayList<Object> arrIdQues = (ArrayList<Object>) posDAO.getQuestionsOfPosition(p.getIdPos());
 			//gửi qua client dạng chuỗi cho dễ
 			String stringId = "";
-			for (String string : arrIdQues) {
+			for (Object string : arrIdQues) {
 				stringId = stringId + string +",";
 			}
 			model.addAttribute("listQuesPos",stringId);
@@ -66,10 +64,10 @@ public class PositionController {
 			model.addAttribute("selectedposition",p);
 			
 			//lấy mảng id câu hỏi theo idPos
-			ArrayList<String> arrIdQues = posDAO.getIdQuesFromPosition(p.getIdPos());
+			ArrayList<Object> arrIdQues = (ArrayList<Object>) posDAO.getQuestionsOfPosition(p.getIdPos());
 			//gửi qua client dạng chuỗi cho dễ
 			String stringId = "";
-			for (String string : arrIdQues) {
+			for (Object string : arrIdQues) {
 				stringId = stringId + string +",";
 			}
 			model.addAttribute("listQuesPos",stringId);
@@ -78,10 +76,10 @@ public class PositionController {
 			model.addAttribute("selectedposition",p);
 			
 			//lấy mảng id câu hỏi theo idPos
-			ArrayList<String> arrIdQues = posDAO.getIdQuesFromPosition(p.getIdPos());
+			ArrayList<Object> arrIdQues = (ArrayList<Object>) posDAO.getQuestionsOfPosition(p.getIdPos());
 			//gửi qua client dạng chuỗi cho dễ
 			String stringId = "";
-			for (String string : arrIdQues) {
+			for (Object string : arrIdQues) {
 				stringId = stringId + string +",";
 			}
 			model.addAttribute("listQuesPos",stringId);
@@ -98,19 +96,10 @@ public class PositionController {
 	
 	@RequestMapping(value="/updateListQues",method=RequestMethod.POST)
 	public  @ResponseBody void  updateListQuesPos( HttpServletRequest request, Model model) {
-		
 		String idPos = request.getParameter("idPos");
 		String name = request.getParameter("name");
-		String arr = request.getParameter("listQues");
-		String[] a = arr.split(",");
-		String kq = "[";
-		for (String string : a) {
-			kq = kq+"\""+string+"\",";
-		}
-		kq=kq+"]";
-
-		posDAO.updateQuesPos(idPos, name, kq);
-		
+		String arr =request.getParameter("listQues");
+		posDAO.updateQuesPos(idPos, name, arr.toString());	
 	}
 	
 	@RequestMapping(value="/newQuestion",method=RequestMethod.POST)
@@ -146,9 +135,11 @@ public class PositionController {
 		String requirement = request.getParameter("requirement");
 		String benefit = request.getParameter("benefit");
 		String description = request.getParameter("description");
-		Position p = new Position(idPos, name, area, expDate, requirement, benefit, description);
+		String arr =request.getParameter("listQues");
+		
+		Position p = new Position(idPos, name, area, expDate, requirement, arr.toString(), benefit, description);
 		posDAO.addNewPos(p);
-		System.out.println("Add success question: " +p);
+		System.out.println("Add success question: " +p.toString());
 	}
 	
 	@RequestMapping(value="/editPosition",method=RequestMethod.POST)

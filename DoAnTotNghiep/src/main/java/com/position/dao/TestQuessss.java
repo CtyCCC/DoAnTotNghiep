@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.entity.Position;
 import com.entity.Questions;
+import com.google.api.services.drive.Drive.Changes.List;
 
 public class TestQuessss {
 
@@ -20,8 +21,14 @@ public class TestQuessss {
 //			System.out.println(questions.getIdQues());
 //		}
 //		System.out.println("id moi ne: "+dao.autoIdQues(arr));
-		PositionDAO dao = new PositionDAO();
-		dao.updateQuesPos("POS1", "Software Tester", "[\"QUES15\",\"QUES62\",\"QUES16\"]");
+//		PositionDAO dao = new PositionDAO();
+//		ArrayList<Object> ar =  (ArrayList<Object>) dao.getQuestionsOfPosition("POS4");
+//		System.out.println(ar);
+//		ArrayList<Object> arr = new ArrayList<>();
+//		arr.add("QUES1");
+//		arr.add("QUES33");
+//		System.out.println(arr.toString());
+//		dao.updateQuesPos("POS4", "Product Manager", arr.toString());
 		//ArrayList<String> arr = dao.getIdQuesFromPosition("POS13");
 
 //		Position p = new Position("idPos2", "name2", "area3", "expDate3", "requirement3", "benefit3", "description3");
