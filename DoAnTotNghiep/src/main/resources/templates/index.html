@@ -424,7 +424,7 @@
                       <span th:unless="${dsCandidate.gender}">Female</span>
                     </td>                  
                     <td th:text="${dsCandidate.phone}"></td>             
-                    <td><a th:text="${dsCandidate.namePos}"th:href="@{/position(namePos=${dsCandidate.namePos})}"></a></td>
+                    <td><a id="link_pos" th:text="${dsCandidate.namePos}" href=""></a></td>
                     <td >
                       <span class="badge bg-red" th:text="${dsCandidate.rate.score}+'/'+${dsCandidate.rate.total}"></span>
                     </td>
@@ -569,7 +569,7 @@
 
       $("#btnDelete").click(function(event) {
         Swal.fire({
-          title: 'Do you want delete the items ?',
+          title: 'Do you want delete this candidate ?',
           type: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -601,6 +601,21 @@
             });
           }
         })
+      });
+
+      $('#link_pos').click(function(event) {
+        /* Act on the event */
+        var pos = $('#link_pos').text();
+        $.ajax({
+                url: '/position',
+                type: 'post',
+                dataType: 'html',
+                data: {
+                    namePos: pos,
+                }
+            }).done(function() {
+                window.location.href = "/position";
+            });
       });
     });
 

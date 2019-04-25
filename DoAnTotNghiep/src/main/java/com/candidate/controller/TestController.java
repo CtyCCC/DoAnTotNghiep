@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.candidate.dao.CandidateDAO;
 import com.entity.Candidate;
+import com.entity.Position;
+import com.position.dao.PositionDAO;
 
 @Controller
 public class TestController {
 	
 	private CandidateDAO candidateDAO =  new CandidateDAO();
+	private PositionDAO positionDAO = new PositionDAO();
 	Candidate can = new Candidate();
 	
 	@GetMapping("/index")
@@ -35,7 +38,7 @@ public class TestController {
 	}
 	
 	@PostMapping("/index/setInterview")
-	public @ResponseBody String itv(HttpServletRequest request) throws JSONException {
+	public @ResponseBody String setInterview(HttpServletRequest request) throws JSONException {
 		//Lấy dữ liệu từ ajax gửi về
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
@@ -51,6 +54,8 @@ public class TestController {
             String cmnd = arr.getJSONObject(i).getString("cmnd");
             //System.out.println(cmnd);
             
+            String stus = "Wait for interview";
+            
 			Candidate can = new Candidate();
 			can = candidateDAO.getCandidateById(idCan);
 			if(can.getInterview()==null) {
@@ -65,8 +70,11 @@ public class TestController {
 	    		rnd.put("result", "Unknown");	
 	    		rounds.add(rnd);
 	    		
-	    		candidateDAO.addInterview(idCan, cmnd, rounds);
+	    		candidateDAO.addInterview(idCan, cmnd, rounds, stus);
 			}else {
+				if(!(can.getInterview().get("finalResult")).equals("Unknown")) {
+					stus = "Interviewing";
+				}
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
 	            Map<String, Object> rnd = new HashMap<String, Object>();
 	    		rnd.put("idRound",rounds.size()+1+"");
@@ -78,7 +86,7 @@ public class TestController {
 	    		rnd.put("result", "Unknown");	
 	    		rounds.add(rnd);
 	    		
-	    		candidateDAO.addInterview(idCan, cmnd, rounds);
+	    		candidateDAO.addInterview(idCan, cmnd, rounds,stus);
 			}			
         }
 			
@@ -108,15 +116,40 @@ public class TestController {
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
 			model.addAttribute("candidate",can);
+			
+			//Đổ dữ liệu cho status
+			String [] n = {"New","Reject"};
+			String[] in = {"Interviewing","Interview Pass","Interview Fail"};
+			String [] o = {"Offering","Offer Pass","Offer Fail"};
+			String [] p = {"Probationing","Probation Fail","probation Pass"};
+			if(can.getInterview()==null) {
+				model.addAttribute("stt",n);
+			}else if(can.getOffer()==null) {
+				model.addAttribute("stt",in);
+			}else if(can.getProbation()==null) {
+				model.addAttribute("stt",o);
+			}else {
+				model.addAttribute("stt",p);
+			}
+			
+			
+			//Đổ dữ liệu cho Position Apply
+			ArrayList<String> dsNamePos = new ArrayList<>();
+			ArrayList<Position> pos = new ArrayList<Position>();
+			pos = positionDAO.getAllPosition();
+			for(int i = 0; i<pos.size();i++) {
+				dsNamePos.add(pos.get(i).getName());
+			}
+			model.addAttribute("dsNamePos", dsNamePos);
+			
+			
+			//Đổ dữ liệu cho tag Interview
 			int pass = 0;
 			int fail = 0;
 			int totalRound = 0;
 			String isIn = "Not";
 			String[] fr = {"Unknown", "Pass","Fail"};
-			String [] n = {"New","Reject"};
-			String[] in = {"Interviewing","Interview Pass","Interview Fail"};
-			String [] o = {"Offering","Offer Pass","Offer Fail"};
-			String [] p = {"Probationing","Probation Fail","probation Pass"};
+			
 			if(can.getInterview()!=null) {
 				isIn = (String) can.getInterview().get("finalResult");
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
@@ -141,19 +174,86 @@ public class TestController {
 			model.addAttribute("Fail", fail);
 			model.addAttribute("fr", fr);
 			model.addAttribute("isIn",isIn);
-			System.out.println(isIn);
-			if(can.getInterview()==null) {
-				model.addAttribute("stt",n);
-			}else if(can.getOffer()==null) {
-				model.addAttribute("stt",in);
-			}else if(can.getProbation()==null) {
-				model.addAttribute("stt",o);
-			}else {
-				model.addAttribute("stt",p);
-			}
+			
+			
+			
+			
 			return "profile";
 		}
 		return null;
 	}
 	
+	@PostMapping("/profile/editProfile")
+	public @ResponseBody String editProfile(HttpServletRequest req) {
+		can.setNameCan(req.getParameter("name"));
+		can.setEmail(req.getParameter("email"));
+		can.setNamePos(req.getParameter("namePos"));
+		can.setDob(req.getParameter("dob"));
+		can.setPhone(req.getParameter("phone"));
+		if(req.getParameter("gender").equals("true")) {
+			can.setGender(true);
+		}else
+			can.setGender(false);
+		can.setDateImport(req.getParameter("dateImp"));
+		can.setWorkExp(req.getParameter("workExp"));
+		Map<String,Object> rate = new HashMap<>();
+		if(req.getParameter("score")!=null && req.getParameter("time")!=null && req.getParameter("total")!=null) {
+			System.out.println("ok");
+			rate.put("score", Integer.parseInt(req.getParameter("score")));
+			rate.put("time", Integer.parseInt(req.getParameter("time")));
+			rate.put("total", Integer.parseInt(req.getParameter("total")));
+			can.setRate(rate);
+		}
+		candidateDAO.editProfile(can);
+		return "Edit Success";
+	}
+	
+	@PostMapping("/profile/addRoundInterview")
+	public @ResponseBody String addRound(HttpServletRequest request) throws JSONException {
+		//Lấy dữ liệu từ ajax gửi về
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String interviewer = request.getParameter("interviewer");
+		String venue = request.getParameter("venue");
+		String note = request.getParameter("note");
+		String result = request.getParameter("result");
+		
+		String stus = "Wait for interview";
+        
+		if(can.getInterview()==null) {
+			ArrayList<Object> rounds = new ArrayList<>();
+			Map<String, Object> rnd = new HashMap<String, Object>();
+    		rnd.put("idRound",rounds.size()+1+"");
+    		rnd.put("interviewer",interviewer);
+    		rnd.put("date", date);
+    		rnd.put("time", time);
+    		rnd.put("venue", venue);
+    		rnd.put("note", note);
+    		rnd.put("result", result);	
+    		rounds.add(rnd);
+    		
+    		candidateDAO.addInterview(can.getIdCan(), can.getCmnd(), rounds, stus);
+		}else {
+			ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
+			for(int i = 0 ; i<rounds.size();i++) {
+				Map<String, Object> r = (Map<String, Object>) rounds.get(i);
+				if(!(r.get("result")).equals("Unknown")) {
+					stus = "Interviewing";
+				}
+			}
+            Map<String, Object> rnd = new HashMap<String, Object>();
+    		rnd.put("idRound",rounds.size()+1+"");
+    		rnd.put("interviewer",interviewer);
+    		rnd.put("date", date);
+    		rnd.put("time", time);
+    		rnd.put("venue", venue);
+    		rnd.put("note", note);
+    		rnd.put("result", result);	
+    		rounds.add(rnd);
+    		
+    		candidateDAO.addInterview(can.getIdCan(), can.getCmnd(), rounds,stus);
+		}			
+			
+		return "Add Round Success";
+	}
 }

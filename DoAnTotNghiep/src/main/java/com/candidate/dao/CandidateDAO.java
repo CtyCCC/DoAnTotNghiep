@@ -237,7 +237,8 @@ public class CandidateDAO {
 		
 	}
 	
-	public void addInterview(String id, String cmnd, ArrayList<Object> rounds) {
+	//Add Interview
+	public void addInterview(String id, String cmnd, ArrayList<Object> rounds, String stus) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
 		
@@ -250,9 +251,51 @@ public class CandidateDAO {
 				.withPrimaryKey("idCan", id, "cmnd", cmnd)
 				.withUpdateExpression("set #ss = :s, interview = :i")
 				.withNameMap(new NameMap().with("#ss", "status"))
-				.withValueMap(new ValueMap().withString(":s", "Wait for interview")
+				.withValueMap(new ValueMap().withString(":s", stus)
 						.withMap(":i", inter))
 				.withReturnValues(ReturnValue.UPDATED_NEW);
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	public void editProfile(Candidate can) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+					.withPrimaryKey("idCan", can.getIdCan(), "cmnd", can.getCmnd())
+					.withUpdateExpression("set nameCan = :na, "
+							+ "email = :em, "
+							+ "phone = :ph, "
+							+ "gender = :ge, "
+							+ "dob = :do, "
+							+ "namePos = :np, "
+							+ "dateImport = :da, "
+							+ "workExp = :wo, "
+							+ "avatar = :av, "
+							+ "rate.score = :sc, #t = :ti, #tt = :to")
+					.withNameMap(new NameMap().with("#t", "rate.time").with("#tt", "rate.total"))
+					.withValueMap(new ValueMap()
+							.withString(":na", can.getNameCan())
+							.withString(":em", can.getEmail())
+							.withString(":ph", can.getPhone())
+							.withBoolean(":ge", can.isGender())
+							.withString(":do", can.getDob())
+							.withString(":np", can.getNamePos())
+							.withString(":da", can.getDateImport())
+							.withString(":wo", can.getWorkExp())
+							.withString(":av", can.getAvatar())
+							.withInt(":sc", (int) can.getRate().get("score"))
+							.withInt(":ti", (int) can.getRate().get("time"))
+							.withInt(":to", (int) can.getRate().get("total")))
+					.withReturnValues(ReturnValue.UPDATED_NEW);
+			
+		
 		try {
 			System.out.println("Updating the item...");
 			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);

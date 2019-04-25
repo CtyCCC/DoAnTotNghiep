@@ -181,33 +181,29 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <div class="form-group col-xs-7">
                       <label>Positon Apply: </label>
                       <select id="position" disabled class="form-control">
-                        <option>Java Developer</option>
-                        <option>Tester</option>
-                        <option>Internship</option>
-                        <option>Partime</option>
-                        <option>PM</option>
-                        <option>Leader</option>
+                        <option th:each="dsNP : ${dsNamePos}" th:value="${dsNP}" th:text="${dsNP}" th:selected="${dsNP==candidate.namePos}"></option>
                       </select>
+                      <input type="text" id="input_position" th:value="${candidate.namePos}" hidden>
                     </div>
                     <div class="form-group col-xs-5">
                       <label>Gender:</label>
                       <select th:if="${candidate.gender}" id="gender" class="form-control" disabled>
-                        <option id="op_1" selected>Male</option>
-                        <option id="op_2" >Female</option>
+                        <option id="op_1" value="true" selected>Male</option>
+                        <option id="op_2" value="false" >Female</option>
                       </select>
                       <select th:unless="${candidate.gender}" id="gender" class="form-control" disabled>
-                        <option id="op_1">Male</option>
-                        <option id="op_2" selected>Female</option>
+                        <option id="op_1" value="true">Male</option>
+                        <option id="op_2" value="false" selected>Female</option>
                       </select>
                       <input type="text" id="input_gender" th:value="${candidate.gender}" hidden>
                     </div>
                     <div class="form-group col-xs-2">
                       <label>Score: </label>
-                      <input id="score" readonly type="text" class="form-control" th:value="${candidate.rate.score}">
+                      <input id="score" readonly type="number" class="form-control" th:value="${candidate.rate.score}">
                     </div>
                     <div class="form-group col-xs-2">
                       <label>Total: </label>
-                      <input id="total" readonly type="text" class="form-control" th:value="${candidate.rate.total}">
+                      <input id="total" readonly type="number" class="form-control" th:value="${candidate.rate.total}">
                     </div>
                     <div class="form-group col-xs-3">
                       <label>Time: </label>
@@ -236,7 +232,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
+                <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveProfile">Save</button>
                 <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
               </div>
               <!-- /.box-footer -->
@@ -357,7 +353,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         </div>
                         <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square"></i></button>
                         <button type="button" class="btn btn-default pull-left" id="btneditRound" ><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-default pull-left" id="btnSave" ><i class="fa fa-file"></i></button>
+                        <button type="button" class="btn btn-default pull-left" id="btnSave_interview" ><i class="fa fa-file"></i></button>
                         <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 
                       </div>
                       <div class="box box-info col-xs-12" style="margin-top: 2%">
@@ -751,6 +747,13 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#txtVenue").removeAttr('disabled');
       $("#txtNote").removeAttr('disabled');
       $("#selectRs").removeAttr('disabled');
+
+      $("#datepicker_Interview").val("");
+      $("#txttime").val("");
+      $("#txtInterviewer").val("");
+      $("#txtVenue").val("");
+      $("#txtNote").val("");
+      $("#selectRs").val("");
       
     });
     $("#btneditRound").click(function(event) {
@@ -803,6 +806,80 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         });
       }
     });
+
+    //Nút save khi edit Profile candidate
+    $("#btn_saveProfile").click(function(event) {
+      /* Act on the event */
+      var name = $('#name').val();
+      var email = $("#email").val();
+      var namePos = $("#position").val();
+      var dob = $("#datepicker_DOB").val();
+      var phone = $("#phone").val();
+      var gender = $("#gender").val();
+      var score =  $("#score").val();
+      var time =  $("#time").val();
+      var total =  $("#total").val();
+      var dateImp = $("#datepicker_Date").val();
+      var workExp =  $("#work_exp").val();
+      $.ajax({
+        url: '/profile/editProfile',
+        type: 'post',
+        dataType: 'html',
+        data: {
+            name :name,
+            email :email,
+            namePos :namePos,
+            dob :dob,
+            phone :phone,
+            gender :gender,
+            score :score,
+            time : time,
+            total :total,
+            dateImp :dateImp,
+            workExp :workExp
+        }
+       })
+      Swal.fire(
+        'Save success!',
+        '',
+        'success'
+      ).then((result) =>{
+        location.reload();
+      });
+    });
+
+
+    //Thêm round mới
+    $("#btnSave_interview").click(function(event) {
+      /* Act on the event */
+      var date = $("#datepicker_Interview").val();
+      var time = $("#txttime").val();
+      var interviewer = $("#txtInterviewer").val();
+      var venue = $("#txtVenue").val();
+      var note = $("#txtNote").val();
+      var result = $("#selectRs").val();
+      $.ajax({
+        url: '/profile/addRoundInterview',
+        type: 'post',
+        dataType: 'html',
+        data: {
+            date:date,
+            time:time,
+            interviewer:interviewer,
+            venue:venue,
+            note:note,
+            result:result
+        }
+       })
+      Swal.fire(
+        'AddRound success!',
+        '',
+        'success'
+      ).then((result) =>{
+        window.location.href = "/profile";
+      });
+    });
+
   });
 </script>
 </body>
