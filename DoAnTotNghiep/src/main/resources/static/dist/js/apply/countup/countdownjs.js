@@ -101,7 +101,7 @@
 
   //Get time  
   $.fn.gettime = function () {
-    alert(fulltime-timefund);
+	  return fulltime-timefund;
 
   }
 }(jQuery));

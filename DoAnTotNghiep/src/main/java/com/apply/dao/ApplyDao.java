@@ -137,19 +137,14 @@ public class ApplyDao {
     		}
     	}
         
-        public void updateRateofCadidate(Candidate candidate) {
+        public void updateRateofCadidate(Candidate can, Map<String,Object> infoMap) {
         	Table table = dynamoDB.getTable("Candidate_S");
-        	Map<String, Object> infoMap = new HashMap<String, Object>();
-        	infoMap.put("score","123");
-        	infoMap.put("time","10000");
-        	infoMap.put("total","1234");
         	UpdateItemSpec updateitem = new UpdateItemSpec()
-        								.withPrimaryKey("idCan",candidate.getIdCan(),"cmnd",candidate.getCmnd())
-        								.withUpdateExpression("set rate = :val")
-        								.withValueMap(new ValueMap()
-        										.withMap(":val",infoMap))
+        								.withPrimaryKey("idCan",can.getIdCan(),"cmnd",can.getCmnd())
+        								.withUpdateExpression("set phone =:val")
+        								.withValueMap(new ValueMap().withMap(":val",infoMap))
         								.withReturnValues(ReturnValue.UPDATED_NEW);
+        	
         	UpdateItemOutcome outcome = table.updateItem(updateitem);
-            System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
         }
 }

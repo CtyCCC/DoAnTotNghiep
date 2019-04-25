@@ -166,9 +166,9 @@ header {
 
 	<script type="text/javascript" th:src="@{/dist/js/apply/countup/countdownjs.js}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script type="text/javascript" src="./../../dist/js/apply/quiz.js"></script>
 	<script>
   $(document).ready(function () {
+	$("#timedow").runtime();
     $("input[type=radio]").on("click",function () {
       if($(this).is( ":checked")){
         $(this).parent().prop("class","active");
@@ -178,10 +178,13 @@ header {
   	$("#sendresult").click(function(){
     	  var formData = new FormData(document.getElementById('frm1'))
     	  var data = [];
-    	  var info={}
+    	  var info={};
+    	  var info2={};
     	  var i=0;
     	  info["idQues"]="idCan";
           info["answer"]=$("#c_can").text();
+          info2["idQues"]="time";
+          info2["answer"]=$("#timedow").gettime()+"";
     	  for(var pair of formData.entries()) {
     		  const item={};
     		  item["idQues"]=pair[0]=="radio" ? "idPos" : pair[0] ;
@@ -189,7 +192,7 @@ header {
 			  data.push(item);
     		}
   			data.push(info);
-  	  		
+  			data.push(info2);  	  		
   			console.log(JSON.stringify(data));
     	   $.ajax({
     			type: "POST",
@@ -199,6 +202,7 @@ header {
     	        url: "/quiz",
     	        success: function(data){
     	           console.log(data);
+    	           window.open("/homeApply");
     	        },
     	        error:function(e){
     	            console.log(e)

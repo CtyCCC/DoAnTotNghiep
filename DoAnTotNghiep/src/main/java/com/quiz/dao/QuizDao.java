@@ -20,6 +20,7 @@ import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.document.spec.ScanSpec;
 import com.amazonaws.services.dynamodbv2.document.utils.NameMap;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
+import com.entity.Candidate;
 import com.entity.Questions;
 import com.quiz.form.QuesPos;
 
@@ -94,4 +95,36 @@ public class QuizDao {
 				}
     		return quest;
     	}
+        
+        public Candidate getCandidateById_S(String id) {
+        	Table table = dynamoDB.getTable("Candidate_S");
+        	Candidate candidate=null;
+        	QuerySpec spec = new QuerySpec()
+        	    .withKeyConditionExpression("idCan = :v_id")
+        	    .withValueMap(new ValueMap()
+        	        .withString(":v_id",id));
+
+        	ItemCollection<QueryOutcome> items = table.query(spec);
+
+        	Iterator<Item> iterator = items.iterator();
+        	Item item = null;
+        	while (iterator.hasNext()) {
+        	    item = iterator.next();
+        	    candidate =new Candidate(item.getString("idCan"),"",item.getString("cmnd") ,"","",true,"","","","","","",null,"",null,null,null);
+        	}
+        	return candidate;
+        }
+        
+        // kiểm tra bài test của cadidate
+        public boolean CheckQuest(String idQues,String answer) {
+        	Questions ques = getQuestionsContent(idQues);
+        	if(ques.getAnswer().equals(answer))
+        		return true;
+        	return false;
+        }
+        //Lấy tổng số câu hỏi theo position
+        public int getTotalQuestofPpsition(String idPos) {
+        	int total = getQuestionsofPosition(idPos).getListQues().size();
+        	return total;
+        }
  }

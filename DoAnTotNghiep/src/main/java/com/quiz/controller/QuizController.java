@@ -2,7 +2,8 @@ package com.quiz.controller;
 
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.apply.dao.ApplyDao;
+import com.candidate.dao.CandidateDAO;
 import com.entity.Candidate;
 import com.entity.Questions;
 
@@ -25,6 +28,8 @@ import com.quiz.form.QuizForm;
 public class QuizController {
 	
 	QuizDao quizdao = new QuizDao();
+	ApplyDao applydao =new ApplyDao();
+	CandidateDAO candidatedao =new CandidateDAO();
 	
 	@GetMapping("/quiz")
 	public String index(Model model,@RequestParam("IDPOS") String idpos,@RequestParam("IDCAN") String idcan) {
@@ -41,15 +46,39 @@ public class QuizController {
 	
 	@PostMapping("/quiz")
 	public ResponseEntity<?> FinishQuiz(@RequestBody ArrayList<QuizForm> data) {
+		String idC ="";
+		String time= "";
+		int score = 0;
+		int total = 0;
+		try {
 		for (QuizForm result : data) {
-			if(!result.getIdQues().equals("idPos") || !result.getIdQues().equals("idCan"))
-				System.out.println(result.getIdQues()+"-"+result.getAnswer());
+			if(!result.getIdQues().equals("idPos") && !result.getIdQues().equals("idCan") && !result.getIdQues().equals("time")) {
+					if(quizdao.CheckQuest(result.getIdQues(), result.getAnswer()))
+						score++;
+			}
 			else
 				if(result.getIdQues().equals("idPos"))
-					System.out.println("position la: "+ result.getAnswer());
-				else
-					System.out.println("Candidate la: "+ result.getAnswer());
+				{
+					total = quizdao.getTotalQuestofPpsition(result.getAnswer());
+				}
+				else if(result.getIdQues().equals("idCan"))
+				{
+					idC = result.getAnswer();
+				}
+				else if(result.getIdQues().equals("time")) {
+					time = result.getAnswer();
+				}				
 		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		Map<String, Object> infoMap =new HashMap<String, Object>();
+		infoMap.put("score",score+"");
+		infoMap.put("total",total+"");
+		infoMap.put("time",time);
+		Candidate can = quizdao.getCandidateById_S(idC);
+		applydao.updateRateofCadidate(can, infoMap);
 		return ResponseEntity.ok("ok");
 	}
 }

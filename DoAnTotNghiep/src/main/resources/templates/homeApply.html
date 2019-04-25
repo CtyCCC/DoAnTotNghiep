@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
   <!-- Custom CSS -->
   <link href="../../dist/css/mycss/apply/stylish-portfolio.css" rel="stylesheet">
+  <!--sweetalert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <style>
   #changeCV {
      cursor: epointer;
@@ -74,36 +76,29 @@
         </div>
         <!-- Modal body content -->
         <div class="modal-body">
-          <form id="frm1" action="sendapply" method="post"  enctype="multipart/form-data">
+          <form id="frm1" action="#" th:action="@{/homeApply}" th:object="${formapply}" method="post"  enctype="multipart/form-data">
             <!-- Identity card number -->
               <div class="form-group">
                 <label>Identity card number  <span class="text-danger">&lowast;</span></label>
-                <input type="text" name="f_idcard" class="form-control" required>
+                <input type="text" th:field="*{f_idcard}" class="form-control" placeholder="Between 3 and 32 characters"/>
+               	<span th:if="${#fields.hasErrors('f_idcard')}" th:errors="*{f_idcard}" ></span>
               </div>
               <!-- Full Name  -->
               <div class="form-group">
                 <label>Full Name <span class="text-danger">&lowast;</span></label>
-                <div class="form-inline">
-                  <div class="b-first">
-                    <p>First Name</p>
-                    <input type="text" class="form-control" name="f_firstname" style="width: 95%">
-                  </div>
-                  <div class="b-last">
-                     <p>Last Name</p>
-                     <input type="text" class="form-control" name="f_lastname" style="width: 100%">
-                  </div>
-                </div>
+                <input type="text" class="form-control" th:field="*{f_name}"/>
+                <span th:if="${#fields.hasErrors('f_name')}" th:errors="*{f_name}">na</span>
               </div>
               <!-- Gender -->
               <div class="form-group">
                 <label>Gender</label>
                 <div class="form-inline">
                   <div class="b-first">
-                    <input type="radio" name="f_gender" value="Male" checked>
+                    <input type="radio" th:field="*{f_gender}" value="Male" checked/>
                     <span class="ml-1">Male</span> 
                   </div>
                   <div>
-                    <input type="radio" name="f_gender" value="Female">
+                    <input type="radio" th:field="*{f_gender}" value="Female"/>
                     <span class="ml-1">Female</span>
                   </div>
                 </div>
@@ -111,35 +106,37 @@
               <!-- Date of birth -->
               <div class="form-group">
                 <label>Date of Birth</label>
-                <input type="text" class="form-control" id="DOB" name="f_DOB" >
+                <input type="text" class="form-control" id="DOB" th:field="*{f_DOB}" />
               </div>
               <!-- Positon apply -->
               <div class="form-group">
                 <label>Possiton</label>
-                <select name="f_position" id="position" class="form-control">
+                <select th:field="*{f_position}" id="position" class="form-control">
                   <option value=""></option>
                   <option  th:each="item : ${titleList}" th:value="${item.idPos}" th:text="${item.name}"></option>
                 </select>
+                <span th:if="${#fields.hasErrors('f_position')}" th:errors="*{f_position}"></span>
               </div>
               <!-- Email -->
               <div class="form-group">
                 <label>Email <span class="text-danger">&lowast;</span></label>
-                <input type="email" name="f_email" class="form-control" required>
+                <input type="email" th:field="*{f_email}" class="form-control"/>
+                <span th:if="${#fields.hasErrors('f_email')}" th:errors="*{f_email}"></span>
               </div>
               <!-- Phone -->
               <div class="form-group">
                 <label>Phone <span class="text-danger">&lowast;</span></label>
-                <input type="text" name="f_phone" class="form-control" required>
+                <input type="text" th:field="*{f_phone}" class="form-control">
               </div>
               <!-- Skill -->
               <div class="form-group">
                 <label>Work Exp</label>
-                <textarea rows="5" class="form-control" name="f_workExp"></textarea>
+                <textarea rows="5" class="form-control" th:field="*{f_workExp}"></textarea>
               </div>
               <!-- upCV -->
               <div class="form-group">
                 <a><label id="changeCV" class="btn btn-primary" for="upload-cv">CV</label></a>
-                <input type="file" id="upload-cv" name="f_filedata">
+                <input type="file" id="upload-cv" th:field="*{f_filedata}"/>
               </div>
           </form>
         </div>
