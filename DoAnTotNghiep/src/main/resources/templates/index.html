@@ -142,7 +142,7 @@
               <div class="box-header">
                 <div class="col-md-6">
                   <div class="col-md-4" style="padding: 0">
-                    <input class="form-control" type="text" placeholder="Input name...">
+                    <input class="form-control" type="text" id="searchNameTb" placeholder="Input name...">
                   </div>
                   <div class="col-md-3" >
                     <select class="form-control">
@@ -425,7 +425,7 @@
                       <span th:unless="${dsCandidate.gender}">Female</span>
                     </td>                  
                     <td th:text="${dsCandidate.phone}"></td>             
-                    <td><a id="link_pos" th:text="${dsCandidate.namePos}" href=""></a></td>
+                    <td><a id="link_pos" th:text="${dsCandidate.namePos}" th:href="@{/position(namePos=${dsCandidate.namePos})}"></a></td>
                     <td >
                       <span class="badge bg-green" th:text="${dsCandidate.rate.score}+'/'+${dsCandidate.rate.total}"></span>
                     </td>
@@ -616,20 +616,20 @@
         })
       });
 
-      $('#link_pos').click(function(event) {
+      //$('#link_pos').click(function(event) {
         /* Act on the event */
-        var pos = $('#link_pos').text();
-        $.ajax({
-                url: '/position',
-                type: 'post',
-                dataType: 'html',
-                data: {
-                    namePos: pos,
-                }
-            }).done(function() {
-                window.location.href = "/position";
-            });
-      });
+        //var pos = $('#link_pos').text();
+        //$.ajax({
+                //url: '/position',
+                //type: 'post',
+                //dataType: 'html',
+                //data: {
+                    //namePos: pos,
+                //}
+            //}).done(function() {
+                //window.location.href = "/position";
+            //});
+      //});
     });
 
 
@@ -713,6 +713,8 @@
       $('.timepicker').timepicker({
         showInputs: false
       })
+     
+
 
       //Set onClick cho 1 lúc nhiều button
       var bt = document.querySelectorAll("#btn_profile");
@@ -733,7 +735,6 @@
             //     window.location.href = data.url;
             // });        
       };
-
     });
 
 

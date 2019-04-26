@@ -1,10 +1,10 @@
 package com.position.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.entity.Position;
 import com.entity.Questions;
-import com.google.api.services.drive.Drive.Changes.List;
 
 public class TestQuessss {
 
@@ -21,7 +21,8 @@ public class TestQuessss {
 //			System.out.println(questions.getIdQues());
 //		}
 //		System.out.println("id moi ne: "+dao.autoIdQues(arr));
-//		PositionDAO dao = new PositionDAO();
+		PositionDAO dao = new PositionDAO();
+		
 //		ArrayList<Object> ar =  (ArrayList<Object>) dao.getQuestionsOfPosition("POS4");
 //		System.out.println(ar);
 //		ArrayList<Object> arr = new ArrayList<>();
@@ -34,7 +35,12 @@ public class TestQuessss {
 //		Position p = new Position("idPos2", "name2", "area3", "expDate3", "requirement3", "benefit3", "description3");
 //		dao.updatePos(p);
 //		dao.addNewPos(new Position("idPos2", "name2", "area", "expDate", "requirement", "benefit", "description"));
-//		ArrayList<Position> arr = dao.getAllPosition();
+		ArrayList<Position> arr = dao.getAllPosition();
+		Position p = dao.getOnePositionByID("POS1", arr);
+		System.out.println(p.toString());
+		System.out.println("List Ques nonfuncton: " +p.getListQues().toString());
+		List<Object> ar2 =  dao.getQuestionsOfPosition("POS1");
+		System.out.println("list ques by function: " +ar2.toString());
 //		dao.formatAllResult(arr);
 //		for (Position position : arr) {
 //			System.out.println(position.getName());

@@ -79,7 +79,7 @@ public class PositionDAO {
 	//get pos theo id
 	public Position getOnePositionByID (String idPos, ArrayList<Position> arr) {
 		for (Position position : arr) {
-			if (position.getName().equals(idPos))
+			if (position.getIdPos().equals(idPos))
 				return position;
 		}
 		return null;
