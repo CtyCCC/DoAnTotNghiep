@@ -157,7 +157,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <label for="" id = >Area: </label>
                 <span id= "nameselected" th:text="${selectedposition.name}" hidden="">cc</span>
                 <span id= "idPosition" th:text="${selectedposition.idPos}" hidden="">cc</span>
-                <input th:value=${selectedposition.area} id="area" class="form-control" disabled placeholder="HCM/HN"></input>
+                <input th:value="${selectedposition.area}" id="area" class="form-control" disabled placeholder="HCM/HN"></input>
               </div>
               <div class="col-md-2">
                 <label>Exp-date:</label>
@@ -173,7 +173,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <div class="col-md-4" id="loadhere2">
                   <label for="">Requirement: </label>
                   <textarea th:text="${selectedposition.requirement}"  id="requirement" class="form-control" name="" rows="12" disabled style="resize: none" 
-                  placeholder="Recommend for good format: &#10; abc- xyz- 123- Something.."></textarea> 
+                  placeholder="Enter requirements..."></textarea> 
                 </div>
                 <div class="col-md-4">
                   <label for="">Benefit: </label>
@@ -184,8 +184,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <textarea th:text="${selectedposition.description}" id="description" class="form-control" name="" rows="12" disabled style="resize: none" placeholder="Enter detail description..."></textarea>
                 </div>
               </div>
-              </div>
-              </div>
+              
               
               <div class="col-md-12" style="padding-top: 2%">
                 <div class="box box-info">
@@ -260,15 +259,18 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           <tr>
                             <th>ID</th>
                             <th>Content</th>
-                            <th>Result</th>
+                            <th>Answer</th>
                             <th id="questCount">selected</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr th:each="ques : ${listQuestions}">
                             <td th:text="${ques.idQues}">1</td>
-                            <td th:text="${ques.content}">2</td>
-                            <td th:text="${ques.answer}">3</td>
+                            <td th:text="${ques.content}" >2</td>
+                            <td th:if="${ques.answer == 'a'}" th:text="${ques.a}">3</td>
+                            <td th:if="${ques.answer == 'b'}" th:text="${ques.b}">3</td>
+                            <td th:if="${ques.answer == 'c'}" th:text="${ques.c}">3</td>
+                            <td th:if="${ques.answer == 'd'}" th:text="${ques.d}">3</td>
                             <td>
                               <div class="text-center"><input class="checkk" type="checkbox"></div>
                             </td>
@@ -279,6 +281,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <!-- /.box-body -->
                 </div>
                 <!-- /.box history -->
+              </div>
+              </div>
               </div>
             </div>
           </div>
@@ -604,19 +608,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     
     $("#selectPos").change(function(){
     	var kq =$(this).val();
-    	$.ajax({
-    	        type: "post",
-    	        url: "/loadposition",  
-    	        data:{ name: kq, chien: "chien" },
-    	        success: function(){
-    	        	console.log("send success to server" +kq);
-    	        	//$("#placeload").load("position #reloadThis");
-    	        	location.reload();
-    	        },
-    	        error: function(){      
-    	         alert('Error while request..');
-    	        }
-   		});
+    	window.location.href ="/position"+ '?nameSelected=' +kq;
 	});
 });
 </script>

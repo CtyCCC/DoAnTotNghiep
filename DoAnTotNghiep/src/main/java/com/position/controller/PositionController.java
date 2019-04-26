@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.position.dao.PositionDAO;
 import com.position.dao.QuestionsDAO;
@@ -25,12 +28,12 @@ public class PositionController {
 
 	QuestionsDAO quesDAO = new QuestionsDAO();
 	PositionDAO posDAO = new PositionDAO();
-	String nameAjax;
 	
 	@GetMapping("/position")
 	public String index(Model model,HttpServletRequest request) {
 		
 		String namePos = request.getParameter("namePos");
+		String nameSelected = request.getParameter("nameSelected");
 		
 		//get all question
 		ArrayList<Questions> arrQues = new ArrayList<>();
@@ -46,9 +49,10 @@ public class PositionController {
 		model.addAttribute("listPosition", arrPos);
 		
 		//lấy 1 position để hiển thị
-		if (nameAjax != null) {
+		if (nameSelected != null) {
 			
-			Position p = posDAO.getOnePositionByName(nameAjax, arrPos);
+			Position p = posDAO.getOnePositionByName(nameSelected, arrPos);
+			
 			model.addAttribute("selectedposition",p);
 			
 			//lấy mảng id câu hỏi theo idPos
@@ -87,12 +91,12 @@ public class PositionController {
 		return "position";
 	}
 
-	@RequestMapping(value="/loadposition",method=RequestMethod.POST)
-	public  @ResponseBody void  getPostionWhenChangeSelectBox( HttpServletRequest request, Model model) {
-		System.out.println("After selected: " +nameAjax);
-		nameAjax = request.getParameter("name");
-		System.out.println("before selected: " +nameAjax);
-	}
+//	@RequestMapping(value="/loadposition",method=RequestMethod.POST)
+//	public  @ResponseBody void  getPostionWhenChangeSelectBox( HttpServletRequest request, Model model) {
+//		System.out.println("After selected: " +nameAjax);
+//		nameAjax = request.getParameter("name");
+//		System.out.println("before selected: " +nameAjax);
+//	}
 	
 	@RequestMapping(value="/updateListQues",method=RequestMethod.POST)
 	public  @ResponseBody void  updateListQuesPos( HttpServletRequest request, Model model) {
