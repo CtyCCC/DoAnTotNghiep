@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.apply.form.TitlePosition;
 import com.candidate.dao.CandidateDAO;
+import com.candidate.form.FormRound;
 import com.entity.Candidate;
 import com.entity.Position;
 import com.position.dao.PositionDAO;
@@ -124,7 +125,6 @@ public class TestController {
 	@GetMapping("/profile")
 	public String profile(Model model, @RequestParam("id") String id){
 		Candidate can = candidateDAO.getCandidateById(id);
-		System.out.println(can);
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
 			model.addAttribute("candidate",can);
@@ -271,12 +271,48 @@ public class TestController {
 	}
 	
 	@PostMapping("/profile/selectRound")
-	public ResponseEntity<?> showRound(HttpServletRequest req,@RequestBody Map<String, Object> data) {
-		String idRound = req.getParameter("round");
-		String idCan = req.getParameter("id");
+	public ResponseEntity<?> showRound(@RequestBody FormRound data) {
+		String idRound = data.getRound();
+		String idCan = data.getId();
 		Map<String, Object> round = candidateDAO.getRoundById(idRound, idCan);
-		System.out.println(round);		
-		return ResponseEntity.ok(round);
+		FormRound fr = new FormRound(idCan, idRound, (String)round.get("interviewer"), (String)round.get("date"), (String)round.get("time"), (String)round.get("note"), (String)round.get("venue"), (String)round.get("result"));
+		System.out.println(fr);
+		return ResponseEntity.ok(fr);
+	}
+	
+	@PostMapping("/profile/editRoundInterview")
+	public @ResponseBody String editRound(HttpServletRequest request) throws JSONException {
+		//Lấy dữ liệu từ ajax gửi về
+		String id = request.getParameter("id");
+		Candidate can = candidateDAO.getCandidateById(id);
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String interviewer = request.getParameter("interviewer");
+		String venue = request.getParameter("venue");
+		String note = request.getParameter("note");
+		String result = request.getParameter("result");
+		String idr = request.getParameter("idRound");
+		ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
+		for(int i = 0 ; i<rounds.size();i++) {
+			Map<String, Object> r = (Map<String, Object>) rounds.get(i);
+			String idRo = (String) r.get("idRound");
+			if(idRo.equals(idr)) {
+				rounds.remove(i);
+				System.out.println("lala");
+			}
+			
+		}	
+		Map<String, Object> rnd = new HashMap<String, Object>();
+		rnd.put("idRound",rounds.size()+1+"");
+		rnd.put("interviewer",interviewer);
+		rnd.put("date", date);
+		rnd.put("time", time);
+		rnd.put("venue", venue);
+		rnd.put("note", note);
+		rnd.put("result", result);	
+		rounds.add(rnd);
 		
+		candidateDAO.editRoundById(rounds,can.getIdCan(), can.getCmnd());
+		return "Edit Round Success";
 	}
 }

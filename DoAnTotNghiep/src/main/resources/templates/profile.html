@@ -161,6 +161,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <label>Name: </label>
                       <input id="name" readonly type="text" class="form-control" th:value = "${candidate.nameCan}">
                       <input id="idCan" type="text" th:value = "${candidate.idCan}" hidden="true">
+
                     </div>
                     <div class="form-row col-xs-5">
                       <label>DOB:</label>
@@ -352,6 +353,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             <option th:each="dsr : ${dsR}" th:value="${dsr}" th:text="${dsr}"></option>
                           </select>
                         </div>
+                        <input id="actionInterview" type="text" value="not" hidden="true">
                         <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square"></i></button>
                         <button type="button" class="btn btn-default pull-left" id="btneditRound" ><i class="fa fa-edit"></i></button>
                         <button type="button" class="btn btn-default pull-left" id="btnSave_interview" ><i class="fa fa-file"></i></button>
@@ -361,13 +363,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div th:if="${isIn!='Not'}" class="box-body">
                           <div class="form-group">
                             <div class="form-row col-xs-7">
-                              <label>Date:</label>
-                              <div class="input-group date">
-                                <div class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled th:value="${candidate.interview.rounds[0].date}">
-                              </div>
+                              <label>Interviewer: </label>
+                              <input type="text" class="form-control" disabled id="txtInterviewer" th:value="${candidate.interview.rounds[0].interviewer}">
                             </div>
                             <div class="form-row col-xs-5">
                               <label>Time:</label>
@@ -380,15 +377,20 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             </div>
                           </div>
                           <div class="form-group">
-                            <div class="form-row col-xs-5">
-                              <label>Interviewer: </label>
-                              <input type="text" class="form-control" disabled id="txtInterviewer" th:value="${candidate.interview.rounds[0].interviewer}">
+                            <div class="form-row col-xs-4">
+                              <label>Date:</label>
+                              <div class="input-group date">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled th:value="${candidate.interview.rounds[0].date}">
+                              </div>
                             </div>
                             <div class="form-row col-xs-4">
                               <label>Venue: </label>
                               <input type="text" class="form-control" disabled id="txtVenue" th:value="${candidate.interview.rounds[0].venue}">
                             </div>
-                            <div class="form-group col-xs-3">
+                            <div class="form-group col-xs-4">
                               <label>Result: </label>
                               <select class="form-control" disabled id="selectRs" >
                                 <option th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}" th:selected="${frs==candidate.interview.rounds[0].result}"></option>
@@ -755,7 +757,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#txtVenue").val("");
       $("#txtNote").val("");
       $("#selectRs").val("");
-      
+      $("#actionInterview").val("add");
+
     });
     $("#btneditRound").click(function(event) {
       // $("#tab_interview").attr('href', '#interview_edit');
@@ -767,6 +770,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#txtVenue").removeAttr('disabled');
       $("#txtNote").removeAttr('disabled');
       $("#selectRs").removeAttr('disabled');
+      $("#actionInterview").val("edit");
+
     });
     $("#btnSave").click(function(event) {
       // $("#tab_interview").attr('href', '#interview_edit');
@@ -855,34 +860,68 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Thêm round mới
     $("#btnSave_interview").click(function(event) {
       /* Act on the event */
-      var id = $("#idCan").val();
-      var date = $("#datepicker_Interview").val();
-      var time = $("#txttime").val();
-      var interviewer = $("#txtInterviewer").val();
-      var venue = $("#txtVenue").val();
-      var note = $("#txtNote").val();
-      var result = $("#selectRs").val();
-      $.ajax({
-        url: '/profile/addRoundInterview',
-        type: 'post',
-        dataType: 'html',
-        data: {
-            id:id,
-            date:date,
-            time:time,
-            interviewer:interviewer,
-            venue:venue,
-            note:note,
-            result:result
-        }
-       })
-      Swal.fire(
-        'AddRound success!',
-        '',
-        'success'
-      ).then((result) =>{
-        location.reload();
-      });
+      if(($("#actionInterview").val())=="add"){
+        var id = $("#idCan").val();
+        var date = $("#datepicker_Interview").val();
+        var time = $("#txttime").val();
+        var interviewer = $("#txtInterviewer").val();
+        var venue = $("#txtVenue").val();
+        var note = $("#txtNote").val();
+        var result = $("#selectRs").val();
+        $.ajax({
+          url: '/profile/addRoundInterview',
+          type: 'post',
+          dataType: 'html',
+          data: {
+              id:id,
+              date:date,
+              time:time,
+              interviewer:interviewer,
+              venue:venue,
+              note:note,
+              result:result,
+          }
+         })
+        Swal.fire(
+          'AddRound success!',
+          '',
+          'success'
+        ).then((result) =>{
+          //location.reload();
+        });
+      };
+      if(($("#actionInterview").val())=="edit"){
+        var idRound = $("#round").val().slice(6);
+        var id = $("#idCan").val();
+        var date = $("#datepicker_Interview").val();
+        var time = $("#txttime").val();
+        var interviewer = $("#txtInterviewer").val();
+        var venue = $("#txtVenue").val();
+        var note = $("#txtNote").val();
+        var result = $("#selectRs").val();
+        $.ajax({
+          url: '/profile/editRoundInterview',
+          type: 'post',
+          dataType: 'html',
+          data: {
+              id:id,
+              date:date,
+              time:time,
+              interviewer:interviewer,
+              venue:venue,
+              note:note,
+              result:result,
+              idRound:idRound
+          }
+         })
+        Swal.fire(
+          'EditRound success!',
+          '',
+          'success'
+        ).then((result) =>{
+          //location.reload();
+        });
+       };
     });
 
 
@@ -892,17 +931,26 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       var round = $("#round").val();
       var id = $("#idCan").val();
       var r = round.slice(6);
-      alert(r);
       $.ajax({
         url: '/profile/selectRound',
         type: 'post',
-        dataType: 'html',
-        data: {
-            round : r,
-            id : id,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "round" : r,
+            "id" : id,
+        }),
+        success:function(rs){
+          $("#txtInterviewer").val(rs.interviewer);
+          $("#txttime").val(rs.time);
+          $("#datepicker_Interview").val(rs.date);
+          $("#txtVenue").val(rs.venue);
+          $("#selectRs").val(rs.result);
+          $("#txtNote").val(rs.note);
+          expandDetail();
         },
-        success:function(data){
-
+        error:function(e){
+            console.log(e)
         }
        })
     });

@@ -265,6 +265,7 @@ public class CandidateDAO {
 		}
 	}
 	
+	//Edit thông tin candidate
 	public void editProfile(Candidate can) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
@@ -307,6 +308,7 @@ public class CandidateDAO {
 		}
 	}
 	
+	//Lấy round bằng idRound
 	public Map<String, Object> getRoundById(String idRound, String idCan){
 		ArrayList<Object> arr = new ArrayList<>();
 		Map<String, Object> r = null;
@@ -335,5 +337,27 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 		return null;
+	}
+	
+	//Edit thông tin round bằng id
+	public void editRoundById(ArrayList<Object> dsRound, String idCan, String cmnd) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+					.withPrimaryKey("idCan", idCan, "cmnd", cmnd)
+					.withUpdateExpression("set interview.rounds = :ro")
+					.withValueMap(new ValueMap()
+							.withList(":ro", dsRound))
+					.withReturnValues(ReturnValue.UPDATED_NEW);
+			
+		
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 }
