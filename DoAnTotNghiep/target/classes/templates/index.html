@@ -406,6 +406,7 @@
                     <th>Mobile</th>             
                     <th>Position</th>
                     <th>Rate</th>
+                    <th>Time</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>
@@ -426,8 +427,9 @@
                     <td th:text="${dsCandidate.phone}"></td>             
                     <td><a id="link_pos" th:text="${dsCandidate.namePos}" href=""></a></td>
                     <td >
-                      <span class="badge bg-red" th:text="${dsCandidate.rate.score}+'/'+${dsCandidate.rate.total}"></span>
+                      <span class="badge bg-green" th:text="${dsCandidate.rate.score}+'/'+${dsCandidate.rate.total}"></span>
                     </td>
+                    <td th:text="${dsCandidate.rate.time}"></td> 
                     <td th:switch="${dsCandidate.status}">
                       <span th:case="'New'" class="label" style="background-color: grey" th:text="${dsCandidate.status}"></span>
                       <span th:case="'Wait for interview'" class="label" style="background-color: sandyBrown" th:text="${dsCandidate.status}"></span>
@@ -460,6 +462,7 @@
                     <th>Mobile</th>             
                     <th>Position</th>
                     <th>Rate</th>
+                    <th>Time</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>
@@ -530,7 +533,17 @@
   <script>
     $(function () {
       var table = $('#example1').DataTable({
-
+        "paging"      : true,
+        "pageLength": 25,
+        "orderFixed": {
+            "pre": [ 7, 'desc' ],
+        },
+        "order": [ 8, "asc" ],
+        //'lengthChange': true,
+        // 'searching'   : true,
+         //"ordering"    : true,
+        // 'info'        : false,
+        // 'autoWidth'   : true
       })
 
       $('#btn_save_interview').click(function(event) {
@@ -708,17 +721,17 @@
       }
       function goProfile(e){
         var id = $(this).closest('#onRow').find('td:nth-child(1)').text();
-            e.preventDefault();
-            $.ajax({
-                url: '/candidate',
-                type: 'post',
-                dataType: 'html',
-                data: {
-                    id: id,
-                }
-            }).done(function() {
-                window.location.href = "/profile";
-            });        
+        window.location.href = "/profile?id="+id;
+            // $.ajax({
+            //     url: '/profile',
+            //     type: 'get',
+            //     dataType: 'html',
+            //     data: {
+            //         id: id,
+            //     }
+            // }).done(function(data) {
+            //     window.location.href = data.url;
+            // });        
       };
 
     });

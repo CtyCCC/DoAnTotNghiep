@@ -11,12 +11,18 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.apply.form.TitlePosition;
 import com.candidate.dao.CandidateDAO;
 import com.entity.Candidate;
 import com.entity.Position;
@@ -24,10 +30,11 @@ import com.position.dao.PositionDAO;
 
 @Controller
 public class TestController {
-	
-	private CandidateDAO candidateDAO =  new CandidateDAO();
-	private PositionDAO positionDAO = new PositionDAO();
-	Candidate can = new Candidate();
+	@Autowired
+	private CandidateDAO candidateDAO ;
+	@Autowired
+	private PositionDAO positionDAO ;
+	//Candidate can = new Candidate();
 	
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -105,14 +112,19 @@ public class TestController {
 		return "Delete Candidates Success";		
 	}
 	
-	@PostMapping("/candidate")
-	public @ResponseBody void can(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		can = candidateDAO.getCandidateById(id);
-	}
+//	@PostMapping("/candidate")
+//	public String can(HttpServletRequest request, RedirectAttributes attr ) {
+//		String id = request.getParameter("id");
+//		//can = candidateDAO.getCandidateById(id);
+//		
+//		attr.addAttribute("IdCan", id);
+//		return "redirect:/login";
+//	}
 	
 	@GetMapping("/profile")
-	public String profile(Model model) {		
+	public String profile(Model model, @RequestParam("id") String id){
+		Candidate can = candidateDAO.getCandidateById(id);
+		System.out.println(can);
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
 			model.addAttribute("candidate",can);
@@ -175,9 +187,6 @@ public class TestController {
 			model.addAttribute("fr", fr);
 			model.addAttribute("isIn",isIn);
 			
-			
-			
-			
 			return "profile";
 		}
 		return null;
@@ -185,6 +194,8 @@ public class TestController {
 	
 	@PostMapping("/profile/editProfile")
 	public @ResponseBody String editProfile(HttpServletRequest req) {
+		String id = req.getParameter("id");
+		Candidate can = candidateDAO.getCandidateById(id);
 		can.setNameCan(req.getParameter("name"));
 		can.setEmail(req.getParameter("email"));
 		can.setNamePos(req.getParameter("namePos"));
@@ -211,6 +222,8 @@ public class TestController {
 	@PostMapping("/profile/addRoundInterview")
 	public @ResponseBody String addRound(HttpServletRequest request) throws JSONException {
 		//Lấy dữ liệu từ ajax gửi về
+		String id = request.getParameter("id");
+		Candidate can = candidateDAO.getCandidateById(id);
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
 		String interviewer = request.getParameter("interviewer");
@@ -255,5 +268,15 @@ public class TestController {
 		}			
 			
 		return "Add Round Success";
+	}
+	
+	@PostMapping("/profile/selectRound")
+	public ResponseEntity<?> showRound(HttpServletRequest req,@RequestBody Map<String, Object> data) {
+		String idRound = req.getParameter("round");
+		String idCan = req.getParameter("id");
+		Map<String, Object> round = candidateDAO.getRoundById(idRound, idCan);
+		System.out.println(round);		
+		return ResponseEntity.ok(round);
+		
 	}
 }

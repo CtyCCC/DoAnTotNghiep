@@ -306,4 +306,34 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
+	
+	public Map<String, Object> getRoundById(String idRound, String idCan){
+		ArrayList<Object> arr = new ArrayList<>();
+		Map<String, Object> r = null;
+		Table table = dynamoDB.getTable("Candidate_M");
+		ScanSpec scanSpec = new ScanSpec()
+				.withFilterExpression("#ii = :iiii")
+				.withNameMap(new NameMap().with("#ii", "idCan"))
+				.withValueMap(new ValueMap().withString(":iiii", idCan));
+		try {
+			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
+			Iterator<Item> iter = items.iterator();
+			while (iter.hasNext()) {
+				Item item = iter.next();
+				arr = (ArrayList<Object>) item.getMap("interview").get("rounds");
+			}
+			for(int i = 0; i<arr.size();i++) {
+				Map<String, Object> a = (Map<String, Object>) arr.get(i);
+				if(a.get("idRound").equals(idRound)) {
+					r = a;
+				}
+			}
+			return r;
+		}
+		catch (Exception e) {
+			System.err.println("Unable to scan the table:");
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
 }

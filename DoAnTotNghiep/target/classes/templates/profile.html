@@ -160,6 +160,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <div class="form-row col-xs-7">
                       <label>Name: </label>
                       <input id="name" readonly type="text" class="form-control" th:value = "${candidate.nameCan}">
+                      <input id="idCan" type="text" th:value = "${candidate.idCan}" hidden="true">
                     </div>
                     <div class="form-row col-xs-5">
                       <label>DOB:</label>
@@ -810,6 +811,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Nút save khi edit Profile candidate
     $("#btn_saveProfile").click(function(event) {
       /* Act on the event */
+      var id = $("#idCan").val();
       var name = $('#name').val();
       var email = $("#email").val();
       var namePos = $("#position").val();
@@ -826,6 +828,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         type: 'post',
         dataType: 'html',
         data: {
+            id:id,
             name :name,
             email :email,
             namePos :namePos,
@@ -852,6 +855,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Thêm round mới
     $("#btnSave_interview").click(function(event) {
       /* Act on the event */
+      var id = $("#idCan").val();
       var date = $("#datepicker_Interview").val();
       var time = $("#txttime").val();
       var interviewer = $("#txtInterviewer").val();
@@ -863,6 +867,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         type: 'post',
         dataType: 'html',
         data: {
+            id:id,
             date:date,
             time:time,
             interviewer:interviewer,
@@ -876,10 +881,31 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         '',
         'success'
       ).then((result) =>{
-        window.location.href = "/profile";
+        location.reload();
       });
     });
 
+
+    //Show round đã chọn
+    $("#round").change(function(event) {
+      /* Act on the event */
+      var round = $("#round").val();
+      var id = $("#idCan").val();
+      var r = round.slice(6);
+      alert(r);
+      $.ajax({
+        url: '/profile/selectRound',
+        type: 'post',
+        dataType: 'html',
+        data: {
+            round : r,
+            id : id,
+        },
+        success:function(data){
+
+        }
+       })
+    });
   });
 </script>
 </body>
