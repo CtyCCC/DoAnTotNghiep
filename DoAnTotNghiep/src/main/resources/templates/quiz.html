@@ -196,16 +196,15 @@ header {
   			console.log(JSON.stringify(data));
     	   $.ajax({
     			type: "POST",
-    			dataType: "json",
+    			dataType: "html",
     			contentType: "application/json",
     			data: JSON.stringify(data),
     	        url: "/quiz",
     	        success: function(data){
-    	           console.log(data);
-    	           window.open("/homeApply");
+    	        	window.location.href= "/homeApply";
     	        },
     	        error:function(e){
-    	            console.log(e)
+    	            alert("ERROR")
     	        }
     		})  
   	});

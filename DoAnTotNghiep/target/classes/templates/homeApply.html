@@ -9,9 +9,11 @@
 
   <title>Dou NetWorks</title>
 
+  <!-- Script Start  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.0/jquery.validate.min.js"></script>
   <!-- Bootstrap Core CSS -->
   <link href="../../bower_components/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Custom Fonts -->
   <link href="../../bower_components/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -27,11 +29,14 @@
      cursor: epointer;
     /* Style as you please, it will become the visible UI component. */
    }
-  #upload-cv{
+  #f_filedata{
      opacity: 0;
      position: absolute;
      z-index: -1;
   }
+ .my-error-class {
+    color:#FF0000;  /* red */
+}
   </style>
 </head>
 
@@ -76,29 +81,27 @@
         </div>
         <!-- Modal body content -->
         <div class="modal-body">
-          <form id="frm1" action="#" th:action="@{/homeApply}" th:object="${formapply}" method="post"  enctype="multipart/form-data">
+          <form id="frm1" action="/homeApply"  method="post"  enctype="multipart/form-data">
             <!-- Identity card number -->
               <div class="form-group">
                 <label>Identity card number  <span class="text-danger">&lowast;</span></label>
-                <input type="text" th:field="*{f_idcard}" class="form-control" placeholder="Between 3 and 32 characters"/>
-               	<span th:if="${#fields.hasErrors('f_idcard')}" th:errors="*{f_idcard}" ></span>
+                <input type="text" id="f_idcard" name="f_idcard" class="form-control" required="required"/>
               </div>
               <!-- Full Name  -->
               <div class="form-group">
                 <label>Full Name <span class="text-danger">&lowast;</span></label>
-                <input type="text" class="form-control" th:field="*{f_name}"/>
-                <span th:if="${#fields.hasErrors('f_name')}" th:errors="*{f_name}">na</span>
+                <input type="text" id="f_name" class="form-control" name="f_name"/>
               </div>
               <!-- Gender -->
               <div class="form-group">
                 <label>Gender</label>
                 <div class="form-inline">
                   <div class="b-first">
-                    <input type="radio" th:field="*{f_gender}" value="Male" checked/>
+                    <input type="radio" name="f_gender" value="Male" checked/>
                     <span class="ml-1">Male</span> 
                   </div>
                   <div>
-                    <input type="radio" th:field="*{f_gender}" value="Female"/>
+                    <input type="radio" name="f_gender" value="Female"/>
                     <span class="ml-1">Female</span>
                   </div>
                 </div>
@@ -106,37 +109,36 @@
               <!-- Date of birth -->
               <div class="form-group">
                 <label>Date of Birth</label>
-                <input type="text" class="form-control" id="DOB" th:field="*{f_DOB}" />
+                <input type="text" class="form-control"  id="f_DOB" name="f_DOB" />
               </div>
               <!-- Positon apply -->
               <div class="form-group">
-                <label>Possiton</label>
-                <select th:field="*{f_position}" id="position" class="form-control">
+                <label>Possiton</label> <span class="text-danger">&lowast;</span></label>
+                <select name="f_position" id="f_position" class="form-control">
                   <option value=""></option>
                   <option  th:each="item : ${titleList}" th:value="${item.idPos}" th:text="${item.name}"></option>
                 </select>
-                <span th:if="${#fields.hasErrors('f_position')}" th:errors="*{f_position}"></span>
               </div>
               <!-- Email -->
               <div class="form-group">
                 <label>Email <span class="text-danger">&lowast;</span></label>
-                <input type="email" th:field="*{f_email}" class="form-control"/>
-                <span th:if="${#fields.hasErrors('f_email')}" th:errors="*{f_email}"></span>
+                <input type="email" id="f_email" name="f_email" class="form-control"/>
+                
               </div>
               <!-- Phone -->
               <div class="form-group">
                 <label>Phone <span class="text-danger">&lowast;</span></label>
-                <input type="text" th:field="*{f_phone}" class="form-control">
+                <input type="text" id="f_phone" name="f_phone" class="form-control">
               </div>
               <!-- Skill -->
               <div class="form-group">
                 <label>Work Exp</label>
-                <textarea rows="5" class="form-control" th:field="*{f_workExp}"></textarea>
+                <textarea rows="5" class="form-control" id="f_workExp" name="f_workExp"></textarea>
               </div>
               <!-- upCV -->
               <div class="form-group">
-                <a><label id="changeCV" class="btn btn-primary" for="upload-cv">CV</label></a>
-                <input type="file" id="upload-cv" th:field="*{f_filedata}"/>
+                <a><label id="changeCV" class="btn btn-primary" for="f_filedata">CV</label></a>
+                <input type="file" id="f_filedata" name="f_filedata"/>
               </div>
           </form>
         </div>
@@ -315,13 +317,13 @@
  
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../../bower_components/vendor/jquery/jquery.min.js"></script>
   <script src="../../bower_components/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Plugin JavaScript -->
   <script src="../../bower_components/vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
   <!-- Custom scripts for this template -->
   <script src="../../dist/js/apply/stylish-portfolio.min.js"></script>
+
 </body>
 
 <script>
@@ -337,16 +339,10 @@
   }
   /* auto fillform apply from RECRUITMENT  */
   function fillform(){
-	  console.log($("#i_position").text());
-	  $("#position").val($("#i_position").text());
-	  console.log($("#position").val());
-	  
+	  $("#f_position").val($("#i_position").text());	  
 	};
-  /* Button open rank list */
-  $(".btn-opl").click(function() {
-    $("#Ranking-list").toggleClass("close-rank");
-  })
-	$('#DOB').datepicker({
+$(document).ready(function(){	
+	$('#f_DOB').datepicker({
 	     autoclose: true,
 	     format:"dd/mm/yyyy"
     })
@@ -381,9 +377,56 @@
         }
 	}) 
 });
-  $("#sendapply").on("click",function(){
+  $("#sendapply").on("click",function(event){
 		$("#frm1").submit();
 	})
+	$.validator.addMethod('filesize', function(value, element, param) {
+    // param = size (en bytes) 
+    // element = element to validate (<input>)
+    // value = value of the element (file name)
+    return this.optional(element) || (element.files[0].size <= param) 
+});
+	$("#frm1").validate({
+		errorClass: "my-error-class",
+		rules:{
+			f_idcard: "required",
+			f_name:"required",
+			f_DOB:"required",
+			f_email:{
+				required : true,
+				email : true
+			},
+			f_position:"required",
+			f_phone:{
+				required:true,
+				digits : true
+			},
+			f_filedata:{
+				required : true,
+				filesize : 1048576
+			}
+		},
+		messages:{
+			f_idcard: "ID cannot be empty",
+			f_name:"NAME cannot be empty",
+			f_DOB:"DOB can not be empty",
+			f_email:{
+				required : "EMAIL cannot be empty",
+				email:"Not Email format "
+			},
+			f_position:"POSITON cannot be empty",
+			f_phone:{
+				required:"Phone cannot be empty",
+				digits: "Phone must digits"
+			},
+			f_filedata:{
+				required:"Don't file attached",
+				filesize:"File size < 1MB"
+			}
+		}
+	});
+})
+  
 </script>
 
 </html>

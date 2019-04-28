@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.GeneralSecurityException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,13 +31,18 @@ import com.apply.form.TitlePosition;
 import com.candidate.dao.CandidateDAO;
 import com.entity.Candidate;
 import com.entity.Position;
+import com.google.api.client.http.AbstractInputStreamContent;
+import com.google.api.client.http.InputStreamContent;
+import com.subsystem.uploadfile.GGDrive;
 
 @Controller
 public class ApplyController {
-	
+
 	ApplyDao applydao = new ApplyDao();
 	CandidateDAO candidatedao = new CandidateDAO();
-	private static String UPLOADED_FOLDER = "C:/CV";
+	GGDrive GG =new GGDrive();
+
+
 	// Lấy thông tin tổng quát(id,tên,ngày) của position đổ về client
 	@GetMapping("/homeApply")
 	public String showApplytition(Model model) {
@@ -61,57 +67,49 @@ public class ApplyController {
 		model.addAttribute("titleList", filterTitle);
 		return "homeApply";
 	}
-	
+
 	//Lấy thông tin chi tiết của position
 	@PostMapping("/getcontent")
 	public ResponseEntity<?> getConten(@RequestBody TitlePosition data) {
 		Position position = applydao.getOnePositionContent(data.getIdPos(),data.getName());
-		Position pos2 = applydao.formatContentPosition(position);
-		return ResponseEntity.ok(pos2);
+		return ResponseEntity.ok(position);
 	}
-	
-	
+
+
 	@PostMapping("/homeApply")
-	public String getNewRecruitment(@ModelAttribute("formapply") @Valid FormApply formapply,BindingResult bind, RedirectAttributes attr ) {
-		if (bind.hasErrors()) {
-            return "homeApply";
-        }
-		else {
-			DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
-			Date datecurrent = new Date();
-			Path path=null;
-			MultipartFile filedata = formapply.getF_filedata();
-			byte[] bytes;
-			
-			try {
-				bytes = filedata.getBytes();
-				path = Paths.get(UPLOADED_FOLDER,filedata.getOriginalFilename());
-				Files.write(path, bytes);
-				System.out.println(path);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String idCan = dateformat.format(datecurrent);
-			String nameCan =formapply.getF_name();
-			String cmnd =formapply.getF_idcard();
-			String email = formapply.getF_email();
-			String phone = formapply.getF_phone();
-			Boolean gender = formapply.getF_gender()=="Male" ? true : false;
-			String dob = formapply.getF_DOB();
-			String linkCV = path.toString();
-			String namePos = formapply.getF_position();
-			String dateImport = "";
-			String workExp = formapply.getF_workExp();
-			
-			Map<String,Object> rate =null;
-			String status ="New";
-			Candidate candidate = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, linkCV, namePos, dateImport,workExp,"", rate, status, null,null,null);
-			applydao.addCandidate_S(candidate);
-			
-			attr.addAttribute("IDPOS",candidate.getNamePos());
-			attr.addAttribute("IDCAN",candidate.getIdCan());
-			return "redirect:/quiz";
+	public String getNewRecruitment(@ModelAttribute("formapply") FormApply formapply,RedirectAttributes attr ) {
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
+		Date datecurrent = new Date();
+		
+		String idCan = dateformat.format(datecurrent);
+		String nameCan =formapply.getF_name();
+		String cmnd =formapply.getF_idcard();
+		String email = formapply.getF_email();
+		String phone = formapply.getF_phone();
+		Boolean gender = formapply.getF_gender().equals("Male") ? true : false;
+		String dob = formapply.getF_DOB() == null ? "not" : formapply.getF_DOB();
+		String linkCV = "not";
+		String namePos = formapply.getF_position();
+		String dateImport = "not";
+		String workExp = formapply.getF_workExp().equals("") ?  "not" : formapply.getF_workExp();
+		
+		// Upload file lên google
+		MultipartFile filedata = formapply.getF_filedata();
+		
+		try {
+			String id = GG.up(cmnd+"-"+idCan,filedata);
+			linkCV ="https://drive.google.com/open?id="+id;
+		} catch (GeneralSecurityException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+		String status ="New";
+		Candidate candidate = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, linkCV, namePos, dateImport,workExp,"",null, status, null,null,null);
+		applydao.addCandidate_S(candidate);
+
+		attr.addAttribute("IDPOS",candidate.getNamePos());
+		attr.addAttribute("IDCAN",candidate.getIdCan());
+		return "redirect:/quiz";
 	}
 }

@@ -11,20 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 public class FormApply {
-	@NotEmpty(message = "Khonmg duoc rong")
 	private String f_idcard;
-	@NotEmpty(message = "Khonmg duoc rong")
 	private String f_name;
 	private String f_gender;
 	private String f_DOB;
-	@NotEmpty(message = "Khonmg duoc rong")
 	private String f_position;
-	@NotEmpty(message = "Khonmg duoc rong")
-	@Email(message = "Sai dinh dang email")
 	private String f_email;
-	@NotEmpty(message = "Khonmg duoc rong")
 	private String f_phone;
-	private String f_skill;
 	private String f_workExp;
 	private MultipartFile f_filedata;
 	public String getF_idcard() {
@@ -69,12 +62,6 @@ public class FormApply {
 	public void setF_phone(String f_phone) {
 		this.f_phone = f_phone;
 	}
-	public String getF_skill() {
-		return f_skill;
-	}
-	public void setF_skill(String f_skill) {
-		this.f_skill = f_skill;
-	}
 	public String getF_workExp() {
 		return f_workExp;
 	}
@@ -88,7 +75,7 @@ public class FormApply {
 		this.f_filedata = f_filedata;
 	}
 	public FormApply(String f_idcard, String f_name, String f_gender, String f_DOB, String f_position,
-			String f_email, String f_phone, String f_skill, String f_workExp, MultipartFile f_filedata) {
+			String f_email, String f_phone, String f_workExp, MultipartFile f_filedata) {
 		super();
 		this.f_idcard = f_idcard;
 		this.f_name = f_name;
@@ -97,7 +84,6 @@ public class FormApply {
 		this.f_position = f_position;
 		this.f_email = f_email;
 		this.f_phone = f_phone;
-		this.f_skill = f_skill;
 		this.f_workExp = f_workExp;
 		this.f_filedata = f_filedata;
 	}
@@ -108,8 +94,7 @@ public class FormApply {
 	@Override
 	public String toString() {
 		return "FormApply [f_idcard=" + f_idcard + ", f_name=" + f_name + ", f_gender=" + f_gender + ", f_DOB=" + f_DOB
-				+ ", f_position=" + f_position + ", f_email=" + f_email + ", f_phone=" + f_phone + ", f_skill="
-				+ f_skill + ", f_workExp=" + f_workExp + ", f_filedata=" + f_filedata + "]";
+				+ ", f_position=" + f_position + ", f_email=" + f_email + ", f_phone=" + f_phone + ", f_workExp=" + f_workExp + ", f_filedata=" + f_filedata + "]";
 	}
 	
 	

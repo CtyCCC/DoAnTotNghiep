@@ -90,31 +90,10 @@ public class ApplyDao {
         	return position;
         }
         
-        //Hàm format string theo định dạng
-        public Position formatContentPosition(Position position) {
-				String re = position.getRequirement();
-				position.setRequirement(formatContent(re));
-				String be = position.getBenefit();
-				position.setBenefit(formatContent(be));
-				String des = position.getDescription();
-				position.setDescription(formatContent(des));
-				return position;
-        }
-        public String formatContent(String content) {
-        	String[] ar = content.split("-");
-        	String result = "";
-        	for (int i = 0; i<ar.length;i++) {
-        		result = result + "-" + ar[i] + "\n";
-        	}
-        	return result;
-        }
-        
         //Thêm 1 candidate mới vào Candidate_S
         public void addCandidate_S(Candidate can) {
     		Table table = dynamoDB.getTable("Candidate_S");
-    		System.out.println(can);
     		try {
-    			System.out.println("Adding a new item...");
     			PutItemOutcome outcome = table
     					.putItem(new Item()
     							.withPrimaryKey("idCan", can.getIdCan(), "cmnd", can.getCmnd())
@@ -128,9 +107,6 @@ public class ApplyDao {
     							.withString("namePos", can.getNamePos())
     							.withString("status", can.getStatus())
     							.withString("workExp", can.getWorkExp()));
-
-    			System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
-
     		}
     		catch (Exception e) {
     			System.err.println(e.getMessage());
@@ -141,7 +117,7 @@ public class ApplyDao {
         	Table table = dynamoDB.getTable("Candidate_S");
         	UpdateItemSpec updateitem = new UpdateItemSpec()
         								.withPrimaryKey("idCan",can.getIdCan(),"cmnd",can.getCmnd())
-        								.withUpdateExpression("set phone =:val")
+        								.withUpdateExpression("set score =:val")
         								.withValueMap(new ValueMap().withMap(":val",infoMap))
         								.withReturnValues(ReturnValue.UPDATED_NEW);
         	
