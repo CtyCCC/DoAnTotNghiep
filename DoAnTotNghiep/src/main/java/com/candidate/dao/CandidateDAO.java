@@ -360,4 +360,33 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
+	
+	//Update Final Result
+	public void updateFinalResult(String idCan, String cmnd, String fnRs) {
+		String stus = "Interviewing";
+		if(fnRs.equals("Pass")) {
+			stus = "Interview Pass";
+		}else if(fnRs.equals("Fail")) {
+			stus = "Interview Fail";
+		};
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+					.withPrimaryKey("idCan", idCan, "cmnd", cmnd)
+					.withUpdateExpression("set #ss = :s, interview.finalResult = :fr")
+					.withNameMap(new NameMap().with("#ss", "status"))
+					.withValueMap(new ValueMap()
+							.withString(":fr", fnRs).withString(":s", stus))
+					.withReturnValues(ReturnValue.UPDATED_NEW);
+			
+		
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
 }

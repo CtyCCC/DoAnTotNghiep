@@ -161,7 +161,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <label>Name: </label>
                       <input id="name" readonly type="text" class="form-control" th:value = "${candidate.nameCan}">
                       <input id="idCan" type="text" th:value = "${candidate.idCan}" hidden="true">
-
+                      <input id="cmnd" type="text" th:value = "${candidate.cmnd}" hidden="true">
                     </div>
                     <div class="form-row col-xs-5">
                       <label>DOB:</label>
@@ -338,7 +338,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="col-xs-12">
                             <div class="progress-group">
-                              <span class="progress-text">Pass/Fail: </span>
+                              <span class="progress-text">Pass/Total: </span>
                               <span class="progress-number">xxx%</span>
                               <div class="progress sm progress-bar-red">
                                 <div class="progress-bar progress-bar-green" style="width: 10%" id="percentPass"></div>
@@ -348,8 +348,14 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         </div>
                       </div>
                       <div class="col-xs-12">
-                        <div th:if="${isIn!='Not'}" class="col-xs-3">
+                        <div th:if="${isIn=='Not'}" class="col-xs-3">
                           <select class="form-control" id="round">
+                            <option value="Round:" style="font-weight: bold;" id="round_empty">Round:</option>
+                          </select>
+                        </div>
+                        <div th:unless="${isIn=='Not'}" class="col-xs-3">
+                          <select class="form-control" id="round">
+                            <option value="Round:" style="font-weight: bold;display: none;" id="round_empty">Round:</option>
                             <option th:each="dsr : ${dsR}" th:value="${dsr}" th:text="${dsr}"></option>
                           </select>
                         </div>
@@ -359,8 +365,53 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <button type="button" class="btn btn-default pull-left" id="btnSave_interview" ><i class="fa fa-file"></i></button>
                         <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 
                       </div>
-                      <div class="box box-info col-xs-12" style="margin-top: 2%">
-                        <div th:if="${isIn!='Not'}" class="box-body">
+                      <div th:if="${isIn=='Not'}" class="box box-info col-xs-12" style="margin-top: 2%" id="form_round">
+                        <div class="box-body">
+                          <div class="form-group">
+                            <div class="form-row col-xs-7">
+                              <label>Interviewer: </label>
+                              <input type="text" class="form-control" disabled id="txtInterviewer">
+                            </div>
+                            <div class="form-row col-xs-5">
+                              <label>Time:</label>
+                              <div class="input-group">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-clock-o"></i>
+                                </div>
+                                <input type="text" class="form-control timepicker" disabled id="txttime">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="form-row col-xs-4">
+                              <label>Date:</label>
+                              <div class="input-group date">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled >
+                              </div>
+                            </div>
+                            <div class="form-row col-xs-4">
+                              <label>Venue: </label>
+                              <input type="text" class="form-control" disabled id="txtVenue">
+                            </div>
+                            <div class="form-group col-xs-4">
+                              <label>Result: </label>
+                              <select class="form-control" disabled id="selectRs" >
+                                <option th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}"></option>
+                              </select>
+                            </div>
+                            <div class="col-xs-12" style="padding-bottom: 1%">
+                              <label for="">Note: </label>
+                              <textarea class="form-control" rows="3" disabled id="txtNote"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div th:unless="${isIn=='Not'}" class="box box-info col-xs-12" style="margin-top: 2%;display: none" id="form_round">
+                        <div class="box-body">
                           <div class="form-group">
                             <div class="form-row col-xs-7">
                               <label>Interviewer: </label>
@@ -399,48 +450,6 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                             <div class="col-xs-12" style="padding-bottom: 1%">
                               <label for="">Note: </label>
                               <textarea class="form-control" rows="3" disabled id="txtNote" th:text="${candidate.interview.rounds[0].note}"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <div th:unless="${isIn!='Not'}" class="box-body">
-                          <div class="form-group">
-                            <div class="form-row col-xs-7">
-                              <label>Date:</label>
-                              <div class="input-group date">
-                                <div class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="datepicker_Interview" disabled >
-                              </div>
-                            </div>
-                            <div class="form-row col-xs-5">
-                              <label>Time:</label>
-                              <div class="input-group">
-                                <div class="input-group-addon">
-                                  <i class="fa fa-clock-o"></i>
-                                </div>
-                                <input type="text" class="form-control timepicker" disabled id="txttime">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="form-row col-xs-5">
-                              <label>Interviewer: </label>
-                              <input type="text" class="form-control" disabled id="txtInterviewer">
-                            </div>
-                            <div class="form-row col-xs-4">
-                              <label>Venue: </label>
-                              <input type="text" class="form-control" disabled id="txtVenue">
-                            </div>
-                            <div class="form-group col-xs-3">
-                              <label>Result: </label>
-                              <select class="form-control" disabled id="selectRs" >
-                                <option th:each="frs : ${fr}" th:value="${frs}" th:text="${frs}"></option>
-                              </select>
-                            </div>
-                            <div class="col-xs-12" style="padding-bottom: 1%">
-                              <label for="">Note: </label>
-                              <textarea class="form-control" rows="3" disabled id="txtNote"></textarea>
                             </div>
                           </div>
                         </div>
@@ -666,6 +675,18 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           $("#status").attr("style", "font-weight:bold; color: green");
           break;  
       }
+
+
+      //Hiện ẩn Nút Finish và AddRound khi load trang
+      var fnrs = $("#finalResult").val();
+      if(fnrs=="Unknown"){
+        $('#btn_addRound').show();
+        $('#ccne').show();
+      }else {
+        $('#btn_addRound').hide();
+        $('#ccne').hide();
+      };
+
     });
 
     $(function () {
@@ -759,6 +780,10 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#selectRs").val("");
       $("#actionInterview").val("add");
 
+      $("#btneditRound").attr('disabled','true');
+
+      $("#round_empty").show();
+      $("#round").val("Round:");
     });
     $("#btneditRound").click(function(event) {
       // $("#tab_interview").attr('href', '#interview_edit');
@@ -771,6 +796,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#txtNote").removeAttr('disabled');
       $("#selectRs").removeAttr('disabled');
       $("#actionInterview").val("edit");
+
+      $("#btn_addRound").attr('disabled','true');
 
     });
     $("#btnSave").click(function(event) {
@@ -790,26 +817,98 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //   $("#interview").attr('class', 'active tab-pane');
     //   $("#interview_edit").attr('class', 'tab-pane');
     // });
+    // 
+    // 
     //alert finish
-    $("#ccne").click(function(event) {
-      Swal.fire({
-        title: 'Select final result to finish Interview',
-        showConfirmButton: true
-      });
+    // $("#ccne").click(function(event) {
+    //   Swal.fire({
+    //     title: 'Select final result to finish Interview',
+    //     showConfirmButton: true
+    //   });
+    // });
 
-    });
-    //ẩn add new round khi finish
+    //Select kq cuối cùng => ẩn add round và nút finish
     $("#finalResult").change(function(){
       var op = $(this).children("option:selected").val();
-      if (op == 'Pass' || op == 'Fail'){
-        $('#btn_addRound').hide();
-        $('#ccne').hide();
+      var idCan = $("#idCan").val();
+      var cmnd = $("#cmnd").val();
+      if(op == 'Unknown'){
         Swal.fire({
-          type: 'success',
-          title: 'Finished interview',
-          showConfirmButton: false,
-          timer: 1500
+          title: 'Do you want to continute the interview ?',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'YES'
+        }).then((result) =>{
+          $('#btn_addRound').show();
+          $('#ccne').show();
+          $.ajax({
+            url: '/profile/finishInterview',
+            type: 'post',
+            dataType: 'html',
+            data: {
+                idCan:idCan,
+                cmnd:cmnd,
+                fnRs : op
+            }
+          });
+          $("#status").val("Interviewing");
+          $("#status").attr("style", "font-weight:bold; color: steelBlue");
         });
+      }
+      else if (op == 'Pass' || op == 'Fail'){
+        Swal.fire({
+          title: 'Do you want to finish the interview ?',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'YES'
+        }).then((result) =>{
+          if (result.value) {
+            $('#btn_addRound').hide();
+            $('#ccne').hide();
+            $("#round_empty").hide();
+            $.ajax({
+            url: '/profile/finishInterview',
+            type: 'post',
+            dataType: 'html',
+            data: {
+                idCan:idCan,
+                cmnd:cmnd,
+                fnRs : op
+            },
+            success:function (data) {
+              /* body... */
+              if (data=="Check Result") {
+                Swal.fire(
+                  'WARNING!',
+                  'Check all result of round before finish Interview!',
+                  'warning'
+                )
+              }else if (data=="OK") {
+                Swal.fire({
+                  type: 'success',
+                  title: 'Finished interview',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                // $("#status").val("Interview "+op);
+                // if(op == 'Pass'){
+                //   $("#status").attr("style", "font-weight:bold; color: green");
+                  
+                // }else if(op == 'Fail'){
+                //   $("#status").attr("style", "font-weight:bold; color: red");
+                // }  
+                location.reload();
+              }                 
+            }
+           });
+          }else {
+            $("#finalResult").val("Unknown");
+          }
+        }) 
       }
     });
 
@@ -857,7 +956,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     });
 
 
-    //Thêm round mới
+    //Nút save cho edit và add round
     $("#btnSave_interview").click(function(event) {
       /* Act on the event */
       if(($("#actionInterview").val())=="add"){
@@ -887,23 +986,24 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           '',
           'success'
         ).then((result) =>{
-          //location.reload();
+          location.reload();
         });
       };
       if(($("#actionInterview").val())=="edit"){
-        var idRound = $("#round").val().slice(6);
-        var id = $("#idCan").val();
-        var date = $("#datepicker_Interview").val();
-        var time = $("#txttime").val();
-        var interviewer = $("#txtInterviewer").val();
-        var venue = $("#txtVenue").val();
-        var note = $("#txtNote").val();
-        var result = $("#selectRs").val();
-        $.ajax({
-          url: '/profile/editRoundInterview',
-          type: 'post',
-          dataType: 'html',
-          data: {
+        if(!($("#round").val()=='Round:')){
+          var idRound = $("#round").val().slice(6);
+          var id = $("#idCan").val();
+          var date = $("#datepicker_Interview").val();
+          var time = $("#txttime").val();
+          var interviewer = $("#txtInterviewer").val();
+          var venue = $("#txtVenue").val();
+          var note = $("#txtNote").val();
+          var result = $("#selectRs").val();
+          $.ajax({
+            url: '/profile/editRoundInterview',
+            type: 'post',
+            dataType: 'html',
+            data: {
               id:id,
               date:date,
               time:time,
@@ -912,15 +1012,16 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               note:note,
               result:result,
               idRound:idRound
+            }
+          })
+          Swal.fire(
+            'EditRound success!',
+            '',
+            'success'
+            ).then((result) =>{
+              location.reload();
+            });
           }
-         })
-        Swal.fire(
-          'EditRound success!',
-          '',
-          'success'
-        ).then((result) =>{
-          //location.reload();
-        });
        };
     });
 
@@ -929,32 +1030,60 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     $("#round").change(function(event) {
       /* Act on the event */
       var round = $("#round").val();
-      var id = $("#idCan").val();
-      var r = round.slice(6);
-      $.ajax({
-        url: '/profile/selectRound',
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
+      if(round == "Round:"){
+        
+      }else{
+        $("#round_empty").hide();
+        $("#btneditRound").removeAttr('disabled');
+        $("#btn_addRound").removeAttr('disabled');
+        $("#actionInterview").val("not");
+        $("#form_round").show();
+        $("#datepicker_Interview").attr('disabled','disabled');
+        $("#txttime").attr('disabled','disabled');
+        $("#txtInterviewer").attr('disabled','disabled');
+        $("#txtVenue").attr('disabled','disabled');
+        $("#txtNote").attr('disabled','disabled');
+        $("#selectRs").attr('disabled','disabled');
+        var id = $("#idCan").val();
+        var r = round.slice(6);
+        $.ajax({
+          url: '/profile/selectRound',
+          type: 'post',
+          dataType: 'json',
+          contentType: 'application/json',
+          data: JSON.stringify({
             "round" : r,
             "id" : id,
-        }),
-        success:function(rs){
-          $("#txtInterviewer").val(rs.interviewer);
-          $("#txttime").val(rs.time);
-          $("#datepicker_Interview").val(rs.date);
-          $("#txtVenue").val(rs.venue);
-          $("#selectRs").val(rs.result);
-          $("#txtNote").val(rs.note);
-          expandDetail();
-        },
-        error:function(e){
+          }),
+          success:function(rs){
+            $("#txtInterviewer").val(rs.interviewer);
+            $("#txttime").val(rs.time);
+            $("#datepicker_Interview").val(rs.date);
+            $("#txtVenue").val(rs.venue);
+            $("#selectRs").val(rs.result);
+            $("#txtNote").val(rs.note);
+            
+          },
+          error:function(e){
             console.log(e)
-        }
-       })
+          }
+        })
+      }     
     });
+
+
   });
+</script>
+<script type="text/javascript">
+  function test (argument) {
+        // body... 
+        alert("hhahaah");
+      }
+    
+  $("#ccne").click(function(event) {
+      /* Act on the event */
+      test();
+    });
 </script>
 </body>
 </html>

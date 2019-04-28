@@ -15,7 +15,7 @@
 			"total": 20
 		},
 		"namePos": "Product Manager",
-		"status":"Interviewing",
+		"status":"Interview Fail",
 		"interview":{
 			"finalResult":"Fail",
 			"rounds":[

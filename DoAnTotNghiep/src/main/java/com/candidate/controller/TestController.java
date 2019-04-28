@@ -274,10 +274,12 @@ public class TestController {
 	public ResponseEntity<?> showRound(@RequestBody FormRound data) {
 		String idRound = data.getRound();
 		String idCan = data.getId();
-		Map<String, Object> round = candidateDAO.getRoundById(idRound, idCan);
-		FormRound fr = new FormRound(idCan, idRound, (String)round.get("interviewer"), (String)round.get("date"), (String)round.get("time"), (String)round.get("note"), (String)round.get("venue"), (String)round.get("result"));
-		System.out.println(fr);
-		return ResponseEntity.ok(fr);
+		if(!(idRound.isEmpty())) {
+			Map<String, Object> round = candidateDAO.getRoundById(idRound, idCan);
+			FormRound fr = new FormRound(idCan, idRound, (String)round.get("interviewer"), (String)round.get("date"), (String)round.get("time"), (String)round.get("note"), (String)round.get("venue"), (String)round.get("result"));
+			return ResponseEntity.ok(fr);
+		}
+		return null;
 	}
 	
 	@PostMapping("/profile/editRoundInterview")
@@ -303,7 +305,7 @@ public class TestController {
 			
 		}	
 		Map<String, Object> rnd = new HashMap<String, Object>();
-		rnd.put("idRound",rounds.size()+1+"");
+		rnd.put("idRound",idr);
 		rnd.put("interviewer",interviewer);
 		rnd.put("date", date);
 		rnd.put("time", time);
@@ -314,5 +316,27 @@ public class TestController {
 		
 		candidateDAO.editRoundById(rounds,can.getIdCan(), can.getCmnd());
 		return "Edit Round Success";
+	}
+	
+	@PostMapping("/profile/finishInterview")
+	public @ResponseBody String updateFinalResultInterview(HttpServletRequest req) {
+		String idCan = req.getParameter("idCan");
+		String cmnd = req.getParameter("cmnd");
+		String fnRs = req.getParameter("fnRs");
+		int non_Rs = 0;
+		Candidate can = candidateDAO.getCandidateById(idCan);
+		ArrayList<Object> rounds = (ArrayList<Object>) can.getInterview().get("rounds");
+		for(int i = 0; i<rounds.size();i++) {
+			Map<String, Object> r = (Map<String, Object>) rounds.get(i);
+			String rs = (String) r.get("result");
+			if(rs.equals("Unknown")) {
+				non_Rs++;
+				return "Check Result";
+			}
+		}
+		if(non_Rs==0) {
+			candidateDAO.updateFinalResult(idCan, cmnd, fnRs);
+		}
+		return "OK";		
 	}
 }
