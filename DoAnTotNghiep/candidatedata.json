@@ -8,7 +8,7 @@
 		"gender": true,
 		"dob":"24/05/1997",
 		"dateImport":"25/03/2019",
-		"linkCV": "dmm",
+		"linkCV": "https://drive.google.com/open?id=17WztKIGDNWNuoqbfoVrUQ_PeAWiYgsMi",
 		"rate":{
 			"score" : 18,
 			"time" : 3000,
@@ -35,7 +35,7 @@
 		"gender": true,
 		"dob":"24/05/1997",
 		"dateImport":"25/04/2019",
-		"linkCV": "dmm",
+		"linkCV": "https://drive.google.com/open?id=1lx5vbvdBzDVzupSTQxVBR3nk203wX7Fe",
 		"rate":{
 			"score" : 18,
 			"time" : 3000,
@@ -62,7 +62,7 @@
 		"gender": true,
 		"dob":"24/05/1999",
 		"dateImport":"25/03/2019",
-		"linkCV": "ggggg.com",
+		"linkCV": "https://drive.google.com/open?id=1-3RCeycrrlLC31jZTJgZC2LwYqWuCuKj",
 		"rate":{
 			"score" : 18,
 			"time" : 5000,
@@ -89,7 +89,7 @@
 		"gender": false,
 		"dob":"11/10/1989",
 		"dateImport":"25/03/2015",
-		"linkCV": "ggggg.com",
+		"linkCV": "https://drive.google.com/open?id=1qlBKhnOv3DHQpuyRUtgf5zLQdTFQBlJV",
 		"rate":{
 			"score" : 20,
 			"time" : 5000,
@@ -109,7 +109,7 @@
 		"gender": false,
 		"dob":"05/05/1989",
 		"dateImport":"25/03/2015",
-		"linkCV": "ggggg.com",
+		"linkCV": "https://drive.google.com/open?id=11_oAdfpuHGvcGykb43gkLdTIBhikaBqK",
 		"rate":{
 			"score" : 18,
 			"time" : 6000,
@@ -129,7 +129,7 @@
 		"gender": true,
 		"dob":"15/02/1990",
 		"dateImport":"25/03/2015",
-		"linkCV": "ggggg.com",
+		"linkCV": "https://drive.google.com/open?id=14EsAzaAM-1F3SFVAfdhIVYbAidY0WK1L",
 		"rate":{
 			"score" : 19,
 			"time" : 4000,

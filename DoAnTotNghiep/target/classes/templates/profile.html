@@ -55,7 +55,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
-      <a href="index2.html" class="logo">
+      <a href="index" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">DOU</span>
         <!-- logo for regular state and mobile devices -->
@@ -116,9 +116,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">HEADER</li>
-          <li class="active"><a href="index.html"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
-          <li><a href="position.html"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
-          <li><a href="chartjs.html"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
+          <li class="active"><a href="index"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
+          <li><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
+          <li><a href="chartjs"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
@@ -227,7 +227,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     </div>
                   <div class="form-row col-xs-12">
                     <a><label id="changeCV" for="upload-cv">Upload a new CV </label></a> |
-                    <a href="#">View CV Online</a>
+                    <a th:href="${candidate.linkCV}" rel="noopener noreferrer" target="_blank">View CV Online</a>
                     <input type="file" id="upload-cv">
                   </div>
                 </form>
@@ -322,11 +322,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Pass: </label>
-                            <span class="col-xs-1 text-left label label-success" id="interPass" th:text="${Pass}"></span>
+                            <span class="col-xs-1 text-left label label-success" id="interPass" th:text="${Pass}" th:value="${Pass}"></span>
                           </div>
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Fail: </label>
-                            <span class="col-xs-1 text-left label label-danger" id="interFail" th:text="${Fail}"></span>
+                            <span class="col-xs-1 text-left label label-danger" id="interFail" th:text="${Fail}" th:value="${Fail}"></span>
                           </div>
 
                           <div class="col-xs-12">
@@ -360,9 +360,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </select>
                         </div>
                         <input id="actionInterview" type="text" value="not" hidden="true">
-                        <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square"></i></button>
+                        <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square-o"></i></button>
                         <button type="button" class="btn btn-default pull-left" id="btneditRound" ><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-default pull-left" id="btnSave_interview" ><i class="fa fa-file"></i></button>
+                        <button type="button" class="btn btn-default pull-left" id="btnSave_interview" ><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 
                       </div>
                       <div th:if="${isIn=='Not'}" class="box box-info col-xs-12" style="margin-top: 2%" id="form_round">
@@ -629,17 +629,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         'autoWidth'   : false
       })
 
-      //Percennt pass / fail process
-      var pass=$('#interPass').text();
-      var fail=$('#interFail').text();
-      var pf = Number(pass)+Number(fail);
-      var percentt =100;
-      if(pf != 0){
-    	  percentt = (Number(pass) / pf)*100;
-      }
-      $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
-      $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
-      //Percennt pass / fail process
+      showProgessBar();
+      
       var stt = $("#status").val();
       switch(stt){
         case "New":
@@ -726,19 +717,24 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     )
     //Date picker
     $('#datepicker_DOB').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd/mm/yyyy'
     })
     $('#datepicker_Date').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd/mm/yyyy'
     })
     $('#datepicker_DOB_New').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd/mm/yyyy'
     })
     $('#datepicker_Date_New').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd/mm/yyyy'
     })
     $('#datepicker_Interview').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd/mm/yyyy'
     })
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
@@ -965,42 +961,65 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   function saveAddAndEdit (argument) {
         // body... 
         if(($("#actionInterview").val())=="add"){
-        var id = $("#idCan").val();
-        var date = $("#datepicker_Interview").val();
-        var time = $("#txttime").val();
-        var interviewer = $("#txtInterviewer").val();
-        var venue = $("#txtVenue").val();
-        var note = $("#txtNote").val();
-        var result = $("#selectRs").val();
-        $.ajax({
-          url: '/profile/addRoundInterview',
-          type: 'post',
-          dataType: 'html',
-          data: {
-              id:id,
-              date:date,
-              time:time,
-              interviewer:interviewer,
-              venue:venue,
-              note:note,
-              result:result,
-          }
-         });
-        var slRound = $('#round option').length;
-        $("#round").append(new Option("Round "+slRound, "Round "+slRound));
-        Swal.fire(
-          'AddRound success!',
-          '',
-          'success'
-        ).then((result) =>{
-            $("#datepicker_Interview").attr('disabled','disabled');
-            $("#txttime").attr('disabled','disabled');
-            $("#txtInterviewer").attr('disabled','disabled');
-            $("#txtVenue").attr('disabled','disabled');
-            $("#txtNote").attr('disabled','disabled');
-            $("#selectRs").attr('disabled','disabled');
-            $("#actionInterview").val("not");
-          });
+          var id = $("#idCan").val();
+          var date = $("#datepicker_Interview").val();
+          var time = $("#txttime").val();
+          var interviewer = $("#txtInterviewer").val();
+          var venue = $("#txtVenue").val();
+          var note = $("#txtNote").val();
+          var result = $("#selectRs").val();
+          if(date=="" ||time=="" ||interviewer=="" ||venue==""){
+            Swal.fire({
+              type: 'warning',
+              title: 'Oops...',
+              text: 'Some field are not fill!!',
+            })
+          }else{
+              $.ajax({
+              url: '/profile/addRoundInterview',
+              type: 'post',
+              dataType: 'html',
+              data: {
+                  id:id,
+                  date:date,
+                  time:time,
+                  interviewer:interviewer,
+                  venue:venue,
+                  note:note,
+                  result:result,
+              }
+             }).done(function(data) {
+                  $("#interTotal").text(data);
+                  if(result=="Pass"){
+                    var p = Number($("#interPass").html())+1;
+                    $("#interPass").html(p);
+                    $("#interPass").val(p);
+                  }
+                  else if(result=="Fail"){
+                    var f = Number($("#interFail").html())+1;
+                    $("#interFail").html(f);
+                    $("#interFail").val(f);
+                  }     
+              });
+            var slRound = $('#round option').length;
+            $("#round").append(new Option("Round "+slRound, "Round "+slRound));
+            
+            Swal.fire(
+              'AddRound success!',
+              '',
+              'success'
+            ).then((result) =>{
+                $("#datepicker_Interview").attr('disabled','disabled');
+                $("#txttime").attr('disabled','disabled');
+                $("#txtInterviewer").attr('disabled','disabled');
+                $("#txtVenue").attr('disabled','disabled');
+                $("#txtNote").attr('disabled','disabled');
+                $("#selectRs").attr('disabled','disabled');
+                $("#actionInterview").val("not");
+                $("#btneditRound").removeAttr('disabled');
+                showProgessBar();
+              });
+          }   
         };
         if(($("#actionInterview").val())=="edit"){
           if(!($("#round").val()=='Round:')){
@@ -1026,7 +1045,33 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 result:result,
                 idRound:idRound
               }
-            })
+            }).done(function(data){
+              var s = data.split(",", 3);
+              var t = s[0];
+              var p = s[1];
+              var f = s[2];
+              $("#interTotal").text(t);
+              $("#interPass").html(p);
+              $("#interPass").val(p);
+              $("#interFail").html(f);
+              $("#interFail").val(f);
+            });
+            // if(result=="Pass"){
+            //   var f = Number($("#interFail").html())-1;
+            //   $("#interFail").html(f);
+            //   $("#interFail").val(f);
+            //   var p = Number($("#interPass").html())+1;
+            //   $("#interPass").html(p);
+            //   $("#interPass").val(p);
+            // }
+            // else if(result=="Fail"){
+            //   var p = Number($("#interPass").html())-1;
+            //   $("#interPass").html(p);
+            //   $("#interPass").val(p);
+            //   var f = Number($("#interFail").html())+1;
+            //   $("#interFail").html(f);
+            //   $("#interFail").val(f);
+            // }
             Swal.fire(
               'EditRound success!',
               '',
@@ -1039,6 +1084,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   $("#txtNote").attr('disabled','disabled');
                   $("#selectRs").attr('disabled','disabled');
                   $("#actionInterview").val("not");
+                  $("#btn_addRound").removeAttr('disabled');
+                  showProgessBar();
               });
             }
          };
@@ -1130,6 +1177,20 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           }) 
         }
       };
+
+  function showProgessBar(){
+    //Percennt pass / fail process
+      var pass=$('#interPass').text();
+      var fail=$('#interFail').text();
+      var pf = Number(pass)+Number(fail);
+      var percentt =100;
+      if(pf != 0){
+        percentt = (Number(pass) / pf)*100;
+      }
+      $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
+      $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
+      //Percennt pass / fail process
+  }
 </script>
 </body>
 </html>

@@ -116,9 +116,9 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">HEADER</li>
-            <li class="active"><a href="index.html"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
-            <li><a href="position.html"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
-            <li><a href="chartjs.html"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
+            <li class="active"><a href="index"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
+            <li><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
+            <li><a href="chartjs"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
@@ -194,22 +194,17 @@
                       </div>
                       <div class="modal-body">
                           <label for="" class="">Position:</label>
-                          <select class="form-control">
-                            <option>Java Developer</option>
-                            <option>Tester</option>
-                            <option>Internship</option>
-                            <option>Partime</option>
-                            <option>PM</option>
-                            <option>Leader</option>
+                          <select class="form-control" id="pos_import">
+                            <option th:each="dsPos : ${listPosition}" th:value="${dsPos.name}" th:text="${dsPos.name}"></option>
                           </select>
                           <label for="" class="">Quantity: </label>
-                          <input type="number" class="form-control" placeholder="Enter quantity...">
+                          <input type="number" class="form-control" placeholder="Enter quantity..." id="quan_import">
                           <label for="" class="">Rate (more than or equal to): </label>
-                          <input type="text" class="form-control" placeholder="Enter rate...">
+                          <input type="text" class="form-control" placeholder="Enter rate..." id="rate_import">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Import</button>
+                        <button type="button" class="btn btn-primary" id="btn_import">Import</button>
                       </div>
                     </div>
                     <!-- /.modal-content -->
@@ -572,10 +567,7 @@
                     id_cmnd:JSON.stringify(id_cmnd)
 
                 }
-        }).done(function(data) {
-            alert(data);
-            location.reload();     
-        });
+        })
       });
 
       $("#btnDelete").click(function(event) {
@@ -628,6 +620,25 @@
                 //window.location.href = "/position";
             //});
       //});
+
+      $("#btn_import").click(function(event) {
+        /* Act on the event */
+        var pos = $("#pos_import").val();
+        var quan = $("#quan_import").val();
+        var rate = $("#rate_import").val();
+        $.ajax({
+            url: '/profile/import',
+            type: 'post',
+            dataType: 'html',
+            data: {
+                pos:pos,
+                quan:quan,
+                rate:rate
+            }
+        });        
+
+      });
+
     });
 
 

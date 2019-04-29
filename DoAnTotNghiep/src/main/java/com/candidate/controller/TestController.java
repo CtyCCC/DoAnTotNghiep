@@ -238,6 +238,9 @@ public class TestController {
 		String venue = request.getParameter("venue");
 		String note = request.getParameter("note");
 		String result = request.getParameter("result");
+		if(note.isEmpty()) {
+			note = "Nothing";
+		}
 
 		String stus = "Wait for interview";
 
@@ -254,6 +257,7 @@ public class TestController {
 			rounds.add(rnd);
 
 			candidateDAO.addInterview(can.getIdCan(), can.getCmnd(), rounds, stus);
+			return rounds.size()+"";
 		}else {
 			ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
 			for(int i = 0 ; i<rounds.size();i++) {
@@ -273,9 +277,9 @@ public class TestController {
 			rounds.add(rnd);
 
 			candidateDAO.addInterview(can.getIdCan(), can.getCmnd(), rounds,stus);
+			return rounds.size()+"";
 		}			
 
-		return "Add Round Success";
 	}
 
 	@PostMapping("/profile/selectRound")
@@ -302,15 +306,16 @@ public class TestController {
 		String note = request.getParameter("note");
 		String result = request.getParameter("result");
 		String idr = request.getParameter("idRound");
+		int pass = 0;
+		int fail = 0;
 		ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
 		for(int i = 0 ; i<rounds.size();i++) {
 			Map<String, Object> r = (Map<String, Object>) rounds.get(i);
 			String idRo = (String) r.get("idRound");
 			if(idRo.equals(idr)) {
 				rounds.remove(i);
-				System.out.println("lala");
 			}
-
+			
 		}	
 		Map<String, Object> rnd = new HashMap<String, Object>();
 		rnd.put("idRound",idr);
@@ -321,9 +326,20 @@ public class TestController {
 		rnd.put("note", note);
 		rnd.put("result", result);	
 		rounds.add(rnd);
+		
+		for(int i = 0 ; i<rounds.size();i++) {
+			Map<String, Object> r = (Map<String, Object>) rounds.get(i);
+			if(r.get("result").equals("Pass")) {
+				pass++;
+			}else if(r.get("result").equals("Fail")) {
+				fail++;
+			}
+		}
 
 		candidateDAO.editRoundById(rounds,can.getIdCan(), can.getCmnd());
-		return "Edit Round Success";
+		
+		String s = rounds.size()+","+pass+","+fail;
+		return s;
 	}
 
 	@PostMapping("/profile/finishInterview")
