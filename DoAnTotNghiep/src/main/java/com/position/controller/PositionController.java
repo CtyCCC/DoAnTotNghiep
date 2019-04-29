@@ -33,12 +33,10 @@ public class PositionController {
 	public String index(Model model,HttpServletRequest request) {
 		
 		String namePos = request.getParameter("namePos");
-		String nameSelected = request.getParameter("nameSelected");
 		
 		//get all question
 		ArrayList<Questions> arrQues = new ArrayList<>();
 		arrQues = quesDAO.getAllQuestions();
-
 		model.addAttribute("listQuestions", arrQues);
 
 		//get all Positionn
@@ -49,21 +47,7 @@ public class PositionController {
 		model.addAttribute("listPosition", arrPos);
 		
 		//lấy 1 position để hiển thị
-		if (nameSelected != null) {
-			
-			Position p = posDAO.getOnePositionByName(nameSelected, arrPos);
-			
-			model.addAttribute("selectedposition",p);
-			
-			//lấy mảng id câu hỏi theo idPos
-			ArrayList<Object> arrIdQues = (ArrayList<Object>) posDAO.getQuestionsOfPosition(p.getIdPos());
-			//gửi qua client dạng chuỗi cho dễ
-			String stringId = "";
-			for (Object string : arrIdQues) {
-				stringId = stringId + string +",";
-			}
-			model.addAttribute("listQuesPos",stringId);
-		}else if(namePos != null) {
+		if(namePos != null) {
 			Position p = posDAO.getOnePositionByName(namePos, arrPos);
 			model.addAttribute("selectedposition",p);
 			
