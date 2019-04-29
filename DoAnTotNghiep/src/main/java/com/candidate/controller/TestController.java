@@ -143,7 +143,7 @@ public class TestController {
 			String [] n = {"New","Reject"};
 			String[] in = {"Interviewing","Interview Pass","Interview Fail"};
 			String [] o = {"Offering","Offer Pass","Offer Fail"};
-			String [] p = {"Probationing","Probation Fail","probation Pass"};
+			String [] p = {"Probation","Probation Fail","probation Pass"};
 			if(can.getInterview()==null) {
 				model.addAttribute("stt",n);
 			}else if(can.getOffer()==null) {
