@@ -90,9 +90,7 @@ public class TestController {
 
 				candidateDAO.addInterview(idCan, cmnd, rounds, stus);
 			}else {
-				if(!(can.getInterview().get("finalResult")).equals("Unknown")) {
-					stus = "Interviewing";
-				}
+				stus = "Interviewing";
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
 				Map<String, Object> rnd = new HashMap<String, Object>();
 				rnd.put("idRound",rounds.size()+1+"");

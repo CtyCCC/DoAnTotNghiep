@@ -326,7 +326,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="col-xs-12">
                             <label for="" class="col-xs-5 text-right">Fail: </label>
-                            <span class="col-xs-1 text-left label label-danger" th:text="${Fail}"></span>
+                            <span class="col-xs-1 text-left label label-danger" id="interFail" th:text="${Fail}"></span>
                           </div>
 
                           <div class="col-xs-12">
@@ -338,7 +338,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="col-xs-12">
                             <div class="progress-group">
-                              <span class="progress-text">Pass/Total: </span>
+                              <span class="progress-text">Pass/Fail: </span>
                               <span class="progress-number">xxx%</span>
                               <div class="progress sm progress-bar-red">
                                 <div class="progress-bar progress-bar-green" style="width: 10%" id="percentPass"></div>
@@ -631,8 +631,12 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 
       //Percennt pass / fail process
       var pass=$('#interPass').text();
-      var total=$('#interTotal').text();
-      var percentt = (Number(pass) / Number(total))*100;
+      var fail=$('#interFail').text();
+      var pf = Number(pass)+Number(fail);
+      var percentt =100;
+      if(pf != 0){
+    	  percentt = (Number(pass) / pf)*100;
+      }
       $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
       $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
       //Percennt pass / fail process
