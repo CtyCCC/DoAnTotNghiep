@@ -765,6 +765,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       // $("#tab_interview").attr('href', '#interview_edit');
       // $("#interview").attr('class', 'tab-pane');
       // $("#interview_edit").attr('class', 'active tab-pane');
+      $("#form_round").show();
       $("#datepicker_Interview").removeAttr('disabled');
       $("#txttime").removeAttr('disabled');
       $("#txtInterviewer").removeAttr('disabled');
@@ -820,46 +821,19 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     // 
     // 
     //alert finish
-    // $("#ccne").click(function(event) {
-    //   Swal.fire({
-    //     title: 'Select final result to finish Interview',
-    //     showConfirmButton: true
-    //   });
-    // });
+    $("#ccne").click(function(event) {
+      Swal.fire({
+        title: 'Select final result to finish Interview',
+        showConfirmButton: true
+      });
+    });
 
     //Select kq cuối cùng => ẩn add round và nút finish
     $("#finalResult").change(function(){
-      var op = $(this).children("option:selected").val();
-      var idCan = $("#idCan").val();
-      var cmnd = $("#cmnd").val();
-      if(op == 'Unknown'){
+      var act = $("#actionInterview").val();
+      if(act=="edit" || act=="add"){
         Swal.fire({
-          title: 'Do you want to continute the interview ?',
-          type: 'question',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'YES'
-        }).then((result) =>{
-          $('#btn_addRound').show();
-          $('#ccne').show();
-          $.ajax({
-            url: '/profile/finishInterview',
-            type: 'post',
-            dataType: 'html',
-            data: {
-                idCan:idCan,
-                cmnd:cmnd,
-                fnRs : op
-            }
-          });
-          $("#status").val("Interviewing");
-          $("#status").attr("style", "font-weight:bold; color: steelBlue");
-        });
-      }
-      else if (op == 'Pass' || op == 'Fail'){
-        Swal.fire({
-          title: 'Do you want to finish the interview ?',
+          title: 'Do you want to save ?',
           type: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -867,49 +841,16 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           confirmButtonText: 'YES'
         }).then((result) =>{
           if (result.value) {
-            $('#btn_addRound').hide();
-            $('#ccne').hide();
-            $("#round_empty").hide();
-            $.ajax({
-            url: '/profile/finishInterview',
-            type: 'post',
-            dataType: 'html',
-            data: {
-                idCan:idCan,
-                cmnd:cmnd,
-                fnRs : op
-            },
-            success:function (data) {
-              /* body... */
-              if (data=="Check Result") {
-                Swal.fire(
-                  'WARNING!',
-                  'Check all result of round before finish Interview!',
-                  'warning'
-                )
-              }else if (data=="OK") {
-                Swal.fire({
-                  type: 'success',
-                  title: 'Finished interview',
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                // $("#status").val("Interview "+op);
-                // if(op == 'Pass'){
-                //   $("#status").attr("style", "font-weight:bold; color: green");
-                  
-                // }else if(op == 'Fail'){
-                //   $("#status").attr("style", "font-weight:bold; color: red");
-                // }  
-                location.reload();
-              }                 
-            }
-           });
-          }else {
-            $("#finalResult").val("Unknown");
-          }
-        }) 
+            saveAddAndEdit();
+            finishInter();
+          }else{
+            finishInter();
+          }    
+        });        
+      }else{
+        finishInter();
       }
+          
     });
 
     //Nút save khi edit Profile candidate
@@ -959,70 +900,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Nút save cho edit và add round
     $("#btnSave_interview").click(function(event) {
       /* Act on the event */
-      if(($("#actionInterview").val())=="add"){
-        var id = $("#idCan").val();
-        var date = $("#datepicker_Interview").val();
-        var time = $("#txttime").val();
-        var interviewer = $("#txtInterviewer").val();
-        var venue = $("#txtVenue").val();
-        var note = $("#txtNote").val();
-        var result = $("#selectRs").val();
-        $.ajax({
-          url: '/profile/addRoundInterview',
-          type: 'post',
-          dataType: 'html',
-          data: {
-              id:id,
-              date:date,
-              time:time,
-              interviewer:interviewer,
-              venue:venue,
-              note:note,
-              result:result,
-          }
-         })
-        Swal.fire(
-          'AddRound success!',
-          '',
-          'success'
-        ).then((result) =>{
-          location.reload();
-        });
-      };
-      if(($("#actionInterview").val())=="edit"){
-        if(!($("#round").val()=='Round:')){
-          var idRound = $("#round").val().slice(6);
-          var id = $("#idCan").val();
-          var date = $("#datepicker_Interview").val();
-          var time = $("#txttime").val();
-          var interviewer = $("#txtInterviewer").val();
-          var venue = $("#txtVenue").val();
-          var note = $("#txtNote").val();
-          var result = $("#selectRs").val();
-          $.ajax({
-            url: '/profile/editRoundInterview',
-            type: 'post',
-            dataType: 'html',
-            data: {
-              id:id,
-              date:date,
-              time:time,
-              interviewer:interviewer,
-              venue:venue,
-              note:note,
-              result:result,
-              idRound:idRound
-            }
-          })
-          Swal.fire(
-            'EditRound success!',
-            '',
-            'success'
-            ).then((result) =>{
-              location.reload();
-            });
-          }
-       };
+      saveAddAndEdit();
     });
 
 
@@ -1078,12 +956,176 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   function test (argument) {
         // body... 
         alert("hhahaah");
-      }
-    
-  $("#ccne").click(function(event) {
-      /* Act on the event */
-      test();
-    });
+      };
+
+  function saveAddAndEdit (argument) {
+        // body... 
+        if(($("#actionInterview").val())=="add"){
+        var id = $("#idCan").val();
+        var date = $("#datepicker_Interview").val();
+        var time = $("#txttime").val();
+        var interviewer = $("#txtInterviewer").val();
+        var venue = $("#txtVenue").val();
+        var note = $("#txtNote").val();
+        var result = $("#selectRs").val();
+        $.ajax({
+          url: '/profile/addRoundInterview',
+          type: 'post',
+          dataType: 'html',
+          data: {
+              id:id,
+              date:date,
+              time:time,
+              interviewer:interviewer,
+              venue:venue,
+              note:note,
+              result:result,
+          }
+         });
+        var slRound = $('#round option').length;
+        $("#round").append(new Option("Round "+slRound, "Round "+slRound));
+        Swal.fire(
+          'AddRound success!',
+          '',
+          'success'
+        ).then((result) =>{
+            $("#datepicker_Interview").attr('disabled','disabled');
+            $("#txttime").attr('disabled','disabled');
+            $("#txtInterviewer").attr('disabled','disabled');
+            $("#txtVenue").attr('disabled','disabled');
+            $("#txtNote").attr('disabled','disabled');
+            $("#selectRs").attr('disabled','disabled');
+            $("#actionInterview").val("not");
+          });
+        };
+        if(($("#actionInterview").val())=="edit"){
+          if(!($("#round").val()=='Round:')){
+            var idRound = $("#round").val().slice(6);
+            var id = $("#idCan").val();
+            var date = $("#datepicker_Interview").val();
+            var time = $("#txttime").val();
+            var interviewer = $("#txtInterviewer").val();
+            var venue = $("#txtVenue").val();
+            var note = $("#txtNote").val();
+            var result = $("#selectRs").val();
+            $.ajax({
+              url: '/profile/editRoundInterview',
+              type: 'post',
+              dataType: 'html',
+              data: {
+                id:id,
+                date:date,
+                time:time,
+                interviewer:interviewer,
+                venue:venue,
+                note:note,
+                result:result,
+                idRound:idRound
+              }
+            })
+            Swal.fire(
+              'EditRound success!',
+              '',
+              'success'
+              ).then((result) =>{
+                  $("#datepicker_Interview").attr('disabled','disabled');
+                  $("#txttime").attr('disabled','disabled');
+                  $("#txtInterviewer").attr('disabled','disabled');
+                  $("#txtVenue").attr('disabled','disabled');
+                  $("#txtNote").attr('disabled','disabled');
+                  $("#selectRs").attr('disabled','disabled');
+                  $("#actionInterview").val("not");
+              });
+            }
+         };
+      };
+
+  function finishInter (argument) {
+        // body... 
+        var op = $("#finalResult").children("option:selected").val();
+        var idCan = $("#idCan").val();
+        var cmnd = $("#cmnd").val();
+        if(op == 'Unknown'){
+          Swal.fire({
+            title: 'Do you want to continute the interview ?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'YES'
+          }).then((result) =>{
+            if (result.value) {
+              $('#btn_addRound').show();
+              $('#ccne').show();
+              $.ajax({
+                url: '/profile/finishInterview',
+                type: 'post',
+                dataType: 'html',
+                data: {
+                    idCan:idCan,
+                    cmnd:cmnd,
+                    fnRs : op
+                }
+              });
+              $("#status").val("Interviewing");
+              $("#status").attr("style", "font-weight:bold; color: steelBlue");
+            }
+          });
+        }
+        else if (op == 'Pass' || op == 'Fail'){
+          Swal.fire({
+            title: 'Do you want to finish the interview ?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'YES'
+          }).then((result) =>{
+            if (result.value) {
+              $('#btn_addRound').hide();
+              $('#ccne').hide();
+              $("#round_empty").hide();
+              $.ajax({
+              url: '/profile/finishInterview',
+              type: 'post',
+              dataType: 'html',
+              data: {
+                  idCan:idCan,
+                  cmnd:cmnd,
+                  fnRs : op
+              },
+              success:function (data) {
+                /* body... */
+                if (data=="Check Result") {
+                  Swal.fire(
+                    'WARNING!',
+                    'Check all result of round before finish Interview!',
+                    'warning'
+                  )
+                }else if (data=="OK") {
+                  Swal.fire({
+                    type: 'success',
+                    title: 'Finished interview',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  $("#status").val("Interview "+op);
+                  if(op == 'Pass'){
+                    $("#status").attr("style", "font-weight:bold; color: green");
+                    
+                  }else if(op == 'Fail'){
+                    $("#status").attr("style", "font-weight:bold; color: red");
+                  }  
+                  //location.reload();
+                }                 
+              }
+             });
+            }else {
+              $("#finalResult").val("Unknown");
+            }
+          }) 
+        }
+      };
 </script>
 </body>
 </html>
