@@ -145,29 +145,27 @@
                     <input class="form-control" type="text" id="searchNameTb" placeholder="Input name...">
                   </div>
                   <div class="col-md-3" >
-                    <select class="form-control">
-                      <option>Position</option>
-                      <option>Java Developer</option>
-                      <option>Tester</option>
-                      <option>Internship</option>
-                      <option>Partime</option>
-                      <option>PM</option>
-                      <option>Leader</option>
+                    <select class="form-control" id="searchPosTb">
+                      <option value=""  label="Select Position"></option>
+                      <option th:each="pos : ${listPosition}" th:value="${pos.name}" th:utext="${pos.name}"></option>
                     </select> 
                   </div>
                   <div class="col-md-4" style="padding: 0">
-                    <select class="form-control">
-                      <option>Status</option>
-                      <option>Interview</option>
-                      <option>Offer</option>
-                      <option>Probation</option>
+                    <select class="form-control" id= "searchStatusTb">
+                      <option value="" label="Select status">All</option>
                       <option>New</option>
+                      <option>Reject</option>
+                      <option>Wait for interview</option>
+                      <option>Interviewing</option>
+                      <option>Interview Pass</option>
                       <option>Interview fail</option>
-                      <option>Offer fail</option>
+                      <option>Offering</option>
+                      <option>Offer Fail</option>
+                      <option>Offer Pass</option>
+                      <option>Probation</option>
+                      <option>Probation Fail</option>
+                      <option>Probation Pass</option>
                     </select> 
-                  </div>
-                  <div class="col-md-1">
-                    <a href=""><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button></a>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -736,7 +734,31 @@
             // });        
       };
     });
-
+    
+    //phần advenced search
+    //seart colum nào thì truyền i vào
+    $(document).ready(function() {
+        $('#example1').DataTable();
+     
+        $('#searchNameTb').on( 'keyup click', function () {
+        	$('#example1').DataTable().column(2).search(
+        	    $('#searchNameTb').val()
+        	).draw();
+        } );
+        
+        $("#searchStatusTb").change(function(){
+        	$('#example1').DataTable().column(9).search(
+        	    $('#searchStatusTb').val()
+        	).draw();
+    	});
+        
+		$("#searchPosTb").change(function(){
+			 $('#example1').DataTable().column(6).search(
+				 $('#searchPosTb').val()
+			  ).draw();
+    	});
+    });
+  
 
   </script>
   </body>
