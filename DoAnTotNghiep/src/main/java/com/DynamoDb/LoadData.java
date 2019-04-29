@@ -30,6 +30,7 @@ public class LoadData {
 		loadCandidate();
 		loadPosition();
 		loadQuestion();
+		loadUser();
 
 	}
 

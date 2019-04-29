@@ -85,6 +85,11 @@
 			<version>1.2.1</version>
 			<scope>compile</scope>
 		</dependency>
+		<!-- Authenticate  -->
+		 <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

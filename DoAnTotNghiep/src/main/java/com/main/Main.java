@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Import;
 
 import com.apply.Apply;
 import com.candidate.DoAnTotNghiepApplication;
+import com.login.Login;
 import com.position.PositionSC;
 import com.quiz.Quiz;
 
 
 @SpringBootApplication
-@Import({PositionSC.class, 
+@Import({Login.class,
+		PositionSC.class, 
 		DoAnTotNghiepApplication.class,
 		Apply.class, 
 		Quiz.class})

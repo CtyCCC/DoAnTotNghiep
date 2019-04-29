@@ -25,7 +25,8 @@ public class CreateTable {
 		createCandidate("Candidate_M");
 		createCandidate("Candidate_S");
 		createPosition();
-		createQuestion();   
+		createQuestion();
+		createUser();
 	}
 
 	public static void createCandidate(String tableName) {

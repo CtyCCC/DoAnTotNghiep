@@ -4,7 +4,8 @@ public class User {
 	private String id_user; //ID
 	private String name;
 	private String pass; //Password
-	private int code; // 1:Manager(Admin); 2: interviewer
+	private String code; // 1:Manager(Admin); 2: interviewer
+	private String useraccount;
 	public String getId_user() {
 		return id_user;
 	}
@@ -23,41 +24,25 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id_user == null) ? 0 : id_user.hashCode());
-		return result;
+	public String getUseraccount() {
+		return useraccount;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id_user == null) {
-			if (other.id_user != null)
-				return false;
-		} else if (!id_user.equals(other.id_user))
-			return false;
-		return true;
+	public void setUseraccount(String useraccount) {
+		this.useraccount = useraccount;
 	}
-	public User(String id_user, String name, String pass, int code) {
+	public User(String id_user, String name, String pass, String code, String useraccount) {
 		super();
 		this.id_user = id_user;
 		this.name = name;
 		this.pass = pass;
 		this.code = code;
+		this.useraccount = useraccount;
 	}
 	public User() {
 		super();

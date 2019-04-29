@@ -116,9 +116,9 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">HEADER</li>
-            <li class="active"><a href="index.html"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
-            <li><a href="position.html"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
-            <li><a href="chartjs.html"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
+            <li class="active"><a href="index"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
+            <li><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
+            <li><a href="chartjs"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
@@ -567,10 +567,7 @@
                     id_cmnd:JSON.stringify(id_cmnd)
 
                 }
-        }).done(function(data) {
-            alert(data);
-            location.reload();     
-        });
+        })
       });
 
       $("#btnDelete").click(function(event) {
