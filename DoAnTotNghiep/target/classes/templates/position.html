@@ -140,8 +140,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     <div class="pull-right" style="padding-right: 1%">
       <button id="newPosition" class="btn btn-defaul"><i class="fa fa-plus-square"> Add New</i></button>
       <button id="btnEdit" class="btn btn-defaul"><i class="fa fa-edit"> Edit</i></button>
-      <button id="btnSaveAddNew" class="btn btn-primary" style="display: none"><i class="fa fa-file"> Save</i></button>
-      <button id="btnSaveEdit" class="btn btn-primary" style="display: none"><i class="fa fa-file"> Save</i></button>
+      <button id="btnSaveAddNew" class="btn btn-primary" style="display: none"><i class="fa fa-save"> Save</i></button>
+      <button id="btnSaveEdit" class="btn btn-primary" style="display: none"><i class="fa fa-save"> Save</i></button>
+      <button id="btnCancel" class="btn btn-danger" style="display: none"><i class="fa fa-times-circle" onclick="location.reload()"> Cancel</i></button>
     </div>
   </section>
   <!-- Main content -->
@@ -194,7 +195,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#modalAddQues" title="Add new equestion">
                         <i class="fa fa-plus-square"></i>
                       </button>
-                      <button type="button" id="btnSaveQues" class="btn btn-box-tool"><i class="fa fa-file" title="Save"></i></button>
+                      <button type="button" id="btnSaveQues" class="btn btn-box-tool"><i class="fa fa-save" title="Save"></i></button>
                       <button type="button"  class="btn btn-box-tool" data-widget="collapse" title="Open/Close"><i class="fa fa-minus"></i>
                       </button>
                     </div>
@@ -257,7 +258,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <table id="table1" class="table table-bordered table-hover">
                         <thead>
                           <tr>
-                            <th>ID</th>
+                            <th hidden="">ID</th>
                             <th>Content</th>
                             <th>Answer</th>
                             <th id="questCount">selected</th>
@@ -265,7 +266,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         </thead>
                         <tbody>
                           <tr th:each="ques : ${listQuestions}">
-                            <td th:text="${ques.idQues}">1</td>
+                            <td th:text="${ques.idQues}" hidden="">1</td>
                             <td th:text="${ques.content}" >2</td>
                             <td th:if="${ques.answer == 'a'}" th:text="${ques.a}">3</td>
                             <td th:if="${ques.answer == 'b'}" th:text="${ques.b}">3</td>
@@ -404,6 +405,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('#description').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSaveAddNew').css('display','inline-table');
+      $('#btnCancel').css('display','inline-table');
       $('#btnSaveEdit').css('display','none');
       $('#datepicker_expdate').removeAttr('disabled');
       $('#divPos').removeAttr('hidden');
@@ -422,6 +424,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('#description').removeAttr('disabled');
       $('#area').removeAttr('disabled');
       $('#btnSaveEdit').css('display','inline-table');
+      $('#btnCancel').css('display','inline-table');
       $('#btnSaveAddNew').css('display','none');
       $('#datepicker_expdate').removeAttr('disabled');
       $('#reservation').removeAttr('disabled');
