@@ -234,11 +234,11 @@ public class LoadData {
 			currentNode = (ObjectNode) iter.next();
 
 			String id_user = currentNode.path("id_user").asText();
-			String name_user = currentNode.path("name_user").asText();
+			String name_user = currentNode.path("tk").asText();
 
 			try {
-				table.putItem(new Item().withPrimaryKey("id_user", id_user, "name_user", name_user)
-						.withJSON("tk",currentNode.path("tk").toString())
+				table.putItem(new Item().withPrimaryKey("id_user", id_user, "tk", name_user)
+						.withJSON("name_user",currentNode.path("name_user").toString())
 						.withJSON("pass",currentNode.path("pass").toString())
 						.withJSON("code",currentNode.path("code").toString())
 						);

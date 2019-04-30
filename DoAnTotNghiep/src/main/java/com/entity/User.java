@@ -2,15 +2,27 @@ package com.entity;
 
 public class User {
 	private String id_user; //ID
+	private String tk;
+	private String code; // 1:Manager(Admin); 2: interviewer
 	private String name;
 	private String pass; //Password
-	private String code; // 1:Manager(Admin); 2: interviewer
-	private String useraccount;
 	public String getId_user() {
 		return id_user;
 	}
 	public void setId_user(String id_user) {
 		this.id_user = id_user;
+	}
+	public String getTk() {
+		return tk;
+	}
+	public void setTk(String tk) {
+		this.tk = tk;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getName() {
 		return name;
@@ -24,29 +36,22 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getUseraccount() {
-		return useraccount;
-	}
-	public void setUseraccount(String useraccount) {
-		this.useraccount = useraccount;
-	}
-	public User(String id_user, String name, String pass, String code, String useraccount) {
+	public User(String id_user, String tk, String code, String name, String pass) {
 		super();
 		this.id_user = id_user;
+		this.tk = tk;
+		this.code = code;
 		this.name = name;
 		this.pass = pass;
-		this.code = code;
-		this.useraccount = useraccount;
 	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "User [id_user=" + id_user + ", tk=" + tk + ", code=" + code + ", name=" + name + ", pass=" + pass + "]";
+	}
+
 	
 }

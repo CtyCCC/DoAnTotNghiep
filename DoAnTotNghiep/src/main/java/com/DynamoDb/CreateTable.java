@@ -97,9 +97,9 @@ public class CreateTable {
             System.out.println("Attempting to create table; please wait...");
             Table table = dynamoDB.createTable(tableName,
                 Arrays.asList(new KeySchemaElement("id_user", KeyType.HASH), // Partition key
-                    new KeySchemaElement("name_user", KeyType.RANGE)), // Sort key
+                    new KeySchemaElement("tk", KeyType.RANGE)), // Sort key
                 Arrays.asList(new AttributeDefinition("id_user", ScalarAttributeType.S),
-                    new AttributeDefinition("name_user", ScalarAttributeType.S)),
+                    new AttributeDefinition("tk", ScalarAttributeType.S)),
                 new ProvisionedThroughput(10L, 10L));
             table.waitForActive();
             System.out.println("Success.  Table status: " + table.getDescription().getTableStatus());

@@ -1,23 +1,23 @@
 [
 	{
 		"id_user":"user_1",
-		"name_user": "Nguyen Van A",
 		"tk":"admin",
+		"name_user": "Nguyen Van A",
 		"pass":"admin",
-		"code":"ADMIN"
+		"code":"ROLE_ADMIN"
 	},
 	{
 		"id_user":"user_2",
-		"name_user": "Nguyen Van B",
 		"tk":"interview1",
+		"name_user": "Nguyen Van B",
 		"pass":"123",
-		"code":"INTERVIEW"
+		"code":"ROLE_INTERVIEW"
 	},
 	{
 		"id_user":"user_3",
-		"name_user": "Nguyen Van C",
 		"tk":"interview2",
+		"name_user": "Nguyen Van C",
 		"pass":"123",
-		"code":"INTERVIEW"
+		"code":"ROLE_INTERVIEW"
 	}
 ]
