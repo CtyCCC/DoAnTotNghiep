@@ -17,10 +17,11 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping("/Error")
-	public String showerror() {
-		return "error";
+	@GetMapping("/401")
+	public String showerror401() {
+		return "401";
 	}
+	
 	
 	@PostMapping("/Login_user")
 	public String Login() {

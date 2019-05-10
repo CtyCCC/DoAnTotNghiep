@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/position").hasRole("ADMIN")
 			.antMatchers("/homeApply","/quiz").permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/Error")
+			.exceptionHandling().accessDeniedPage("/401")
 			.and().formLogin()
 			.loginProcessingUrl("/Login_user")
 			.loginPage("/Login")
