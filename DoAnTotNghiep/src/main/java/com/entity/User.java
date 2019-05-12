@@ -6,6 +6,14 @@ public class User {
 	private String code; // 1:Manager(Admin); 2: interviewer
 	private String name;
 	private String pass; //Password
+	private String avatar;
+	
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	public String getId_user() {
 		return id_user;
 	}
@@ -36,13 +44,15 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public User(String id_user, String tk, String code, String name, String pass) {
+	
+	public User(String id_user, String tk, String code, String name, String pass, String avatar) {
 		super();
 		this.id_user = id_user;
 		this.tk = tk;
 		this.code = code;
 		this.name = name;
 		this.pass = pass;
+		this.avatar = avatar;
 	}
 	public User() {
 		super();
@@ -50,8 +60,10 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id_user=" + id_user + ", tk=" + tk + ", code=" + code + ", name=" + name + ", pass=" + pass + "]";
+		return "User [id_user=" + id_user + ", tk=" + tk + ", code=" + code + ", name=" + name + ", pass=" + pass
+				+ ", avatar=" + avatar + "]";
 	}
+	
 
 	
 }

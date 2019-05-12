@@ -43,7 +43,8 @@ public class LoginDAO {
 							   item.getString("tk"),
 						       item.getString("code"),
 						       item.getString("name_user"),
-						       item.getString("pass"));
+						       item.getString("pass"),
+						       item.getString("avatar"));
 			}
 			return user;
 		}

@@ -9,6 +9,7 @@ import com.candidate.DoAnTotNghiepApplication;
 import com.login.Login;
 import com.position.PositionSC;
 import com.quiz.Quiz;
+import com.usermanagement.UserSC;
 
 
 @SpringBootApplication
@@ -16,7 +17,8 @@ import com.quiz.Quiz;
 		PositionSC.class, 
 		DoAnTotNghiepApplication.class,
 		Apply.class, 
-		Quiz.class})
+		Quiz.class,
+		UserSC.class})
 public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

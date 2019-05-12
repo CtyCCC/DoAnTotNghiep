@@ -238,6 +238,7 @@ public class LoadData {
 						.withJSON("name_user",currentNode.path("name_user").toString())
 						.withJSON("pass",currentNode.path("pass").toString())
 						.withJSON("code",currentNode.path("code").toString())
+						.withJSON("avatar",currentNode.path("avatar").toString())
 						);
 				System.out.println("PutItem succeeded!");
 
