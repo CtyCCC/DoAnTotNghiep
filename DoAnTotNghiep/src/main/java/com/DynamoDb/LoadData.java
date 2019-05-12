@@ -55,59 +55,7 @@ public class LoadData {
 			String offer = currentNode.path("offer").asText().toString();
 			String probation = currentNode.path("probation").toString();
 			try {
-				if(interview.isEmpty()) {
-					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
-							.withJSON("nameCan",currentNode.path("nameCan").toString())
-							.withJSON("email",currentNode.path("email").toString())
-							.withJSON("phone",currentNode.path("phone").toString())
-							.withJSON("gender",currentNode.path("gender").toString())
-							.withJSON("dob",currentNode.path("dob").toString())
-							.withJSON("dateImport",currentNode.path("dateImport").toString())
-							.withJSON("linkCV",currentNode.path("linkCV").toString())
-							.withJSON("rate",currentNode.path("rate").toString())
-							.withJSON("namePos",currentNode.path("namePos").toString())
-							.withJSON("workExp",currentNode.path("workExp").toString())
-							.withJSON("avatar",currentNode.path("avatar").toString())
-							.withJSON("status",currentNode.path("status").toString())
-
-							);
-					System.out.println("Ko co interview");
-				}else if(offer.isEmpty()) {
-					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
-							.withJSON("nameCan",currentNode.path("nameCan").toString())
-							.withJSON("email",currentNode.path("email").toString())
-							.withJSON("phone",currentNode.path("phone").toString())
-							.withJSON("gender",currentNode.path("gender").toString())
-							.withJSON("dob",currentNode.path("dob").toString())
-							.withJSON("dateImport",currentNode.path("dateImport").toString())
-							.withJSON("linkCV",currentNode.path("linkCV").toString())
-							.withJSON("rate",currentNode.path("rate").toString())
-							.withJSON("namePos",currentNode.path("namePos").toString())
-							.withJSON("workExp",currentNode.path("workExp").toString())
-							.withJSON("avatar",currentNode.path("avatar").toString())
-							.withJSON("status",currentNode.path("status").toString())
-							.withJSON("interview",currentNode.path("interview").toString())
-							);
-					System.out.println("Ko co offer");
-				}else if(probation.isEmpty()) {
-					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
-							.withJSON("nameCan",currentNode.path("nameCan").toString())
-							.withJSON("email",currentNode.path("email").toString())
-							.withJSON("phone",currentNode.path("phone").toString())
-							.withJSON("gender",currentNode.path("gender").toString())
-							.withJSON("dob",currentNode.path("dob").toString())
-							.withJSON("dateImport",currentNode.path("dateImport").toString())
-							.withJSON("linkCV",currentNode.path("linkCV").toString())
-							.withJSON("rate",currentNode.path("rate").toString())
-							.withJSON("namePos",currentNode.path("namePos").toString())
-							.withJSON("workExp",currentNode.path("workExp").toString())
-							.withJSON("avatar",currentNode.path("avatar").toString())
-							.withJSON("status",currentNode.path("status").toString())
-							.withJSON("interview",currentNode.path("interview").toString())
-							.withJSON("offer",currentNode.path("offer").toString())
-							);
-					System.out.println("Ko co probation");
-				}else {
+				if(!(probation.isEmpty())) {
 					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
 							.withJSON("nameCan",currentNode.path("nameCan").toString())
 							.withJSON("email",currentNode.path("email").toString())
@@ -125,8 +73,57 @@ public class LoadData {
 							.withJSON("offer",currentNode.path("offer").toString())
 							.withJSON("probation",currentNode.path("probation").toString())
 							);
-					System.out.println("Ko co all");
+				}else if(!(offer.isEmpty())) {
+					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+							.withJSON("nameCan",currentNode.path("nameCan").toString())
+							.withJSON("email",currentNode.path("email").toString())
+							.withJSON("phone",currentNode.path("phone").toString())
+							.withJSON("gender",currentNode.path("gender").toString())
+							.withJSON("dob",currentNode.path("dob").toString())
+							.withJSON("dateImport",currentNode.path("dateImport").toString())
+							.withJSON("linkCV",currentNode.path("linkCV").toString())
+							.withJSON("rate",currentNode.path("rate").toString())
+							.withJSON("namePos",currentNode.path("namePos").toString())
+							.withJSON("workExp",currentNode.path("workExp").toString())
+							.withJSON("avatar",currentNode.path("avatar").toString())
+							.withJSON("status",currentNode.path("status").toString())
+							.withJSON("interview",currentNode.path("interview").toString())
+							.withJSON("offer",currentNode.path("offer").toString())
+							);
+				}else if (!(interview.isEmpty())) {
+					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+							.withJSON("nameCan",currentNode.path("nameCan").toString())
+							.withJSON("email",currentNode.path("email").toString())
+							.withJSON("phone",currentNode.path("phone").toString())
+							.withJSON("gender",currentNode.path("gender").toString())
+							.withJSON("dob",currentNode.path("dob").toString())
+							.withJSON("dateImport",currentNode.path("dateImport").toString())
+							.withJSON("linkCV",currentNode.path("linkCV").toString())
+							.withJSON("rate",currentNode.path("rate").toString())
+							.withJSON("namePos",currentNode.path("namePos").toString())
+							.withJSON("workExp",currentNode.path("workExp").toString())
+							.withJSON("avatar",currentNode.path("avatar").toString())
+							.withJSON("status",currentNode.path("status").toString())
+							.withJSON("interview",currentNode.path("interview").toString())
+							);
+				}else if(interview.isEmpty()) {
+					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
+							.withJSON("nameCan",currentNode.path("nameCan").toString())
+							.withJSON("email",currentNode.path("email").toString())
+							.withJSON("phone",currentNode.path("phone").toString())
+							.withJSON("gender",currentNode.path("gender").toString())
+							.withJSON("dob",currentNode.path("dob").toString())
+							.withJSON("dateImport",currentNode.path("dateImport").toString())
+							.withJSON("linkCV",currentNode.path("linkCV").toString())
+							.withJSON("rate",currentNode.path("rate").toString())
+							.withJSON("namePos",currentNode.path("namePos").toString())
+							.withJSON("workExp",currentNode.path("workExp").toString())
+							.withJSON("avatar",currentNode.path("avatar").toString())
+							.withJSON("status",currentNode.path("status").toString())
+
+							);
 				}
+				
 
 				System.out.println("PutItem succeeded!");
 

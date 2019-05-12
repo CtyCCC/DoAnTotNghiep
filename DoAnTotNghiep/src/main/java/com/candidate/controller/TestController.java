@@ -89,7 +89,7 @@ public class TestController {
 				rounds.add(rnd);
 
 				candidateDAO.addInterview(idCan, cmnd, rounds, stus);
-			}else {
+			}else if(can.getInterview().equals("Interviewing")){
 				stus = "Interviewing";
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
 				Map<String, Object> rnd = new HashMap<String, Object>();
@@ -189,12 +189,28 @@ public class TestController {
 				}
 				model.addAttribute("dsR", dsR);
 			}
+			
+			//Đổ dữ liệu cho Offer
+			String isOf = "Not";
+			String [] ofRs = {"Unknown","Accept", "Decline"};
+			if(can.getOffer()!=null) {
+				isOf = (String) can.getOffer().get("result");
+			}
+			
+			//Đổ dữ liệu cho Probation
+			String isPro = "Not";
+			if(can.getProbation()!=null) {
+				isPro = (String) can.getProbation().get("result");
+			}
+			
 			model.addAttribute("TotalRound", totalRound);
 			model.addAttribute("Pass", pass);
 			model.addAttribute("Fail", fail);
 			model.addAttribute("fr", fr);
 			model.addAttribute("isIn",isIn);
-
+			model.addAttribute("ofRs", ofRs);
+			model.addAttribute("isOf",isOf);
+			model.addAttribute("isPro", isPro);
 			return "profile";
 		}
 		return null;
@@ -362,5 +378,46 @@ public class TestController {
 			candidateDAO.updateFinalResult(idCan, cmnd, fnRs);
 		}
 		return "OK";		
+	}
+	
+	@PostMapping("/profile/saveOffer")
+	public @ResponseBody String saveOffer (HttpServletRequest req) {
+		String id = req.getParameter("id");
+		String cmnd = candidateDAO.getCandidateById(id).getCmnd();
+		String curSal = req.getParameter("curSal");
+		String expectSal = req.getParameter("expecSal");
+		String offSal = req.getParameter("offSal");
+		String result = req.getParameter("rs");
+		String stus = "Offering";
+		if(result.equals("Accept")) {
+			stus = "Offer Pass";
+		}
+		if(result.equals("Decline")) {
+			stus = "Offer Fail";
+		}
+		candidateDAO.editOffer(id, cmnd, stus, curSal, expectSal, offSal, result);
+		
+		return "Ok";
+		
+	}
+	
+	@PostMapping("/profile/saveProbation")
+	public @ResponseBody String saveProbation (HttpServletRequest req) {
+		String id = req.getParameter("id");
+		String cmnd = candidateDAO.getCandidateById(id).getCmnd();
+		String dateRange = req.getParameter("dateRange");
+		String note = req.getParameter("note");
+		String result = req.getParameter("rs");
+		String stus = "Probation";
+		if(result.equals("Pass")) {
+			stus = "Probation Pass";
+		}
+		if(result.equals("Fail")) {
+			stus = "Probation Fail";
+		}
+		candidateDAO.editProbation(id, cmnd, stus, dateRange, result, note);
+		
+		return "Ok";
+		
 	}
 }

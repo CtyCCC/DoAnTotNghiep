@@ -116,7 +116,9 @@ public class CandidateDAO {
 						item.getString("avatar"),
 						item.getMap("rate"), 
 						item.getString("status"), 
-						null,null,null);
+						item.getMap("interview"),
+						item.getMap("offer"),
+						item.getMap("probation"));
 				ds.add(c);
 			}
 
@@ -156,8 +158,9 @@ public class CandidateDAO {
 						item.getString("avatar"),
 						item.getMap("rate"), 
 						item.getString("status"), 
-						item.getMap("interview")
-						,null,null);
+						item.getMap("interview"),
+						item.getMap("offer"),
+						item.getMap("probation"));
 			}
 			return can;
 		}
@@ -265,8 +268,67 @@ public class CandidateDAO {
 		}
 	}
 	
+	//Add Offer
+	public void editOffer(String id, String cmnd, String stus, String curSal, String expectSal, String offSal, String result) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
+		
+		//Thông tin offer
+		Map<String, Object> offer = new HashMap<String, Object>(); 
+		offer.put("curSalary",curSal);
+		offer.put("expectSalary",expectSal);
+		offer.put("offerSalary",offSal);
+		offer.put("result",result);
+		
+		updateItemSpec = new UpdateItemSpec()
+				.withPrimaryKey("idCan", id, "cmnd", cmnd)
+				.withUpdateExpression("set #ss = :s, offer = :o")
+				.withNameMap(new NameMap().with("#ss", "status"))
+				.withValueMap(new ValueMap().withString(":s", stus)
+						.withMap(":o", offer))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	//Add probation
+	public void editProbation(String id, String cmnd, String stus, String dateRange, String result, String note) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
+		
+		//Thông tin offer
+		Map<String, Object> proba = new HashMap<String, Object>(); 
+		proba.put("dateRange",dateRange);
+		proba.put("result",result);
+		proba.put("note",note);
+		
+		updateItemSpec = new UpdateItemSpec()
+				.withPrimaryKey("idCan", id, "cmnd", cmnd)
+				.withUpdateExpression("set #ss = :s, probation = :p")
+				.withNameMap(new NameMap().with("#ss", "status"))
+				.withValueMap(new ValueMap().withString(":s", stus)
+						.withMap(":p", proba))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
 	//Edit thông tin candidate
-	public void editProfile(Candidate can) {
+	public void editProfile(Candidate can) { 
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
 					.withPrimaryKey("idCan", can.getIdCan(), "cmnd", can.getCmnd())

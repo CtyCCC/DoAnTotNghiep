@@ -543,31 +543,48 @@
         /* Act on the event */
         var dt = table.rows('.selected').data();
         var id_cmnd = [];
-        for(var i=0; i < dt.length ;i++){
-          var ob = { idCan : dt[i][0], cmnd : dt[i][1] };
-          id_cmnd.push(ob);
-        }
-        var date = $("#datepicker_Interview").val();
-        var time = $("#txt_time_interview").val();
-        var interviewer = $("#txt_interviewer").val();
-        var venue = $("#txt_venue").val();
-        var note = $("#txt_note_interview").val();
-        //event.preventDefault();
-        $.ajax({
-                url: '/index/setInterview',
-                type: 'post',
-                dataType: 'html',
-                //contentType: "application/json; charset=utf-8",
-                data: {
-                    date:date,
-                    time:time,
-                    interviewer:interviewer,
-                    venue:venue,
-                    note:note,
-                    id_cmnd:JSON.stringify(id_cmnd)
-
-                }
-        })
+        Swal.fire({
+            title: 'Only Candidate in New or Interviewing can set Interview ?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'YES'
+          }).then((result) =>{
+            if(result.value){
+              for(var i=0; i < dt.length ;i++){
+                var ob = { idCan : dt[i][0], cmnd : dt[i][1] };
+                id_cmnd.push(ob);          
+              }
+              var date = $("#datepicker_Interview").val();
+              var time = $("#txt_time_interview").val();
+              var interviewer = $("#txt_interviewer").val();
+              var venue = $("#txt_venue").val();
+              var note = $("#txt_note_interview").val();
+              //event.preventDefault();
+              $.ajax({
+                      url: '/index/setInterview',
+                      type: 'post',
+                      dataType: 'html',
+                      //contentType: "application/json; charset=utf-8",
+                      data: {
+                          date:date,
+                          time:time,
+                          interviewer:interviewer,
+                          venue:venue,
+                          note:note,
+                          id_cmnd:JSON.stringify(id_cmnd)
+                      }
+              });
+              Swal.fire(
+              'Set Interview Success',
+              '',
+              'success'
+            ).then((result) =>{
+              location.reload();
+            });
+            }     
+          });   
       });
 
       $("#btnDelete").click(function(event) {

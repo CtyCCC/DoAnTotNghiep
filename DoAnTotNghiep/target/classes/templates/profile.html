@@ -305,8 +305,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 <li class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
-                <li><a id="tab_offer" href="#offer" data-toggle="tab">Offer</a></li>
-                <li><a id="tab_probation" href="#probation" data-toggle="tab">Probation</a></li>
+                <li id="li_offer" class="disabled"><a id="tab_offer" href="#offer">Offer</a></li>
+                <li id="li_probation" class="disabled"><a id="tab_probation" href="#probation">Probation</a></li>
               </ul>
               <div class="tab-content">
                 <!-- Interview -->
@@ -454,53 +454,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    <div class="col-xs-12" style="display: none;">
-                      <!-- Round 1 -->
-                      <div class="col-xs-6">
-                        <div class="box box-info">
-                          <div class="box-header with-border center">
-                            <strong>ROUND 1</strong>
-                          </div>
-                          <div class="box-body">
-                            <div class="col-xs-12" style="padding: 0">
-                              <label for="" class="col-xs-5 text-right">Date: </label>
-                              <span class="col-xs-7 text-left">12/12/2012</span>
-                            </div>
-                            <div class="col-xs-12" style="padding: 0">
-                              <label for="" class="col-xs-5 text-right">Time: </label>
-                              <span class="col-xs-7 text-left">8:00 PM</span>
-                            </div>
-                            <div class="col-xs-12" style="padding: 0">
-                              <label for="" class="col-xs-5 text-right">Interviewer: </label>
-                              <span class="col-xs-7 text-left">Mr ccccA</span>
-                            </div>
-                            <div class="col-xs-12" style="padding: 0">
-                              <label for="" class="col-xs-5 text-right">Venue: </label>
-                              <span class="col-xs-7 text-left">2nd floor</span>
-                            </div>
-                            <div class="col-xs-12" style="padding: 0">
-                              <label for="" class="col-xs-5 text-right">Result: </label>
-                              <span class="col-xs-7 text-left text-red">Fail</span>
-                            </div>
-                            <div class="col-xs-12" style="padding-left: 0;padding-right: 0;">
-                              <div style="background: #ebf6e0; border-radius: 2px; border: 1px solid #b3dc82; box-sizing: border-box; float: none; margin: 0px auto; outline: 0px; vertical-align: baseline; color: #5f9025; font-family: arial, sans-serif; font-size: 15px;padding: 2%;"><strong>Note: </strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
-                              </div>
-                            </div>
-                            <div class="col-xs-12" style="padding: 0">
-                              <button type="button" class="btn btn-info btn-xs pull-right editRound" >Edit</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.Round 1 -->
-
-                    </div>
-                    <div class="col-xs-12">
-
-
-                    </div>   
+                    </div>  
                   </div>
                   <!-- /.box-body -->
                 </div>
@@ -511,26 +465,33 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <div class="form-group">
                       <div class="form-row col-xs-6">
                         <label>Current salary: </label>
-                        <input type="text" class="form-control">
+                        <input th:if="${isOf =='Not'}" type="text" class="form-control" id="curOff">
+                        <input th:unless="${isOf =='Not'}" type="text" class="form-control" th:value="${candidate.offer.curSalary}" disabled id="curOff">
                       </div>
                       <div class="form-row col-xs-6">
                         <label>Expected salary: </label>
-                        <input type="text" class="form-control">
+                        <input th:if="${isOf =='Not'}" type="text" class="form-control" id="expectOff">
+                        <input th:unless="${isOf =='Not'}" type="text" class="form-control" th:value="${candidate.offer.expectSalary}"disabled id="expectOff">
                       </div>
                       <div class="form-row col-xs-6">
                         <label>Offer salary: </label>
-                        <input type="number" class="form-control">
+                        <input th:if="${isOf =='Not'}" type="number" class="form-control" id="offsal">
+                        <input th:unless="${isOf =='Not'}" type="text" class="form-control" th:value="${candidate.offer.offerSalary}"disabled id="offsal">
                       </div>
                       <div class="form-group col-xs-6">
                         <label>Result: </label>
-                        <select class="form-control">
-                          <option>Accept</option>
-                          <option>Decline</option>
+                        <select th:if="${isOf =='Not'}" class="form-control" id="rsOff">
+                          <option value="Unknown">Unknown</option>
+                          <option value="Accept">Accept</option>
+                          <option value="Decline">Decline</option>
+                        </select>
+                        <select th:unless="${isOf =='Not'}" class="form-control" disabled id="rsOff">
+                          <option th:each="ofrs : ${ofRs}" th:text="${ofrs}" th:value="${ofrs}" th:selected="${ofrs == isOf}"></option>
                         </select>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
-                    <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
+                    <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveOffer">Save</button>
+                    <button th:if="${isOf !='Not'}" type="button" class="btn btn-primary pull-right" id="btn_editOffer" >Edit</button>
                   </div>
                 </div>
                 <!-- /.tab-pane -->
@@ -543,23 +504,27 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control pull-right" id="reservation">
+                        <input th:if="${isPro =='Not'}" type="text" class="form-control pull-right" id="reservation">
+                        <input th:unless="${isPro =='Not'}" type="text" class="form-control pull-right" id="reservation" th:value="${candidate.probation.dateRange}" disabled>
                       </div>
                       <!-- /.input group -->
                     </div>
                     <div class="form-group col-xs-12">
                       <label>Result: </label>
-                      <select class="form-control">
-                        <option>Pass</option>
-                        <option>Fail</option>
+                      <select th:if="${isPro =='Not'}" class="form-control" id="proRs">
+                        <option th:each="proRs : ${fr}" th:text="${proRs}" th:value="${proRs}"></option>
+                      </select>
+                      <select th:unless="${isPro =='Not'}" class="form-control" disabled id="proRs">
+                        <option th:each="proRs : ${fr}" th:text="${proRs}" th:value="${proRs}" th:selected="${proRs == isPro}"></option>
                       </select>
                     </div>
                     <div class="col-xs-12" style="padding-bottom: 1%">
                       <label for="">Note: </label>
-                      <textarea class="form-control" rows="3"></textarea>
+                      <textarea th:if="${isPro =='Not'}" class="form-control" rows="3" id="proNote"></textarea>
+                      <textarea th:unless="${isPro =='Not'}" class="form-control" rows="3" th:text="${candidate.probation.note}" disabled id="proNote"></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px">Save</button>
-                    <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
+                    <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_savePro">Save</button>
+                    <button th:if="${isPro !='Not'}" type="button" class="btn btn-primary pull-right" id="btn_editProbation" >Edit</button>
                   </div>
                 </div>
               </div>
@@ -650,24 +615,46 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           break;
         case "Interview Pass":
           $("#status").attr("style", "font-weight:bold; color: green");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
           break;
         case "Offering":
           $("#status").attr("style", "font-weight:bold; color: blue");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
           break;
-        case "Offering Fail":
+        case "Offer Fail":
           $("#status").attr("style", "font-weight:bold; color: red");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
           break;
-        case "Offering Pass":
+        case "Offer Pass":
           $("#status").attr("style", "font-weight:bold; color: green");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
           break;
-        case "Probationing":
+        case "Probation":
           $("#status").attr("style", "font-weight:bold; color: orange");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
           break;
         case "Probation Fail":
           $("#status").attr("style", "font-weight:bold; color: red");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
           break;
         case "Probation Pass":
           $("#status").attr("style", "font-weight:bold; color: green");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
           break;  
       }
 
@@ -694,7 +681,12 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Money Euro
     $('[data-mask]').inputmask()
     //Date range picker
-    $('#reservation').daterangepicker()
+    $('#reservation').daterangepicker({
+      locale:{
+        format: 'DD/MM/YYYY'
+      }
+      
+    })
     //Date range picker with time picker
     $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
     //Date range as a button
@@ -810,6 +802,21 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#txtInterviewer").attr('disabled','true');
       $("#txtVenue").attr('disabled','true');
       $("#txtNote").attr('disabled','true');
+    });
+
+    $("#btn_editOffer").click(function(event) {
+      /* Act on the event */
+      $("#curOff").removeAttr('disabled');
+      $("#expectOff").removeAttr('disabled');
+      $("#offsal").removeAttr('disabled');
+      $("#rsOff").removeAttr('disabled');
+    });
+
+    $("#btn_editProbation").click(function(event) {
+      /* Act on the event */
+      $("#reservation").removeAttr('disabled');
+      $("#proRs").removeAttr('disabled');
+      $("#proNote").removeAttr('disabled');
     });
 
     //Back interview
@@ -949,6 +956,92 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       }     
     });
 
+    //Save Offer
+    $("#btn_saveOffer").click(function(event) {
+      /* Act on the event */
+      var curSal = $("#curOff").val();
+      var expecSal = $("#expectOff").val();
+      var offSal = $("#offsal").val();
+      var rs = $("#rsOff").val();
+      var id = $("#idCan").val();
+      if(curSal==""||expecSal==""||offSal==""){
+        Swal.fire({
+              type: 'warning',
+              title: 'Oops...',
+              text: 'Some field are not fill!!',
+        })
+      }else{
+          Swal.fire({
+            title: 'Do you want to Update Offer ?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'YES'
+          }).then((result) =>{
+            if (result.value){
+              $.ajax({
+              url: '/profile/saveOffer',
+              type: 'post',
+              dataType: 'html',
+              data: {
+                  id:id,
+                  curSal:curSal,
+                  expecSal:expecSal,
+                  offSal:offSal,
+                  rs:rs
+              }
+             }).done(function(data) {
+                Swal.fire(
+                  'Update Offer Sucess!',
+                  '',
+                  'success'
+                );
+             });
+            }
+          });
+      }     
+    });
+
+    //Save Probation
+    $("#btn_savePro").click(function(event) {
+      /* Act on the event */
+      var id = $("#idCan").val();
+      var dateRange = $("#reservation").val();
+      var rs = $("#proRs").val();
+      var note = $("#proNote").val();
+      if(note == ""){
+        note = "Nothing";
+      }
+      Swal.fire({
+            title: 'Do you want to Update Probation ?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'YES'
+          }).then((result) =>{
+            if (result.value){
+              $.ajax({
+              url: '/profile/saveProbation',
+              type: 'post',
+              dataType: 'html',
+              data: {
+                  id:id,
+                  dateRange:dateRange,
+                  rs:rs,
+                  note:note
+              }
+             }).done(function(data) {
+                Swal.fire(
+                  'Update Offer Sucess!',
+                  '',
+                  'success'
+                );
+             });
+            }
+          });
+    });
 
   });
 </script>
@@ -1152,7 +1245,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     'WARNING!',
                     'Check all result of round before finish Interview!',
                     'warning'
-                  )
+                  ).then((result) =>{
+                    $("#finalResult").val("Unknown");
+                  });
                 }else if (data=="OK") {
                   Swal.fire({
                     type: 'success',

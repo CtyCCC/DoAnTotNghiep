@@ -9,22 +9,33 @@
 		"dob":"24/05/1997",
 		"dateImport":"25/03/2019",
 		"linkCV": "https://drive.google.com/open?id=17WztKIGDNWNuoqbfoVrUQ_PeAWiYgsMi",
+		"workExp":"3 years",
+		"avatar":"zzz",
 		"rate":{
 			"score" : 18,
 			"time" : 3000,
 			"total": 20
 		},
 		"namePos": "Product Manager",
-		"status":"Interview Fail",
+		"status":"Probation",
 		"interview":{
-			"finalResult":"Fail",
+			"finalResult":"Pass",
 			"rounds":[
 			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
-			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Fail"}
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Pass"}
 			]
 		},
-		"workExp":"3 years",
-		"avatar":"zzz"
+		"offer":{
+			"curSalary":1000,
+			"expectSalary":1500,
+			"offerSalary":1300,
+			"result":"Accept"
+		},
+		"probation":{
+			"dateRange":"12/05/2019 - 12/06/2019",
+			"note":"Nothing",
+			"result":"Unknown"
+		}
 	},
 	{
 		"idCan":"CAN2",
@@ -34,7 +45,7 @@
 		"phone": "0909323232",
 		"gender": true,
 		"dob":"24/05/1997",
-		"dateImport":"25/04/2019",
+		"dateImport":"25/03/2019",
 		"linkCV": "https://drive.google.com/open?id=1lx5vbvdBzDVzupSTQxVBR3nk203wX7Fe",
 		"rate":{
 			"score" : 18,
@@ -69,13 +80,19 @@
 			"total": 20
 		},
 		"namePos": "Product Manager",
-		"status":"Interviewing",
+		"status":"Offering",
 		"interview":{
-			"finalResult":"Unknown",
+			"finalResult":"Pass",
 			"rounds":[
 			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
-			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Unknown"}
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Pass"}
 			]
+		},
+		"offer":{
+			"curSalary":1000,
+			"expectSalary":1500,
+			"offerSalary":1300,
+			"result":"Unknown"
 		},
 		"workExp":"3 years",
 		"avatar":"zzz"
@@ -88,7 +105,7 @@
 		"phone": "0909323232",
 		"gender": false,
 		"dob":"11/10/1989",
-		"dateImport":"25/03/2015",
+		"dateImport":"25/03/2019",
 		"linkCV": "https://drive.google.com/open?id=1qlBKhnOv3DHQpuyRUtgf5zLQdTFQBlJV",
 		"rate":{
 			"score" : 20,
@@ -96,7 +113,14 @@
 			"total": 20
 		},
 		"namePos": "Senior Tester",
-		"status":"New",
+		"status":"Interview Fail",
+		"interview":{
+			"finalResult":"Fail",
+			"rounds":[
+			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Bad","result":"Fail"}
+			]
+		},
 		"workExp":"3 years",
 		"avatar":"zzz"
 	},
@@ -108,7 +132,7 @@
 		"phone": "0909323232",
 		"gender": false,
 		"dob":"05/05/1989",
-		"dateImport":"25/03/2015",
+		"dateImport":"25/03/2019",
 		"linkCV": "https://drive.google.com/open?id=11_oAdfpuHGvcGykb43gkLdTIBhikaBqK",
 		"rate":{
 			"score" : 18,
@@ -116,7 +140,20 @@
 			"total": 20
 		},
 		"namePos": "Senior Tester",
-		"status":"New",
+		"status":"Offer Fail",
+		"interview":{
+			"finalResult":"Pass",
+			"rounds":[
+			{"idRound":"1","interviewer":"Mạnh Cường","date":"22/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Not Bad","result":"Pass"},
+			{"idRound":"2","interviewer":"Đình Chiến","date":"23/04/2019","time":"08:30 AM","venue":"Floor 7th","note":"Nothing","result":"Pass"}
+			]
+		},
+		"offer":{
+			"curSalary":1000,
+			"expectSalary":1500,
+			"offerSalary":1300,
+			"result":"Decline"
+		},
 		"workExp":"3 years",
 		"avatar":"zzz"
 	},
