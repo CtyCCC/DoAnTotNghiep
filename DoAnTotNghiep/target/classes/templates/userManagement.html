@@ -42,6 +42,9 @@
    position: absolute;
    z-index: -1;
  }
+ .selected {
+        background-color: #f2f2f2;
+    }
 </style>
 <link rel="stylesheet"
 href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -115,7 +118,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
             <li><a href="index"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
-            <li class="active"><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
+            <li ><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
+            <li class="active"><a href="userMgmt"><i class="fa  fa-users"></i> <span>User management</span></a></li>
             <li><a href="chartjs"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
           </ul>
           <!-- /.sidebar-menu -->
@@ -168,9 +172,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <div class="form-row col-xs-6">
                     <label>Role: </label>
                     <select class="form-control" id="role" style="height: 35px" disabled>
-                        <option >INTERVIEWER</option>
-                        <option >HR</option>
-                        <option >ADMIN</option>
+                        <option >ROLE_INTERVIEWER</option>
+                        <option >ROLE_HR</option>
+                        <option >ROLE_ADMIN</option>
                     </select>
                 </div>
                 <div class="form-row col-xs-6" id="framepass" hidden="">
@@ -188,22 +192,17 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <th>Username</th>
                 <th>Role</th>
                 <th hidden="">Pass</th>
+                <th hidden="">avatar</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>ID1</td>
-                <td>Tran Dinh Chien</td>
-                <td>chienpro</td>
-                <td>ADMIN</td>
-                <td hidden="">pass</td>
-              </tr>
-              <tr>
-                <td>ID2</td>
-                <td>Tran Dinh Cuong</td>
-                <td>chienpro123</td>
-                <td>HR</td>
-                <td hidden="">pass</td>
+              <tr th:each="ques : ${listUser}">
+                 <td th:text="${ques.id_user}">1</td>
+                 <td th:text="${ques.name}" >2</td>
+                 <td th:text="${ques.tk}">3</td>
+                 <td th:text="${ques.code}">3</td>
+                 <td hidden="" th:text="${ques.pass}">3</td>
+                 <td hidden="" th:text="${ques.avatar}">3</td>        
               </tr>
               </tbody>
               <tfoot>
@@ -213,6 +212,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <th>Username</th>
                 <th>Role</th>
                 <th hidden="">Pass</th>
+                <th hidden="">avatar</th>
               </tr>
               </tfoot>
             </table>
@@ -302,7 +302,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 			
 			$("#nameCus").removeAttr('readonly');
 	        $("#role").removeAttr('disabled');
-	        $("#user").removeAttr('readonly');
+	        //$("#user").removeAttr('readonly');
 	    });
 		
 		$("#btnAddUser").click(function() {
@@ -320,7 +320,79 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 	        $("#nameCus").val("");
 	        $("#user").val("");
 	        $("#pass").val("");
-	        $("#hinh").attr('src','');
+	        $("#hinh").attr('src','./dist/img/avatar04.png');
+	    });
+		
+		$("#btnDelete").click(function() {
+			var id = $("#idAcc").val();
+			var tk = $("#user").val();
+			
+			Swal.fire({
+				  title: 'Are you sure?',
+				  text: "You won't be able to revert this!",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Delete'
+				}).then((result) => {
+				  if (result.value) {
+					  $.ajax({
+			    	        type: "post",
+			    	        url: "/deleteUser",  
+			    	        data:{ id: id, tk : tk},
+			    	        success: function(){
+			    	        	console.log("send success to server");
+			    	        	location.reload();
+			    	        },
+			    	        error: function(){      
+			    	         alert('Error while request..');
+			    	        }
+			    		});
+				  }
+				})
+	    });
+		
+		$("#btnSaveAddNew").click(function() {
+			//var id = $("#idAcc").val();
+			var tk = $("#user").val();
+			var name = $("#nameCus").val();
+			var role = $("#role").val();
+			var pass = $("#pass").val();
+			
+			$.ajax({
+    	        type: "post",
+    	        url: "/addUser",  
+    	        data:{ name :name, role : role, pass: pass, tk : tk},
+    	        success: function(){
+    	        	console.log("send success to server");
+    	        	location.reload();
+    	        },
+    	        error: function(){      
+    	         alert('Error while request..');
+    	        }
+    		});
+	    });
+		
+		$("#btnSaveEdit").click(function() {
+			var id = $("#idAcc").val();
+			var tk = $("#user").val();
+			var name = $("#nameCus").val();
+			var role = $("#role").val();
+			//var pass = $("#pass").val();
+			
+			$.ajax({
+    	        type: "post",
+    	        url: "/updateUser",  
+    	        data:{ name :name, role : role,id : id, tk : tk},
+    	        success: function(){
+    	        	console.log("send success to server");
+    	        	location.reload();
+    	        },
+    	        error: function(){      
+    	         alert('Error while request..');
+    	        }
+    		});
 	    });
 
 });
