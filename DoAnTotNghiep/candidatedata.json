@@ -35,7 +35,12 @@
 			"dateRange":"12/05/2019 - 12/06/2019",
 			"note":"Nothing",
 			"result":"Unknown"
-		}
+		},
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
+			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"},
+			{"by":"admin","date":"14-05-2019","time":"11:09:47","method":"Update InterView","change":"Asasasa"}
+		]
 	},
 	{
 		"idCan":"CAN2",
@@ -62,7 +67,11 @@
 			]
 		},
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
+			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN3",
@@ -95,7 +104,11 @@
 			"result":"Unknown"
 		},
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
+			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN4",
@@ -122,7 +135,11 @@
 			]
 		},
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
+			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN5",
@@ -155,7 +172,11 @@
 			"result":"Decline"
 		},
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
+			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN6",
@@ -175,7 +196,10 @@
 		"namePos": "Senior Tester",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN7",
@@ -195,7 +219,10 @@
 		"namePos": "Senior Tester",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN7",
@@ -215,7 +242,10 @@
 		"namePos": "Junior Java Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN8",
@@ -235,7 +265,10 @@
 		"namePos": "Junior Java Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN9",
@@ -255,7 +288,10 @@
 		"namePos": "Junior Java Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN10",
@@ -275,7 +311,10 @@
 		"namePos": "Big Data Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN11",
@@ -295,7 +334,10 @@
 		"namePos": "Big Data Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN12",
@@ -315,7 +357,10 @@
 		"namePos": "Data Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN13",
@@ -335,7 +380,10 @@
 		"namePos": "Data Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN14",
@@ -355,7 +403,10 @@
 		"namePos": "Machine Learning Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN15",
@@ -375,7 +426,10 @@
 		"namePos": "Machine Learning Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN16",
@@ -395,7 +449,10 @@
 		"namePos": "Python Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	},
 	{
 		"idCan":"CAN17",
@@ -415,6 +472,9 @@
 		"namePos": "Python Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz"
+		"avatar":"zzz",
+		"logs":[
+			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
+		]
 	}
 ]

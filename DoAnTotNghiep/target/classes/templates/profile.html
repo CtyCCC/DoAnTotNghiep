@@ -251,46 +251,27 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 </div>
               </div>
               <!-- /.box-header -->
-              <div class="box-body" style="display: none;">
-                <ul class="timeline timeline-inverse">
+              <div class="box-body">
+                <ul class="timeline timeline-inverse" th:each="date : ${dsDate}">
                   <!-- timeline time label -->
                   <li class="time-label">
-                    <span class="bg-green">
-                      10 Feb. 2014
+                    <span class="bg-green" th:text="${date}">
+                    
                     </span>
                   </li>
                   <!-- /.timeline-label -->
                   <!-- timeline item -->
-                  <li>
+                  <li th:each="log : ${logs}" th:if= "${log.date==date}">
                     <i class="fa fa-edit bg-yellow"></i>
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                      <h3 class="timeline-header"><a href="#">Trần Đình Chiến</a> edit Candidate profile</h3>
-                      <div class="timeline-body">
-                        Name: Mạnh Cường => Đình Chiến <br>
-                        Email: cuongfbi1314@gmail.com => lonelyheart0903@gmail.com
+                      <span class="time" th:text="${log.time}"><i class="fa fa-clock-o"></i></span>
+                      <h3 class="timeline-header"><a href="#" th:text="${log.by}" style="padding-right: 10px"></a><span th:text="${log.method}"></span></h3>
+                      <div th:if="${log.change != 'Not'}" class="timeline-body" th:text="${log.change}" style="white-space: pre;">
                       </div>
-
                     </div>
                   </li>
                   <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                    <span class="bg-green">
-                      3 Jan. 2014
-                    </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-edit bg-yellow"></i>
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
+                  
                   <li>
                     <i class="fa fa-clock-o bg-gray"></i>
                   </li>
@@ -304,7 +285,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           <div class="col-md-6">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                <li class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
+                <li id="li_interview" class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
                 <li id="li_offer" class="disabled"><a id="tab_offer" href="#offer">Offer</a></li>
                 <li id="li_probation" class="disabled"><a id="tab_probation" href="#probation">Probation</a></li>
               </ul>
@@ -583,6 +564,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   <script src="./plugins/iCheck/icheck.min.js"></script>
   <!-- page script -->
   <script>
+
     $(function () {
       $('#example1').DataTable()
       $('#example2').DataTable({
@@ -622,14 +604,20 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           $("#status").attr("style", "font-weight:bold; color: blue");
           $("#li_offer").removeAttr('class');
           $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
           break;
         case "Offer Fail":
           $("#status").attr("style", "font-weight:bold; color: red");
           $("#li_offer").removeAttr('class');
           $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
           break;
         case "Offer Pass":
           $("#status").attr("style", "font-weight:bold; color: green");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
           $("#li_offer").removeAttr('class');
           $("#tab_offer").attr('data-toggle', 'tab');
           $("#li_probation").removeAttr('class');
@@ -637,22 +625,34 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           break;
         case "Probation":
           $("#status").attr("style", "font-weight:bold; color: orange");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
           $("#li_offer").removeAttr('class');
           $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_editOffer").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('style', 'display:none');
           $("#li_probation").removeAttr('class');
           $("#tab_probation").attr('data-toggle', 'tab');
           break;
         case "Probation Fail":
           $("#status").attr("style", "font-weight:bold; color: red");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
           $("#li_offer").removeAttr('class');
           $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_editOffer").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('style', 'display:none');
           $("#li_probation").removeAttr('class');
           $("#tab_probation").attr('data-toggle', 'tab');
           break;
         case "Probation Pass":
           $("#status").attr("style", "font-weight:bold; color: green");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
           $("#li_offer").removeAttr('class');
           $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_editOffer").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('style', 'display:none');
           $("#li_probation").removeAttr('class');
           $("#tab_probation").attr('data-toggle', 'tab');
           break;  

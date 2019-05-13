@@ -28,9 +28,9 @@ public class LoadData {
 		// TODO Auto-generated method stub
 
 		loadCandidate();
-		loadPosition();
-		loadQuestion();
-		loadUser();
+//		loadPosition();
+//		loadQuestion();
+//		loadUser();
 
 	}
 
@@ -52,7 +52,7 @@ public class LoadData {
 			String cmnd = currentNode.path("cmnd").asText();
 
 			String interview = currentNode.path("interview").toString();
-			String offer = currentNode.path("offer").asText().toString();
+			String offer = currentNode.path("offer").toString();
 			String probation = currentNode.path("probation").toString();
 			try {
 				if(!(probation.isEmpty())) {
@@ -72,6 +72,7 @@ public class LoadData {
 							.withJSON("interview",currentNode.path("interview").toString())
 							.withJSON("offer",currentNode.path("offer").toString())
 							.withJSON("probation",currentNode.path("probation").toString())
+							.withJSON("logs",currentNode.path("logs").toString())
 							);
 				}else if(!(offer.isEmpty())) {
 					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
@@ -89,6 +90,7 @@ public class LoadData {
 							.withJSON("status",currentNode.path("status").toString())
 							.withJSON("interview",currentNode.path("interview").toString())
 							.withJSON("offer",currentNode.path("offer").toString())
+							.withJSON("logs",currentNode.path("logs").toString())
 							);
 				}else if (!(interview.isEmpty())) {
 					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
@@ -105,6 +107,7 @@ public class LoadData {
 							.withJSON("avatar",currentNode.path("avatar").toString())
 							.withJSON("status",currentNode.path("status").toString())
 							.withJSON("interview",currentNode.path("interview").toString())
+							.withJSON("logs",currentNode.path("logs").toString())
 							);
 				}else if(interview.isEmpty()) {
 					table.putItem(new Item().withPrimaryKey("idCan", id_can, "cmnd", cmnd)
@@ -120,7 +123,7 @@ public class LoadData {
 							.withJSON("workExp",currentNode.path("workExp").toString())
 							.withJSON("avatar",currentNode.path("avatar").toString())
 							.withJSON("status",currentNode.path("status").toString())
-
+							.withJSON("logs",currentNode.path("logs").toString())
 							);
 				}
 				

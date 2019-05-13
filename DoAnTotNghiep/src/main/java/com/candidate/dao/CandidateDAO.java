@@ -451,4 +451,50 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
+	
+	//Lưu Log
+	public void addLog(String id, String cmnd, ArrayList<Object> logs) {
+		Table table = dynamoDB.getTable("Candidate_M");
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
+		
+		updateItemSpec = new UpdateItemSpec()
+				.withPrimaryKey("idCan", id, "cmnd", cmnd)
+				.withUpdateExpression("set logs = :l")
+				.withValueMap(new ValueMap().withList(":l", logs))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+		try {
+			System.out.println("Updating the item...");
+			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
+			System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	//GetLog
+	public ArrayList<Object> getAllLog(String idCan){
+		ArrayList<Object> arr = new ArrayList<>();
+		Table table = dynamoDB.getTable("Candidate_M");
+		ScanSpec scanSpec = new ScanSpec()
+				.withFilterExpression("#ii = :iiii")
+				.withNameMap(new NameMap().with("#ii", "idCan"))
+				.withValueMap(new ValueMap().withString(":iiii", idCan));
+		try {
+			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
+			Iterator<Item> iter = items.iterator();
+			while (iter.hasNext()) {
+				Item item = iter.next();
+				arr=(ArrayList<Object>) item.get("logs");
+			}
+			return arr;
+		}
+		catch (Exception e) {
+			System.err.println("Unable to scan the table:");
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
+	
 }
