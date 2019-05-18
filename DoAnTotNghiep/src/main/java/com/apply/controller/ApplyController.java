@@ -46,7 +46,7 @@ public class ApplyController {
 	// Lấy thông tin tổng quát(id,tên,ngày) của position đổ về client
 	@GetMapping("/homeApply")
 	public String showApplytition(Model model) {
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datecurrent = new Date();
 		ArrayList<TitlePosition> filterTitle = new ArrayList<TitlePosition>();
 		ArrayList<TitlePosition> rawList = new ArrayList<TitlePosition>();
