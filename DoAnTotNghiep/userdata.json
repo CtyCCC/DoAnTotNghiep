@@ -1,48 +1,48 @@
 [
 	{
-		"id_user":"user_1",
-		"tk":"admin",
-		"name_user": "Nguyen Van Admin",
+		"idUser":"USR1",
+		"userName":"admin",
+		"name": "Nguyen Van Admin",
 		"pass":"admin",
 		"code":"ROLE_ADMIN",
 		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
 	},
 	{
-		"id_user":"user_2",
-		"tk":"interviewer1",
-		"name_user": "Nguyen Van B",
+		"idUser":"USR2",
+		"userName":"interviewer1",
+		"name": "Nguyen Van B",
 		"pass":"123",
 		"code":"ROLE_INTERVIEWER",
 		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
 	},
 	{
-		"id_user":"user_3",
-		"tk":"interviewer2",
-		"name_user": "A Nhiên",
+		"idUser":"USR3",
+		"userName":"interviewer2",
+		"name": "A Nhiên",
 		"pass":"123",
 		"code":"ROLE_INTERVIEWER",
 		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
 	},
 	{
-		"id_user":"user_4",
-		"tk":"interviewer3",
-		"name_user": "A Thuận",
+		"idUser":"USR4",
+		"userName":"interviewer3",
+		"name": "A Thuận",
 		"pass":"123",
 		"code":"ROLE_INTERVIEWER",
 		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
 	},
 	{
-		"id_user":"user_5",
-		"tk":"hr1",
-		"name_user": "Nguyen Van HR",
+		"idUser":"USR5",
+		"userName":"hr1",
+		"name": "Nguyen Van HR",
 		"pass":"123",
 		"code":"ROLE_HR",
 		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
 	},
 	{
-		"id_user":"user_6",
-		"tk":"hr2",
-		"name_user": "Nguyen Thị Thư",
+		"idUser":"USR6",
+		"userName":"hr2",
+		"name": "Nguyen Thị Thư",
 		"pass":"123",
 		"code":"ROLE_HR",
 		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"

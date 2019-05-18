@@ -49,13 +49,13 @@ public class UserDAO {
 
 			for(Map<String, AttributeValue> map : rows){
 				try{
-					String id_user = map.get("id_user").getS();
-					String tk = map.get("tk").getS();
+					String idUser = map.get("idUser").getS();
+					String userName = map.get("userName").getS();
 					String code= map.get("code").getS();
-					String name= map.get("name_user").getS();
+					String name= map.get("name").getS();
 					String pass= map.get("pass").getS();
 					String avatar= map.get("avatar").getS();
-					User u = new User(id_user, tk, code, name, pass, avatar);
+					User u = new User(idUser, userName, code, name, pass, avatar);
 					ds.add(u);
 				} catch (NumberFormatException e){
 					System.out.println(e.getMessage());
@@ -72,8 +72,8 @@ public class UserDAO {
 
 		try {
 			System.out.println("Adding a new item...");
-			table.putItem(new Item().withPrimaryKey("id_user", q.getId_user(), "tk", q.getTk())
-							.withString("name_user",q.getName())
+			table.putItem(new Item().withPrimaryKey("idUser", q.getIdUser(), "userName", q.getUserName())
+							.withString("name",q.getName())
 	                		.withString("pass",q.getPass())
 	                		.withString("code",q.getCode())
 	                		.withString("avatar",q.getAvatar()));
@@ -92,8 +92,8 @@ public class UserDAO {
 
 		Table table = dynamoDB.getTable("User");
 
-		UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("id_user", id, "tk", tk)
-				.withUpdateExpression("set name_user = :a, code = :b, avatar = :c")
+		UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("idUser", id, "userName", tk)
+				.withUpdateExpression("set name = :a, code = :b, avatar = :c")
 				.withValueMap(new ValueMap().withString(":a", name)
 						.withString(":b", code)
 						.withString(":c", avatar))
@@ -114,7 +114,7 @@ public class UserDAO {
 	public void deleteUser(String id_user, String tk) {
 		Table table = dynamoDB.getTable("User");
 		DeleteItemSpec deleteItemSpec = new DeleteItemSpec()
-	            .withPrimaryKey(new PrimaryKey("id_user", id_user, "tk", tk));
+	            .withPrimaryKey(new PrimaryKey("idUser", id_user, "userName", tk));
 
 	        // Conditional delete (we expect this to fail)
 
@@ -131,7 +131,7 @@ public class UserDAO {
 	//tự tăng id Pos
 		public String autoId(ArrayList<User> arr) {
 			int count = arr.size()+1;
-			return "user_"+count+"";
+			return "USR"+count+"";
 		}
 
 }

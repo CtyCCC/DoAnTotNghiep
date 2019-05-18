@@ -1,30 +1,23 @@
 package com.entity;
 
 public class User {
-	private String id_user; //ID
-	private String tk;
+	private String idUser; //ID
+	private String userName;
 	private String code; // 1:Manager(Admin); 2: interviewer
 	private String name;
 	private String pass; //Password
 	private String avatar;
-	
-	public String getAvatar() {
-		return avatar;
+	public String getIdUser() {
+		return idUser;
 	}
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
 	}
-	public String getId_user() {
-		return id_user;
+	public String getUserName() {
+		return userName;
 	}
-	public void setId_user(String id_user) {
-		this.id_user = id_user;
-	}
-	public String getTk() {
-		return tk;
-	}
-	public void setTk(String tk) {
-		this.tk = tk;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getCode() {
 		return code;
@@ -44,11 +37,16 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
-	public User(String id_user, String tk, String code, String name, String pass, String avatar) {
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	public User(String idUser, String userName, String code, String name, String pass, String avatar) {
 		super();
-		this.id_user = id_user;
-		this.tk = tk;
+		this.idUser = idUser;
+		this.userName = userName;
 		this.code = code;
 		this.name = name;
 		this.pass = pass;
@@ -60,9 +58,10 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id_user=" + id_user + ", tk=" + tk + ", code=" + code + ", name=" + name + ", pass=" + pass
-				+ ", avatar=" + avatar + "]";
+		return "User [idUser=" + idUser + ", userName=" + userName + ", code=" + code + ", name=" + name + ", pass="
+				+ pass + ", avatar=" + avatar + "]";
 	}
+	
 	
 
 	

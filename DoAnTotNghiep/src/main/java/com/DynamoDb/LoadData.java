@@ -28,9 +28,9 @@ public class LoadData {
 		// TODO Auto-generated method stub
 
 		loadCandidate();
-//		loadPosition();
-//		loadQuestion();
-//		loadUser();
+		loadPosition();
+		loadQuestion();
+		loadUser();
 
 	}
 
@@ -233,12 +233,12 @@ public class LoadData {
 		while (iter.hasNext()) {
 			currentNode = (ObjectNode) iter.next();
 
-			String id_user = currentNode.path("id_user").asText();
-			String name_user = currentNode.path("tk").asText();
+			String id_user = currentNode.path("idUser").asText();
+			String name_user = currentNode.path("userName").asText();
 
 			try {
-				table.putItem(new Item().withPrimaryKey("id_user", id_user, "tk", name_user)
-						.withJSON("name_user",currentNode.path("name_user").toString())
+				table.putItem(new Item().withPrimaryKey("idUser", id_user, "userName", name_user)
+						.withJSON("name",currentNode.path("name").toString())
 						.withJSON("pass",currentNode.path("pass").toString())
 						.withJSON("code",currentNode.path("code").toString())
 						.withJSON("avatar",currentNode.path("avatar").toString())

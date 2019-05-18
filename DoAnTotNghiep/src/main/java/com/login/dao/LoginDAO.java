@@ -32,17 +32,17 @@ public class LoginDAO {
 		Table table = dynamoDB.getTable("User");
 		ScanSpec scanSpec = new ScanSpec()
 				.withFilterExpression("#ii = :iiii")
-				.withNameMap(new NameMap().with("#ii", "tk"))
+				.withNameMap(new NameMap().with("#ii", "userName"))
 				.withValueMap(new ValueMap().withString(":iiii", username));
 		try {
 			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
 			Iterator<Item> iter = items.iterator();
 			while (iter.hasNext()) {
 				Item item = iter.next();
-				user =new User(item.getString("id_user"),
-							   item.getString("tk"),
+				user =new User(item.getString("idUser"),
+							   item.getString("userName"),
 						       item.getString("code"),
-						       item.getString("name_user"),
+						       item.getString("name"),
 						       item.getString("pass"),
 						       item.getString("avatar"));
 			}

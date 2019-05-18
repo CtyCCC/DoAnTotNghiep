@@ -42,16 +42,16 @@ public class UserController {
 		//lấy mảng Pos để tạo id mới
 		ArrayList<User> arrPos = new ArrayList<>();
 		arrPos = dao.getAllUser();
-		String id_user = dao.autoId(arrPos);
+		String idUser = dao.autoId(arrPos);
 		
 		String name = request.getParameter("name");
 		String code = request.getParameter("role");
 		String pass = request.getParameter("pass");
-		String tk = request.getParameter("tk");
+		String userName = request.getParameter("tk");
 		String avatar = "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd";
-		User u = new User(id_user, tk, code, name, pass, avatar);
+		User u = new User(idUser, userName, code, name, pass, avatar);
 		dao.addNewUser(u);
-		System.out.println("Add success user: "+u.getTk());
+		System.out.println("Add success user: "+u.getUserName());
 	}
 	
 	@RequestMapping(value="/updateUser",method=RequestMethod.POST)

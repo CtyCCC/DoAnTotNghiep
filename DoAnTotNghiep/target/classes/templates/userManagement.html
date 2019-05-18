@@ -174,7 +174,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <select class="form-control" id="role" style="height: 35px" disabled>
                         <option >ROLE_INTERVIEWER</option>
                         <option >ROLE_HR</option>
-                        <option >ROLE_ADMIN</option>
+                        <option hidden="">ROLE_ADMIN</option>
                     </select>
                 </div>
                 <div class="form-row col-xs-6" id="framepass" hidden="">
@@ -197,9 +197,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               </thead>
               <tbody>
               <tr th:each="ques : ${listUser}">
-                 <td th:text="${ques.id_user}">1</td>
+                 <td th:text="${ques.idUser}">1</td>
                  <td th:text="${ques.name}" >2</td>
-                 <td th:text="${ques.tk}">3</td>
+                 <td th:text="${ques.userName}">3</td>
                  <td th:text="${ques.code}">3</td>
                  <td hidden="" th:text="${ques.pass}">3</td>
                  <td hidden="" th:text="${ques.avatar}">3</td>        
@@ -271,7 +271,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 			$('#tableUser .selected').removeClass('selected');
 			$(this).addClass('selected');
 			
-	        $("#btnDelete").css('display','inline-table');
+			$("#btnDelete").css('display','inline-table');
 	        $("#btnEdit").css('display','inline-table');
 	        $("#btnSaveEdit").css('display','none');
 	        $("#btnSaveAddNew").css('display','none');
@@ -286,6 +286,10 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 	        var username= $(this).find("td:eq(2)").text();
 	        var role= $(this).find("td:eq(3)").text();
 	        var pass= $(this).find("td:eq(4)").text();
+	        
+	        if (role == "ROLE_ADMIN"){
+		        $("#btnDelete").css('display','none');
+	        }
 	        
 	        $("#nameCus").val(name);
 	        $("#user").val(username);
@@ -303,6 +307,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 			$("#nameCus").removeAttr('readonly');
 	        $("#role").removeAttr('disabled');
 	        //$("#user").removeAttr('readonly');
+	        
+	        var role = $("#role").val();
+			if (role == "ROLE_ADMIN"){
+				$("#role").attr('disabled','true');
+			}
 	    });
 		
 		$("#btnAddUser").click(function() {
@@ -320,6 +329,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 	        $("#nameCus").val("");
 	        $("#user").val("");
 	        $("#pass").val("");
+	        $("#role").val("ROLE_HR");
 	        $("#hinh").attr('src','./dist/img/avatar04.png');
 	    });
 		
