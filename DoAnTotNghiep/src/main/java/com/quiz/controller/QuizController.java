@@ -33,7 +33,12 @@ public class QuizController {
 	
 	@GetMapping("/quiz")
 	public String index(Model model,@RequestParam("IDPOS") String idpos,@RequestParam("IDCAN") String idcan) {
-		System.out.println(idpos);
+		//Kiểm tra timestart 
+		// get timetstart ==null -> continue else stop
+//		if(quizdao.getCandidateById_S(idpos).getDateImport().equals("not")) {
+//			quizdao.addTimeStart(idcan);
+//		}
+//		System.out.println(quizdao.Timeremaining(idpos));
 		ArrayList<Questions> list = new ArrayList<Questions>();
 		list = quizdao.getQuestionsQuiz(idpos);
 		QuizForm result =new QuizForm();
@@ -44,7 +49,12 @@ public class QuizController {
 		return "quiz";
 	}
 	
-	@PostMapping("/quiz")
+	//set time start
+	public ResponseEntity<?> importTimeStart(){
+		return ResponseEntity.ok("Time");
+	}
+	
+	@PostMapping("/quizFinish")
 	public ResponseEntity<?> FinishQuiz(@RequestBody ArrayList<QuizForm> data) {
 		String idC ="";
 		String time= "";

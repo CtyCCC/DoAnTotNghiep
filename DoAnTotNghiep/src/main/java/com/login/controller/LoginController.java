@@ -1,5 +1,9 @@
 package com.login.controller;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +16,31 @@ public class LoginController {
 	
 	LoginDAO logindao =new LoginDAO();
 	
+	@GetMapping("/default")
+	public String navigation(HttpServletRequest req) {
+		if(req.isUserInRole("ADMIN")) {
+			return "redirect:/userMgmt";
+		}
+		else if(req.isUserInRole("HR") || req.isUserInRole("INTERVIEWER")) {
+			return "redirect:/index";
+		}
+		return "/logout";
+	}
+	
+	@GetMapping("/Loginfail")
+	public String loginFail(Model model) {
+		model.addAttribute("loginfail","UserName or Password incorrect");
+		return "login";
+	}
+	
 	@GetMapping("/Login")
 	public String showLogin(Model model) {
 		return "login";
 	}
 	
-	@GetMapping("/401")
-	public String showerror401() {
-		return "401";
+	@GetMapping("/403")
+	public String showerror403() {
+		return "403";
 	}
 	
-	
-	@PostMapping("/Login_user")
-	public String Login() {
-		return "index";
-	}
 }

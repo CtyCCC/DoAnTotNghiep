@@ -25,19 +25,15 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
+		UserDetails userDetail = (UserDetails)new User("not account","not account",new ArrayList<GrantedAuthority>());
 		com.entity.User userlogin = logindao.getInformationUser(username);
-		System.out.println(userlogin.toString());
-		if(userlogin == null) {
-			System.out.println("User not found! " + username);
-            throw new UsernameNotFoundException("User " + username + " was not found in the database");
+		if(userlogin != null) {
+			List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+			grantList.add(new SimpleGrantedAuthority(userlogin.getCode()));
+			BCryptPasswordEncoder encode  = new BCryptPasswordEncoder();
+			String encodePass = encode.encode(userlogin.getPass());
+			userDetail =(UserDetails)new User(userlogin.getUserName(),encodePass,grantList);
 		}
-		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-		
-		grantList.add(new SimpleGrantedAuthority(userlogin.getCode()));
-		BCryptPasswordEncoder encode  = new BCryptPasswordEncoder();
-		String encodePass = encode.encode(userlogin.getPass());
-		
-		UserDetails userDetail =(UserDetails)new User(userlogin.getUserName(),encodePass,grantList);
 		return userDetail;
 	}
 }
