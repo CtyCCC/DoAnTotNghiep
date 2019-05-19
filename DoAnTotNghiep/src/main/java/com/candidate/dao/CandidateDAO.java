@@ -1,5 +1,6 @@
 package com.candidate.dao;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Index;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
@@ -36,6 +38,8 @@ import com.entity.Candidate;
 
 @Repository
 public class CandidateDAO {
+	
+	DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
 			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", "us-west-2"))
@@ -130,6 +134,44 @@ public class CandidateDAO {
 
 		return ds;
 	}
+	
+	public ArrayList<Candidate> getAllCandidate_S(){
+		ArrayList<Candidate> ds = new ArrayList<Candidate>();
+		Table table = dynamoDB.getTable("Candidate_S");
+		ScanSpec scanSpec = new ScanSpec();
+
+		try {
+			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
+
+			Iterator<Item> iter = items.iterator();
+			while (iter.hasNext()) {
+				Item item = iter.next();
+				Candidate c = new Candidate(item.getString("idCan"), 
+						item.getString("nameCan"), 
+						item.getString("cmnd"), 
+						item.getString("email"), 
+						item.getString("phone"), 
+						item.getBoolean("gender"), 
+						item.getString("dob"), 
+						item.getString("linkCV"), 
+						item.getString("namePos"),
+						null,
+						item.getString("workExp"),
+						item.getString("avatar"),
+						item.getMap("rate"), 
+						item.getString("status"),
+						null,null,null);
+				ds.add(c);
+			}
+
+		}
+		catch (Exception e) {
+			System.err.println("Unable to scan the table:");
+			System.err.println(e.getMessage());
+		}
+
+		return ds;
+	}
 
 	//Search Candidate by id
 	public Candidate getCandidateById(String id) {
@@ -188,6 +230,8 @@ public class CandidateDAO {
 							.withString("linkCV", can.getLinkCV())
 							.withString("namePos", can.getNamePos())
 							.withString("status", can.getStatus())
+							.withString("workExp", can.getWorkExp())
+							.withString("avatar", can.getAvatar())
 							.withMap("rate", can.getRate()));
 
 			System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
@@ -497,4 +541,61 @@ public class CandidateDAO {
 		return null;
 	}
 	
+	//Import Candidate
+	public ArrayList<Candidate> getImportCandidate_S(String namePos, int score, int quantity){
+		ArrayList<Candidate> ds = new ArrayList<Candidate>();
+		Table table = dynamoDB.getTable("Candidate_S");
+		//Index index = table.getIndex("rate.score");
+		ScanSpec scanSpec = new ScanSpec()
+								.withFilterExpression("namePos = :np and rate.score > :sc")
+								.withValueMap(new ValueMap().withString(":np", namePos).withInt(":sc", score-1));
+
+		try {
+			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
+
+			Iterator<Item> iter = items.iterator();
+			while (iter.hasNext()) {
+				Item item = iter.next();
+				Candidate c = new Candidate(item.getString("idCan"), 
+						item.getString("nameCan"), 
+						item.getString("cmnd"), 
+						item.getString("email"), 
+						item.getString("phone"), 
+						item.getBoolean("gender"), 
+						item.getString("dob"), 
+						item.getString("linkCV"), 
+						item.getString("namePos"),
+						java.time.LocalDate.now().format(formatter1),
+						item.getString("workExp"),
+						item.getString("avatar"),
+						item.getMap("rate"), 
+						"New",
+						null,null,null);
+				ds.add(c);
+			}
+
+		}
+		catch (Exception e) {
+			System.err.println("Unable to scan the table:");
+			System.err.println(e.getMessage());
+		}
+		
+		
+		
+		//Sắp xếp mảng giảm dần (quá ngu nên ko tìm đc cách search desc hiệu qả trên dyanmoDb T.T)
+		Candidate temp = ds.get(0);
+        for (int i = 0 ; i < ds.size()-1; i++) {
+            for (int j = i + 1; j < ds.size(); j++) {
+                if (Integer.parseInt(ds.get(i).getRate().get("score")+"") < Integer.parseInt(ds.get(j).getRate().get("score")+"")) {
+                    temp = ds.get(j);
+                    ds.set(j, ds.get(i));
+                    ds.set(i, temp);
+                }
+            }
+        }
+        for(int k = quantity;k<ds.size();k++) {
+        	ds.remove(k);
+        }
+		return ds;
+	}
 }

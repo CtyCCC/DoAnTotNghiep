@@ -1,6 +1,7 @@
 package com.usermanagement.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,16 +12,21 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
+import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
+import com.amazonaws.services.dynamodbv2.document.spec.ScanSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
+import com.amazonaws.services.dynamodbv2.document.utils.NameMap;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
+import com.entity.Candidate;
 import com.entity.Position;
 import com.entity.Questions;
 import com.entity.User;
@@ -64,6 +70,37 @@ public class UserDAO {
 
 		}while(rs.getLastEvaluatedKey() != null);
 		return ds;
+	}
+	
+	public User getUserByUserName(String userName) {
+		Table table = dynamoDB.getTable("User");
+		ScanSpec scanSpec = new ScanSpec()
+				.withFilterExpression("#ii = :iiii")
+				.withNameMap(new NameMap().with("#ii", "userName"))
+				.withValueMap(new ValueMap().withString(":iiii", userName));
+		try {
+			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
+			Iterator<Item> iter = items.iterator();
+			User user = new User();
+			while (iter.hasNext()) {
+				Item item = iter.next();
+				user = new User(item.getString("idUser"), 
+						item.getString("userName"), 
+						item.getString("code"), 
+						item.getString("name"), 
+						item.getString("pass"), 
+						item.getString("avatar"));
+						
+			}
+			if(user.getIdUser()!=null) {
+				return user;
+			}		
+		}
+		catch (Exception e) {
+			System.err.println("Unable to scan the table:");
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
 	
 	public void addNewUser(User q) {
