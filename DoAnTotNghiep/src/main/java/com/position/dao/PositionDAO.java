@@ -25,6 +25,7 @@ import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.entity.Position;
 import com.entity.Questions;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.quiz.form.QuesPos;
 
 @Repository
@@ -194,13 +195,13 @@ public class PositionDAO {
 		return listques;
     }
 	
-	public void updateQuesPos(String id, String name, String arr) {
+	public void updateQuesPos(String id, String name, String arr[]) {
 
 		Table table = dynamoDB.getTable("Position");
-
+		
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("idPos",id, "name", name)
 				.withUpdateExpression("set listQues = :a")
-				.withValueMap(new ValueMap().withString(":a", arr.toString()))
+				.withValueMap(new ValueMap().withList(":a", arr))
 				.withReturnValues(ReturnValue.UPDATED_NEW);
 
 		try {

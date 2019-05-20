@@ -87,7 +87,9 @@ public class PositionController {
 		String idPos = request.getParameter("idPos");
 		String name = request.getParameter("name");
 		String arr =request.getParameter("listQues");
-		posDAO.updateQuesPos(idPos, name, arr.toString());	
+		
+		String arrr[] = arr.split(",");
+		posDAO.updateQuesPos(idPos, name, arrr);	
 	}
 	
 	@RequestMapping(value="/newQuestion",method=RequestMethod.POST)
@@ -107,6 +109,14 @@ public class PositionController {
 		Questions q = new Questions(idQues, content, a, b, c, d, answer);
 		quesDAO.addNewQues(q);
 		System.out.println("Add success question: " +idQues);
+	}
+	
+	@RequestMapping(value="/deleteQues",method=RequestMethod.POST)
+	public  @ResponseBody void  deleteQues( HttpServletRequest request) {
+		String idQues = request.getParameter("id");
+		String content = request.getParameter("content");
+		System.out.println(idQues + content);
+		quesDAO.deleteQues(idQues, content);
 	}
 	
 	@RequestMapping(value="/newPostion",method=RequestMethod.POST)

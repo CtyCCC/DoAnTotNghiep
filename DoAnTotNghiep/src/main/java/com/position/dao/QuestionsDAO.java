@@ -12,8 +12,10 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
@@ -89,6 +91,22 @@ public class QuestionsDAO {
 			System.err.println(e.getMessage());
 		}
 
+	}
+	public void deleteQues(String id, String con) {
+		Table table = dynamoDB.getTable("Questions");
+		DeleteItemSpec deleteItemSpec = new DeleteItemSpec()
+	            .withPrimaryKey(new PrimaryKey("idQues", id, "content", con));
+
+	        // Conditional delete (we expect this to fail)
+
+	        try {
+	            System.out.println("Attempting a conditional delete...");
+	            table.deleteItem(deleteItemSpec);
+	            System.out.println("DeleteItem succeeded");
+	        }
+	        catch (Exception e) {
+	            System.err.println(e.getMessage());
+	        }
 	}
 
 
