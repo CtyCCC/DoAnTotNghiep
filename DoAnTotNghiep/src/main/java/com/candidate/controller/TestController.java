@@ -1,13 +1,18 @@
 package com.candidate.controller;
 
 
+import java.security.Principal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -30,6 +35,7 @@ import com.candidate.form.FormRound;
 import com.entity.Candidate;
 import com.entity.Position;
 import com.position.dao.PositionDAO;
+import com.usermanagement.dao.UserDAO;
 
 @Controller
 public class TestController {
@@ -38,6 +44,8 @@ public class TestController {
 	private CandidateDAO candidateDAO ;
 	@Autowired
 	private PositionDAO positionDAO ;
+	@Autowired
+	private UserDAO userDAO;
 
 	PositionDAO posDAO = new PositionDAO();
 
@@ -45,7 +53,16 @@ public class TestController {
 	DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("H:mm:ss");
 
 	@GetMapping("/index")
-	public String index(Model model) {
+	public String index(Model model, Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();
+		String name = "Unknown";
+		if(userName != null) {
+			name = userDAO.getUserByUserName(userName).getName();
+
+		}
+		model.addAttribute("userName", userName);
+		model.addAttribute("fullName", name);
 
 		ArrayList<Candidate> ds_Can = new ArrayList<>();
 		ds_Can = candidateDAO.getAllCandidate_M();
@@ -60,7 +77,10 @@ public class TestController {
 	}
 
 	@PostMapping("/index/setInterview")
-	public @ResponseBody String setInterview(HttpServletRequest request) throws JSONException {
+	public @ResponseBody String setInterview(HttpServletRequest request, Principal principal) throws JSONException {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
 		//Lấy dữ liệu từ ajax gửi về
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
@@ -68,6 +88,10 @@ public class TestController {
 		String venue = request.getParameter("venue");
 		String note = request.getParameter("note");
 		JSONArray arr = new JSONArray(request.getParameter("id_cmnd"));
+
+		if(note.equals("")) {
+			note = "Nothing";
+		}
 
 		//Thêm interview
 		for (int i = 0; i < arr.length(); i++) {
@@ -93,7 +117,7 @@ public class TestController {
 				rounds.add(rnd);
 
 				candidateDAO.addInterview(idCan, cmnd, rounds, stus);
-			}else if(can.getInterview().equals("Interviewing")){
+			}else if(can.getInterview() != null && can.getStatus().equals("Interviewing")){
 				stus = "Interviewing";
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
 				Map<String, Object> rnd = new HashMap<String, Object>();
@@ -113,7 +137,7 @@ public class TestController {
 			ArrayList<Object> logs = new ArrayList<>();
 			logs = candidateDAO.getAllLog(idCan);
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Set Interview");
@@ -147,7 +171,18 @@ public class TestController {
 	//	}
 
 	@GetMapping("/profile")
-	public String profile(Model model, @RequestParam("id") String id){
+	public String profile(Model model, @RequestParam("id") String id, Principal principal){
+		//Lấy thông tin user
+		String userName = principal.getName();
+		String name = "Unknown";
+		if(userName != null) {
+			name = userDAO.getUserByUserName(userName).getName();
+
+		}
+		model.addAttribute("userName", userName);
+		model.addAttribute("fullName", name);
+
+
 		Candidate can = candidateDAO.getCandidateById(id);
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
@@ -221,15 +256,17 @@ public class TestController {
 
 			//Đổ dữ liệu cho logs
 			ArrayList<Object> logs = candidateDAO.getAllLog(id);
-			//ArrayList<String> dsDate = new ArrayList<>();
-			HashSet<String> dsDate = new HashSet<>();
+			ArrayList<String> dsDate = new ArrayList<>();
+			Set inputSet = new HashSet(); //Dùng để kiểm tra phần tử trùng (thay cho việc dùng for)
 			if(logs !=null ) {
-				for(int k =0; k < logs.size();k++) {
+				for(int k = 0; k < logs.size();k++) {
 					Map<String, Object> log = (Map<String, Object>) logs.get(k);
 					String date = (String) log.get("date");
-					dsDate.add(date);
-
+					if(inputSet.add(date)) { //inputSet chỉ cho thêm phần tử ko trùng
+						dsDate.add(date);
+					}
 				}
+				System.out.println(dsDate);
 				model.addAttribute("dsDate", dsDate);
 				model.addAttribute("logs", logs);
 			}
@@ -248,7 +285,10 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/editProfile")
-	public @ResponseBody String editProfile(HttpServletRequest req) {
+	public @ResponseBody String editProfile(HttpServletRequest req,Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();	
+
 		String change = "";
 		String id = req.getParameter("id");
 		Candidate can = candidateDAO.getCandidateById(id);
@@ -318,7 +358,7 @@ public class TestController {
 			ArrayList<Object> logs = new ArrayList<>();
 			logs = candidateDAO.getAllLog(id);
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Edit Profile");
@@ -332,7 +372,10 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/addRoundInterview")
-	public @ResponseBody String addRound(HttpServletRequest request) throws JSONException {
+	public @ResponseBody String addRound(HttpServletRequest request, Principal principal) throws JSONException {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
 		//Lấy dữ liệu từ ajax gửi về
 		String id = request.getParameter("id");
 		Candidate can = candidateDAO.getCandidateById(id);
@@ -365,7 +408,7 @@ public class TestController {
 			//Lưu log
 			ArrayList<Object> logs = candidateDAO.getAllLog(id);		
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Add Round "+rounds.size());
@@ -396,7 +439,7 @@ public class TestController {
 			//Lưu log
 			ArrayList<Object> logs = candidateDAO.getAllLog(id);		
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Add Round "+rounds.size());
@@ -422,7 +465,10 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/editRoundInterview")
-	public @ResponseBody String editRound(HttpServletRequest request) throws JSONException {
+	public @ResponseBody String editRound(HttpServletRequest request, Principal principal) throws JSONException {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
 		//Lấy dữ liệu từ ajax gửi về
 		String id = request.getParameter("id");
 		Candidate can = candidateDAO.getCandidateById(id);
@@ -503,7 +549,7 @@ public class TestController {
 			ArrayList<Object> logs = new ArrayList<>();
 			logs = candidateDAO.getAllLog(id);
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Edit Round "+ idr);
@@ -521,7 +567,10 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/finishInterview")
-	public @ResponseBody String updateFinalResultInterview(HttpServletRequest req) {
+	public @ResponseBody String updateFinalResultInterview(HttpServletRequest req, Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
 		String idCan = req.getParameter("idCan");
 		String cmnd = req.getParameter("cmnd");
 		String fnRs = req.getParameter("fnRs");
@@ -549,7 +598,7 @@ public class TestController {
 				ArrayList<Object> logs = new ArrayList<>();
 				logs = candidateDAO.getAllLog(idCan);
 				Map<String, Object> log = new HashMap<String, Object>();
-				log.put("by", "admin");
+				log.put("by", userName);
 				log.put("date", java.time.LocalDate.now().format(formatter1));
 				log.put("time", java.time.LocalTime.now().format(formatter2));
 				log.put("method", "Update FinalResult");
@@ -562,7 +611,10 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/saveOffer")
-	public @ResponseBody String saveOffer (HttpServletRequest req) {
+	public @ResponseBody String saveOffer (HttpServletRequest req, Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
 		String id = req.getParameter("id");
 		String cmnd = candidateDAO.getCandidateById(id).getCmnd();
 		String curSal = req.getParameter("curSal");
@@ -586,10 +638,10 @@ public class TestController {
 		String oldRs="";
 
 		if(can.getOffer()!=null) {
-			oldCurSal = (long) can.getOffer().get("curSalary")+"";
-			oldExpecSal = (long) can.getOffer().get("expectSalary")+"";
-			oldOffSal = (long) can.getOffer().get("offerSalary")+"";
-			oldRs = (String) can.getOffer().get("result");
+			oldCurSal = can.getOffer().get("curSalary")+"";
+			oldExpecSal = can.getOffer().get("expectSalary")+"";
+			oldOffSal = can.getOffer().get("offerSalary")+"";
+			oldRs = (String)can.getOffer().get("result");
 		}
 
 		if(!oldCurSal.equals(curSal)) {
@@ -616,7 +668,7 @@ public class TestController {
 			ArrayList<Object> logs = new ArrayList<>();
 			logs = candidateDAO.getAllLog(id);
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Update Offer");
@@ -630,7 +682,10 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/saveProbation")
-	public @ResponseBody String saveProbation (HttpServletRequest req) {
+	public @ResponseBody String saveProbation (HttpServletRequest req, Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
 		String id = req.getParameter("id");
 		String cmnd = candidateDAO.getCandidateById(id).getCmnd();
 		String dateRange = req.getParameter("dateRange");
@@ -676,7 +731,7 @@ public class TestController {
 			ArrayList<Object> logs = new ArrayList<>();
 			logs = candidateDAO.getAllLog(id);
 			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", "admin");
+			log.put("by", userName);
 			log.put("date", java.time.LocalDate.now().format(formatter1));
 			log.put("time", java.time.LocalTime.now().format(formatter2));
 			log.put("method", "Update Probation");
@@ -685,6 +740,75 @@ public class TestController {
 			candidateDAO.addLog(id, can.getCmnd(), logs);
 		}
 		return "Ok";
+	}
 
+	@PostMapping("/import")
+	public @ResponseBody String importCandidate(HttpServletRequest req, Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();
+
+		String namePos = req.getParameter("pos");
+		int quantity = Integer.parseInt(req.getParameter("quan"));
+		int score = Integer.parseInt(req.getParameter("rate"));
+
+		ArrayList<Candidate> dsCan = candidateDAO.getImportCandidate_S(namePos, score, quantity);
+		for(Candidate can : dsCan) {
+			candidateDAO.addCandidate(can, "Candidate_M");
+			
+			//Lưu logs
+			ArrayList<Object> logs = new ArrayList<>();
+			Map<String, Object> log = new HashMap<String, Object>();
+			log.put("by", userName);
+			log.put("date", java.time.LocalDate.now().format(formatter1));
+			log.put("time", java.time.LocalTime.now().format(formatter2));
+			log.put("method", "Import into System");
+			log.put("change", "Not");
+			logs.add(0,log);
+			candidateDAO.addLog(can.getIdCan(), can.getCmnd(), logs);
+		}
+		
+		return "OK";
+	}
+	
+	@PostMapping("/addNewCandidate")
+	public @ResponseBody String addNewCandidate(HttpServletRequest req, Principal principal) {
+		//Lấy thông tin user
+		String userName = principal.getName();
+		
+		String idCan = "CAN"+candidateDAO.getAllCandidate_S().size();
+		String nameCan = req.getParameter("name");
+		String cmnd = req.getParameter("cmnd");
+		String email = req.getParameter("email");
+		String phone = req.getParameter("phone");
+		String posName = req.getParameter("posName");
+		String dob = req.getParameter("dob");
+		int score = Integer.parseInt(req.getParameter("score"));
+		int total = Integer.parseInt(req.getParameter("total"));
+		int time = Integer.parseInt(req.getParameter("time"));
+		boolean gender = true;
+		if(req.getParameter("gender").equals("false"))
+			gender = false;
+		String workExp = req.getParameter("workExp");
+		String status = req.getParameter("stt");
+		
+		HashMap<String, Object> rate = new HashMap<>();
+		rate.put("score", score);
+		rate.put("time", time);
+		rate.put("total", total);
+		Candidate newCan = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, "aaa", posName, java.time.LocalDate.now().format(formatter1), workExp, "bbb", rate, status, null,null,null);
+		candidateDAO.addCandidate(newCan, "Candidate_M");
+		
+		//Lưu log
+		ArrayList<Object> logs = new ArrayList<>();
+		Map<String, Object> log = new HashMap<String, Object>();
+		log.put("by", userName);
+		log.put("date", java.time.LocalDate.now().format(formatter1));
+		log.put("time", java.time.LocalTime.now().format(formatter2));
+		log.put("method", "Import into System");
+		log.put("change", "Not");
+		logs.add(0,log);
+		candidateDAO.addLog(newCan.getIdCan(), newCan.getCmnd(), logs);
+		
+		return "Ok";
 	}
 }

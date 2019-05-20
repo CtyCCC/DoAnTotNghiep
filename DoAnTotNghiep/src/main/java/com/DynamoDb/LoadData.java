@@ -27,15 +27,16 @@ public class LoadData {
 	public static void main(String[] args) throws JsonParseException, IOException {
 		// TODO Auto-generated method stub
 
-		loadCandidate();
+		loadCandidate("Candidate_S");
+		//loadCandidate("Candidate_M");
 		loadPosition();
 		loadQuestion();
 		loadUser();
 
 	}
 
-	public static void loadCandidate() throws JsonParseException, IOException {
-		Table table = dynamoDB.getTable("Candidate_M");
+	public static void loadCandidate(String tableName) throws JsonParseException, IOException {
+		Table table = dynamoDB.getTable(tableName);
 		//Table table = dynamoDB.getTable("Candidate_S");
 
 		JsonParser parser = new JsonFactory().createParser(new File("candidatedata.json"));

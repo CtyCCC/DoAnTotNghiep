@@ -26,21 +26,27 @@ public class Test {
 //		dao.addCandidate(can, "Candidate_M");
 //		dao.updateStatusCandidateById("can_2", "222222222", "Interview");
 //		dao.deleteCandidate("CAN3", "333333333");
-		ArrayList<Object> logs = new ArrayList<>();
-		Map<String, Object> log1 = new HashMap<String, Object>();
-		log1.put("by", "admin");
-		log1.put("date", "14-05-2019");
-		log1.put("time", java.time.LocalTime.now().format(formatter2));
-		log1.put("method", "Test");
-		log1.put("change", "Luxubu");
-		logs.add(log1);
+//		ArrayList<Object> logs = new ArrayList<>();
+//		Map<String, Object> log1 = new HashMap<String, Object>();
+//		log1.put("by", "admin");
+//		log1.put("date", "14-05-2019");
+//		log1.put("time", java.time.LocalTime.now().format(formatter2));
+//		log1.put("method", "Test");
+//		log1.put("change", "Luxubu");
+//		logs.add(log1);
 //		Map<String, Object> log2 = new HashMap<String, Object>();
 //		log2.put("by", "HR");
 //		log2.put("time", java.time.LocalDate.now().format(formatter));
 //		log2.put("change", "Set Interview");
 //		logs.add(0,log2);
-		dao.addLog("CAN1", "111111111", logs);
+//		dao.addLog("CAN1", "111111111", logs);
 //		System.out.println(dao.getAllLog("CAN1"));
+		
+		ArrayList<Candidate> ds = dao.getImportCandidate_S("Product Manager", 10, 2);
+		for(Candidate can : ds) {
+			System.out.println(can);
+		}
+		
 	}
 
 }
