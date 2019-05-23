@@ -55,7 +55,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
-      <a href="index" class="logo">
+      <a href="candidate" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">DOU</span>
         <!-- logo for regular state and mobile devices -->
@@ -116,7 +116,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">HEADER</li>
-          <li class="active"><a href="index"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
+          <li class="active"><a href="candidate"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
           <li><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
           <li><a href="userMgmt"><i class="fa  fa-users"></i> <span>User management</span></a></li>
           <li><a href="chartjs"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
@@ -150,7 +150,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               </div>
 
               <div class="box-body">
-                <form role="form">
+                <form role="form" id="form-data">
                   <div class="form-row col-xs-12">
                     <center>
                       <div class="input-group input-group-md col-xs-4">
@@ -864,7 +864,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Nút save khi edit Profile candidate
     $("#btn_saveProfile").click(function(event) {
       /* Act on the event */
-      var id = $("#idCan").val();
+      /* var id = $("#idCan").val();
       var name = $('#name').val();
       var email = $("#email").val();
       var namePos = $("#position").val();
@@ -875,26 +875,29 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       var time =  $("#time").val();
       var total =  $("#total").val();
       var dateImp = $("#datepicker_Date").val();
-      var workExp =  $("#work_exp").val();
+      var workExp =  $("#work_exp").val(); */
+      /* id:id,
+      name :name,
+      email :email,
+      namePos :namePos,
+      dob :dob,
+      phone :phone,
+      gender :gender,
+      score :score,
+      time : time,
+      total :total,
+      dateImp :dateImp,
+      workExp :workExp */
+      var myForm  = new FormData(document.getElementById("form-data"));
+      var photo	= document.getElementById("upload-photo").files[0];
+      myForm.append("file",photo);
       $.ajax({
         url: '/profile/editProfile',
         type: 'post',
-        dataType: 'html',
-        data: {
-            id:id,
-            name :name,
-            email :email,
-            namePos :namePos,
-            dob :dob,
-            phone :phone,
-            gender :gender,
-            score :score,
-            time : time,
-            total :total,
-            dateImp :dateImp,
-            workExp :workExp
-        }
-       })
+        
+        processData: false,
+        contentType: false,
+        data:myForm})
       Swal.fire(
         'Save success!',
         '',

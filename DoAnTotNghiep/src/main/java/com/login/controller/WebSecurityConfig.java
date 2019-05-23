@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// TODO Auto-generated method stub
 		auth.userDetailsService(userdetail);
 	}
-	
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -31,13 +31,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
          
     @Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {    	
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/index","/profile").hasAnyRole("HR","ADMIN","INTERVIEWER")
+			.antMatchers("/candidate","/profile").hasAnyRole("HR","ADMIN","INTERVIEWER")
 			.antMatchers("/position").hasAnyRole("HR","ADMIN")
 			.antMatchers("/userMgmt").hasAnyRole("HR","ADMIN")
-			.antMatchers("/homeApply","/quiz").permitAll()
+			.antMatchers("/","/quiz","/chartjs").permitAll()
 			.and()
 			.exceptionHandling().accessDeniedPage("/403")
 			.and().formLogin()

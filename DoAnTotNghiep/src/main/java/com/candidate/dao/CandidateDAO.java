@@ -545,6 +545,7 @@ public class CandidateDAO {
 	public ArrayList<Candidate> getImportCandidate_S(String namePos, int score, int quantity){
 		ArrayList<Candidate> ds = new ArrayList<Candidate>();
 		Table table = dynamoDB.getTable("Candidate_S");
+		
 		//Index index = table.getIndex("rate.score");
 		ScanSpec scanSpec = new ScanSpec()
 								.withFilterExpression("namePos = :np and rate.score > :sc")
@@ -582,20 +583,24 @@ public class CandidateDAO {
 		
 		
 		
+		
 		//Sắp xếp mảng giảm dần (quá ngu nên ko tìm đc cách search desc hiệu qả trên dyanmoDb T.T)
-		Candidate temp = ds.get(0);
-        for (int i = 0 ; i < ds.size()-1; i++) {
-            for (int j = i + 1; j < ds.size(); j++) {
-                if (Integer.parseInt(ds.get(i).getRate().get("score")+"") < Integer.parseInt(ds.get(j).getRate().get("score")+"")) {
-                    temp = ds.get(j);
-                    ds.set(j, ds.get(i));
-                    ds.set(i, temp);
-                }
-            }
-        }
-        for(int k = quantity;k<ds.size();k++) {
-        	ds.remove(k);
-        }
+		if(ds.size()>0) {
+			Candidate temp = ds.get(0);
+	        for (int i = 0 ; i < ds.size()-1; i++) {
+	            for (int j = i + 1; j < ds.size(); j++) {
+	                if (Integer.parseInt(ds.get(i).getRate().get("score")+"") < Integer.parseInt(ds.get(j).getRate().get("score")+"")) {
+	                    temp = ds.get(j);
+	                    ds.set(j, ds.get(i));
+	                    ds.set(i, temp);
+	                }
+	            }
+	        }
+	        for(int k = quantity;k<ds.size();k++) {
+	        	ds.remove(k);
+	        }
+		}	
 		return ds;
 	}
+	
 }

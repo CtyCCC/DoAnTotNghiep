@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- daterange picker -->
     <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
@@ -53,7 +54,7 @@
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
-            <a href="index" class="logo">
+            <a href="candidate" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">DOU</span>
                 <!-- logo for regular state and mobile devices -->
@@ -116,7 +117,7 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">HEADER</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li><a href="index"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
+                        <li><a href="candidate"><i class="fa fa-list-ul"></i> <span>Recruitment Master List</span></a></li>
                         <li><a href="position"><i class="fa fa-cubes"></i> <span>Position</span></a></li>
                         <li><a href="userMgmt"><i class="fa  fa-users"></i> <span>User management</span></a></li>
                         <li class="active"><a href="chartjs"><i class="fa fa-pie-chart"></i> <span>Charts</span></a></li>
@@ -154,40 +155,10 @@
                                             <input type="radio" name="radio_date" value="Range" checked>Range Date</label>
                                         <input type="text" class="col-md-4 col-sm-6" id="reservation_chart">
                                     </div>
-                                    <div class="row form-inline">
+                                    <div class="row form-group">
                                         <label class="col-md-2 col-sm-2">
                                             <input type="radio" name="radio_date" value="Choose">Choose Date</label>
-                                        <div class="form-inline datachoose col-sm-9" style="padding-left: 0px;">
-                                            <span>
-                                                <select class="form-control col-md-3 col-sm-3" disabled="disabled">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
-                                                    <option>11</option>
-                                                    <option>12</option>
-                                                  </select>
-                                            </span>
-                                             <span>
-                                                <select class="form-control col-md-3 col-sm-3" disabled="disabled">
-                                                    <option>2010</option>
-                                                    <option>2011</option>
-                                                    <option>2012</option>
-                                                    <option>2013</option>
-                                                    <option>2014</option>
-                                                    <option>2015</option>
-                                                    <option>2016</option>
-                                                    <option>2017</option>
-                                                    <option>2018</option>
-                                                  </select>
-                                            </span>
-                                        </div>
+                                            <input type="text" class="col-md-4 col-sm-6" id="time_chart" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -195,8 +166,8 @@
                                     <div class="row col-md-8  col-md-offset-1">
                                         <div class="form-group">
                                             <label for="">Data</label>
-                                            <select class="form-control select2" multiple data-placeholder="Select Data Type" style="width: 100%;">
-                                                <option value="All">All</option>
+                                            <select class="form-control select2" multiple data-placeholder="Select Status Candidate" style="width: 100%;" id="status">
+                                                <option value="All" selected="selected">All</option>
                                                 <option value="New">New</option>
                                                 <option value="Not qualitied">Not qualitied</option>
                                                 <option value="Wating for interview">Wating for interview</option>
@@ -212,6 +183,12 @@
                                                 <option value="Probation fail">Probation fail</option>
                                             </select>
                                         </div>
+                                        <div>
+                                        	<select class="form-control select2" multiple data-placeholder="Select Position" style="width: 100%;" id="Position">
+                                            	<option value="All">All</option>
+                                            	
+                                            </select>
+                                         </div>   
                                     </div>
                                     <div class="row col-md-8 col-md-offset-1">
                                         <div class="row form-group">
@@ -549,8 +526,12 @@ $(function() {
   barChart.Bar(barChartData, barChartOptions)
       // date picker
   $('#reservation_chart').daterangepicker()
-  $('#datepicker_chart').datepicker({
-          autoclose: true
+
+  $('#time_chart').datepicker({
+          autoclose: true,
+          format: "mm-yyyy",
+          viewMode: "months", 
+          minViewMode: "months"
       })
       //Initialize Select2 Elements
   $('.select2').select2()
@@ -558,10 +539,10 @@ $(function() {
   $(".radio label input").click(function(argument) {
       if (this.value == "Range") {
           $("#reservation_chart").removeAttr("disabled")
-          $(".datachoose select").attr("disabled", true)
+          $("#time_chart").attr("disabled", true)
       } else if (this.value == "Choose") {
           $("#reservation_chart").attr("disabled", true)
-          $(".datachoose select").removeAttr("disabled")
+          $("#time_chart").removeAttr("disabled")
       }
   })
 })

@@ -2,10 +2,10 @@
 	{
 		"idUser":"USR1",
 		"userName":"admin",
-		"name": "Nguyen Van Admin",
+		"name": "Trần Hùng Cường",
 		"pass":"admin",
 		"code":"ROLE_ADMIN",
-		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
+		"avatar" : "https://docs.google.com/uc?id=1r5LGXaZpnSyUAjT8XjwRCSqFs9SZuins"
 	},
 	{
 		"idUser":"USR2",
@@ -34,17 +34,17 @@
 	{
 		"idUser":"USR5",
 		"userName":"hr1",
-		"name": "Nguyen Van HR",
+		"name": "Trần Đình Chiến",
 		"pass":"123",
 		"code":"ROLE_HR",
-		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
+		"avatar" : "https://docs.google.com/uc?id=1zPAml9wwxfHb7GBveec-4XH7uSJ4T9ni"
 	},
 	{
 		"idUser":"USR6",
 		"userName":"hr2",
-		"name": "Nguyen Thị Thư",
+		"name": "Nguyen Văn Mạnh Cường",
 		"pass":"123",
 		"code":"ROLE_HR",
-		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
+		"avatar" : "https://docs.google.com/uc?id=12aE07OHEFcpNyTomeMXpoWTnmDpglEBP"
 	}
 ]

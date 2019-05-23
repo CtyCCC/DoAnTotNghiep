@@ -84,8 +84,8 @@ public class QuizController {
 			e.printStackTrace();
 		}
 		Map<String, Object> infoMap =new HashMap<String, Object>();
-		infoMap.put("score",score+"");
-		infoMap.put("total",total+"");
+		infoMap.put("score",score);
+		infoMap.put("total",total);
 		infoMap.put("time",time);
 		Candidate can = quizdao.getCandidateById_S(idC);
 		applydao.updateRateofCadidate(can, infoMap);

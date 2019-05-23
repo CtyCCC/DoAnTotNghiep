@@ -2,6 +2,7 @@ package com.apply.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.apply.form.TitlePosition;
 import com.entity.Candidate;
 import com.entity.Position;
+import com.entity.Questions;
 
 public class ApplyDao {
 	
@@ -93,6 +95,7 @@ public class ApplyDao {
         //Thêm 1 candidate mới vào Candidate_S
         public void addCandidate_S(Candidate can) {
     		Table table = dynamoDB.getTable("Candidate_S");
+    		String namePos = getPositionbyId(can.getNamePos()).getName();
     		try {
     			PutItemOutcome outcome = table
     					.putItem(new Item()
@@ -104,9 +107,11 @@ public class ApplyDao {
     							.withString("dob", can.getDob())
     							.withString("dateImport", "not")
     							.withString("linkCV", can.getLinkCV())
-    							.withString("namePos", can.getNamePos())
+    							.withString("namePos",namePos)
     							.withString("status", can.getStatus())
-    							.withString("workExp", can.getWorkExp()));
+    							.withString("workExp", can.getWorkExp())
+    							.withString("avatar", can.getAvatar()));
+    			
     		}
     		catch (Exception e) {
     			System.err.println(e.getMessage());
@@ -117,10 +122,33 @@ public class ApplyDao {
         	Table table = dynamoDB.getTable("Candidate_S");
         	UpdateItemSpec updateitem = new UpdateItemSpec()
         								.withPrimaryKey("idCan",can.getIdCan(),"cmnd",can.getCmnd())
-        								.withUpdateExpression("set score =:val")
+        								.withUpdateExpression("set rate =:val")
         								.withValueMap(new ValueMap().withMap(":val",infoMap))
         								.withReturnValues(ReturnValue.UPDATED_NEW);
         	
         	UpdateItemOutcome outcome = table.updateItem(updateitem);
+        }
+        
+        public Position getPositionbyId(String idPos) {
+        	Position pos = null;
+        	Table table = dynamoDB.getTable("Position");
+        	QuerySpec spec = new QuerySpec()
+					.withKeyConditionExpression("idPos =:v_id")
+					.withValueMap(new ValueMap()
+									.withString(":v_id",idPos));
+        	ItemCollection<QueryOutcome> items = table.query(spec);
+        	Iterator<Item> iterator =items.iterator();
+    		while (iterator.hasNext()) {
+    			Item item = iterator.next();
+    			pos =new Position(item.getString("idPos"),
+    							  item.getString("name"),
+    							  item.getString("area"),
+    							  item.getString("expDate"),
+    							  item.getString("requirement"),
+    							  null,
+    							  item.getString("benefit"),
+    							  item.getString("description"));
+    		}
+        	return pos;
         }
 }

@@ -68,10 +68,18 @@ public class GGDrive {
     }
 
 
-
-	public String up(String NewFileName, MultipartFile filedata) throws GeneralSecurityException, IOException {
+	/***
+	 * @param
+	 * 	 mode 1 là avatar !=1 là CV
+	 * ***/
+	public String up(String NewFileName, MultipartFile filedata,int mode) throws GeneralSecurityException, IOException {
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-		String folderId = "12uMZVTlUw9Nq1m7elsLKeL3pNzCyOcm5";
+		String folder="";
+		if(mode==1)
+			folder ="1rzV9_nNxfwVa1c38R7_8fgWc8p6fs1y8";//Avatar
+		else
+			folder= "12uMZVTlUw9Nq1m7elsLKeL3pNzCyOcm5";//CV
+			
 		AbstractInputStreamContent uploadStreamContent ;
 		uploadStreamContent =uploadStreamContent = new InputStreamContent(filedata.getContentType(),filedata.getInputStream());
 		Credential credential = getCredentials(HTTP_TRANSPORT);
@@ -80,7 +88,7 @@ public class GGDrive {
 		
 		File fileMetadata = new File();
 		fileMetadata.setName(NewFileName);
-		fileMetadata.setParents(Collections.singletonList(folderId));
+		fileMetadata.setParents(Collections.singletonList(folder));
 		File file = service.files().create(fileMetadata, uploadStreamContent)
 		    .setFields("id")
 		    .execute();

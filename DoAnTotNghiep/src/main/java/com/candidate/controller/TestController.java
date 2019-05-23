@@ -31,9 +31,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.apply.form.TitlePosition;
 import com.candidate.dao.CandidateDAO;
+import com.candidate.form.FormEditProfile;
 import com.candidate.form.FormRound;
 import com.entity.Candidate;
 import com.entity.Position;
+import com.entity.User;
 import com.position.dao.PositionDAO;
 import com.usermanagement.dao.UserDAO;
 
@@ -52,17 +54,20 @@ public class TestController {
 	DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("H:mm:ss");
 
-	@GetMapping("/index")
-	public String index(Model model, Principal principal) {
+	@GetMapping("/candidate")
+	public String index(Model model, Principal principal, HttpServletRequest requset) {
 		//Lấy thông tin user
+		String avatar = "Unknown";
 		String userName = principal.getName();
 		String name = "Unknown";
 		if(userName != null) {
-			name = userDAO.getUserByUserName(userName).getName();
-
+			User user =userDAO.getUserByUserName(userName);
+			name = user.getName();
+			avatar = user.getAvatar();
 		}
 		model.addAttribute("userName", userName);
 		model.addAttribute("fullName", name);
+		model.addAttribute("avatar", avatar);
 
 		ArrayList<Candidate> ds_Can = new ArrayList<>();
 		ds_Can = candidateDAO.getAllCandidate_M();
@@ -73,10 +78,10 @@ public class TestController {
 		arrPos = posDAO.getAllPosition();
 		model.addAttribute("listPosition", arrPos);
 
-		return "index";
+		return "candidate";
 	}
 
-	@PostMapping("/index/setInterview")
+	@PostMapping("/candidate/setInterview")
 	public @ResponseBody String setInterview(HttpServletRequest request, Principal principal) throws JSONException {
 		//Lấy thông tin user
 		String userName = principal.getName();
@@ -149,7 +154,7 @@ public class TestController {
 		return "Set Interview Success";
 	}
 
-	@PostMapping("/index/deleteCandidate")
+	@PostMapping("/candidate/deleteCandidate")
 	public @ResponseBody String deleteCan(HttpServletRequest request) throws JSONException{
 		JSONArray arr = new JSONArray(request.getParameter("id_cmnd"));
 		for (int i = 0; i < arr.length(); i++) {
@@ -285,7 +290,8 @@ public class TestController {
 	}
 
 	@PostMapping("/profile/editProfile")
-	public @ResponseBody String editProfile(HttpServletRequest req,Principal principal) {
+	public @ResponseBody String editProfile(@RequestBody FormEditProfile data ,HttpServletRequest req,Principal principal) {
+		System.out.println(data.toString());
 		//Lấy thông tin user
 		String userName = principal.getName();	
 
@@ -775,7 +781,7 @@ public class TestController {
 		//Lấy thông tin user
 		String userName = principal.getName();
 		
-		String idCan = "CAN"+candidateDAO.getAllCandidate_S().size();
+		String idCan = "CAN"+(candidateDAO.getAllCandidate_S().size()+1);
 		String nameCan = req.getParameter("name");
 		String cmnd = req.getParameter("cmnd");
 		String email = req.getParameter("email");
@@ -809,6 +815,15 @@ public class TestController {
 		logs.add(0,log);
 		candidateDAO.addLog(newCan.getIdCan(), newCan.getCmnd(), logs);
 		
+		return "Ok";
+	}
+	
+	//Avatar của user
+	public @ResponseBody String updateAvatar() {
+		return "Ok";
+	}
+	
+	public @ResponseBody String updateCv() {
 		return "Ok";
 	}
 }

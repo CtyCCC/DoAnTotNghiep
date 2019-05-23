@@ -44,8 +44,8 @@ public class ApplyController {
 
 
 	// Lấy thông tin tổng quát(id,tên,ngày) của position đổ về client
-	@GetMapping("/homeApply")
-	public String showApplytition(Model model) {
+	@GetMapping("/")
+	public String showApplication(Model model) {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datecurrent = new Date();
 		ArrayList<TitlePosition> filterTitle = new ArrayList<TitlePosition>();
@@ -76,8 +76,8 @@ public class ApplyController {
 	}
 
 
-	@PostMapping("/homeApply")
-	public String getNewRecruitment(@ModelAttribute("formapply") FormApply formapply,RedirectAttributes attr ) {
+	@PostMapping("/")
+	public String getNewRecruitment(@ModelAttribute FormApply formapply,RedirectAttributes attr ) {
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
 		Date datecurrent = new Date();
 		
@@ -97,7 +97,7 @@ public class ApplyController {
 		MultipartFile filedata = formapply.getF_filedata();
 		
 		try {
-			String id = GG.up(cmnd+"-"+idCan,filedata);
+			String id = GG.up(cmnd+"-"+idCan,filedata,0);
 			linkCV ="https://drive.google.com/open?id="+id;
 		} catch (GeneralSecurityException | IOException e) {
 			// TODO Auto-generated catch block
@@ -105,7 +105,7 @@ public class ApplyController {
 		}
 
 		String status ="New";
-		Candidate candidate = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, linkCV, namePos, dateImport,workExp,"",null, status, null,null,null);
+		Candidate candidate = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, linkCV, namePos, dateImport,workExp,"not",null, status, null,null,null);
 		applydao.addCandidate_S(candidate);
 
 		attr.addAttribute("IDPOS",candidate.getNamePos());
