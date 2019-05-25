@@ -543,6 +543,13 @@ public class CandidateDAO {
 	
 	//Import Candidate
 	public ArrayList<Candidate> getImportCandidate_S(String namePos, int score, int quantity){
+		//Lấy danh sách các candidate đã có trong hệ thống
+		HashSet<String> dsCMND = new HashSet<>();
+		ArrayList<Candidate> dsCanInSys = getAllCandidate_M();
+		for(Candidate can1 : dsCanInSys) {
+			dsCMND.add(can1.getCmnd());
+		}
+		
 		ArrayList<Candidate> ds = new ArrayList<Candidate>();
 		Table table = dynamoDB.getTable("Candidate_S");
 		
@@ -572,7 +579,9 @@ public class CandidateDAO {
 						item.getMap("rate"), 
 						"New",
 						null,null,null);
-				ds.add(c);
+				if(dsCMND.add(c.getCmnd())) {
+					ds.add(c);
+				}	
 			}
 
 		}
@@ -599,8 +608,11 @@ public class CandidateDAO {
 	        for(int k = quantity;k<ds.size();k++) {
 	        	ds.remove(k);
 	        }
+	        return ds;
 		}	
-		return ds;
+		else {
+			return null;
+		}
 	}
 	
 }

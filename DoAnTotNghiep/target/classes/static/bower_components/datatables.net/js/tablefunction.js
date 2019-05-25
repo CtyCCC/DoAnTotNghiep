@@ -179,6 +179,7 @@ $(document).ready(function () {
 		$("#skill").removeAttr('readonly');
 		$("#datepicker_Date").removeAttr('disabled');
 		$("#datepicker_DOB").removeAttr('disabled');
+		$("#btn_saveProfile").removeAttr('disabled');
 	});
 
 	

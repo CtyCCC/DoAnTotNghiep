@@ -235,7 +235,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveProfile">Save</button>
+                <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveProfile" disabled="">Save</button>
                 <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
               </div>
               <!-- /.box-footer -->
@@ -287,8 +287,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 <li id="li_interview" class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
-                <li id="li_offer" class="disabled"><a id="tab_offer" href="#offer">Offer</a></li>
-                <li id="li_probation" class="disabled"><a id="tab_probation" href="#probation">Probation</a></li>
+                <li id="li_offer"><a id="tab_offer" href="#offer" data-toggle="tab">Offer</a></li>
+                <li id="li_probation"><a id="tab_probation" href="#probation" data-toggle="tab">Probation</a></li>
               </ul>
               <div class="tab-content">
                 <!-- Interview -->
@@ -473,7 +473,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       </div>
                     </div>
                     <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveOffer">Save</button>
-                    <button th:if="${isOf !='Not'}" type="button" class="btn btn-primary pull-right" id="btn_editOffer" >Edit</button>
+                    <button type="button" class="btn btn-primary pull-right" id="btn_editOffer" >Edit</button>
                   </div>
                 </div>
                 <!-- /.tab-pane -->
@@ -506,7 +506,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <textarea th:unless="${isPro =='Not'}" class="form-control" rows="3" th:text="${candidate.probation.note}" disabled id="proNote"></textarea>
                     </div>
                     <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_savePro">Save</button>
-                    <button th:if="${isPro !='Not'}" type="button" class="btn btn-primary pull-right" id="btn_editProbation" >Edit</button>
+                    <button type="button" class="btn btn-primary pull-right" id="btn_editProbation" >Edit</button>
                   </div>
                 </div>
               </div>
@@ -579,86 +579,20 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 
       showProgessBar();
       
-      var stt = $("#status").val();
-      switch(stt){
-        case "New":
-          $("#status").attr("style", "font-weight:bold; color: black");
-          break;
-        case "Wait for interview":
-          $("#status").attr("style", "font-weight:bold; color: sandyBrown");
-          break;
-        case "Reject":
-          $("#status").attr("style", "font-weight:bold; color: grey");
-          break;
-        case "Interviewing":
-          $("#status").attr("style", "font-weight:bold; color: steelBlue");
-          break;
-        case "Interview Fail":
-          $("#status").attr("style", "font-weight:bold; color: red");
-          break;
-        case "Interview Pass":
-          $("#status").attr("style", "font-weight:bold; color: green");
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          break;
-        case "Offering":
-          $("#status").attr("style", "font-weight:bold; color: blue");
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          $("#btneditRound").attr('style', 'display:none');
-          $("#btnSave_interview").attr('style', 'display:none');
-          break;
-        case "Offer Fail":
-          $("#status").attr("style", "font-weight:bold; color: red");
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          $("#btneditRound").attr('style', 'display:none');
-          $("#btnSave_interview").attr('style', 'display:none');
-          break;
-        case "Offer Pass":
-          $("#status").attr("style", "font-weight:bold; color: green");
-          $("#btneditRound").attr('style', 'display:none');
-          $("#btnSave_interview").attr('style', 'display:none');
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          $("#li_probation").removeAttr('class');
-          $("#tab_probation").attr('data-toggle', 'tab');
-          break;
-        case "Probation":
-          $("#status").attr("style", "font-weight:bold; color: orange");
-          $("#btneditRound").attr('style', 'display:none');
-          $("#btnSave_interview").attr('style', 'display:none');
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          $("#btn_editOffer").attr('style', 'display:none');
-          $("#btn_saveOffer").attr('style', 'display:none');
-          $("#li_probation").removeAttr('class');
-          $("#tab_probation").attr('data-toggle', 'tab');
-          break;
-        case "Probation Fail":
-          $("#status").attr("style", "font-weight:bold; color: red");
-          $("#btneditRound").attr('style', 'display:none');
-          $("#btnSave_interview").attr('style', 'display:none');
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          $("#btn_editOffer").attr('style', 'display:none');
-          $("#btn_saveOffer").attr('style', 'display:none');
-          $("#li_probation").removeAttr('class');
-          $("#tab_probation").attr('data-toggle', 'tab');
-          break;
-        case "Probation Pass":
-          $("#status").attr("style", "font-weight:bold; color: green");
-          $("#btneditRound").attr('style', 'display:none');
-          $("#btnSave_interview").attr('style', 'display:none');
-          $("#li_offer").removeAttr('class');
-          $("#tab_offer").attr('data-toggle', 'tab');
-          $("#btn_editOffer").attr('style', 'display:none');
-          $("#btn_saveOffer").attr('style', 'display:none');
-          $("#li_probation").removeAttr('class');
-          $("#tab_probation").attr('data-toggle', 'tab');
-          break;  
-      }
+      checkStatus();
 
+      $("#li_interview").click(function(event) {
+        /* Act on the event */
+        checkStatus();
+      });
+      $("#li_probation").click(function(event) {
+        /* Act on the event */
+        checkStatus();
+      });
+      $("#li_offer").click(function(event) {
+        /* Act on the event */
+        checkStatus();
+      });
 
       //Hiện ẩn Nút Finish và AddRound khi load trang
       var fnrs = $("#finalResult").val();
@@ -811,6 +745,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#expectOff").removeAttr('disabled');
       $("#offsal").removeAttr('disabled');
       $("#rsOff").removeAttr('disabled');
+      $("#btn_saveOffer").removeAttr('disabled');
     });
 
     $("#btn_editProbation").click(function(event) {
@@ -818,6 +753,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#reservation").removeAttr('disabled');
       $("#proRs").removeAttr('disabled');
       $("#proNote").removeAttr('disabled');
+      $("#btn_savePro").removeAttr('disabled');
     });
 
     //Back interview
@@ -996,11 +932,32 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   rs:rs
               }
              }).done(function(data) {
+                //Xuất thông báo
                 Swal.fire(
                   'Update Offer Sucess!',
                   '',
                   'success'
                 );
+                
+                //Thay đổi và kiểm tra status
+                if(rs=="Unknown"){
+                   $("#status").val("Offering");
+                   checkStatus();
+                }else if(rs == "Decline") {
+                  $("#status").val("Offer Fail");
+                   checkStatus();
+                }else {
+                  $("#status").val("Offer Pass");
+                   checkStatus();
+                }
+                $("#li_offer").attr('class', 'active');
+
+                //Lock lại các trường của offer
+                $("#curOff").attr('disabled', 'disabled');
+                $("#expectOff").attr('disabled', 'disabled');
+                $("#offsal").attr('disabled', 'disabled');
+                $("#rsOff").attr('disabled', 'disabled');
+                
              });
             }
           });
@@ -1037,11 +994,27 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   note:note
               }
              }).done(function(data) {
+                //Xuất thông báo
                 Swal.fire(
-                  'Update Offer Sucess!',
+                  'Update Probation Sucess!',
                   '',
                   'success'
                 );
+
+                //Thay đổi và kiểm tra status
+                if(rs == "Unknown"){
+                  $("#status").val("Probation");
+                  checkStatus();
+                }
+                else{
+                  $("#status").val("Probation "+rs);
+                  checkStatus();
+                }
+                $("#li_probation").attr('class', 'active');
+                //Lock các trường của probation
+                $("#reservation").attr('disabled', 'disabled');
+                $("#proRs").attr('disabled', 'disabled');
+                $("#proNote").attr('disabled', 'disabled');
              });
             }
           });
@@ -1050,12 +1023,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
   });
 </script>
 <script type="text/javascript">
-  function test (argument) {
-        // body... 
-        alert("hhahaah");
-      };
 
-  function saveAddAndEdit (argument) {
+  function saveAddAndEdit () {
         // body... 
         if(($("#actionInterview").val())=="add"){
           var id = $("#idCan").val();
@@ -1216,7 +1185,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 }
               });
               $("#status").val("Interviewing");
-              $("#status").attr("style", "font-weight:bold; color: steelBlue");
+              //$("#status").attr("style", "font-weight:bold; color: steelBlue");
+              checkStatus();
+              $("#li_interview").attr('class', 'active');
             }
           });
         }
@@ -1260,13 +1231,15 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     timer: 1500
                   });
                   $("#status").val("Interview "+op);
-                  if(op == 'Pass'){
-                    $("#status").attr("style", "font-weight:bold; color: green");
+                  // if(op == 'Pass'){
+                  //   $("#status").attr("style", "font-weight:bold; color: green");
                     
-                  }else if(op == 'Fail'){
-                    $("#status").attr("style", "font-weight:bold; color: red");
-                  }  
+                  // }else if(op == 'Fail'){
+                  //   $("#status").attr("style", "font-weight:bold; color: red");
+                  // }
+                  checkStatus();  
                   //location.reload();
+                  $("#li_interview").attr('class', 'active');
                 }                 
               }
              });
@@ -1289,6 +1262,133 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
       $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
       //Percennt pass / fail process
+  }
+
+  function checkStatus() {
+    // body...
+    
+     var stt = $("#status").val();
+     console.log(stt);
+      switch(stt){
+        case "New":
+          $("#status").attr("style", "font-weight:bold; color: black");
+          $("#li_offer").attr('class', 'disabled');
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_offer').removeAttr('data-toggle');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Wait for interview":
+          $("#status").attr("style", "font-weight:bold; color: sandyBrown");
+          $("#li_offer").attr('class', 'disabled');
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_offer').removeAttr('data-toggle');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Reject":
+          $("#status").attr("style", "font-weight:bold; color: grey");
+          $("#li_offer").attr('class', 'disabled');
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_offer').removeAttr('data-toggle');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Interviewing":
+          $("#status").attr("style", "font-weight:bold; color: steelBlue");
+          $("#li_offer").attr('class', 'disabled');
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_offer').removeAttr('data-toggle');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Interview Fail":
+          $("#status").attr("style", "font-weight:bold; color: red");
+          $("#li_offer").attr('class', 'disabled');
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_offer').removeAttr('data-toggle');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Interview Pass":
+          $("#status").attr("style", "font-weight:bold; color: green");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_probation').removeAttr('data-toggle');
+          $("#btn_editOffer").attr('style', 'display:none');
+          break;
+        case "Offering":
+          $("#status").attr("style", "font-weight:bold; color: blue");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('disabled', 'disabled');
+          $("#btn_editOffer").removeAttr('style')
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Offer Fail":
+          $("#status").attr("style", "font-weight:bold; color: red");
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('disabled', 'disabled');
+          $("#btn_editOffer").removeAttr('style')
+          $("#li_probation").attr('class', 'disabled');
+          $('#tab_probation').removeAttr('data-toggle');
+          break;
+        case "Offer Pass":
+          $("#status").attr("style", "font-weight:bold; color: green");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_saveOffer").attr('disabled', 'disabled');
+          $("#btn_editOffer").removeAttr('style')
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
+          $("#btn_editProbation").attr('style', 'display:none');
+          break;
+        case "Probation":
+          $("#status").attr("style", "font-weight:bold; color: orange");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_editOffer").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('style', 'display:none');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
+          $("#btn_savePro").attr('disabled', 'disabled');
+          $("#btn_editProbation").removeAttr('style');
+          break;
+        case "Probation Fail":
+          $("#status").attr("style", "font-weight:bold; color: red");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_editOffer").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('style', 'display:none');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
+          $("#btn_savePro").attr('disabled', 'disabled');
+          $("#btn_editProbation").removeAttr('style');
+          break;
+        case "Probation Pass":
+          $("#status").attr("style", "font-weight:bold; color: green");
+          $("#btneditRound").attr('style', 'display:none');
+          $("#btnSave_interview").attr('style', 'display:none');
+          $("#li_offer").removeAttr('class');
+          $("#tab_offer").attr('data-toggle', 'tab');
+          $("#btn_editOffer").attr('style', 'display:none');
+          $("#btn_saveOffer").attr('style', 'display:none');
+          $("#li_probation").removeAttr('class');
+          $("#tab_probation").attr('data-toggle', 'tab');
+          $("#btn_savePro").attr('disabled', 'disabled');
+          $("#btn_editProbation").removeAttr('style');
+          break;
+        default :
+          break;  
+      }
   }
 </script>
 </body>

@@ -40,7 +40,7 @@ import com.position.dao.PositionDAO;
 import com.usermanagement.dao.UserDAO;
 
 @Controller
-public class TestController {
+public class CandidateController {
 	//cái này để khỏi tạo new CandidateDAO
 	@Autowired
 	private CandidateDAO candidateDAO ;
@@ -756,24 +756,30 @@ public class TestController {
 		String namePos = req.getParameter("pos");
 		int quantity = Integer.parseInt(req.getParameter("quan"));
 		int score = Integer.parseInt(req.getParameter("rate"));
+		
+		
 
 		ArrayList<Candidate> dsCan = candidateDAO.getImportCandidate_S(namePos, score, quantity);
-		for(Candidate can : dsCan) {
-			candidateDAO.addCandidate(can, "Candidate_M");
-			
-			//Lưu logs
-			ArrayList<Object> logs = new ArrayList<>();
-			Map<String, Object> log = new HashMap<String, Object>();
-			log.put("by", userName);
-			log.put("date", java.time.LocalDate.now().format(formatter1));
-			log.put("time", java.time.LocalTime.now().format(formatter2));
-			log.put("method", "Import into System");
-			log.put("change", "Not");
-			logs.add(0,log);
-			candidateDAO.addLog(can.getIdCan(), can.getCmnd(), logs);
+		if(dsCan != null && dsCan.size()>0) {
+			for(Candidate can : dsCan) {
+				candidateDAO.addCandidate(can, "Candidate_M");
+				
+				//Lưu logs
+				ArrayList<Object> logs = new ArrayList<>();
+				Map<String, Object> log = new HashMap<String, Object>();
+				log.put("by", userName);
+				log.put("date", java.time.LocalDate.now().format(formatter1));
+				log.put("time", java.time.LocalTime.now().format(formatter2));
+				log.put("method", "Import into System");
+				log.put("change", "Not");
+				logs.add(0,log);
+				candidateDAO.addLog(can.getIdCan(), can.getCmnd(), logs);
+			}
+			return "Có "+dsCan.size()+" Ứng viên phù hợp đã được Import thành công!";
 		}
-		
-		return "OK";
+		else {
+			return "Không có Ứng viên phù hợp cho vị trí này!";
+		}
 	}
 	
 	@PostMapping("/addNewCandidate")
