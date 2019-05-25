@@ -143,7 +143,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               <div class="box-header">
                 <center>
                   <label id="changeAva" for="upload-photo" title="Click here to change profile picture">
-                    <img id="hinh" width="200" height="200" type="file" class="img-circle" src="./dist/img/avatar04.png" alt="Photo does not match">
+                    <img th:if = "${candidate.avatar == 'zzz'}" id="hinh" width="200" height="200" type="file" class="img-circle" th:src="@{/dist/img/avatar04.png}" alt="Photo does not match">
+                    <img th:unless = "${candidate.avatar == 'zzz'}" id="hinh" width="200" height="200" type="file" class="img-circle" th:src="${candidate.avatar}" alt="Photo does not match">
                   </label>
                   <input type="file" name="photo" accept="image/*" id="upload-photo" />
                 </center>
@@ -235,8 +236,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveProfile" disabled="">Save</button>
-                <button type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
+                <button th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" type="button" class="btn btn-primary pull-right" style="margin-left: 10px" id="btn_saveProfile" disabled="">Save</button>
+                <button th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" type="button" class="btn btn-primary pull-right" id="btn_edit" >Edit</button>
               </div>
               <!-- /.box-footer -->
             </div>
@@ -287,8 +288,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 <li id="li_interview" class="active"><a id="tab_interview" href="#interview" data-toggle="tab" >Interview</a></li>
-                <li id="li_offer"><a id="tab_offer" href="#offer" data-toggle="tab">Offer</a></li>
-                <li id="li_probation"><a id="tab_probation" href="#probation" data-toggle="tab">Probation</a></li>
+                <li th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" id="li_offer"><a id="tab_offer" href="#offer" data-toggle="tab">Offer</a></li>
+                <li th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" id="li_probation"><a id="tab_probation" href="#probation" data-toggle="tab">Probation</a></li>
               </ul>
               <div class="tab-content">
                 <!-- Interview -->
@@ -342,7 +343,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </select>
                         </div>
                         <input id="actionInterview" type="text" value="not" hidden="true">
-                        <button type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square-o"></i></button>
+                        <button th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" type="button" class="btn btn-default pull-left" id="btn_addRound" ><i class="fa fa-plus-square-o"></i></button>
                         <button type="button" class="btn btn-default pull-left" id="btneditRound" ><i class="fa fa-edit"></i></button>
                         <button type="button" class="btn btn-default pull-left" id="btnSave_interview" ><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-info pull-right" onclick="$('#finalResult').focus();" id="ccne">Finish</button> 

@@ -1,6 +1,9 @@
 package com.candidate.controller;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,10 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +60,9 @@ public class CandidateController {
 	private PositionDAO positionDAO ;
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+    public JavaMailSender emailSender;
+	
 
 	PositionDAO posDAO = new PositionDAO();
 
@@ -55,19 +70,23 @@ public class CandidateController {
 	DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("H:mm:ss");
 
 	@GetMapping("/candidate")
-	public String index(Model model, Principal principal, HttpServletRequest requset) {
+	public String index(Model model, Principal principal, HttpServletRequest request) {
 		//Lấy thông tin user
 		String avatar = "Unknown";
 		String userName = principal.getName();
 		String name = "Unknown";
+		String role = "Unknown";
 		if(userName != null) {
 			User user =userDAO.getUserByUserName(userName);
 			name = user.getName();
 			avatar = user.getAvatar();
+			role = user.getCode();
 		}
 		model.addAttribute("userName", userName);
 		model.addAttribute("fullName", name);
 		model.addAttribute("avatar", avatar);
+		model.addAttribute("role", role);
+		
 
 		ArrayList<Candidate> ds_Can = new ArrayList<>();
 		ds_Can = candidateDAO.getAllCandidate_M();
@@ -104,11 +123,31 @@ public class CandidateController {
 			//System.out.println(idCan);
 			String cmnd = arr.getJSONObject(i).getString("cmnd");
 			//System.out.println(cmnd);
-
+			
 			String stus = "Wait for interview";
 
 			Candidate can = new Candidate();
 			can = candidateDAO.getCandidateById(idCan);
+			
+			// Create a Simple MailMessage.
+	        SimpleMailMessage message = new SimpleMailMessage();
+	         
+	        message.setTo("nvmcuong97@gmail.com");
+	        message.setSubject("Invite Interview Mail");
+	        message.setText("Dear "+can.getNameCan()
+	        				+"\n\nThank you for registering JWAT Program with DOU Networks"
+	        				+"\nAs discussed on phone, we would like to invite you to come for an interview at our office with the details as follow:"
+	        				+"\nTime: "+time
+	        				+"\nDate: "+date
+	        				+"\nPlace: "+venue
+	        				+"\nContact person: "+interviewer
+	        				+"\nContact number: 079 4343 226"
+	        				+"\n\nKindly confirm for us whenever you receive our email and let us know if there is any question/concern.");
+	        
+	 
+	        // Send Message!
+	        this.emailSender.send(message);
+			
 			if(can.getInterview()==null) {
 				ArrayList<Object> rounds = new ArrayList<>();
 				Map<String, Object> rnd = new HashMap<String, Object>();
@@ -122,6 +161,7 @@ public class CandidateController {
 				rounds.add(rnd);
 
 				candidateDAO.addInterview(idCan, cmnd, rounds, stus);
+				
 			}else if(can.getInterview() != null && can.getStatus().equals("Interviewing")){
 				stus = "Interviewing";
 				ArrayList<Object> rounds=  (ArrayList<Object>) can.getInterview().get("rounds");
@@ -163,6 +203,7 @@ public class CandidateController {
 
 			candidateDAO.deleteCandidate(idCan, cmnd);
 		}
+		
 		return "Delete Candidates Success";		
 	}
 
@@ -180,13 +221,14 @@ public class CandidateController {
 		//Lấy thông tin user
 		String userName = principal.getName();
 		String name = "Unknown";
+		String role = "Unknown";
 		if(userName != null) {
 			name = userDAO.getUserByUserName(userName).getName();
-
+			role = userDAO.getUserByUserName(userName).getCode();
 		}
 		model.addAttribute("userName", userName);
 		model.addAttribute("fullName", name);
-
+		model.addAttribute("role", role);
 
 		Candidate can = candidateDAO.getCandidateById(id);
 		if(!(can.getIdCan()==null)) {
@@ -756,14 +798,14 @@ public class CandidateController {
 		String namePos = req.getParameter("pos");
 		int quantity = Integer.parseInt(req.getParameter("quan"));
 		int score = Integer.parseInt(req.getParameter("rate"));
-		
-		
+
+
 
 		ArrayList<Candidate> dsCan = candidateDAO.getImportCandidate_S(namePos, score, quantity);
 		if(dsCan != null && dsCan.size()>0) {
 			for(Candidate can : dsCan) {
 				candidateDAO.addCandidate(can, "Candidate_M");
-				
+
 				//Lưu logs
 				ArrayList<Object> logs = new ArrayList<>();
 				Map<String, Object> log = new HashMap<String, Object>();
@@ -781,12 +823,12 @@ public class CandidateController {
 			return "Không có Ứng viên phù hợp cho vị trí này!";
 		}
 	}
-	
+
 	@PostMapping("/addNewCandidate")
 	public @ResponseBody String addNewCandidate(HttpServletRequest req, Principal principal) {
 		//Lấy thông tin user
 		String userName = principal.getName();
-		
+
 		String idCan = "CAN"+(candidateDAO.getAllCandidate_S().size()+1);
 		String nameCan = req.getParameter("name");
 		String cmnd = req.getParameter("cmnd");
@@ -802,14 +844,14 @@ public class CandidateController {
 			gender = false;
 		String workExp = req.getParameter("workExp");
 		String status = req.getParameter("stt");
-		
+
 		HashMap<String, Object> rate = new HashMap<>();
 		rate.put("score", score);
 		rate.put("time", time);
 		rate.put("total", total);
 		Candidate newCan = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, "aaa", posName, java.time.LocalDate.now().format(formatter1), workExp, "bbb", rate, status, null,null,null);
 		candidateDAO.addCandidate(newCan, "Candidate_M");
-		
+
 		//Lưu log
 		ArrayList<Object> logs = new ArrayList<>();
 		Map<String, Object> log = new HashMap<String, Object>();
@@ -820,15 +862,127 @@ public class CandidateController {
 		log.put("change", "Not");
 		logs.add(0,log);
 		candidateDAO.addLog(newCan.getIdCan(), newCan.getCmnd(), logs);
-		
+
 		return "Ok";
 	}
+
+	@PostMapping("/candidate/export")
+	public @ResponseBody String exportCan(HttpServletRequest request) throws JSONException{
+		JSONArray arr = new JSONArray(request.getParameter("id_cmnd"));
+		ArrayList<Candidate> dsCan = new ArrayList<>();
+		for (int i = 0; i < arr.length(); i++) {
+			String idCan = arr.getJSONObject(i).getString("idCan");
+			dsCan.add(candidateDAO.getCandidateById(idCan));
+		}
+		//Tạo sheet
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("Candidate Sheet");
+
+		//Cấu hình style cho cell
+		XSSFFont font = workbook.createFont();
+		font.setBold(true);
+		XSSFCellStyle style = workbook.createCellStyle();
+		style.setFont(font);
+
+		int rowNum = 0;
+
+		//Tiêu đề sheet
+		Row firstRow = sheet.createRow(rowNum++);
+		Cell firstCell = firstRow.createCell(0);
+		firstCell.setCellValue("List of Candidate");
+		firstCell.setCellStyle(style);
+
+		Cell cell;
+		Row row;
+		row = sheet.createRow(rowNum++);
+
+		//Tạo header
+		cell = row.createCell(1, CellType.STRING);
+		cell.setCellValue("Name");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(2, CellType.STRING);
+		cell.setCellValue("DOB");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(3, CellType.STRING);
+		cell.setCellValue("Gender");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(4, CellType.STRING);
+		cell.setCellValue("Mobile");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(5, CellType.STRING);
+		cell.setCellValue("Position");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(6, CellType.STRING);
+		cell.setCellValue("Rate");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(7, CellType.STRING);
+		cell.setCellValue("Time");
+		cell.setCellStyle(style);
+
+		cell = row.createCell(8, CellType.STRING);
+		cell.setCellValue("Status");
+		cell.setCellStyle(style);
+
+		//Đỗ dữ liệu
+		for(Candidate can: dsCan) {
+			
+			row = sheet.createRow(rowNum++);
+
+			cell = row.createCell(1, CellType.STRING);
+			cell.setCellValue(can.getNameCan());
+
+			cell = row.createCell(2, CellType.STRING);
+			cell.setCellValue(can.getDob());
+
+			cell = row.createCell(3, CellType.STRING);
+			if(can.isGender()) {
+				cell.setCellValue("Male");
+			}else {
+				cell.setCellValue("Female");
+			}
+
+			cell = row.createCell(4, CellType.STRING);
+			cell.setCellValue(can.getPhone());
+
+			cell = row.createCell(5, CellType.STRING);
+			cell.setCellValue(can.getNamePos());
+
+			cell = row.createCell(6, CellType.STRING);
+			cell.setCellValue(can.getRate().get("score")+"/"+can.getRate().get("total"));
+
+			cell = row.createCell(7, CellType.STRING);
+			cell.setCellValue(can.getRate().get("time")+"");
+
+			cell = row.createCell(8, CellType.STRING);
+			cell.setCellValue(can.getStatus());
+		}
+
+		try {
+			//File file = new File("D:/Candidate_Info.xlsx");
+			//file.getParentFile().mkdirs();
+			FileOutputStream outputStream = new FileOutputStream("Candidate_Info.xlsx");
+			workbook.write(outputStream);
+			workbook.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Export Candidates Success";		
+	}
 	
+
 	//Avatar của user
 	public @ResponseBody String updateAvatar() {
 		return "Ok";
 	}
-	
+
 	public @ResponseBody String updateCv() {
 		return "Ok";
 	}

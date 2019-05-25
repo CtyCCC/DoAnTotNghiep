@@ -3,7 +3,7 @@ package com.entity;
 public class User {
 	private String idUser; //ID
 	private String userName;
-	private String code; // 1:Manager(Admin); 2: interviewer
+	private String code; // 
 	private String name;
 	private String pass; //Password
 	private String avatar;

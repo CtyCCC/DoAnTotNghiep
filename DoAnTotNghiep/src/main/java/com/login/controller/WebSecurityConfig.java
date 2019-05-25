@@ -37,6 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/candidate","/profile").hasAnyRole("HR","ADMIN","INTERVIEWER")
 			.antMatchers("/position").hasAnyRole("HR","ADMIN")
 			.antMatchers("/userMgmt").hasAnyRole("HR","ADMIN")
+			.antMatchers("/candidate/setInterview"
+					,"/candidate/deleteCandidate"
+					,"/profile/editProfile"
+					,"/profile/addRoundInterview"
+					,"/profile/saveOffer"
+					,"/profile/saveProbation"
+					,"/import"
+					,"/addNewCandidate").hasAnyRole("HR","ADMIN")
 			.antMatchers("/","/quiz","/chartjs").permitAll()
 			.and()
 			.exceptionHandling().accessDeniedPage("/403")

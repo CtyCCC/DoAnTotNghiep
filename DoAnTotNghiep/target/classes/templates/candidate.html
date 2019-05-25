@@ -171,15 +171,15 @@
                 </div>
                 <div class="col-md-6">
                   <div class="pull-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default3">
+                    <button  th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default3">
                     <i class="fa fa-plus-square"> Import</i>
                     </button>
-                    <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default2">
+                    <button  th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default2">
                       <i class="fa fa-plus-square"> Add New</i>
                     </button>
-                    <button id="btnSetInterview" type="button" class="btn btn-info" disabled data-toggle="modal" data-target="#modal-default4">
+                    <button  th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" id="btnSetInterview" type="button" class="btn btn-info" disabled data-toggle="modal" data-target="#modal-default4">
                       <i class="fa fa-edit"> Set Interview</i></button>
-                    <button id="btnDelete" type="button" class="btn btn-info" disabled><i class="fa fa-trash"> Delete</i></button>
+                    <button  th:unless="${role == 'ROLE_INTERVIEWER' || role == 'Unknown'}" id="btnDelete" type="button" class="btn btn-info" disabled><i class="fa fa-trash"> Delete</i></button>
                     <button id="btnExport" type="button" class="btn btn-info" disabled><i class="fa fa-upload"> Export</i></button>
                   </div>
                 </div>
@@ -717,6 +717,43 @@
           });
         }
         
+      });
+
+      $("#btnExport").click(function(event) {
+        /* Act on the event */
+        Swal.fire({
+          title: 'Do you want to Export file excel ?',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'YES'
+        }).then((result) => {
+          if (result.value) {
+            var dt = table.rows('.selected').data();
+            var id_cmnd = [];
+            for(var i=0; i < dt.length ;i++){
+              var ob = { idCan : dt[i][0], cmnd : dt[i][1] };
+              id_cmnd.push(ob);
+            };
+            $.ajax({
+                url: '/candidate/export',
+                type: 'post',
+                dataType: 'html',
+                data: {
+                    id_cmnd:JSON.stringify(id_cmnd)
+
+                }
+            });
+            Swal.fire(
+              'Items has exported!',
+              '',
+              'success'
+            ).then((result) =>{
+              //location.reload();
+            });
+          }
+        })
       });
 
     });

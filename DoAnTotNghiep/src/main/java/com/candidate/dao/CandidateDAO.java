@@ -575,7 +575,7 @@ public class CandidateDAO {
 						item.getString("namePos"),
 						java.time.LocalDate.now().format(formatter1),
 						item.getString("workExp"),
-						item.getString("avatar"),
+						"zzz",
 						item.getMap("rate"), 
 						"New",
 						null,null,null);
