@@ -129,25 +129,6 @@ public class CandidateController {
 			Candidate can = new Candidate();
 			can = candidateDAO.getCandidateById(idCan);
 			
-			// Create a Simple MailMessage.
-	        SimpleMailMessage message = new SimpleMailMessage();
-	         
-	        message.setTo("nvmcuong97@gmail.com");
-	        message.setSubject("Invite Interview Mail");
-	        message.setText("Dear "+can.getNameCan()
-	        				+"\n\nThank you for registering JWAT Program with DOU Networks"
-	        				+"\nAs discussed on phone, we would like to invite you to come for an interview at our office with the details as follow:"
-	        				+"\nTime: "+time
-	        				+"\nDate: "+date
-	        				+"\nPlace: "+venue
-	        				+"\nContact person: "+interviewer
-	        				+"\nContact number: 079 4343 226"
-	        				+"\n\nKindly confirm for us whenever you receive our email and let us know if there is any question/concern.");
-	        
-	 
-	        // Send Message!
-	        this.emailSender.send(message);
-			
 			if(can.getInterview()==null) {
 				ArrayList<Object> rounds = new ArrayList<>();
 				Map<String, Object> rnd = new HashMap<String, Object>();
@@ -189,6 +170,24 @@ public class CandidateController {
 			log.put("change", "Not");
 			logs.add(0,log);
 			candidateDAO.addLog(idCan, cmnd, logs);
+			
+			// Create a Simple MailMessage.
+	        SimpleMailMessage message = new SimpleMailMessage();
+	         
+	        message.setTo("nvmcuong97@gmail.com");
+	        message.setSubject("Invite Interview Mail");
+	        message.setText("Dear "+can.getNameCan()
+	        				+"\n\nThank you for registering JWAT Program with DOU Networks"
+	        				+"\nAs discussed on phone, we would like to invite you to come for an interview at our office with the details as follow:"
+	        				+"\nTime: "+time
+	        				+"\nDate: "+date
+	        				+"\nPlace: "+venue
+	        				+"\nContact person: "+interviewer
+	        				+"\nContact number: 079 4343 226"
+	        				+"\n\nKindly confirm for us whenever you receive our email and let us know if there is any question/concern."); 
+	 
+	        // Send Message!
+	        this.emailSender.send(message);
 		}
 
 		return "Set Interview Success";
@@ -794,13 +793,17 @@ public class CandidateController {
 	public @ResponseBody String importCandidate(HttpServletRequest req, Principal principal) {
 		//Lấy thông tin user
 		String userName = principal.getName();
-
 		String namePos = req.getParameter("pos");
-		int quantity = Integer.parseInt(req.getParameter("quan"));
-		int score = Integer.parseInt(req.getParameter("rate"));
+		int quantity = 100;
+		int score = 0;
 
-
-
+		if(!req.getParameter("quan").equals("")) {
+			quantity = Integer.parseInt(req.getParameter("quan"));
+		}
+		if(!req.getParameter("rate").equals("")) {
+			score = Integer.parseInt(req.getParameter("rate"));
+		}
+		
 		ArrayList<Candidate> dsCan = candidateDAO.getImportCandidate_S(namePos, score, quantity);
 		if(dsCan != null && dsCan.size()>0) {
 			for(Candidate can : dsCan) {

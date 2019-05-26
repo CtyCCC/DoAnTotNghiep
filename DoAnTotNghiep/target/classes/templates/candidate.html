@@ -199,9 +199,9 @@
                             <option th:each="dsPos : ${listPosition}" th:value="${dsPos.name}" th:text="${dsPos.name}"></option>
                           </select>
                           <label for="" class="">Quantity: </label>
-                          <input type="number" class="form-control" placeholder="Enter quantity..." id="quan_import">
+                          <input type="number" class="form-control" placeholder="Enter quantity...(Default 100)" id="quan_import">
                           <label for="" class="">Rate (more than or equal to): </label>
-                          <input type="text" class="form-control" placeholder="Enter rate..." id="rate_import">
+                          <input type="text" class="form-control" placeholder="Enter rate...(Default 0)" id="rate_import">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
@@ -224,7 +224,7 @@
                         <h2 class="modal-title">Set interviews</h2>
                       </div>
                       <div class="modal-body">
-                        <label>Date:</label>
+                        <label>Date:</label><span class="pull-right" style="color: red;" id="date_error"></span>
                         <div class="input-group date">
                           <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
@@ -232,7 +232,7 @@
                           <input type="text" class="form-control pull-right" id="datepicker_Interview">
                         </div>
 
-                        <label>Time:</label>
+                        <label>Time:</label><span class="pull-right" style="color: red" id="time_error"></span>
                         <div class="input-group">
                           <div class="input-group-addon">
                             <i class="fa fa-clock-o"></i>
@@ -240,14 +240,14 @@
                           <input type="text" class="form-control timepicker" id="txt_time_interview">
                         </div>
 
-                        <label>Interviewer: </label>
-                        <input type="text" class="form-control" id="txt_interviewer">
+                        <label>Interviewer: </label><span class="pull-right" style="color: red" id="interviewer_error"></span>
+                        <input type="text" class="form-control" id="txt_interviewer" placeholder="Nguyễn Văn A">
                         
-                        <label>Venue: </label>
-                        <input type="text" class="form-control" id="txt_venue">
+                        <label>Venue: </label><span class="pull-right" style="color: red" id="venue_error"></span>
+                        <input type="text" class="form-control" id="txt_venue" placeholder="7Floor...">
 
                         <label for="">Note: </label>
-                        <textarea class="form-control" rows="3" id="txt_note_interview"></textarea>
+                        <textarea class="form-control" rows="3" id="txt_note_interview" placeholder="Nothing"></textarea>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
@@ -270,7 +270,7 @@
                           <center>
                             <div >
                               <label id="changeAva" for="upload-photo" title="Click here to upload profile picture">
-                                  <img id="hinh" width="200" height="200" type="file" class="img-circle" th:src="${avatar}" alt="">
+                                  <img id="hinh" width="200" height="200" type="file" class="img-circle" th:src="@{/dist/img/avatar04.png}" alt="">
                               </label>
                               <input type="file" name="photo" id="upload-photo" />
                             </div>
@@ -296,19 +296,19 @@
                             </div>
 
                             <div class="form-row col-xs-7">
-                              <label>Name: </label>
+                              <label>Name: </label><span class="pull-right" style="color: red;" id="name_error"></span>
                               <input id="name" type="text" class="form-control">
                             </div>
                             <div class="form-row col-xs-5">
-                              <label>CMND: </label>
+                              <label>CMND: </label><span class="pull-right" style="color: red;" id="cmnd_error"></span>
                               <input id="cmnd" type="text" class="form-control">
                             </div>
                             <div class="form-row col-xs-7">
-                              <label>Email: </label>
+                              <label>Email: </label><span class="pull-right" style="color: red;" id="email_error"></span>
                               <input id="email" type="email" class="form-control">
                             </div>
                             <div class="form-row col-xs-5">
-                              <label>Phone: </label>
+                              <label>Phone: </label><span class="pull-right" style="color: red;" id="phone_error"></span>
                               <input id="phone" type="phone" class="form-control">
                             </div>
                             <div class="form-row col-xs-7">
@@ -318,7 +318,7 @@
                               </select>
                             </div>
                             <div class="form-row col-xs-5">
-                              <label>DOB:</label>
+                              <label>DOB:</label><span class="pull-right" style="color: red;" id="dob_error"></span>
                               <div class="input-group date">
                                 <div class="input-group-addon">
                                   <i class="fa fa-calendar"></i>
@@ -327,15 +327,15 @@
                               </div>
                             </div>
                             <div class="form-group col-xs-2">
-                              <label>Score: </label>
+                              <label>Score: </label><span style="color: red;" id="score_error"></span>
                               <input id="score" type="number" class="form-control">
                             </div>
                             <div class="form-group col-xs-2">
-                              <label>Total: </label>
+                              <label>Total: </label><span style="color: red;" id="total_error"></span>
                               <input id="total" type="number" class="form-control">
                             </div>
                             <div class="form-group col-xs-3">
-                              <label>Time: </label>
+                              <label>Time: </label><span style="color: red;" id="timeAdd_error"></span>
                               <input id="time" type="text" class="form-control">
                             </div>
                             <div class="form-group col-xs-5">
@@ -347,7 +347,7 @@
                             </div>                   
                             <!-- textarea -->
                             <div class="form-row col-xs-12">
-                              <label>Work Experience: </label>
+                              <label>Work Experience: </label><span class="pull-right" style="color: red;" id="workExp_error"></span>
                               <textarea id="work_exp" class="form-control" rows="3"></textarea>
                             </div>
                             
@@ -529,7 +529,13 @@
         /* Act on the event */
         var dt = table.rows('.selected').data();
         var id_cmnd = [];
-        Swal.fire({
+        var date = $("#datepicker_Interview").val();
+        var time = $("#txt_time_interview").val();
+        var interviewer = $("#txt_interviewer").val();
+        var venue = $("#txt_venue").val();
+        var note = $("#txt_note_interview").val();
+        if(validateSetInterview(date, time, interviewer, venue, note)){
+           Swal.fire({
             title: 'Only Candidate in New or Interviewing can set Interview ?',
             type: 'warning',
             showCancelButton: true,
@@ -542,12 +548,6 @@
                 var ob = { idCan : dt[i][0], cmnd : dt[i][1] };
                 id_cmnd.push(ob);          
               }
-              var date = $("#datepicker_Interview").val();
-              var time = $("#txt_time_interview").val();
-              var interviewer = $("#txt_interviewer").val();
-              var venue = $("#txt_venue").val();
-              var note = $("#txt_note_interview").val();
-              //event.preventDefault();
               $.ajax({
                       url: '/candidate/setInterview',
                       type: 'post',
@@ -560,17 +560,21 @@
                           venue:venue,
                           note:note,
                           id_cmnd:JSON.stringify(id_cmnd)
+                      },
+                      success:function (data){
+                        Swal.fire(
+                          data,
+                          '',
+                          'success'
+                        ).then((result) =>{
+                          location.reload();
+                        });
                       }
-              });
-              Swal.fire(
-              'Set Interview Success',
-              '',
-              'success'
-            ).then((result) =>{
-              location.reload();
-            });
+                });
+              //event.preventDefault();
             }     
-          });   
+          });     
+        }     
       });
 
       $("#btnDelete").click(function(event) {
@@ -675,7 +679,8 @@
         var gender = $("#gender").val();
         var workExp = $("#work_exp").val();
         var stt = $("#stt").val();
-        if(name!="" && cmnd!="" && email!="" && phone!="" && dob!="" && score!="" && total!="" && time!="" && gender!="" && workExp!=""){
+        validateAddCandidate(name,cmnd,email,phone,dob,score,time,total,workExp);
+        if(validateAddCandidate(name,cmnd,email,phone,dob,score,time, total, workExp)){
             Swal.fire({
             title: 'Do you want to add new Candidate?',
             type: 'question',
@@ -886,8 +891,162 @@
 			  ).draw();
     	});
     });
-  
 
+      //Validate SetInterview form
+    function validateSetInterview (date,time,interviewer,venue,note) {
+      // body...
+      $("#date_error").text("");
+      $("#time_error").text("");
+      $("#interviewer_error").text("");
+      $("#venue_error").text("");
+      var ero = 0;
+      if(date == ""){
+        $("#date_error").text("Date can't be blank");
+        ero++;
+      }else {
+        var d = new Date();
+        var dateSys = d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+        console.log("date:"+date);
+        console.log("dateSys:"+dateSys);
+        if(parseDate(date).getTime()<parseDate(dateSys).getTime()){
+          $("#date_error").text("Date must be or after today");
+          ero++;
+        }
+      }
+
+      if(time == ""){
+        $("#time_error").text("Time can't be blank");
+        ero++;
+      }
+
+      if(interviewer == ""){
+        $("#interviewer_error").text("Interviewer can't be blank");
+        ero++;
+      }else {
+        // var patt = /^[a-z0-9_-]{3,16}$/;
+        // if(!patt.test(interviewer)){
+        //   $("#interviewer_error").text("Interviewer name invalid");
+        //   ero++;
+        // }
+      }
+
+      if(venue == ""){
+        $("#venue_error").text("Venue can't be blank");
+        ero++;
+      }
+
+      if(note == ""){
+        $("#txt_note_interview").text("Nothing");
+      }
+
+      console.log(ero)
+      if(ero == 0){
+        return true;
+      }else {
+        return false;
+      }
+    }
+
+    function parseDate(str) {
+      var mdy = str.split('/');
+      return new Date(mdy[2], mdy[1], mdy[0]);
+    }
+    
+    function validateAddCandidate (name, cmnd, email, phone, dob, score, time, total, workExp) {
+      // body... 
+      $("#name_error").text("");
+      $("#cmnd_error").text("");
+      $("#email_error").text("");
+      $("#phone_error").text("");
+      $("#dob_error").text("");
+      $("#score_error").text("");
+      $("#time_error").text("");
+      $("#total_error").text("");
+
+      var er =  0;
+      if(name == ""){
+        $("#name_error").text("Name can't be blank");
+        er++;
+      }
+      
+      if(cmnd == ""){
+        $("#cmnd_error").text("CMND can't be blank");
+        er++;
+      }else {
+        var patt = /^[0-9]{9,12}$/;
+        if(!patt.test(cmnd)){
+          $("#cmnd_error").text("must be 9 to 12 number");
+          er++;
+        }
+      }
+      
+      if(email == ""){
+        $("#email_error").text("Email can't be blank");
+        er++;
+      }else {
+        var patt = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!patt.test(email)){
+          $("#email_error").text("Email invalid");
+          er++;
+        }
+      }
+      
+      if(phone == ""){
+        $("#phone_error").text("Phone can't be blank");
+        er++;
+      }else {
+        var patt = /^[0-9]{9,11}$/;
+        if(!patt.test(phone)){
+          $("#phone_error").text("Phone invalid");
+          er++;
+        }
+      }
+      
+      if(dob == ""){
+        $("#dob_error").text("DOB can't be blank");
+        er++;
+      }else{
+        var d = new Date();
+        var dateSys = d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+        if(parseDate(dateSys).getTime()<parseDate(dob).getTime() || parseDate(dateSys).getTime()==parseDate(dob).getTime()){
+          $("#dob_error").text("Dob must before today");
+          er++;
+        }
+      }
+      
+      if(score == ""){
+        $("#score_error").text("*");
+        er++;
+      }
+      
+      if(time == ""){
+        $("#timeAdd_error").text("*");
+        er++;
+      }else {
+        var patt = /^[0-9]{0,10000000}$/;
+        if(!patt.test(time)){
+          $("#timeAdd_error").text("*");
+          er++;
+        }
+      } 
+      
+      if(total == ""){
+        $("#total_error").text("*");
+        er++;
+      }
+
+      if(workExp == ""){
+        $("#work_exp").text("less than 1 year");
+        er++;
+      }
+
+      if(er == 0){
+        return true;
+      }else {
+        return false;
+      }
+    }
+    
   </script>
   </body>
   </html>

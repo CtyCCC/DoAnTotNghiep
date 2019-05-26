@@ -160,13 +160,13 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       </center>
                     </div>
                     <div class="form-row col-xs-7">
-                      <label>Name: </label>
+                      <label>Name: </label><span class="pull-right" style="color: red;" id="name_error"></span>
                       <input id="name" readonly type="text" class="form-control" th:value = "${candidate.nameCan}">
                       <input id="idCan" type="text" th:value = "${candidate.idCan}" hidden="true">
                       <input id="cmnd" type="text" th:value = "${candidate.cmnd}" hidden="true">
                     </div>
                     <div class="form-row col-xs-5">
-                      <label>DOB:</label>
+                      <label>DOB:</label><span class="pull-right" style="color: red;" id="dob_error"></span>
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
@@ -175,11 +175,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       </div>
                     </div>
                     <div class="form-row col-xs-7">
-                      <label>Email: </label>
+                      <label>Email: </label><span class="pull-right" style="color: red;" id="email_error"></span>
                       <input id="email" readonly type="email" class="form-control" th:value = "${candidate.email}">
                     </div>
                     <div class="form-row col-xs-5">
-                      <label>Phone: </label>
+                      <label>Phone: </label><span class="pull-right" style="color: red;" id="phone_error"></span>
                       <input id="phone" readonly type="phone" required class="form-control" th:value = "${candidate.phone}">
                     </div>
                     <div class="form-group col-xs-7">
@@ -214,7 +214,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                       <input id="time" readonly type="text" class="form-control" th:value="${candidate.rate.time}">
                     </div>                   
                     <div class="form-row col-xs-5">
-                      <label>Date Import:</label>
+                      <label>Date Import:</label><span class="pull-right" style="color: red;" id="dateImport_error"></span>
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
@@ -224,7 +224,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     </div>
                     <!-- textarea -->
                     <div class="form-row col-xs-12">
-                      <label>Work Experience: </label>
+                      <label>Work Experience: </label><span class="pull-right" style="color: red;" id="workExp_error"></span>
                       <textarea id="work_exp" readonly class="form-control" rows="3" th:text="${candidate.workExp}"></textarea>
                     </div>
                   <div class="form-row col-xs-12">
@@ -352,11 +352,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div class="box-body">
                           <div class="form-group">
                             <div class="form-row col-xs-7">
-                              <label>Interviewer: </label>
+                              <label>Interviewer: </label><span class="pull-right" style="color: red" id="interviewer_error"></span>
                               <input type="text" class="form-control" disabled id="txtInterviewer">
                             </div>
                             <div class="form-row col-xs-5">
-                              <label>Time:</label>
+                              <label>Time:</label><span class="pull-right" style="color: red;" id="timeInterview_error"></span>
                               <div class="input-group">
                                 <div class="input-group-addon">
                                   <i class="fa fa-clock-o"></i>
@@ -367,7 +367,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="form-group">
                             <div class="form-row col-xs-4">
-                              <label>Date:</label>
+                              <label>Date:</label><span class="pull-right" style="color: red;" id="dateInterview_error"></span>
                               <div class="input-group date">
                                 <div class="input-group-addon">
                                   <i class="fa fa-calendar"></i>
@@ -376,7 +376,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                               </div>
                             </div>
                             <div class="form-row col-xs-4">
-                              <label>Venue: </label>
+                              <label>Venue: </label><span class="pull-right" style="color: red;" id="venueInterview_error"></span>
                               <input type="text" class="form-control" disabled id="txtVenue">
                             </div>
                             <div class="form-group col-xs-4">
@@ -397,11 +397,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div class="box-body">
                           <div class="form-group">
                             <div class="form-row col-xs-7">
-                              <label>Interviewer: </label>
+                              <label>Interviewer: </label><span class="pull-right" style="color: red" id="interviewer_error"></span>
                               <input type="text" class="form-control" disabled id="txtInterviewer" th:value="${candidate.interview.rounds[0].interviewer}">
                             </div>
                             <div class="form-row col-xs-5">
-                              <label>Time:</label>
+                              <label>Time:</label><span class="pull-right" style="color: red;" id="timeInterview_error"></span>
                               <div class="input-group">
                                 <div class="input-group-addon">
                                   <i class="fa fa-clock-o"></i>
@@ -412,7 +412,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                           </div>
                           <div class="form-group">
                             <div class="form-row col-xs-4">
-                              <label>Date:</label>
+                              <label>Date:</label><span class="pull-right" style="color: red;" id="dateInterview_error"></span>
                               <div class="input-group date">
                                 <div class="input-group-addon">
                                   <i class="fa fa-calendar"></i>
@@ -421,7 +421,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                               </div>
                             </div>
                             <div class="form-row col-xs-4">
-                              <label>Venue: </label>
+                              <label>Venue: </label><span class="pull-right" style="color: red;" id="venueInterview_error"></span>
                               <input type="text" class="form-control" disabled id="txtVenue" th:value="${candidate.interview.rounds[0].venue}">
                             </div>
                             <div class="form-group col-xs-4">
@@ -447,18 +447,18 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <div class="box-body">
                     <div class="form-group">
                       <div class="form-row col-xs-6">
-                        <label>Current salary: </label>
+                        <label>Current salary: </label><span class="pull-right" style="color: red;" id="cursal_error"></span>
                         <input th:if="${isOf =='Not'}" type="text" class="form-control" id="curOff">
                         <input th:unless="${isOf =='Not'}" type="text" class="form-control" th:value="${candidate.offer.curSalary}" disabled id="curOff">
                       </div>
                       <div class="form-row col-xs-6">
-                        <label>Expected salary: </label>
+                        <label>Expected salary: </label><span class="pull-right" style="color: red;" id="expsal_error"></span>
                         <input th:if="${isOf =='Not'}" type="text" class="form-control" id="expectOff">
                         <input th:unless="${isOf =='Not'}" type="text" class="form-control" th:value="${candidate.offer.expectSalary}"disabled id="expectOff">
                       </div>
                       <div class="form-row col-xs-6">
-                        <label>Offer salary: </label>
-                        <input th:if="${isOf =='Not'}" type="number" class="form-control" id="offsal">
+                        <label>Offer salary: </label><span class="pull-right" style="color: red;" id="offsal_error"></span>
+                        <input th:if="${isOf =='Not'}" type="text" class="form-control" id="offsal">
                         <input th:unless="${isOf =='Not'}" type="text" class="form-control" th:value="${candidate.offer.offerSalary}"disabled id="offsal">
                       </div>
                       <div class="form-group col-xs-6">
@@ -702,11 +702,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $("#selectRs").removeAttr('disabled');
 
       $("#datepicker_Interview").val("");
-      $("#txttime").val("");
       $("#txtInterviewer").val("");
       $("#txtVenue").val("");
       $("#txtNote").val("");
-      $("#selectRs").val("");
       $("#actionInterview").val("add");
 
       $("#btneditRound").attr('disabled','true');
@@ -801,7 +799,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Nút save khi edit Profile candidate
     $("#btn_saveProfile").click(function(event) {
       /* Act on the event */
-      /* var id = $("#idCan").val();
+      /* var id = $("#idCan").val();*/
       var name = $('#name').val();
       var email = $("#email").val();
       var namePos = $("#position").val();
@@ -812,7 +810,9 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       var time =  $("#time").val();
       var total =  $("#total").val();
       var dateImp = $("#datepicker_Date").val();
-      var workExp =  $("#work_exp").val(); */
+      var workExp =  $("#work_exp").val();
+      validateEditCandidate(name, dateImp, email, phone, dob, workExp);
+      if(validateEditCandidate(name, dateImp, email, phone, dob, score, time, total, workExp)){
       /* id:id,
       name :name,
       email :email,
@@ -825,23 +825,25 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       total :total,
       dateImp :dateImp,
       workExp :workExp */
-      var myForm  = new FormData(document.getElementById("form-data"));
-      var photo	= document.getElementById("upload-photo").files[0];
-      myForm.append("file",photo);
-      $.ajax({
-        url: '/profile/editProfile',
-        type: 'post',
-        
-        processData: false,
-        contentType: false,
-        data:myForm})
-      Swal.fire(
-        'Save success!',
-        '',
-        'success'
-      ).then((result) =>{
-        location.reload();
-      });
+      
+        var myForm  = new FormData(document.getElementById("form-data"));
+        var photo = document.getElementById("upload-photo").files[0];
+        myForm.append("file",photo);
+        $.ajax({
+          url: '/profile/editProfile',
+          type: 'post',
+          
+          processData: false,
+          contentType: false,
+          data:myForm})
+        Swal.fire(
+          'Save success!',
+          '',
+          'success'
+        ).then((result) =>{
+          location.reload();
+        });
+      }
     });
 
 
@@ -905,11 +907,12 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       var offSal = $("#offsal").val();
       var rs = $("#rsOff").val();
       var id = $("#idCan").val();
-      if(curSal==""||expecSal==""||offSal==""){
+      validateOfferTab (curSal, expecSal, offSal);
+      if(!validateOfferTab (curSal, expecSal, offSal)){
         Swal.fire({
               type: 'warning',
               title: 'Oops...',
-              text: 'Some field are not fill!!',
+              text: 'Some field are not fill or invalid!!',
         })
       }else{
           Swal.fire({
@@ -1035,6 +1038,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           var venue = $("#txtVenue").val();
           var note = $("#txtNote").val();
           var result = $("#selectRs").val();
+          validateInteviewTab(interviewer, time, date, venue);
           if(date=="" ||time=="" ||interviewer=="" ||venue==""){
             Swal.fire({
               type: 'warning',
@@ -1098,62 +1102,65 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             var venue = $("#txtVenue").val();
             var note = $("#txtNote").val();
             var result = $("#selectRs").val();
-            $.ajax({
-              url: '/profile/editRoundInterview',
-              type: 'post',
-              dataType: 'html',
-              data: {
-                id:id,
-                date:date,
-                time:time,
-                interviewer:interviewer,
-                venue:venue,
-                note:note,
-                result:result,
-                idRound:idRound
-              }
-            }).done(function(data){
-              var s = data.split(",", 3);
-              var t = s[0];
-              var p = s[1];
-              var f = s[2];
-              $("#interTotal").text(t);
-              $("#interPass").html(p);
-              $("#interPass").val(p);
-              $("#interFail").html(f);
-              $("#interFail").val(f);
-            });
-            // if(result=="Pass"){
-            //   var f = Number($("#interFail").html())-1;
-            //   $("#interFail").html(f);
-            //   $("#interFail").val(f);
-            //   var p = Number($("#interPass").html())+1;
-            //   $("#interPass").html(p);
-            //   $("#interPass").val(p);
-            // }
-            // else if(result=="Fail"){
-            //   var p = Number($("#interPass").html())-1;
-            //   $("#interPass").html(p);
-            //   $("#interPass").val(p);
-            //   var f = Number($("#interFail").html())+1;
-            //   $("#interFail").html(f);
-            //   $("#interFail").val(f);
-            // }
-            Swal.fire(
-              'EditRound success!',
-              '',
-              'success'
-              ).then((result) =>{
-                  $("#datepicker_Interview").attr('disabled','disabled');
-                  $("#txttime").attr('disabled','disabled');
-                  $("#txtInterviewer").attr('disabled','disabled');
-                  $("#txtVenue").attr('disabled','disabled');
-                  $("#txtNote").attr('disabled','disabled');
-                  $("#selectRs").attr('disabled','disabled');
-                  $("#actionInterview").val("not");
-                  $("#btn_addRound").removeAttr('disabled');
-                  showProgessBar();
+            validateInteviewTab(interviewer, time, date, venue);
+            if(validateInteviewTab(interviewer, time, date, venue)){
+              $.ajax({
+                url: '/profile/editRoundInterview',
+                type: 'post',
+                dataType: 'html',
+                data: {
+                  id:id,
+                  date:date,
+                  time:time,
+                  interviewer:interviewer,
+                  venue:venue,
+                  note:note,
+                  result:result,
+                  idRound:idRound
+                }
+              }).done(function(data){
+                var s = data.split(",", 3);
+                var t = s[0];
+                var p = s[1];
+                var f = s[2];
+                $("#interTotal").text(t);
+                $("#interPass").html(p);
+                $("#interPass").val(p);
+                $("#interFail").html(f);
+                $("#interFail").val(f);
               });
+              // if(result=="Pass"){
+              //   var f = Number($("#interFail").html())-1;
+              //   $("#interFail").html(f);
+              //   $("#interFail").val(f);
+              //   var p = Number($("#interPass").html())+1;
+              //   $("#interPass").html(p);
+              //   $("#interPass").val(p);
+              // }
+              // else if(result=="Fail"){
+              //   var p = Number($("#interPass").html())-1;
+              //   $("#interPass").html(p);
+              //   $("#interPass").val(p);
+              //   var f = Number($("#interFail").html())+1;
+              //   $("#interFail").html(f);
+              //   $("#interFail").val(f);
+              // }
+              Swal.fire(
+                'EditRound success!',
+                '',
+                'success'
+                ).then((result) =>{
+                    $("#datepicker_Interview").attr('disabled','disabled');
+                    $("#txttime").attr('disabled','disabled');
+                    $("#txtInterviewer").attr('disabled','disabled');
+                    $("#txtVenue").attr('disabled','disabled');
+                    $("#txtNote").attr('disabled','disabled');
+                    $("#selectRs").attr('disabled','disabled');
+                    $("#actionInterview").val("not");
+                    $("#btn_addRound").removeAttr('disabled');
+                    showProgessBar();
+                });
+              }
             }
          };
       };
@@ -1263,6 +1270,164 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       $('div.progress-group span.progress-number').text(Math.round(percentt)+'%');//làm tròn số
       $('div.progress-group div.progress-bar-green').css('width',percentt+'%');
       //Percennt pass / fail process
+  }
+
+  function parseDate(str) {
+      var mdy = str.split('/');
+      return new Date(mdy[2], mdy[1], mdy[0]);
+    }
+
+  function validateEditCandidate (name, dateImport, email, phone, dob, score, time, total, workExp) {
+    // body... 
+    $("#name_error").text("");
+    $("#dateImport_error").text("");
+    $("#email_error").text("");
+    $("#phone_error").text("");
+    $("#dob_error").text("");
+    var er =  0;
+      if(name == ""){
+        $("#name_error").text("Name can't be blank");
+        er++;
+      }
+
+      if(dateImport == ""){
+        $("#dateImport_error").text("can't be blank");
+        er++;
+      }else{
+        var d = new Date();
+        var dateSys = d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+        if(parseDate(dateSys).getTime()<parseDate(dateImport).getTime() || parseDate(dateSys).getTime()==parseDate(dateImport).getTime()){
+          $("#dateImport_error").text("must before today");
+          er++;
+        }
+      }
+      
+      if(email == ""){
+        $("#email_error").text("Email can't be blank");
+        er++;
+      }else {
+        var patt = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!patt.test(email)){
+          $("#email_error").text("Email invalid");
+          er++;
+        }
+      }
+      
+      if(phone == ""){
+        $("#phone_error").text("Phone can't be blank");
+        er++;
+      }else {
+        var patt = /^[0-9]{9,11}$/;
+        if(!patt.test(phone)){
+          $("#phone_error").text("Phone invalid");
+          er++;
+        }
+      }
+      
+      if(dob == ""){
+        $("#dob_error").text("DOB can't be blank");
+        er++;
+      }else{
+        var d = new Date();
+        var dateSys = d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+        if(parseDate(dateSys).getTime()<parseDate(dob).getTime() || parseDate(dateSys).getTime()==parseDate(dob).getTime()){
+          $("#dob_error").text("Dob must before today");
+          er++;
+        }
+      }
+
+      if(workExp == ""){
+        $("#work_exp").text("less than 1 year");
+        er++;
+      }
+
+      if(er == 0){
+        return true;
+      }else {
+        return false;
+      }
+  }
+
+  function validateInteviewTab (interviewer, time, date, venue) {
+    // body... 
+    $("#interviewer_error").text("");
+    $("#timeInterview_error").text("");
+    $("#dateInterview_error").text("");
+    $("#venueInterview_error").text("");
+
+    var ero = 0;
+
+    if(interviewer == ""){
+      $("#interviewer_error").text("Not blank");
+      ero++;
+    }
+    if(time == ""){
+      $("#timeInterview_error").text("Not blank");
+      ero++;
+    }
+    if(date == ""){
+      $("#dateInterview_error").text("Not blank");
+      ero++;
+    }
+    if(venue == ""){
+      $("#venueInterview_error").text("Not blank");
+      ero++;
+    }
+
+    console.log(ero)
+    if(ero == 0){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  function validateOfferTab (curSal, expecSal, offSal) {
+    // body... 
+    $("#cursal_error").text("");
+    $("#expsal_error").text("");
+    $("#offsal_error").text("");
+
+    var er = 0;
+
+    if(curSal == ""){
+      $("#cursal_error").text("Not blank");
+      er++;
+    }else {
+      var patt = /^[0-9]{0,1000}$/;
+      if(!patt.test(curSal)){
+        $("#cursal_error").text("Must be a number");
+        er++;
+      }
+    }
+
+    if(expecSal == ""){
+      $("#expsal_error").text("Not blank");
+      er++;
+    }else {
+      var patt = /^[0-9]{0,1000}$/;
+      if(!patt.test(expecSal)){
+        $("#expsal_error").text("Must be a number");
+        er++;
+      }
+    }
+
+    if(offSal == ""){
+      $("#offsal_error").text("Not blank");
+      er++;
+    }else {
+      var patt = /^[0-9]{0,1000}$/;
+      if(!patt.test(offSal)){
+        $("#offsal_error").text("Must be a number");
+        er++;
+      }
+    }
+
+    if(er == 0){
+      return true;
+    }else {
+      return false;
+    }
   }
 
   function checkStatus() {
