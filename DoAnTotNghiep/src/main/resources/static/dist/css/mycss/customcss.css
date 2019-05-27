@@ -16,9 +16,8 @@
     size: 100px;
     list-style: none;
     display: inline-block;
-    margin-top: 10%;
+    margin-top: 20px;
     margin-left: 2%;
-    height: 100px;
 }
 .chart-legend li span{
 

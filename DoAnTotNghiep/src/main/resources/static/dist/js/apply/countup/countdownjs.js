@@ -33,7 +33,7 @@
 //Count down
 (function($){
      var fulltime = 30 * 60 * 1000;//30 phút
-     var timefund = fulltime;
+     var timefund = parseInt(document.getElementById("timeremaining").value)* 60 *1000;
        var minutes = 1 * 60 * 1000,
        second = 1000;
        var timefinish;

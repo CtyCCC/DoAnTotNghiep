@@ -2,6 +2,7 @@ package com.quiz.controller;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,17 +35,32 @@ public class QuizController {
 	@GetMapping("/quiz")
 	public String index(Model model,@RequestParam("IDPOS") String idpos,@RequestParam("IDCAN") String idcan) {
 		//Kiểm tra timestart 
+		Candidate can = quizdao.getCandidateById_S(idcan);
+		long fulltime = 30 * 60 * 1000;
+		long Timeremaining=0;
+		if(can.getRate() != null){
+			return "homeApply";
+			
+		}else {
+			if(can.getDateImport().toString().equals("not")) {
+				quizdao.addTimeStart(can.getIdCan());
+			}else {
+				Timeremaining = quizdao.Timeremaining(idcan);
+				if(Timeremaining <= 0) {
+					return "homeApply";
+				}
+			}
+		}
 		// get timetstart ==null -> continue else stop
-//		if(quizdao.getCandidateById_S(idpos).getDateImport().equals("not")) {
-//			quizdao.addTimeStart(idcan);
-//		}
-//		System.out.println(quizdao.Timeremaining(idpos));
+		
 		ArrayList<Questions> list = new ArrayList<Questions>();
 		list = quizdao.getQuestionsQuiz(idpos);
 		QuizForm result =new QuizForm();
 		model.addAttribute("result",result);
 		model.addAttribute("idcan",idcan);
 		model.addAttribute("idPos",idpos);
+		model.addAttribute("time",fulltime);
+		model.addAttribute("timeremaining",Timeremaining);
 		model.addAttribute("listQuestions", list);
 		return "quiz";
 	}

@@ -118,7 +118,7 @@ public class QuizDao {
         	Item item = null;
         	while (iterator.hasNext()) {
         	    item = iterator.next();
-        	    candidate =new Candidate(item.getString("idCan"),"",item.getString("cmnd") ,"","",true,"","","","","","",null,"",null,null,null);
+        	    candidate =new Candidate(item.getString("idCan"),"",item.getString("cmnd") ,"","",true,"","","",item.getString("dateImport"),"","",item.getMap("rate"),"",null,null,null);
         	}
         	return candidate;
         }
@@ -138,9 +138,9 @@ public class QuizDao {
        // add timestart test khi người dùng bắt đầu test
         public boolean addTimeStart(String id) {
         	Table table = dynamoDB.getTable("Candidate_S");
-        	DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
+        	DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
     		Date datecurrent = new Date();
-    		Date endDateTest = timeEndTest(datecurrent);
+    		Date endDateTest = timeEndTest();
         	Candidate can = getCandidateById_S(id);
         	
         	UpdateItemSpec updateitem = new UpdateItemSpec()
@@ -154,11 +154,10 @@ public class QuizDao {
         }
         
         // Xác định thời gian kết thúc bài test 
-        public Date timeEndTest(Date date) {
-        	Calendar uptime = Calendar.getInstance();
-        	uptime.setTime(date);
-        	uptime.add(Calendar.MINUTE, 30);
-        	Date endtime = uptime.getTime(); 
+        public Date timeEndTest() {
+        	Calendar time = Calendar.getInstance();
+        	time.add(Calendar.MINUTE, 30);
+        	Date endtime = time.getTime(); 
         	return endtime;
         }
         
@@ -167,10 +166,11 @@ public class QuizDao {
          * Kiểm tra họ còn test được hay không 
         **/
         public long Timeremaining(String id) {
-        	DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
+        	DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
         	Date datecurrent = new Date();
+        	long fulltime = 30 * 60 * 1000;
         	long timeremaining= 0;
-
+        	
         	Candidate can = getCandidateById_S(id);
         	// khởi tạo calender
         	Calendar Tnow = Calendar.getInstance();
@@ -180,14 +180,29 @@ public class QuizDao {
         		Tnow.setTime(datecurrent);
             	Tdatabase.setTime(dateformat.parse(can.getDateImport()));
 			} catch (Exception e) {
-				// TODO: handle exception
+				
 			}
         	//Kiểm tra thời gian
         	if(!Tnow.after(Tdatabase)) {
-        		timeremaining =(Tdatabase.getTimeInMillis() - Tnow.getTimeInMillis());
-        		if(timeremaining<=0 || timeremaining > 30)
+        		int hour = Tdatabase.get(Calendar.HOUR_OF_DAY) - Tnow.get(Calendar.HOUR_OF_DAY);
+        		int minutedatabase = Tdatabase.get(Calendar.MINUTE);
+        		int minutenow = Tnow.get(Calendar.MINUTE);
+        		if(-1 < hour && hour < 2) {
+        			if(minutedatabase >= 30 || minutedatabase == 0) {
+        				if(Tdatabase.get(Calendar.MINUTE) == 0) {
+        					timeremaining = 60-minutenow;
+        				}
+        				else {
+        					timeremaining = minutedatabase - minutenow;
+        				}
+        			}else {
+        				timeremaining = 60 - minutenow + minutedatabase;
+        			}
+        		}
+        		if(timeremaining<=0 || timeremaining > fulltime)
         			return 0;
-        		return timeremaining;
+        		else
+        			return timeremaining;
         	}
         	return timeremaining;
         }
