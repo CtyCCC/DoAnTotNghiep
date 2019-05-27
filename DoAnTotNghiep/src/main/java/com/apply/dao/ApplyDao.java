@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -31,6 +33,7 @@ import com.entity.Candidate;
 import com.entity.Position;
 import com.entity.Questions;
 
+@Repository
 public class ApplyDao {
 	
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()

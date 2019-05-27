@@ -37,7 +37,7 @@ public class QuizController {
 		//Kiểm tra timestart 
 		Candidate can = quizdao.getCandidateById_S(idcan);
 		long fulltime = 30 * 60 * 1000;
-		long Timeremaining=0;
+		long Timeremaining=30;
 		if(can.getRate() != null){
 			return "homeApply";
 			

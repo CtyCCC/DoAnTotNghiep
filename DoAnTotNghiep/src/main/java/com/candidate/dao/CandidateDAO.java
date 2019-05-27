@@ -426,9 +426,9 @@ public class CandidateDAO {
 						+ "namePos = :np, "
 						+ "dateImport = :da, "
 						+ "workExp = :wo, "
+						+ "linkCV = :lc,"
 						+ "avatar = :av, "
-						+ "rate.score = :sc, #t = :ti, #tt = :to")
-				.withNameMap(new NameMap().with("#t", "rate.time").with("#tt", "rate.total"))
+						+ "rate = :ra")
 				.withValueMap(new ValueMap()
 						.withString(":na", can.getNameCan())
 						.withString(":em", can.getEmail())
@@ -438,10 +438,9 @@ public class CandidateDAO {
 						.withString(":np", can.getNamePos())
 						.withString(":da", can.getDateImport())
 						.withString(":wo", can.getWorkExp())
+						.withString(":lc",can.getLinkCV())
 						.withString(":av", can.getAvatar())
-						.withInt(":sc", (int) can.getRate().get("score"))
-						.withInt(":ti", (int) can.getRate().get("time"))
-						.withInt(":to", (int) can.getRate().get("total")))
+						.withMap(":ra", can.getRate()))
 				.withReturnValues(ReturnValue.UPDATED_NEW);
 
 

@@ -394,7 +394,12 @@ $(document).ready(function(){
 	$("#frm1").validate({
 		errorClass: "my-error-class",
 		rules:{
-			f_idcard: "required",
+			f_idcard: {
+				required: true,
+				digits : true,
+				maxlength: 12,
+				minlength: 9
+			},
 			f_name:"required",
 			f_DOB:"required",
 			f_email:{
@@ -412,7 +417,13 @@ $(document).ready(function(){
 			}
 		},
 		messages:{
-			f_idcard: "ID cannot be empty",
+			f_idcard:{
+				required:"ID cannot be empty",
+				digits : "ID must be digits",
+				maxlength:"ID must less than 12 numbers",
+				minlength:"ID must more than 9 numbers "
+				
+			} ,
 			f_name:"NAME cannot be empty",
 			f_DOB:"DOB can not be empty",
 			f_email:{

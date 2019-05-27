@@ -149,7 +149,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                     <img th:if = "${candidate.avatar == 'zzz'}" id="hinh" width="200" height="200" type="file" class="img-circle" th:src="@{/dist/img/avatar04.png}" alt="Photo does not match">
                     <img th:unless = "${candidate.avatar == 'zzz'}" id="hinh" width="200" height="200" type="file" class="img-circle" th:src="${candidate.avatar}" alt="Photo does not match">
                   </label>
-                  <input type="file" name="photo" accept="image/*" id="upload-photo" />
+                  <input type="file" name="photo" accept="image/*" id="upload-photo" disabled />
                 </center>
               </div>
 
@@ -158,15 +158,15 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                   <div class="form-row col-xs-12">
                     <center>
                       <div class="input-group input-group-md col-xs-4">
-                          <input id="status"  type="text" class="form-control text-center" disabled th:value="${candidate.status}">
+                          <input id="status"  type="text" class="form-control text-center" disabled name="status" th:value="${candidate.status}">
                         </div>
                       </center>
                     </div>
                     <div class="form-row col-xs-7">
                       <label>Name: </label><span class="pull-right" style="color: red;" id="name_error"></span>
-                      <input id="name" readonly type="text" class="form-control" th:value = "${candidate.nameCan}">
-                      <input id="idCan" type="text" th:value = "${candidate.idCan}" hidden="true">
-                      <input id="cmnd" type="text" th:value = "${candidate.cmnd}" hidden="true">
+                      <input id="name" name="name" readonly type="text" class="form-control" th:value = "${candidate.nameCan}">
+                      <input id="idCan" name="idCan" type="text" th:value = "${candidate.idCan}" hidden="true">
+                      <input id="cmnd" name="cmnd" type="text" th:value = "${candidate.cmnd}" hidden="true">
                     </div>
                     <div class="form-row col-xs-5">
                       <label>DOB:</label><span class="pull-right" style="color: red;" id="dob_error"></span>
@@ -174,47 +174,47 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input disabled type="text" class="form-control pull-right" id="datepicker_DOB" th:value="${candidate.dob}">
+                        <input disabled type="text" class="form-control pull-right" id="datepicker_DOB" name="DOB" th:value="${candidate.dob}">
                       </div>
                     </div>
                     <div class="form-row col-xs-7">
                       <label>Email: </label><span class="pull-right" style="color: red;" id="email_error"></span>
-                      <input id="email" readonly type="email" class="form-control" th:value = "${candidate.email}">
+                      <input id="email" name="email" readonly type="email" class="form-control" th:value = "${candidate.email}">
                     </div>
                     <div class="form-row col-xs-5">
                       <label>Phone: </label><span class="pull-right" style="color: red;" id="phone_error"></span>
-                      <input id="phone" readonly type="phone" required class="form-control" th:value = "${candidate.phone}">
+                      <input id="phone" name="phone" readonly type="text" required class="form-control" th:value = "${candidate.phone}">
                     </div>
                     <div class="form-group col-xs-7">
-                      <label>Positon Apply: </label>
-                      <select id="position" disabled class="form-control">
+                      <label>Position Apply: </label>
+                      <select id="position" name="namePos" disabled class="form-control">
                         <option th:each="dsNP : ${dsNamePos}" th:value="${dsNP}" th:text="${dsNP}" th:selected="${dsNP==candidate.namePos}"></option>
                       </select>
                       <input type="text" id="input_position" th:value="${candidate.namePos}" hidden>
                     </div>
                     <div class="form-group col-xs-5">
                       <label>Gender:</label>
-                      <select th:if="${candidate.gender}" id="gender" class="form-control" disabled>
+                      <select th:if="${candidate.gender}" id="gender" name="gender" class="form-control" disabled>
                         <option id="op_1" value="true" selected>Male</option>
                         <option id="op_2" value="false" >Female</option>
                       </select>
-                      <select th:unless="${candidate.gender}" id="gender" class="form-control" disabled>
+                      <select th:unless="${candidate.gender}" id="gender" name="gender" class="form-control" disabled>
                         <option id="op_1" value="true">Male</option>
                         <option id="op_2" value="false" selected>Female</option>
                       </select>
-                      <input type="text" id="input_gender" th:value="${candidate.gender}" hidden>
+                      <input type="text" id="input_gender" th:value="${candidate.gender}" hidden="">
                     </div>
                     <div class="form-group col-xs-2">
                       <label>Score: </label>
-                      <input id="score" readonly type="number" class="form-control" th:value="${candidate.rate.score}">
+                      <input id="score" name="score" readonly type="number" class="form-control" th:value="${candidate.rate.score}">
                     </div>
                     <div class="form-group col-xs-2">
                       <label>Total: </label>
-                      <input id="total" readonly type="number" class="form-control" th:value="${candidate.rate.total}">
+                      <input id="total" name="total" readonly type="number" class="form-control" th:value="${candidate.rate.total}">
                     </div>
                     <div class="form-group col-xs-3">
                       <label>Time: </label>
-                      <input id="time" readonly type="text" class="form-control" th:value="${candidate.rate.time}">
+                      <input id="time" name="time" readonly type="text" class="form-control" th:value="${candidate.rate.time}">
                     </div>                   
                     <div class="form-row col-xs-5">
                       <label>Date Import:</label><span class="pull-right" style="color: red;" id="dateImport_error"></span>
@@ -222,18 +222,18 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input disabled type="text" class="form-control pull-right" id="datepicker_Date" th:value="${candidate.dateImport}">
+                        <input disabled type="text" class="form-control pull-right" id="datepicker_Date" name="dateImport" th:value="${candidate.dateImport}">
                       </div>
                     </div>
                     <!-- textarea -->
                     <div class="form-row col-xs-12">
                       <label>Work Experience: </label><span class="pull-right" style="color: red;" id="workExp_error"></span>
-                      <textarea id="work_exp" readonly class="form-control" rows="3" th:text="${candidate.workExp}"></textarea>
+                      <textarea id="work_exp" name="workExp" readonly class="form-control" rows="3" th:text="${candidate.workExp}"></textarea>
                     </div>
                   <div class="form-row col-xs-12">
                     <a><label id="changeCV" for="upload-cv">Upload a new CV </label></a> |
                     <a th:href="${candidate.linkCV}" rel="noopener noreferrer" target="_blank">View CV Online</a>
-                    <input type="file" id="upload-cv">
+                    <input type="file" id="upload-cv" disabled>
                   </div>
                 </form>
               </div>
@@ -802,7 +802,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
     //Nút save khi edit Profile candidate
     $("#btn_saveProfile").click(function(event) {
       /* Act on the event */
-      /* var id = $("#idCan").val();*/
+      var id = $("#idCan").val();
       var name = $('#name').val();
       var email = $("#email").val();
       var namePos = $("#position").val();
@@ -814,39 +814,32 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       var total =  $("#total").val();
       var dateImp = $("#datepicker_Date").val();
       var workExp =  $("#work_exp").val();
+      var avatar    = document.getElementById("upload-photo").files[0];
+      var cv		= document.getElementById("upload-cv").files[0];
+      var myForm = new FormData(document.getElementById("form-data"));
+      myForm.append("avatar",avatar);
+      myForm.append("cv",cv);
+      for(var pair of myForm.entries()){
+    	console.log(pair[0]+":"+pair[1]);  
+      }
       validateEditCandidate(name, dateImp, email, phone, dob, workExp);
       if(validateEditCandidate(name, dateImp, email, phone, dob, score, time, total, workExp)){
-      /* id:id,
-      name :name,
-      email :email,
-      namePos :namePos,
-      dob :dob,
-      phone :phone,
-      gender :gender,
-      score :score,
-      time : time,
-      total :total,
-      dateImp :dateImp,
-      workExp :workExp */
-      
-        var myForm  = new FormData(document.getElementById("form-data"));
-        var photo = document.getElementById("upload-photo").files[0];
-        myForm.append("file",photo);
-        $.ajax({
+      $.ajax({
           url: '/profile/editProfile',
           type: 'post',
-          
+          enctype: 'multipart/form-data',
           processData: false,
           contentType: false,
-          data:myForm})
+          data:myForm
+       	})
         Swal.fire(
           'Save success!',
           '',
           'success'
         ).then((result) =>{
-          location.reload();
+          //location.reload();
         });
-      }
+      } 
     });
 
 

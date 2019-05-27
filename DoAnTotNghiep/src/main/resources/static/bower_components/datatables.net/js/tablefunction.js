@@ -180,6 +180,8 @@ $(document).ready(function () {
 		$("#datepicker_Date").removeAttr('disabled');
 		$("#datepicker_DOB").removeAttr('disabled');
 		$("#btn_saveProfile").removeAttr('disabled');
+		$("#upload-photo").removeAttr('disabled');
+		$("#upload-cv").removeAttr('disabled');
 	});
 
 	

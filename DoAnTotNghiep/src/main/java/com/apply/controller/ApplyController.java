@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,9 +40,14 @@ import com.subsystem.uploadfile.GGDrive;
 @Controller
 public class ApplyController {
 
-	ApplyDao applydao = new ApplyDao();
-	CandidateDAO candidatedao = new CandidateDAO();
-	GGDrive GG =new GGDrive();
+	@Autowired
+	ApplyDao applydao ;
+	
+	@Autowired
+	CandidateDAO candidatedao ;
+	
+	
+	GGDrive GG = new GGDrive();
 
 
 	// Lấy thông tin tổng quát(id,tên,ngày) của position đổ về client

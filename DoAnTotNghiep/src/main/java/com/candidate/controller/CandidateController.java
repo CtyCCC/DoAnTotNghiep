@@ -4,6 +4,7 @@ package com.candidate.controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.security.Principal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,16 +29,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -49,6 +53,7 @@ import com.entity.Candidate;
 import com.entity.Position;
 import com.entity.User;
 import com.position.dao.PositionDAO;
+import com.subsystem.uploadfile.GGDrive;
 import com.usermanagement.dao.UserDAO;
 
 @Controller
@@ -63,6 +68,7 @@ public class CandidateController {
 	@Autowired
     public JavaMailSender emailSender;
 	
+	GGDrive GG =new GGDrive();
 
 	PositionDAO posDAO = new PositionDAO();
 
@@ -335,71 +341,81 @@ public class CandidateController {
 	}
 
 	@PostMapping("/profile/editProfile")
-	public @ResponseBody String editProfile(@RequestBody FormEditProfile data ,HttpServletRequest req,Principal principal) {
-		System.out.println(data.toString());
+	public ResponseEntity<?> editProfile(@ModelAttribute FormEditProfile form,Principal principal) throws GeneralSecurityException, IOException {
 		//Lấy thông tin user
 		String userName = principal.getName();	
 
 		String change = "";
-		String id = req.getParameter("id");
+		String id = form.getIdCan();
 		Candidate can = candidateDAO.getCandidateById(id);
 
 		String oldName = can.getNameCan();
-		if(!oldName.equals(req.getParameter("name"))) {
-			change = change + "-Name: "+oldName +" ==> "+req.getParameter("name")+"\n";
+		if(!oldName.equals(form.getName())) {
+			change = change + "-Name: "+oldName +" ==> "+form.getName()+"\n";
 		}
 
 		String oldEmail = can.getEmail();
-		if(!oldEmail.equals(req.getParameter("email"))) {
-			change = change + "-Email: "+oldEmail +" ==> "+req.getParameter("email")+"\n";
+		if(!oldEmail.equals(form.getEmail())) {
+			change = change + "-Email: "+oldEmail +" ==> "+form.getEmail()+"\n";
 		}
 
 		String oldPos = can.getNamePos();
-		if(!oldPos.equals(req.getParameter("namePos"))){
-			change = change + "-Position Apply: "+oldPos +" ==> "+req.getParameter("namePos")+"\n";
+		if(!oldPos.equals(form.getNamePos())){
+			change = change + "-Position Apply: "+oldPos +" ==> "+form.getNamePos()+"\n";
 		}
 
 		String oldDOB = can.getDob();
-		if(!oldDOB.equals(req.getParameter("dob"))) {
-			change = change + "-Position Apply: "+oldPos +" ==> "+req.getParameter("dob")+"\n";
+		if(!oldDOB.equals(form.getDOB())) {
+			change = change + "-Position Apply: "+oldPos +" ==> "+form.getDOB()+"\n";
 		}
 
 		String oldPhone = can.getPhone();
-		if(!oldPhone.equals(req.getParameter("phone"))) {
-			change = change + "-Gender: "+oldPhone +"==>"+req.getParameter("phone")+"\n";
+		if(!oldPhone.equals(form.getPhone())) {
+			change = change + "-Gender: "+oldPhone +"==>"+form.getPhone()+"\n";
 		}
 
 		String oldDateImp = can.getDateImport();
-		if(!oldDateImp.equals(req.getParameter("dateImp"))) {
-			change = change + "-Date Import: "+oldDateImp +" ==> "+req.getParameter("dateImp")+"\n";
+		if(!oldDateImp.equals(form.getDateImport())) {
+			change = change + "-Date Import: "+oldDateImp +" ==> "+form.getDateImport()+"\n";
 		}
 
 		String oldExp = can.getWorkExp();
-		if(!oldExp.equals(req.getParameter("workExp"))) {
-			change = change + "-Work Exp: "+oldExp +" ==> "+req.getParameter("workExp")+"\n";
+		if(!oldExp.equals(form.getWorkExp())) {
+			change = change + "-Work Exp: "+oldExp +" ==> "+form.getWorkExp()+"\n";
 		}
 		String oldGender = can.isGender()+"";
-		if(!oldGender.equals(req.getParameter("gender"))) {
-			change = change + "-Gender: "+oldGender +" ==> "+req.getParameter("gender")+"\n";
+		if(!oldGender.equals(form.getGender().toString())) {
+			change = change + "-Gender: "+oldGender +" ==> "+form.getGender()+"\n";
 		}
-
-		can.setNameCan(req.getParameter("name"));
-		can.setEmail(req.getParameter("email"));
-		can.setNamePos(req.getParameter("namePos"));
-		can.setDob(req.getParameter("dob"));
-		can.setPhone(req.getParameter("phone"));
-		if(req.getParameter("gender").equals("true")) {
+		
+		if(form.getCv()!=null) {
+			String idnewCV = GG.up(form.getIdCan()+"-"+form.getCmnd(),form.getCv(), 0);
+			can.setLinkCV("https://drive.google.com/open?id="+idnewCV);
+			change = change + "Change CV \n";
+		}
+		if(form.getAvatar()!=null) {
+			String idnewAvatar = GG.up(form.getIdCan()+"-"+form.getCmnd(),form.getAvatar(),1);
+			can.setAvatar("https://docs.google.com/uc?id="+idnewAvatar);
+			change = change + "Change Avatar \n";
+		}
+		
+		can.setNameCan(form.getName());
+		can.setEmail(form.getEmail());
+		can.setNamePos(form.getNamePos());
+		can.setDob(form.getDOB());
+		can.setPhone(form.getPhone());
+		if(form.getGender()==true) {
 			can.setGender(true);
 		}else
 			can.setGender(false);
-		can.setDateImport(req.getParameter("dateImp"));
-		can.setWorkExp(req.getParameter("workExp"));
+		can.setDateImport(form.getDateImport());
+		can.setWorkExp(form.getWorkExp());
 		Map<String,Object> rate = new HashMap<>();
-		if(req.getParameter("score")!=null && req.getParameter("time")!=null && req.getParameter("total")!=null) {
+		if(form.getScore()!=null && form.getTime()!=null && form.getTotal()!=null) {
 			System.out.println("ok");
-			rate.put("score", Integer.parseInt(req.getParameter("score")));
-			rate.put("time", Integer.parseInt(req.getParameter("time")));
-			rate.put("total", Integer.parseInt(req.getParameter("total")));
+			rate.put("score", Integer.parseInt(form.getScore()));
+			rate.put("time", Integer.parseInt(form.getTime()));
+			rate.put("total", Integer.parseInt(form.getTotal()));
 			can.setRate(rate);
 		}
 		candidateDAO.editProfile(can);
@@ -419,7 +435,7 @@ public class CandidateController {
 		}
 
 
-		return "Edit Success";
+		return ResponseEntity.ok("Edit Success");
 	}
 
 	@PostMapping("/profile/addRoundInterview")
