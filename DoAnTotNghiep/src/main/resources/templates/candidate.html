@@ -328,11 +328,11 @@
                             </div>
                             <div class="form-group col-xs-2">
                               <label>Score: </label><span style="color: red;" id="score_error"></span>
-                              <input id="score" type="number" class="form-control">
+                              <input id="score" type="text" class="form-control">
                             </div>
                             <div class="form-group col-xs-2">
                               <label>Total: </label><span style="color: red;" id="total_error"></span>
-                              <input id="total" type="number" class="form-control">
+                              <input id="total" type="text" class="form-control">
                             </div>
                             <div class="form-group col-xs-3">
                               <label>Time: </label><span style="color: red;" id="timeAdd_error"></span>
@@ -341,8 +341,8 @@
                             <div class="form-group col-xs-5">
                               <label>Gender:</label>
                               <select id="gender" class="form-control">
-                                <option value="true" selected>Male</option>
-                                <option value="false" >Female</option>
+                                <option value="male" selected>Male</option>
+                                <option value="female" >Female</option>
                               </select>
                             </div>                   
                             <!-- textarea -->
@@ -567,6 +567,22 @@
                           '',
                           'success'
                         ).then((result) =>{
+                          $.ajax({
+                            url: '/candidate/sendingEmail',
+                            type: 'post',
+                            dataType: 'html',
+                            //contentType: "application/json; charset=utf-8",
+                            data: {
+                                date:date,
+                                time:time,
+                                interviewer:interviewer,
+                                venue:venue,
+                                note:note,
+                                id_cmnd:JSON.stringify(id_cmnd)
+                            },
+                            success:function (data){
+                            }
+                          });
                           location.reload();
                         });
                       }
@@ -967,7 +983,7 @@
       $("#phone_error").text("");
       $("#dob_error").text("");
       $("#score_error").text("");
-      $("#time_error").text("");
+      $("#timeAdd_error").text("");
       $("#total_error").text("");
 
       var er =  0;
@@ -1024,13 +1040,19 @@
       if(score == ""){
         $("#score_error").text("*");
         er++;
+      }else {
+        var patt = /^[0-9]{1,3}$/;
+        if(!patt.test(score)){
+          $("#score_error").text("*");
+          er++;
+        }
       }
       
       if(time == ""){
         $("#timeAdd_error").text("*");
         er++;
       }else {
-        var patt = /^[0-9]{0,10000000}$/;
+        var patt = /^[0-9]{1,1000}$/;
         if(!patt.test(time)){
           $("#timeAdd_error").text("*");
           er++;
@@ -1040,11 +1062,16 @@
       if(total == ""){
         $("#total_error").text("*");
         er++;
+      }else {
+        var patt = /^[0-9]{1,3}$/;
+        if(!patt.test(total)){
+          $("#total_error").text("*");
+          er++;
+        }
       }
 
       if(workExp == ""){
         $("#work_exp").text("less than 1 year");
-        er++;
       }
 
       if(er == 0){

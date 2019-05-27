@@ -177,10 +177,33 @@ public class CandidateController {
 			logs.add(0,log);
 			candidateDAO.addLog(idCan, cmnd, logs);
 			
+		}
+
+		return "Set Interview Success";
+	}
+	
+	@PostMapping("/candidate/sendingEmail")
+	public @ResponseBody String sendingMail(HttpServletRequest request) throws JSONException {
+		//Lấy dữ liệu từ ajax gửi về
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String interviewer = request.getParameter("interviewer");
+		String venue = request.getParameter("venue");
+		String note = request.getParameter("note");
+		JSONArray arr = new JSONArray(request.getParameter("id_cmnd"));
+		for (int i = 0; i < arr.length(); i++) {
+			String idCan = arr.getJSONObject(i).getString("idCan");
+			//System.out.println(idCan);
+			//String cmnd = arr.getJSONObject(i).getString("cmnd");
+			//System.out.println(cmnd);
+
+			Candidate can = new Candidate();
+			can = candidateDAO.getCandidateById(idCan);
+			
 			// Create a Simple MailMessage.
 	        SimpleMailMessage message = new SimpleMailMessage();
 	         
-	        message.setTo("nvmcuong97@gmail.com");
+	        message.setTo(can.getEmail());
 	        message.setSubject("Invite Interview Mail");
 	        message.setText("Dear "+can.getNameCan()
 	        				+"\n\nThank you for registering JWAT Program with DOU Networks"
@@ -195,8 +218,7 @@ public class CandidateController {
 	        // Send Message!
 	        this.emailSender.send(message);
 		}
-
-		return "Set Interview Success";
+		return "Send";
 	}
 
 	@PostMapping("/candidate/deleteCandidate")
@@ -825,8 +847,12 @@ public class CandidateController {
 		}
 		
 		ArrayList<Candidate> dsCan = candidateDAO.getImportCandidate_S(namePos, score, quantity);
+		ArrayList<Candidate> dsCanSys = candidateDAO.getAllCandidate_M();
+		int s = dsCanSys.size();
 		if(dsCan != null && dsCan.size()>0) {
 			for(Candidate can : dsCan) {
+				s++;
+				can.setIdCan("CAN"+s);
 				candidateDAO.addCandidate(can, "Candidate_M");
 
 				//Lưu logs
@@ -852,7 +878,7 @@ public class CandidateController {
 		//Lấy thông tin user
 		String userName = principal.getName();
 
-		String idCan = "CAN"+(candidateDAO.getAllCandidate_S().size()+1);
+		String idCan = "CAN"+(candidateDAO.getAllCandidate_M().size()+1);
 		String nameCan = req.getParameter("name");
 		String cmnd = req.getParameter("cmnd");
 		String email = req.getParameter("email");
@@ -863,16 +889,20 @@ public class CandidateController {
 		int total = Integer.parseInt(req.getParameter("total"));
 		int time = Integer.parseInt(req.getParameter("time"));
 		boolean gender = true;
-		if(req.getParameter("gender").equals("false"))
+		if(req.getParameter("gender").equals("female"))
 			gender = false;
 		String workExp = req.getParameter("workExp");
 		String status = req.getParameter("stt");
+		
+		if(workExp.equals("")) {
+			workExp = "less than 1 year";
+		}
 
 		HashMap<String, Object> rate = new HashMap<>();
 		rate.put("score", score);
 		rate.put("time", time);
 		rate.put("total", total);
-		Candidate newCan = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, "aaa", posName, java.time.LocalDate.now().format(formatter1), workExp, "bbb", rate, status, null,null,null);
+		Candidate newCan = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, "aaa", posName, java.time.LocalDate.now().format(formatter1), workExp, "zzz", rate, status, null,null,null);
 		
 		HashSet<String> dsCMNDSys = new HashSet<>();
 		ArrayList<Candidate> dsCanSys = candidateDAO.getAllCandidate_M();
@@ -880,6 +910,7 @@ public class CandidateController {
 			dsCMNDSys.add(can.getCmnd());
 		}
 		if(dsCMNDSys.add(cmnd)) {
+			System.out.println(newCan);
 			candidateDAO.addCandidate(newCan, "Candidate_M");
 
 			//Lưu log
