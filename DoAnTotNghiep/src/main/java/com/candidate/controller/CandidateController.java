@@ -221,14 +221,18 @@ public class CandidateController {
 		String userName = principal.getName();
 		String name = "Unknown";
 		String role = "Unknown";
+		String avatar = "Unknown";
 		if(userName != null) {
-			name = userDAO.getUserByUserName(userName).getName();
-			role = userDAO.getUserByUserName(userName).getCode();
+			User user = userDAO.getUserByUserName(userName);
+			name = user.getName();
+			role = user.getCode();
+			avatar = user.getAvatar();
 		}
 		model.addAttribute("userName", userName);
 		model.addAttribute("fullName", name);
 		model.addAttribute("role", role);
-
+		model.addAttribute("avatar", avatar);
+		
 		Candidate can = candidateDAO.getCandidateById(id);
 		if(!(can.getIdCan()==null)) {
 			System.out.println(can);
@@ -853,20 +857,30 @@ public class CandidateController {
 		rate.put("time", time);
 		rate.put("total", total);
 		Candidate newCan = new Candidate(idCan, nameCan, cmnd, email, phone, gender, dob, "aaa", posName, java.time.LocalDate.now().format(formatter1), workExp, "bbb", rate, status, null,null,null);
-		candidateDAO.addCandidate(newCan, "Candidate_M");
+		
+		HashSet<String> dsCMNDSys = new HashSet<>();
+		ArrayList<Candidate> dsCanSys = candidateDAO.getAllCandidate_M();
+		for(Candidate can : dsCanSys) {
+			dsCMNDSys.add(can.getCmnd());
+		}
+		if(dsCMNDSys.add(cmnd)) {
+			candidateDAO.addCandidate(newCan, "Candidate_M");
 
-		//Lưu log
-		ArrayList<Object> logs = new ArrayList<>();
-		Map<String, Object> log = new HashMap<String, Object>();
-		log.put("by", userName);
-		log.put("date", java.time.LocalDate.now().format(formatter1));
-		log.put("time", java.time.LocalTime.now().format(formatter2));
-		log.put("method", "Import into System");
-		log.put("change", "Not");
-		logs.add(0,log);
-		candidateDAO.addLog(newCan.getIdCan(), newCan.getCmnd(), logs);
-
-		return "Ok";
+			//Lưu log
+			ArrayList<Object> logs = new ArrayList<>();
+			Map<String, Object> log = new HashMap<String, Object>();
+			log.put("by", userName);
+			log.put("date", java.time.LocalDate.now().format(formatter1));
+			log.put("time", java.time.LocalTime.now().format(formatter2));
+			log.put("method", "Import into System");
+			log.put("change", "Not");
+			logs.add(0,log);
+			candidateDAO.addLog(newCan.getIdCan(), newCan.getCmnd(), logs);
+			return "Ok";
+		}else {
+			return "Not Ok";
+		}
+		
 	}
 
 	@PostMapping("/candidate/export")

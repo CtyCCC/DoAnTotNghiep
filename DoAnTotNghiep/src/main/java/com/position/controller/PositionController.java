@@ -1,11 +1,13 @@
 package com.position.controller;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +22,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.position.dao.PositionDAO;
 import com.position.dao.QuestionsDAO;
+import com.usermanagement.dao.UserDAO;
 import com.entity.Position;
 import com.entity.Questions;
+import com.entity.User;
 
 @Controller
 public class PositionController {
@@ -29,8 +33,24 @@ public class PositionController {
 	QuestionsDAO quesDAO = new QuestionsDAO();
 	PositionDAO posDAO = new PositionDAO();
 	
+	@Autowired
+	private UserDAO userDAO;
+	
 	@GetMapping("/position")
-	public String index(Model model,HttpServletRequest request) {
+	public String index(Model model,HttpServletRequest request, Principal principal) {
+		
+		String avatar = "Unknown";
+		String userName = principal.getName();
+		String name = "Unknown";
+		
+		if(userName != null) {
+			User user =userDAO.getUserByUserName(userName);
+			name = user.getName();
+			avatar = user.getAvatar();
+		}
+		model.addAttribute("userName", userName);
+		model.addAttribute("fullName", name);
+		model.addAttribute("avatar", avatar);
 		
 		String namePos = request.getParameter("namePos");
 		

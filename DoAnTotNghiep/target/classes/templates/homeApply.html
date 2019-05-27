@@ -81,7 +81,7 @@
         </div>
         <!-- Modal body content -->
         <div class="modal-body">
-          <form id="frm1" action="/"  method="post"  enctype="multipart/form-data">
+          <form id="frm1" action="/sendApply"  method="post"  enctype="multipart/form-data">
             <!-- Identity card number -->
               <div class="form-group">
                 <label>Identity card number  <span class="text-danger">&lowast;</span></label>
@@ -287,6 +287,7 @@
 
   <!-- Footer -->
   <footer class="footer text-center">
+    <input type="hidden" name="" id="messa" th:text = "${messa}">
     <div class="container">
       <ul class="list-inline mb-5">
         <li class="list-inline-item">
@@ -325,7 +326,11 @@
   <script src="../../dist/js/apply/stylish-portfolio.min.js"></script>
 
 </body>
-
+<script>
+  $(function () {
+    console.log("aaaa");
+  });
+</script>
 <script>
 /* Auto scale textarea */
   function expandDetail() {
@@ -341,7 +346,7 @@
   function fillform(){
 	  $("#f_position").val($("#i_position").text());	  
 	};
-$(document).ready(function(){	
+$(document).ready(function(){
 	$('#f_DOB').datepicker({
 	     autoclose: true,
 	     format:"dd/mm/yyyy"

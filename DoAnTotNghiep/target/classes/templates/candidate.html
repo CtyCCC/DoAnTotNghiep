@@ -709,13 +709,20 @@
                   stt:stt
               },
               success:function (data){
-                Swal.fire(
+                if(data == "Ok"){
+                  Swal.fire(
                   'Add Candidate Success!',
                   '',
                   'success'
                 ).then((result) =>{
                   location.reload();
                 });
+                }else if(data == "Not Ok") {
+                  Swal.fire({
+                    type: 'error',
+                    title: 'Candidate has added, please check CMND!',
+                  })
+                }
               }
               });
             }

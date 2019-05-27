@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -76,8 +77,8 @@ public class ApplyController {
 	}
 
 
-	@PostMapping("/")
-	public String getNewRecruitment(@ModelAttribute FormApply formapply,RedirectAttributes attr ) {
+	@PostMapping("/sendApply")
+	public String getNewRecruitment(@ModelAttribute FormApply formapply,RedirectAttributes attr, Model model) {
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
 		Date datecurrent = new Date();
 		
@@ -111,5 +112,22 @@ public class ApplyController {
 		attr.addAttribute("IDPOS",candidate.getNamePos());
 		attr.addAttribute("IDCAN",candidate.getIdCan());
 		return "redirect:/quiz";
+		
+//		HashSet<String> dsCMNDSys = new HashSet<>();
+//		ArrayList<Candidate> dsCanSys = candidatedao.getCandidateByPosName(applydao.getPositionbyId(namePos).getName());
+//		for(Candidate can : dsCanSys) {
+//			dsCMNDSys.add(can.getCmnd());
+//		}
+//		if(dsCMNDSys.add(cmnd)) {
+//			applydao.addCandidate_S(candidate);
+//
+//			attr.addAttribute("IDPOS",candidate.getNamePos());
+//			attr.addAttribute("IDCAN",candidate.getIdCan());
+//			return "redirect:/quiz";
+//		}
+//		else {
+//			model.addAttribute("messa","NOT Ok");
+//			return "redirect:/";
+//		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.usermanagement.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,21 @@ public class UserController {
 	UserDAO dao = new UserDAO();
 	
 	@GetMapping("/userMgmt")
-	public String userMgmt(Model model) {
+	public String userMgmt(Model model, Principal principal) {
+		
+		String avatar = "Unknown";
+		String userName = principal.getName();
+		String name = "Unknown";
+		
+		if(userName != null) {
+			User user =dao.getUserByUserName(userName);
+			name = user.getName();
+			avatar = user.getAvatar();
+		}
+		model.addAttribute("userName", userName);
+		model.addAttribute("fullName", name);
+		model.addAttribute("avatar", avatar);
+		
 		ArrayList<User> arrU = new ArrayList<>();
 		arrU = dao.getAllUser();
 		model.addAttribute("listUser",arrU);

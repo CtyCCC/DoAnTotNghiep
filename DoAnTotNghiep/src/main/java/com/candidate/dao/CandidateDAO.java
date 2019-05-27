@@ -38,7 +38,7 @@ import com.entity.Candidate;
 
 @Repository
 public class CandidateDAO {
-	
+
 	DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
@@ -134,7 +134,7 @@ public class CandidateDAO {
 
 		return ds;
 	}
-	
+
 	public ArrayList<Candidate> getAllCandidate_S(){
 		ArrayList<Candidate> ds = new ArrayList<Candidate>();
 		Table table = dynamoDB.getTable("Candidate_S");
@@ -213,6 +213,48 @@ public class CandidateDAO {
 		return null;
 	}
 
+	//Search Candidate by PosName
+	public ArrayList<Candidate> getCandidateByPosName(String PosName) {
+		ArrayList<Candidate> ds = new ArrayList<Candidate>();
+		Table table = dynamoDB.getTable("Candidate_S");
+		ScanSpec scanSpec = new ScanSpec()
+				.withFilterExpression("#ii = :iiii")
+				.withNameMap(new NameMap().with("#ii", "namePos"))
+				.withValueMap(new ValueMap().withString(":iiii", PosName));
+
+		try {
+			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
+
+			Iterator<Item> iter = items.iterator();
+			while (iter.hasNext()) {
+				Item item = iter.next();
+				Candidate c = new Candidate(item.getString("idCan"), 
+						item.getString("nameCan"), 
+						item.getString("cmnd"), 
+						item.getString("email"), 
+						item.getString("phone"), 
+						item.getBoolean("gender"), 
+						item.getString("dob"), 
+						item.getString("linkCV"), 
+						item.getString("namePos"),
+						null,
+						item.getString("workExp"),
+						item.getString("avatar"),
+						item.getMap("rate"), 
+						item.getString("status"),
+						null,null,null);
+				ds.add(c);
+			}
+
+		}
+		catch (Exception e) {
+			System.err.println("Unable to scan the table:");
+			System.err.println(e.getMessage());
+		}
+
+		return ds;
+	}
+
 	//Add new Candidate
 	public void addCandidate(Candidate can, String tableName) {
 		Table table = dynamoDB.getTable(tableName);
@@ -241,36 +283,36 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Delete Candidate
 	public void deleteCandidate(String id, String cmnd) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		DeleteItemSpec deleteItemSpec = new DeleteItemSpec()
-	            .withPrimaryKey(new PrimaryKey("idCan", id, "cmnd", cmnd));
+				.withPrimaryKey(new PrimaryKey("idCan", id, "cmnd", cmnd));
 
-	        // Conditional delete (we expect this to fail)
+		// Conditional delete (we expect this to fail)
 
-	        try {
-	            System.out.println("Attempting a conditional delete...");
-	            table.deleteItem(deleteItemSpec);
-	            System.out.println("DeleteItem succeeded");
-	        }
-	        catch (Exception e) {
-	            System.err.println(e.getMessage());
-	        }
+		try {
+			System.out.println("Attempting a conditional delete...");
+			table.deleteItem(deleteItemSpec);
+			System.out.println("DeleteItem succeeded");
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	//Update Status
 	public void updateStatusCandidateById(String id,String cmnd, String stus) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
-					.withPrimaryKey("idCan", id, "cmnd", cmnd)
-					.withUpdateExpression("set #ss = :s")
-					.withNameMap(new NameMap().with("#ss", "status"))
-					.withValueMap(new ValueMap().withString(":s", stus))
-					.withReturnValues(ReturnValue.UPDATED_NEW);
-			
-		
+				.withPrimaryKey("idCan", id, "cmnd", cmnd)
+				.withUpdateExpression("set #ss = :s")
+				.withNameMap(new NameMap().with("#ss", "status"))
+				.withValueMap(new ValueMap().withString(":s", stus))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+
+
 		try {
 			System.out.println("Updating the item...");
 			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
@@ -280,20 +322,20 @@ public class CandidateDAO {
 		catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		
-		
+
+
 	}
-	
+
 	//Add Interview
 	public void addInterview(String id, String cmnd, ArrayList<Object> rounds, String stus) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
-		
+
 		//Thông tin interview
 		Map<String, Object> inter = new HashMap<String, Object>(); 
 		inter.put("finalResult","Unknown");
 		inter.put("rounds", rounds);
-		
+
 		updateItemSpec = new UpdateItemSpec()
 				.withPrimaryKey("idCan", id, "cmnd", cmnd)
 				.withUpdateExpression("set #ss = :s, interview = :i")
@@ -311,19 +353,19 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Add Offer
 	public void editOffer(String id, String cmnd, String stus, String curSal, String expectSal, String offSal, String result) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
-		
+
 		//Thông tin offer
 		Map<String, Object> offer = new HashMap<String, Object>(); 
 		offer.put("curSalary",curSal);
 		offer.put("expectSalary",expectSal);
 		offer.put("offerSalary",offSal);
 		offer.put("result",result);
-		
+
 		updateItemSpec = new UpdateItemSpec()
 				.withPrimaryKey("idCan", id, "cmnd", cmnd)
 				.withUpdateExpression("set #ss = :s, offer = :o")
@@ -341,18 +383,18 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Add probation
 	public void editProbation(String id, String cmnd, String stus, String dateRange, String result, String note) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
-		
+
 		//Thông tin offer
 		Map<String, Object> proba = new HashMap<String, Object>(); 
 		proba.put("dateRange",dateRange);
 		proba.put("result",result);
 		proba.put("note",note);
-		
+
 		updateItemSpec = new UpdateItemSpec()
 				.withPrimaryKey("idCan", id, "cmnd", cmnd)
 				.withUpdateExpression("set #ss = :s, probation = :p")
@@ -370,39 +412,39 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Edit thông tin candidate
 	public void editProfile(Candidate can) { 
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
-					.withPrimaryKey("idCan", can.getIdCan(), "cmnd", can.getCmnd())
-					.withUpdateExpression("set nameCan = :na, "
-							+ "email = :em, "
-							+ "phone = :ph, "
-							+ "gender = :ge, "
-							+ "dob = :do, "
-							+ "namePos = :np, "
-							+ "dateImport = :da, "
-							+ "workExp = :wo, "
-							+ "avatar = :av, "
-							+ "rate.score = :sc, #t = :ti, #tt = :to")
-					.withNameMap(new NameMap().with("#t", "rate.time").with("#tt", "rate.total"))
-					.withValueMap(new ValueMap()
-							.withString(":na", can.getNameCan())
-							.withString(":em", can.getEmail())
-							.withString(":ph", can.getPhone())
-							.withBoolean(":ge", can.isGender())
-							.withString(":do", can.getDob())
-							.withString(":np", can.getNamePos())
-							.withString(":da", can.getDateImport())
-							.withString(":wo", can.getWorkExp())
-							.withString(":av", can.getAvatar())
-							.withInt(":sc", (int) can.getRate().get("score"))
-							.withInt(":ti", (int) can.getRate().get("time"))
-							.withInt(":to", (int) can.getRate().get("total")))
-					.withReturnValues(ReturnValue.UPDATED_NEW);
-			
-		
+				.withPrimaryKey("idCan", can.getIdCan(), "cmnd", can.getCmnd())
+				.withUpdateExpression("set nameCan = :na, "
+						+ "email = :em, "
+						+ "phone = :ph, "
+						+ "gender = :ge, "
+						+ "dob = :do, "
+						+ "namePos = :np, "
+						+ "dateImport = :da, "
+						+ "workExp = :wo, "
+						+ "avatar = :av, "
+						+ "rate.score = :sc, #t = :ti, #tt = :to")
+				.withNameMap(new NameMap().with("#t", "rate.time").with("#tt", "rate.total"))
+				.withValueMap(new ValueMap()
+						.withString(":na", can.getNameCan())
+						.withString(":em", can.getEmail())
+						.withString(":ph", can.getPhone())
+						.withBoolean(":ge", can.isGender())
+						.withString(":do", can.getDob())
+						.withString(":np", can.getNamePos())
+						.withString(":da", can.getDateImport())
+						.withString(":wo", can.getWorkExp())
+						.withString(":av", can.getAvatar())
+						.withInt(":sc", (int) can.getRate().get("score"))
+						.withInt(":ti", (int) can.getRate().get("time"))
+						.withInt(":to", (int) can.getRate().get("total")))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+
+
 		try {
 			System.out.println("Updating the item...");
 			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
@@ -413,7 +455,7 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Lấy round bằng idRound
 	public Map<String, Object> getRoundById(String idRound, String idCan){
 		ArrayList<Object> arr = new ArrayList<>();
@@ -444,18 +486,18 @@ public class CandidateDAO {
 		}
 		return null;
 	}
-	
+
 	//Edit thông tin round bằng id
 	public void editRoundById(ArrayList<Object> dsRound, String idCan, String cmnd) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
-					.withPrimaryKey("idCan", idCan, "cmnd", cmnd)
-					.withUpdateExpression("set interview.rounds = :ro")
-					.withValueMap(new ValueMap()
-							.withList(":ro", dsRound))
-					.withReturnValues(ReturnValue.UPDATED_NEW);
-			
-		
+				.withPrimaryKey("idCan", idCan, "cmnd", cmnd)
+				.withUpdateExpression("set interview.rounds = :ro")
+				.withValueMap(new ValueMap()
+						.withList(":ro", dsRound))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+
+
 		try {
 			System.out.println("Updating the item...");
 			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
@@ -466,7 +508,7 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Update Final Result
 	public void updateFinalResult(String idCan, String cmnd, String fnRs) {
 		String stus = "Interviewing";
@@ -477,14 +519,14 @@ public class CandidateDAO {
 		};
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec()
-					.withPrimaryKey("idCan", idCan, "cmnd", cmnd)
-					.withUpdateExpression("set #ss = :s, interview.finalResult = :fr")
-					.withNameMap(new NameMap().with("#ss", "status"))
-					.withValueMap(new ValueMap()
-							.withString(":fr", fnRs).withString(":s", stus))
-					.withReturnValues(ReturnValue.UPDATED_NEW);
-			
-		
+				.withPrimaryKey("idCan", idCan, "cmnd", cmnd)
+				.withUpdateExpression("set #ss = :s, interview.finalResult = :fr")
+				.withNameMap(new NameMap().with("#ss", "status"))
+				.withValueMap(new ValueMap()
+						.withString(":fr", fnRs).withString(":s", stus))
+				.withReturnValues(ReturnValue.UPDATED_NEW);
+
+
 		try {
 			System.out.println("Updating the item...");
 			UpdateItemOutcome outcome = table.updateItem(updateItemSpec);
@@ -495,12 +537,12 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//Lưu Log
 	public void addLog(String id, String cmnd, ArrayList<Object> logs) {
 		Table table = dynamoDB.getTable("Candidate_M");
 		UpdateItemSpec updateItemSpec = new UpdateItemSpec();
-		
+
 		updateItemSpec = new UpdateItemSpec()
 				.withPrimaryKey("idCan", id, "cmnd", cmnd)
 				.withUpdateExpression("set logs = :l")
@@ -516,7 +558,7 @@ public class CandidateDAO {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	//GetLog
 	public ArrayList<Object> getAllLog(String idCan){
 		ArrayList<Object> arr = new ArrayList<>();
@@ -540,7 +582,7 @@ public class CandidateDAO {
 		}
 		return null;
 	}
-	
+
 	//Import Candidate
 	public ArrayList<Candidate> getImportCandidate_S(String namePos, int score, int quantity){
 		//Lấy danh sách các candidate đã có trong hệ thống
@@ -549,14 +591,14 @@ public class CandidateDAO {
 		for(Candidate can1 : dsCanInSys) {
 			dsCMND.add(can1.getCmnd());
 		}
-		
+
 		ArrayList<Candidate> ds = new ArrayList<Candidate>();
 		Table table = dynamoDB.getTable("Candidate_S");
-		
+
 		//Index index = table.getIndex("rate.score");
 		ScanSpec scanSpec = new ScanSpec()
-								.withFilterExpression("namePos = :np and rate.score > :sc")
-								.withValueMap(new ValueMap().withString(":np", namePos).withInt(":sc", score-1));
+				.withFilterExpression("namePos = :np and rate.score > :sc")
+				.withValueMap(new ValueMap().withString(":np", namePos).withInt(":sc", score-1));
 
 		try {
 			ItemCollection<ScanOutcome> items = table.scan(scanSpec);
@@ -589,30 +631,30 @@ public class CandidateDAO {
 			System.err.println("Unable to scan the table:");
 			System.err.println(e.getMessage());
 		}
-		
-		
-		
-		
+
+
+
+
 		//Sắp xếp mảng giảm dần (quá ngu nên ko tìm đc cách search desc hiệu qả trên dyanmoDb T.T)
 		if(ds.size()>0) {
 			Candidate temp = ds.get(0);
-	        for (int i = 0 ; i < ds.size()-1; i++) {
-	            for (int j = i + 1; j < ds.size(); j++) {
-	                if (Integer.parseInt(ds.get(i).getRate().get("score")+"") < Integer.parseInt(ds.get(j).getRate().get("score")+"")) {
-	                    temp = ds.get(j);
-	                    ds.set(j, ds.get(i));
-	                    ds.set(i, temp);
-	                }
-	            }
-	        }
-	        for(int k = quantity;k<ds.size();k++) {
-	        	ds.remove(k);
-	        }
-	        return ds;
+			for (int i = 0 ; i < ds.size()-1; i++) {
+				for (int j = i + 1; j < ds.size(); j++) {
+					if (Integer.parseInt(ds.get(i).getRate().get("score")+"") < Integer.parseInt(ds.get(j).getRate().get("score")+"")) {
+						temp = ds.get(j);
+						ds.set(j, ds.get(i));
+						ds.set(i, temp);
+					}
+				}
+			}
+			for(int k = quantity;k<ds.size();k++) {
+				ds.remove(k);
+			}
+			return ds;
 		}	
 		else {
 			return null;
 		}
 	}
-	
+
 }

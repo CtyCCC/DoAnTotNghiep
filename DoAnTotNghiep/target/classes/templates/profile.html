@@ -72,14 +72,17 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!--
                 <img src="./dist/img/user2-160x160.jpg" class="user-image" alt="User Image" id="adminHeader">
+                -->
+                <img th:src="${avatar}" class="user-image" alt="User Image" id="adminHeader">
                 <span class="hidden-xs" th:text = "${userName}"></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
                   <label id="changeAvaAd" for="upload-photoAd" title="Click here to change profile picture">
-                    <img id="hinhAd" width="160" height="160" src="./dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img id="hinhAd" width="160" height="160" th:src="${avatar}" class="img-circle" alt="User Image">
                   </label>
                   <input type="file" name="photoAd" accept="image/*" id="upload-photoAd">
                 </li>
@@ -102,7 +105,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="./dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" id="adminSideBar">
+            <img th:src="${avatar}" class="img-circle" alt="User Image" id="adminSideBar">
           </div>
           <div class="pull-left info">
             <p th:text = "${userName}"></p>
@@ -911,8 +914,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       if(!validateOfferTab (curSal, expecSal, offSal)){
         Swal.fire({
               type: 'warning',
-              title: 'Oops...',
-              text: 'Some field are not fill or invalid!!',
+              title: 'Some field are not fill or invalid!!',
         })
       }else{
           Swal.fire({
@@ -1042,8 +1044,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           if(date=="" ||time=="" ||interviewer=="" ||venue==""){
             Swal.fire({
               type: 'warning',
-              title: 'Oops...',
-              text: 'Some field are not fill!!',
+              title: 'Some field are not fill or invalid!!',
             })
           }else{
               $.ajax({
