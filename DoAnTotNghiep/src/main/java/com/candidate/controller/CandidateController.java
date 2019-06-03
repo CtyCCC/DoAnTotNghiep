@@ -409,18 +409,26 @@ public class CandidateController {
 		if(!oldGender.equals(form.getGender().toString())) {
 			change = change + "-Gender: "+oldGender +" ==> "+form.getGender()+"\n";
 		}
-		
+		try {
 		if(form.getCv()!=null) {
-			String idnewCV = GG.up(form.getIdCan()+"-"+form.getCmnd(),form.getCv(), 0);
+			String idnewCV = "not";
+			idnewCV = GG.up(form.getIdCan()+"-"+form.getCmnd(),form.getCv(), 0);
 			can.setLinkCV("https://drive.google.com/open?id="+idnewCV);
 			change = change + "Change CV \n";
 		}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
 		if(form.getAvatar()!=null) {
-			String idnewAvatar = GG.up(form.getIdCan()+"-"+form.getCmnd(),form.getAvatar(),1);
+			String idnewAvatar = "not";
+			idnewAvatar = GG.up(form.getIdCan()+"-"+form.getCmnd(),form.getAvatar(),1);
 			can.setAvatar("https://docs.google.com/uc?id="+idnewAvatar);
 			change = change + "Change Avatar \n";
 		}
-		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		can.setNameCan(form.getName());
 		can.setEmail(form.getEmail());
 		can.setNamePos(form.getNamePos());

@@ -27,8 +27,8 @@ public class LoadData {
 	public static void main(String[] args) throws JsonParseException, IOException {
 		// TODO Auto-generated method stub
 
-		loadCandidate("Candidate_S");
-		//loadCandidate("Candidate_M");
+		//loadCandidate("Candidate_S");
+		loadCandidate("Candidate_M");
 		loadPosition();
 		loadQuestion();
 		loadUser();

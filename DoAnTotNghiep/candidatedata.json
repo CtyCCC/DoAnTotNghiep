@@ -8,9 +8,9 @@
 		"gender": true,
 		"dob":"24/05/1997",
 		"dateImport":"25/03/2019",
-		"linkCV": "https://drive.google.com/open?id=17WztKIGDNWNuoqbfoVrUQ_PeAWiYgsMi",
+		"linkCV": "https://drive.google.com/open?id=1g69eBBWJ1Ge7OW90ap84kzLrMzW5TmLK",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://docs.google.com/uc?id=16xa292Mk8T5SKRf-hKKy2lZHvNWaMjkX",
 		"rate":{
 			"score" : 17,
 			"time" : 3000,
@@ -67,7 +67,7 @@
 			]
 		},
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://docs.google.com/uc?id=1iBDQILvHUPwvXdhmfQ_lCNMAExbkUL9H",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
 			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
@@ -104,7 +104,7 @@
 			"result":"Unknown"
 		},
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=1W8NHWNIErsntrRIfjAM8E__7YXbfJD4l",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
 			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
@@ -135,7 +135,7 @@
 			]
 		},
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
 			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
@@ -172,7 +172,7 @@
 			"result":"Decline"
 		},
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"},
 			{"by":"admin","date":"13-05-2019","time":"11:09:47","method":"Set InterView","change":"Not"}
@@ -196,7 +196,7 @@
 		"namePos": "Senior Tester",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -219,7 +219,7 @@
 		"namePos": "Senior Tester",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -242,7 +242,7 @@
 		"namePos": "Junior Java Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -265,7 +265,7 @@
 		"namePos": "Junior Java Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -288,7 +288,7 @@
 		"namePos": "Junior Java Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/open?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -311,7 +311,7 @@
 		"namePos": "Big Data Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -334,7 +334,7 @@
 		"namePos": "Big Data Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -357,7 +357,7 @@
 		"namePos": "Data Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -380,7 +380,7 @@
 		"namePos": "Data Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -403,7 +403,7 @@
 		"namePos": "Machine Learning Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -426,7 +426,7 @@
 		"namePos": "Machine Learning Engineer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -449,7 +449,7 @@
 		"namePos": "Python Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]
@@ -472,7 +472,7 @@
 		"namePos": "Python Developer",
 		"status":"New",
 		"workExp":"3 years",
-		"avatar":"zzz",
+		"avatar":"https://drive.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ",
 		"logs":[
 			{"by":"admin","date":"13-05-2019","time":"11:07:47","method":"Import into System","change":"Not"}
 		]

@@ -817,8 +817,12 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       var avatar    = document.getElementById("upload-photo").files[0];
       var cv		= document.getElementById("upload-cv").files[0];
       var myForm = new FormData(document.getElementById("form-data"));
-      myForm.append("avatar",avatar);
-      myForm.append("cv",cv);
+      if(avatar != undefined){
+    	  myForm.append("avatar",avatar);
+      }
+      if(cv != undefined){
+    	  myForm.append("cv",cv);
+      }
       for(var pair of myForm.entries()){
     	console.log(pair[0]+":"+pair[1]);  
       }
@@ -837,7 +841,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
           '',
           'success'
         ).then((result) =>{
-          //location.reload();
+          location.reload();
         });
       } 
     });

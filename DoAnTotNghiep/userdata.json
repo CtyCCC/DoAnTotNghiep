@@ -5,7 +5,7 @@
 		"name": "Trần Hùng Cường",
 		"pass":"admin",
 		"code":"ROLE_ADMIN",
-		"avatar" : "https://docs.google.com/uc?id=1r5LGXaZpnSyUAjT8XjwRCSqFs9SZuins"
+		"avatar" : "https://docs.google.com/uc?id=14bTxANxpeZKSZsgrVupC_x9eAXSNBdZJ"
 	},
 	{
 		"idUser":"USR2",
@@ -13,7 +13,7 @@
 		"name": "Nguyen Van B",
 		"pass":"123",
 		"code":"ROLE_INTERVIEWER",
-		"avatar" : "https://docs.google.com/uc?id=1zTOyl_cNXdD5MIADpl75Dmr3tKrBy1Gd"
+		"avatar" : "https://docs.google.com/uc?id=1W8NHWNIErsntrRIfjAM8E__7YXbfJD4l"
 	},
 	{
 		"idUser":"USR3",
@@ -37,7 +37,7 @@
 		"name": "Trần Đình Chiến",
 		"pass":"123",
 		"code":"ROLE_HR",
-		"avatar" : "https://docs.google.com/uc?id=1zPAml9wwxfHb7GBveec-4XH7uSJ4T9ni"
+		"avatar" : "https://docs.google.com/uc?id=1Ie3PQTyv3HwNQAaTmlISxwQRPXMKh8SN"
 	},
 	{
 		"idUser":"USR6",
